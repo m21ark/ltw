@@ -1,5 +1,13 @@
 # LTW Project
 
+# UML
+- https://lucid.app/lucidchart/12829b35-a139-42d3-a574-8c573ef37b6b/edit?invitationId=inv_ab014954-bb30-4314-b856-a35b0319cc29
+<br>
+<img src="docs/uml.png" alt="UML">
+
+
+# Plan
+
 ## Week 6:
 > - Mockups and navigation diagrams for the main pages
 > - First draft of the database design.
