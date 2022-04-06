@@ -4,6 +4,9 @@
 		<meta charset="UTF-8">
 		<title>Restaurant</title>
 		<link rel="stylesheet" href="css/style.css">
+
+<link rel="icon" href="https://cdn1.iconfinder.com/data/icons/birthday-30/64/pizza_food_slice_piece_fast_-512.png" type="image/x-icon" />
+
 	</head>
 
 <?php }?>

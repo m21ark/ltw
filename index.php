@@ -4,7 +4,6 @@
 	<?php output_head();?>
 <body>
 	<?php output_header();?>
- 	<?php output_head();?>
 	<?php output_main();?>
 	<a href="article.php">Article</a>
 	<?php output_footer();?>
