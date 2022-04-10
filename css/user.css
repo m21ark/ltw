@@ -1,0 +1,65 @@
+#user_info {
+    font-size: 1.4em;
+    padding: 1em;
+    background-image: url("../docs/pizza.jpg");
+}
+
+#user_info h2 {
+    margin-bottom: 0.5em;
+}
+
+#user_info #info_display h3 {
+    margin-top: 0.4em;
+    margin-bottom: 1.2em;
+    font-size: 1.4em;
+}
+
+#user_info #info_display p {
+    color: var(--text_color);
+    font-size: 1.2em;
+    margin-top: 0.3em;
+}
+
+#user_info #info_display {
+    margin: 1em auto 1em auto;
+    text-align: center;
+    color: var(--text_color);
+}
+
+#user_info>section {
+    background-color: var(--bg_color);
+    padding: 1em;
+    border-radius: 7px;
+    margin: 2.5em auto;
+    width: 16em;
+    box-shadow: 5px 5px 20px black;
+    width: 25em;
+}
+
+#user_info a#edit_account {
+    box-shadow: 1.5px 1.5px 5px black;
+    padding: 0.5em 3.2em;
+    border-radius: 7px;
+    margin: 3em 0 0 0;
+    background-color: var(--title_color);
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-weight: bolder;
+    font-size: 1em;
+    text-decoration: none;
+}
+
+#user_info a:not(#edit_account) {
+    box-shadow: 1.5px 1.5px 5px black;
+    padding: 0.5em 3.2em;
+    border-radius: 7px;
+    margin: 1.5em 0 0 0;
+    background-color: var(--accent_color);
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-weight: bolder;
+    font-size: 1em;
+    text-decoration: none;
+}

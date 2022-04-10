@@ -1,0 +1,68 @@
+article#login, article#register {
+    font-size: 1.4em;
+    padding: 1em;
+    background-image: url("../docs/pizza.jpg");
+}
+
+article div#sign_form {
+    background-color: var(--bg_color);
+    padding: 1em;
+    border-radius: 7px;
+    margin: 2.5em auto;
+    width: 16em;
+    box-shadow: 5px 5px 20px black;
+}
+
+article#register div#sign_form {
+    width: 40em;
+}
+
+div#sign_form h2 {
+    margin-bottom: 1em;
+}
+
+div#sign_form label {
+    color: var(--text_color);
+}
+
+div#sign_form input {
+    margin: 0.3em auto 1.2em auto;
+    display: block;
+    padding: 0.5em;
+    font-size: 0.9em;
+    box-shadow: 1px 1px 10px grey;
+    border-radius: 7px;
+    border-width: 0;
+}
+
+div#sign_form button {
+    box-shadow: 1.5px 1.5px 5px black;
+    font-size: 0.7em;
+    margin-top: 2em;
+    padding: 1em 4em;
+    background-color: var(--accent_color);
+    border-radius: 7px;
+    color: white;
+    font-weight: bold;
+    border-width: 0;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+div#sign_form p {
+    margin: 1.4em auto 0.5em auto;
+    text-align: center;
+}
+
+article#register .left_login {
+    float: left;
+    width: 50%;
+}
+
+article#register .right_login {
+    float: right;
+    width: 50%;
+}
