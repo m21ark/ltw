@@ -1,6 +1,6 @@
 #user_info {
-    font-size: 1.4em;
-    padding: 1em;
+    font-size: 1.2em;
+    padding: 0.8em;
     background-image: url("../docs/pizza.jpg");
 }
 
@@ -30,7 +30,7 @@
     background-color: var(--bg_color);
     padding: 1em;
     border-radius: 7px;
-    margin: 2.5em auto;
+    margin: 2em auto;
     width: 16em;
     box-shadow: 5px 5px 20px black;
     width: 25em;

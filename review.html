@@ -14,26 +14,24 @@
         <a href="index.html"><img src="docs/logo.jpg" width="50" height="50" alt="logo"></a>
         <h1 id="logo_name"><a href="index.html">Spicy Restaurant</a></h1>
         <span><a id="header_search" href="index.html">&#128270;</a></span>
-        <a class="header_right" id="signup" href="login.html">Sign in</a>
+        <span><a id="header_cart" href="cart.html">&#x1f6d2;</a></span>
+        <a id="header_avatar" href="user.html"><img src="docs/user.png" alt="logo"></a>
     </header>
 
     <main>
-        <article id="login">
+        <article id="review">
             <div id="sign_form">
                 <form>
-                    <h2>Login</h2>
+                    <h2>Review</h2>
                     <label>
-                        Username <input type="text" required placeholder="Username" name="username">
+                        Write your review <textarea name="review" style="resize: none;" cols="30" rows="16"></textarea>
                     </label>
                     <label>
-                        Password <input type="password" required placeholder="Password" name="password">
+                        Score <input type="number" required placeholder="1-5" name="star_review">
                     </label>
-                    <button formaction="#" formmethod="post">Login</button>
-                </form>
-                <form>
-                    <div id="sign_option">
-                        <p><span class="bold">Don't have an account?</span></p>
-                        <button formaction="register.html">Register</button>
+                    <div id="review_options">
+                        <button formaction="#" formmethod="post">Publish</button>
+                        <a href="index.html">Go back</a>
                     </div>
                 </form>
             </div>

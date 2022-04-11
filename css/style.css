@@ -21,6 +21,10 @@ p {
     color: var(--text_color)
 }
 
+.white_bg{
+    background-color: white;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -182,6 +186,10 @@ article .carrosel_nav button {
     margin-left: 1em;
     border-radius: 7px;
     box-shadow: 2px 1.5px 3px grey;
+}
+
+.rm_linkdecor{
+    text-decoration: none;
 }
 
 .img_carrosel img {

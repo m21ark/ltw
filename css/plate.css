@@ -1,0 +1,139 @@
+.white_bg {
+    padding: 2em;
+}
+
+#plate_page {
+    box-shadow: 2px 2px 10px grey;
+    margin: 2em auto;
+    padding: 3em 1.5em 6em 1.5em;
+    border-radius: 7px;
+    max-width: 50em;
+
+    background-color: var(--bg_color);
+    display: grid;
+    grid-template-rows: 4em 20em 2em 2em 5em;
+    grid-template-columns: 5fr 2.5fr 5fr;
+    grid-template-areas: "title . ."
+        "plate ingredients ingredients"
+        ". . ."
+        ". link ."
+        " description description description";
+
+}
+
+#plate_left {
+    box-shadow: 2px 2px 5px grey;
+    grid-area: plate;
+}
+
+#plate_right {
+    box-shadow: 2px 2px 10px grey;
+    background-color: white;
+    border-radius: 7px;
+    grid-area: ingredients;
+    margin-left: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#plate_restaurant {
+    grid-area: link;
+}
+
+#plate_page img {
+    width: 13em;
+    border-radius: 7px;
+}
+
+
+#plate_left {
+    background-color: white;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#plate_left * {
+    padding: 1.1em;
+}
+
+#plate_left p {
+    font-weight: bolder;
+    font-size: 1.6em;
+}
+
+
+#ingredients_list {
+    display: flex;
+    font-size: 1.4em;
+    margin: 1em auto;
+}
+
+#ingredients_list li {
+    margin-bottom: 0.6em;
+}
+
+#ingredients_list ul:first-of-type {
+    margin-right: 6em;
+}
+
+
+
+#plate_right input {
+    padding: 0.7em 4em;
+    border-radius: 7px;
+    background-color: var(--accent_color);
+    color: white;
+    font-weight: bolder;
+    font-size: 1.2em;
+
+}
+
+
+#plate_restaurant {
+    text-decoration: none;
+    color: var(--title_color);
+}
+
+
+
+#plate_description {
+    grid-area: description;
+    display: grid;
+    grid-template-rows: 1fr 4fr;
+    grid-template-columns: 7fr 2fr;
+    grid-template-areas: "header ."
+        "text types";
+}
+
+
+#plate_description p {
+    text-align: justify;
+    grid-area: text;
+    padding-top: 1em;
+    padding-right: 2em;
+    font-size: 1.3em;
+}
+
+#plate_description div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1em;
+    grid-area: types;
+}
+
+
+#plate_description div * {
+    padding: 0.5em;
+    margin: 0.4em;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    color: var(--text_color);
+    background-color: var(--light_color);
+    box-shadow: 1.5px 1.5px 5px grey;
+}
