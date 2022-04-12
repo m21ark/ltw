@@ -1,0 +1,184 @@
+#presentation {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 2em 2em;
+    align-items: center;
+    justify-items: center;
+    font-size: 1.5em;
+}
+
+
+#presentation #left h1{
+    margin-bottom: 0.6em;
+}
+
+#presentation #left a{
+    color:var(--accent_color);
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+
+#presentation #right {
+    text-align: center;
+    font-weight: bolder;
+}
+
+
+#presentation #right p {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+
+#presentation #right a {
+    background-color: var(--accent_color);
+    text-decoration: none;
+    color: white;
+    padding: 0.4em;
+    border-radius: 7px;
+}
+
+
+
+
+/*  Description  */
+
+#description {
+    margin: 1em auto 2em auto ;
+    width: 40em;
+    background-color: var(--bg_color);
+    padding: 1.5em 3em;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    box-shadow: 2px 1.5px 10px grey;
+    font-size: 1.2em;
+}
+
+#description img {
+    margin-top: 1em;
+    width: 12em;
+    border-radius: 7px;
+}
+
+#description p {
+    text-align: justify;
+    margin-right: 5em;
+    margin-top: 1em;
+    font-size: 1.1em;
+}
+
+#description>a {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    width: 10em;
+    margin: auto;
+    margin-top: 1.5em;
+    background-color: var(--accent_color);
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    text-decoration: none;
+    color: white;
+    font-size: large;
+    font-weight: bolder;
+    box-shadow: 2px 1.5px 10px grey;
+}
+
+
+/*  Share Experience  */
+
+#share_exp {
+    margin-top: 1.5em;
+    background-color: var(--bg_color);
+    padding: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 1.5px 10px grey;
+    /*border: 0.3em solid var(--title_color);
+     border-radius: 7px;*/
+}
+
+
+#share_exp p {
+    font-weight: bolder;
+    font-size: 1.5em;
+    margin-right: 2em;
+}
+
+#share_exp a {
+    font-weight: bold;
+    font-size: larger;
+    color: white;
+    border-width: 0;
+    background-color: var(--accent_color);
+    padding: 0.8em 2em;
+    margin-left: 1em;
+    border-radius: 7px;
+    text-decoration: none;
+    box-shadow: 2px 1.5px 3px grey;
+}
+
+
+
+/*  Reviews */
+
+#reviews {
+    margin: 3em 7em;
+}
+
+#reviews h2 {
+    margin-bottom: 0.8em;
+}
+
+.rest_review {
+    background-color: var(--bg_color);
+    padding: 1.5em 3em;
+    font-size: 1.2em;
+    margin-bottom: 2em;
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    border-radius: 7px;
+    box-shadow: 2px 1.5px 3px grey;
+    align-items: center;
+    justify-items: center;
+}
+
+.rest_review .review_header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.rest_review p {
+    text-align: justify;
+    margin-right: 1em;
+}
+
+.rest_review .review_text {
+    background-color: white;
+    padding: 0.8em;
+    border-radius: 7px;
+}
+
+.rest_review .review_name {
+    font-weight: bolder;
+    margin-bottom: 1em;
+}
+
+.rest_review div:last-of-type {
+    margin-left: 1.2em;
+}
+
+.rest_review img {
+    width: 95%;
+    border-radius: 7px;
+}
+
+.rest_review .review_score {
+    margin-top: 0.2em;
+    font-weight: bolder;
+    font-size: 1.3em;
+    text-align: center;
+}

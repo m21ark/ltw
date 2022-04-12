@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Spicy Restaurant</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/plate.css">
+    <link rel="stylesheet" href="css/restaurant.css">
 </head>
 
 <body>
@@ -18,77 +18,164 @@
         <a id="header_avatar" href="user.html"><img src="docs/user.png" alt="logo"></a>
     </header>
     <main>
-        <div class="white_bg">
-            <form id="cart_list">
-
-                <h2>Restaurant</h2>
-
-                <div class="cart_item">
-                    <p class="cart_item_name">Pizza de Atum</p>
-                    <img src="docs/pizza.jpg" alt="pizza">
-                    <p class="cart_item_price">13,99$</p>
 
 
-                    <div class="cart_qnt_arrows">
-                        <button style="  transform: rotate(270deg);">&#10145;</button>
-                        <button style="  transform: rotate(90deg);">&#10145;</button>
+
+
+
+        <section id="presentation">
+            <div id="left">
+                <h1>Restaurant 1</h1>
+                <!--http://maps.google.com/maps?daddr=Rua das Amoreiras, Lisboa-->
+                <p>Adress: <a href="https://www.google.com/maps/place/Rua das Amoreiras, Lisboa" target="#">Rua das
+                        Amoreiras - Lisboa</a></p>
+                <p>Contact: <a href="tel:+4733378901">22456789</a></p>
+            </div>
+
+            <div id="right">
+                <p>3/5 &star;</p>
+                <a href="#">Italian Food</a>
+            </div>
+        </section>
+
+
+
+        <section id="description">
+            <div>
+                <h2>Description</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis
+                    nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat.
+                </p>
+            </div>
+            <img src="docs/restaurant.jpg" alt="">
+            <a href="#">Add to favorites &star;</a>
+        </section>
+
+
+
+
+
+        <article class="plates">
+            <h2>Plates</h2>
+
+            <div class="carrosel_nav">
+                <button style="  transform: scale(-1, 1);">&#10145;</button>
+                <button>&#10145;</button>
+            </div>
+            <div class="img_carrosel">
+                <a href="plate.html" class="rm_linkdecor">
+                    <div class="plate_item">
+                        <p>Pizza de Atum</p>
+                        <img src="docs/pizza.jpg" width="200" alt="pizza">
+                        <p>9,99$</p>
                     </div>
+                </a>
 
-
-                    <p class="cart_item_qnt"> Qnt: 1</p>
-                    <p class="cart_item_delete">&#128465;</p>
-
-
-                </div>
-
-                <div class="cart_item">
-                    <p class="cart_item_name">Pizza de Atum</p>
-                    <img src="docs/pizza.jpg" alt="pizza">
-                    <p class="cart_item_price">13,99$</p>
-
-                    <div class="cart_qnt_arrows">
-                        <button style="  transform: rotate(270deg);">&#10145;</button>
-                        <button style="  transform: rotate(90deg);">&#10145;</button>
+                <a href="plate.html" class="rm_linkdecor">
+                    <div class="plate_item">
+                        <p>Pizza de Atum</p>
+                        <img src="docs/pizza.jpg" width="200" alt="pizza">
+                        <p>9,99$</p>
                     </div>
-
-                    <p class="cart_item_qnt"> Qnt: 1</p>
-                    <p class="cart_item_delete">&#128465;</p>
-                </div>
-
-                <div class="cart_item">
-                    <p class="cart_item_name">Pizza de Atum</p>
-                    <img src="docs/pizza.jpg" alt="pizza">
-                    <p class="cart_item_price">13,99$</p>
-
-                    <div class="cart_qnt_arrows">
-                        <button style="  transform: rotate(270deg);">&#10145;</button>
-                        <button style="  transform: rotate(90deg);">&#10145;</button>
+                </a>
+                <a href="plate.html" class="rm_linkdecor">
+                    <div class="plate_item">
+                        <p>Pizza de Atum</p>
+                        <img src="docs/pizza.jpg" width="200" alt="pizza">
+                        <p>9,99$</p>
                     </div>
-
-                    <p class="cart_item_qnt"> Qnt: 1</p>
-                    <p class="cart_item_delete">&#128465;</p>
-                </div>
-
-                <div class="cart_item">
-                    <p class="cart_item_name">Pizza de Atum</p>
-                    <img src="docs/pizza.jpg" alt="pizza">
-
-                    <p class="cart_item_price">13,99$</p>
-
-                    <div class="cart_qnt_arrows">
-                        <button style="  transform: rotate(270deg);">&#10145;</button>
-                        <button style="  transform: rotate(90deg);">&#10145;</button>
+                </a>
+                <a href="plate.html" class="rm_linkdecor">
+                    <div class="plate_item">
+                        <p>Pizza de Atum</p>
+                        <img src="docs/pizza.jpg" width="200" alt="pizza">
+                        <p>9,99$</p>
                     </div>
-                    <p class="cart_item_qnt"> Qnt: 1</p>
-                    <p class="cart_item_delete">&#128465;</p>
-                </div>
-
-                <input type="submit" value="Buy for 28,54 $">
-            </form>
+                </a>
+            </div>
+        </article>
 
 
-
+        <div id="share_exp">
+            <p>Share your experience</p>
+            <a href="review.html">Review</a>
         </div>
+
+
+        <article id="reviews">
+            <h2>Reviews</h2>
+
+            <article class="rest_review">
+                <div>
+                    <div class="review_header">
+                        <p class="review_name">James Workman</p>
+                        <p class="review_date">2022-12-2</p>
+                    </div>
+                    <p class="review_text">
+                        Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna
+                        aliqua. Ut enim ad minim veniam.
+                    </p>
+                </div>
+                <div>
+                    <img src="docs/pizza.jpg" alt="">
+                    <p class="review_score">3/5 &star;</p>
+                </div>
+            </article>
+
+            <article class="rest_review">
+                <div>
+                    <div class="review_header">
+                        <p class="review_name">James Workman</p>
+                        <p class="review_date">2022-12-2</p>
+                    </div>
+                    <p class="review_text">
+                        Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna
+                        aliqua. Ut enim ad minim veniam.
+                    </p>
+                </div>
+                <div>
+                    <img src="docs/pizza.jpg" alt="">
+                    <p class="review_score">3/5 &star;</p>
+                </div>
+            </article>
+
+
+            <article class="rest_review">
+                <div>
+                    <div class="review_header">
+                        <p class="review_name">James Workman</p>
+                        <p class="review_date">2022-12-2</p>
+                    </div>
+                    <p class="review_text">
+                        Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna
+                        aliqua. Ut enim ad minim veniam.
+                    </p>
+                </div>
+                <div>
+                    <img src="docs/pizza.jpg" alt="">
+                    <p class="review_score">3/5 &star;</p>
+                </div>
+            </article>
+
+
+
+        </article>
+
+
+
+
+
     </main>
     <footer>
         <p>Spicy Restaurant LTW 2021/22</p>

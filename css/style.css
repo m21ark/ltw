@@ -21,22 +21,21 @@ p {
     color: var(--text_color)
 }
 
-.white_bg{
-    background-color: white;
-}
 
 html {
     scroll-behavior: smooth;
+    background-color: var(--light_bg_color);
 }
 
 body {
     width: 70em;
     margin: 0 auto;
-    background-color: var(--light_bg_color);
+    box-shadow: 2px 2px 20px grey;
+    background-color: white;
 }
 
 
-h2 {
+h1,h2 {
     color: var(--title_color);
     font-family: var(--header_font);
 }
@@ -163,6 +162,11 @@ article #search_box input[type="submit"] {
 
 
 /*  Image Carrosel   */
+
+
+article.restaurants, article.plates{
+    box-shadow: 2px 2px 20px grey;
+}
 
 .img_carrosel {
     grid-column: 1/3;
