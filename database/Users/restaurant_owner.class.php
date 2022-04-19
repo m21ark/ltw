@@ -10,15 +10,41 @@
     class RestaurantOwner extends User {
 
         public static function login(PDO $db, string $email, string $password) : ?User {
-            //TODO :: maybe this can be non-abstract ... depends on the schema of the db 
-            
-            return null;
+            $stmt = $db->prepare('
+            SELECT UserID, username, Address, phoneNumber, email
+            FROM Owner LEFT JOIN USER on (OwnerID = UserID)
+            WHERE lower(email) = ? AND password = ?
+      '     );
+
+            $stmt->execute(array(strtolower($email), sha1($password)));
+
+
+            if ($customer = $stmt->fetch()) {
+                return new RestaurantOwner(
+                  $customer['UserId'],
+                  $customer['username'],
+                  $customer['Address'],
+                  $customer['phoneNumber'],
+                  $customer['email']
+                );
+            } else return null;
         }
 
         public static function isOwnerOfRestaurant(PDO $db, string $email) :bool{
-            // in the schema we must have a table in the form (Restaurant id, User id)
-            // then we can see how many restaurants he has and put a array with those values
-            return false;
+            $stmt = $db->prepare('
+            SELECT OwnerID
+            FROM Owner LEFT JOIN USER on (OwnerID = UserID)
+            WHERE lower(email) = ? 
+      '     );
+
+            $stmt->execute(array(strtolower($email)));
+
+            if ($owner = $stmt->fetch()) {
+                if (empty($owner)) {
+                    return false;
+                }
+                return true;
+            } else return false;
         }
 
         //TODO a Function that allows to get all restaurants of a owner

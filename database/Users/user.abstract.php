@@ -19,7 +19,7 @@
     }
 
     public function name() {
-        return $this->firstName . ' ' . $this->lastName;
+        return $this->username;
     }
     
     public static abstract function login(PDO $db, string $email, string $password) : ?User;
