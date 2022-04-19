@@ -1,0 +1,77 @@
+DROP TABLE Restaurant;
+DROP TABLE Dish;
+DROP TABLE "Order";
+DROP TABLE OrderState;
+DROP TABLE Menu;
+DROP TABLE Review;
+DROP TABLE Photo;
+DROP TABLE Customer;
+DROP TABLE Owner;
+DROP TABLE DishOrder;
+DROP TABLE CustomerDish;
+DROP TABLE Favorite;
+
+CREATE TABLE Restaurant (
+	RestaurantID INT PRIMARY KEY NOT NULL,
+	Name VARCHAR(25) NOT NULL,
+	Address VARCHAR(25) NOT NULL,
+	Category VARCHAR(25) NOT NULL);
+	
+CREATE TABLE Dish (
+	DishID INT PRIMARY KEY NOT NULL,
+	Name VARCHAR(25) NOT NULL,
+	Price VARCHAR(25) NOT NULL,
+	Category VARCHAR(25) NOT NULL);
+	
+CREATE TABLE OrderState (
+	OrderStateID INT PRIMARY KEY NOT NULL,
+	StateName VARCHAR(25) NOT NULL);
+	
+CREATE TABLE Customer (
+	CustomerID INT PRIMARY KEY NOT NULL);
+	
+CREATE TABLE "Order" (
+	OrderID INT PRIMARY KEY NOT NULL,
+	OrderStateID INT,
+	CustomerID INT,
+	FOREIGN KEY (OrderStateID) REFERENCES OrderState(OrderStateID),
+	FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID));
+	
+CREATE TABLE Menu (
+	MenuID INT PRIMARY KEY NOT NULL,
+	DishID INT,
+	FOREIGN KEY (DishID) REFERENCES Dish(DishID));
+	
+CREATE TABLE Review (
+	ReviewID INT PRIMARY KEY NOT NULL,
+	Score INT,
+	ReviewComment VARCHAR(256),
+	DateOfReview DATE);
+	
+CREATE TABLE Photo (
+	PhotoID INT PRIMARY KEY NOT NULL,
+	URL VARCHAR(256) NOT NULL);
+	
+CREATE TABLE Owner (
+	OwnerID INT PRIMARY KEY NOT NULL);
+	
+CREATE TABLE DishOrder (
+	DishID INT,
+	OrderID INT,
+	FOREIGN KEY (DishID) REFERENCES Dish(DishID),
+	FOREIGN KEY (OrderID) REFERENCES "Order"(OrderID));
+	
+CREATE TABLE CustomerDish (
+	CustomerID INT,
+	DishID INT,
+	FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
+	FOREIGN KEY (DishID) REFERENCES Dish(DishID));
+	
+CREATE TABLE Favorite (
+	RestaurantID INT,
+	CustomerID INT, 
+	FOREIGN KEY (RestaurantID) REFERENCES Restaurant(RestaurantID),
+	FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID));
+	
+	
+	
