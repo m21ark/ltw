@@ -7,11 +7,11 @@
     include_once("../restaurant.class.php");
     include_once("../order.class.php");
 
-    class RestaurantOwner extends Costumer {
+    class RestaurantOwner extends User {
 
         public static function login(PDO $db, string $email, string $password) : ?User {
             //TODO :: maybe this can be non-abstract ... depends on the schema of the db 
-
+            
             return null;
         }
 

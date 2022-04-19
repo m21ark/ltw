@@ -89,6 +89,7 @@ CREATE TABLE CustomerFavoriteRestaurants (
 	
 CREATE TABLE User ( --- adicionar foto
 	UserId INTEGER PRIMARY KEY,
+	email VARCHAR UNIQUE,
 	username VARCHAR,
 	password VARCHAR,
 	Address VARCHAR,
