@@ -1,13 +1,14 @@
 <?php
-    declare(strict_types = 1);
 
-    abstract class User
-    {
-        public int $id;
-        public string $username;
-        public string $address;
-        public string $phone;
-        public string $email;
+declare(strict_types=1);
+
+abstract class User
+{
+    public int $id;
+    public string $username;
+    public string $address;
+    public string $phone;
+    public string $email;
 
     public function __construct(int $id, string $username, string $address, string $phone, string $email)
     {
@@ -18,12 +19,10 @@
         $this->email = $email;
     }
 
-    public function name() {
+    public function name()
+    {
         return $this->username;
     }
-    
-    public static abstract function login(PDO $db, string $email, string $password) : ?User;
 
-
-    }
-?>
+    public static abstract function login(PDO $db, string $email, string $password): ?User;
+}

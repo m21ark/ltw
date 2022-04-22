@@ -5,7 +5,6 @@
     include_once("restaurant.class.php");
     include_once("Users/user.interface.php");
 
-
     class OrderStatus {
         const  received  = 0;
         const  preparing = 1;
@@ -19,5 +18,3 @@
         public OrderStatus $order_state;
         public Restaurant $restaurant;
     }
-
-?>
