@@ -113,7 +113,7 @@ class Restaurant
         return new Menu($this->id, $stmt->fetchAll());
     }
 
-    public function getRestaurantReviews(PDO $db): ?Review
+    public function getRestaurantReviews(PDO $db): ?array
     {
 
         $stmt = $db->prepare('
@@ -124,8 +124,18 @@ class Restaurant
 
         $stmt->execute(array($this->id));
 
-        // TODO: THE RETURN VALUE
+        $reviews = $stmt->fetchAll();
+        $array = [];
+        
+        foreach($reviews as $review) {
+            array_push($array, new Review(
+                $review['ReviewID'],
+                $review['Score'],
+                $review['ReviewComment'],
+                $review['DateOfReview'],
+            ));
+        }
 
-        return null;
+        return $array;
     }
 }
