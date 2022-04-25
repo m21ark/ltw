@@ -48,6 +48,7 @@ INSERT INTO "Order" VALUES (3, 1, 3, 5);
 INSERT INTO "Order" VALUES (4, 2, 4, 5);
 INSERT INTO "Order" VALUES (5, 3, 2, 1);
 
+-- TODO: MORE DISHES TO THE MENU AND MORE MENUS
 INSERT INTO Menu VALUES (1, 1);
 
 -- NOTA : o score deve ser entre 0 e 5 como especificado no uml
