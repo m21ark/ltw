@@ -66,32 +66,51 @@ class Customer extends User
         return $stmt->fetchAll();
     }
 
-    public function addToFavoriteRestaurants(Restaurant $restaurant): void
+    public function addToFavoriteRestaurants(PDO $db, Restaurant $restaurant): void
     {
         array_push($favoriteRestaurants, $restaurant);
 
-        // Save to database
+        $stmt = $db->prepare('
+            INSERT INTO CustomerFavoriteRestaurants VALUES (?, ?);
+        ');        
+
+        $stmt->execute(array($this->id, $restaurant->id));
+
     }
 
-    public function addToFavoriteDishes(Dish $dish): void
+    public function addToFavoriteDishes(PDO $db, Dish $dish): void
     {
         array_push($favoriteRestaurants, $dish);
 
-        // Save to database
+        $stmt = $db->prepare('
+            INSERT INTO CustomerFavoriteDishes VALUES (?, ?);
+        ');
+
+        $stmt->execute(array($this->id, $dish->id));
     }
 
-    public function removeFromFavoriteDish(Dish $dish): void
+    public function removeFromFavoriteDishes(PDO $db, Dish $dish): void
     {
         unset($favoriteDishes[$dish]);
 
-        //remove from database
+        $stmt = $db->prepare('
+            DELETE FROM CustomerFavoriteDishes
+            WHERE CustomerID = ? AND DishID = ?);
+        ');        
+
+        $stmt->execute(array($this->id, $dish->id));
     }
 
-    public function removeFromFavoriteRestaurant(Restaurant $restaurant): void
+    public function removeFromFavoriteRestaurants(PDO $db, Restaurant $restaurant): void
     {
         unset($favoriteRestaurants[$restaurant]);
 
-        //remove from database
+        $stmt = $db->prepare('
+            DELETE FROM CustomerFavoriteRestaurants
+            WHERE CustomerID = ? AND RestaurantID = ?);
+        ');        
+
+        $stmt->execute(array($this->id, $restaurant->id));
     }
 
 

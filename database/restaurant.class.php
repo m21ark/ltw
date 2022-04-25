@@ -58,16 +58,33 @@ class Restaurant
         return null;
     }
 
-    public function getMenu(): Menu
+    public function getMenu(PDO $db): Menu
     {
-        //database
+        $stmt = $db->prepare('
+            SELECT *
+            FROM Menu
+            WHERE RestaurantID = ?
+        ');
+
+        $stmt->execute(array($this->id));
+
+        // TODO : return the menu
+
         return new Menu();
     }
 
-    public function getRestaurantReviews(): ?Review
+    public function getRestaurantReviews(PDO $db): ?Review
     {
 
+        $stmt = $db->prepare('
+            SELECT *
+            FROM Review
+            WHERE RestaurantID = ?
+        ');
 
+        $stmt->execute(array($this->id));
+
+        // TODO: THE RETURN VALUE
 
         return null;
     }

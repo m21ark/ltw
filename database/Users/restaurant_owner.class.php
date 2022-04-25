@@ -16,7 +16,7 @@ class RestaurantOwner extends User
             SELECT UserID, username, Address, phoneNumber, email
             FROM Owner LEFT JOIN USER on (OwnerID = UserID)
             WHERE lower(email) = ? AND password = ?
-      ');
+        ');
 
         $stmt->execute(array(strtolower($email), sha1($password)));
 
@@ -53,10 +53,16 @@ class RestaurantOwner extends User
     //TODO a Function that allows to get all restaurants of a owner
 
 
-    public function changeOrderStatus(PDO $db, Order $order): bool
+    public function changeOrderStatus(PDO $db, Order $order, OrderStatus $orderStatus): bool
     {
 
-        //database
+        $stmt = $db->prepare('
+            UPDATE "Order"
+            SET OrderStateID = ?
+            WHERE OrderID = ?);
+        ');        
+
+        $stmt->execute(array($orderStatus,$order->id));
 
 
         return false;
