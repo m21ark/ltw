@@ -30,7 +30,7 @@ CREATE TABLE OrderState (
 	
 CREATE TABLE Customer (
 	CustomerID INT PRIMARY KEY,
-	FOREIGN KEY (UserID) REFERENCES User(UserID));
+	FOREIGN KEY (CustomerID) REFERENCES User(CustomerID));
 	
 CREATE TABLE "Order" ( -- FALTAVA O RESTAURANTE
 	OrderID INTEGER PRIMARY KEY,
@@ -93,6 +93,6 @@ CREATE TABLE User ( --- adicionar foto
 	username VARCHAR,
 	password VARCHAR,
 	Address VARCHAR,
-	phoneNumer VARCHAR
+	phoneNumber VARCHAR
 )
 	
