@@ -62,9 +62,6 @@ class RestaurantOwner extends User
             WHERE OrderID = ?);
         ');        
 
-        $stmt->execute(array($orderStatus,$order->id));
-
-
-        return false;
+        return $stmt->execute(array($orderStatus,$order->id));;
     }
 }

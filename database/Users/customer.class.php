@@ -66,7 +66,7 @@ class Customer extends User
         return $stmt->fetchAll();
     }
 
-    public function addToFavoriteRestaurants(PDO $db, Restaurant $restaurant): void
+    public function addToFavoriteRestaurants(PDO $db, Restaurant $restaurant): bool
     {
         array_push($favoriteRestaurants, $restaurant);
 
@@ -74,11 +74,10 @@ class Customer extends User
             INSERT INTO CustomerFavoriteRestaurants VALUES (?, ?);
         ');        
 
-        $stmt->execute(array($this->id, $restaurant->id));
-
+        return $stmt->execute(array($this->id, $restaurant->id));
     }
 
-    public function addToFavoriteDishes(PDO $db, Dish $dish): void
+    public function addToFavoriteDishes(PDO $db, Dish $dish): bool
     {
         array_push($favoriteRestaurants, $dish);
 
@@ -86,10 +85,10 @@ class Customer extends User
             INSERT INTO CustomerFavoriteDishes VALUES (?, ?);
         ');
 
-        $stmt->execute(array($this->id, $dish->id));
+        return $stmt->execute(array($this->id, $dish->id));
     }
 
-    public function removeFromFavoriteDishes(PDO $db, Dish $dish): void
+    public function removeFromFavoriteDishes(PDO $db, Dish $dish): bool
     {
         unset($favoriteDishes[$dish]);
 
@@ -98,10 +97,10 @@ class Customer extends User
             WHERE CustomerID = ? AND DishID = ?);
         ');        
 
-        $stmt->execute(array($this->id, $dish->id));
+        return $stmt->execute(array($this->id, $dish->id));
     }
 
-    public function removeFromFavoriteRestaurants(PDO $db, Restaurant $restaurant): void
+    public function removeFromFavoriteRestaurants(PDO $db, Restaurant $restaurant): bool
     {
         unset($favoriteRestaurants[$restaurant]);
 
@@ -110,7 +109,7 @@ class Customer extends User
             WHERE CustomerID = ? AND RestaurantID = ?);
         ');        
 
-        $stmt->execute(array($this->id, $restaurant->id));
+        return $stmt->execute(array($this->id, $restaurant->id));
     }
 
 
