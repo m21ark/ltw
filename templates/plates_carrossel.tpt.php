@@ -15,37 +15,15 @@ function drawPlatesCarrossel(array $plates)
 
         <div class="img_carrosel">
 
-
-            <a href="plate.html" class="rm_linkdecor">
-                <div class="plate_item">
-                    <p>Pizza de Atum</p>
-                    <img src="docs/pizza.jpg" width="200" alt="pizza">
-                    <p>9,99$</p>
-                </div>
-            </a>
-
-            <a href="plate.html" class="rm_linkdecor">
-                <div class="plate_item">
-                    <p>Pizza de Atum</p>
-                    <img src="docs/pizza.jpg" width="200" alt="pizza">
-                    <p>9,99$</p>
-                </div>
-            </a>
-            <a href="plate.html" class="rm_linkdecor">
-                <div class="plate_item">
-                    <p>Pizza de Atum</p>
-                    <img src="docs/pizza.jpg" width="200" alt="pizza">
-                    <p>9,99$</p>
-                </div>
-            </a>
-            <a href="plate.html" class="rm_linkdecor">
-                <div class="plate_item">
-                    <p>Pizza de Atum</p>
-                    <img src="docs/pizza.jpg" width="200" alt="pizza">
-                    <p>9,99$</p>
-                </div>
-            </a>
-
+            <?php foreach ($plates as $dish) { ?>
+                <a href=<?= "plate.html?id=" . $dish->id ?> class="rm_linkdecor">
+                    <div class="plate_item">
+                        <p><?= $dish->name ?></p>
+                        <img src="docs/pizza.jpg" width="200" alt="pizza">
+                        <p><?= $dish->price ?></p>
+                    </div>
+                </a>
+            <?php } ?>
         </div>
     </article>
 <?php } ?>

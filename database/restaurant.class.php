@@ -31,10 +31,10 @@ class Dish
 {
     public int $id;
     public string $name;
-    public int $price;
-    public int $category;
+    public string $price;
+    public string $category;
 
-    public function __construct(int $id, string $name, int $price, int $category)
+    public function __construct(int $id, string $name, string $price, string $category)
     {
         $this->id = $id;
         $this->name = $name;
@@ -53,12 +53,38 @@ class Dish
 
         if ($dish = $stmt->fetch()) {
             return new Dish(
-                $dish['DishID'],
+                (int)$dish['DishID'],
                 $dish['Name'],
                 $dish['Price'],
                 $dish['Category']
             );
         } else return null;
+    }
+
+    public static function getRandomDishes(PDO $db, int $limit) :array {
+
+        $dishes = [];
+        $stmt = $db->prepare('
+            SELECT *
+            FROM Dish
+            ORDER BY RANDOM()
+            LIMIT ?
+        ');
+
+        $stmt->execute(array($limit));
+
+        $arr = $stmt->fetchAll();
+
+        foreach($arr as $dish) {
+            array_push($dishes, new Dish(
+                (int)$dish['DishID'],
+                $dish['Name'],
+                $dish['Price'],
+                $dish['Category']
+            ));
+        }
+
+        return $dishes;
     }
 }
 
@@ -68,9 +94,9 @@ class Restaurant
     public string $name;
     public string $address;
     //public string $phone;
-    public int $category;
+    public string $category;
 
-    public function __construct(int $id, string $name, string $address, int $category)
+    public function __construct(int $id, string $name, string $address, string $category)
     {
         $this->id = $id;
         $this->name = $name;
@@ -92,7 +118,7 @@ class Restaurant
 
         if ($restaurant = $stmt->fetch()) {
             return new Restaurant(
-                $restaurant['RestaurantID'],
+                (int)$restaurant['RestaurantID'],
                 $restaurant['Name'],
                 $restaurant['Address'],
                 $restaurant['Category']
@@ -158,7 +184,7 @@ class Restaurant
                 (int)$restaurant['RestaurantID'], // does the array returned from the querie is always a string ?
                 $restaurant['Name'],
                 $restaurant['Address'],
-                (int)$restaurant['Category']
+                $restaurant['Category']
             ));
         }
 
