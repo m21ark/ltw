@@ -32,9 +32,9 @@ class Dish
     public int $id;
     public string $name;
     public int $price;
-    public string $category;
+    public int $category;
 
-    public function __construct(int $id, string $name, int $price, string $category)
+    public function __construct(int $id, string $name, int $price, int $category)
     {
         $this->id = $id;
         $this->name = $name;
@@ -52,7 +52,7 @@ class Dish
         $stmt->execute(array($id));
 
         if ($dish = $stmt->fetch()) {
-            return new Restaurant(
+            return new Dish(
                 $dish['DishID'],
                 $dish['Name'],
                 $dish['Price'],
@@ -68,9 +68,9 @@ class Restaurant
     public string $name;
     public string $address;
     //public string $phone;
-    public string $category;
+    public int $category;
 
-    public function __construct(int $id, string $name, string $address, string $category)
+    public function __construct(int $id, string $name, string $address, int $category)
     {
         $this->id = $id;
         $this->name = $name;
@@ -137,5 +137,31 @@ class Restaurant
         }
 
         return $array;
+    }
+
+    public static function getRandomRestaurants(PDO $db, int $limit) :array {
+
+        $restaurants = [];
+        $stmt = $db->prepare('
+            SELECT *
+            FROM Restaurant
+            ORDER BY RANDOM()
+            LIMIT ?
+        ');
+
+        $stmt->execute(array($limit));
+
+        $arr = $stmt->fetchAll();
+
+        foreach($arr as $restaurant) {
+            array_push($restaurants, new Restaurant(
+                (int)$restaurant['RestaurantID'], // does the array returned from the querie is always a string ?
+                $restaurant['Name'],
+                $restaurant['Address'],
+                (int)$restaurant['Category']
+            ));
+        }
+
+        return $restaurants;
     }
 }
