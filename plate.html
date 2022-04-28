@@ -3,82 +3,109 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Spicy Restaurant</title>
+    <title>Tasty Eats</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/forms.css">
     <link rel="stylesheet" href="css/plate.css">
+    <link rel="stylesheet" href="css/restaurant.css">
+    <link rel="stylesheet" href="css/user.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=5.0, minimum-scale=0.5">
 </head>
 
 <body>
 
     <header>
         <a href="index.html"><img src="docs/logo.jpg" width="50" height="50" alt="logo"></a>
-        <h1 id="logo_name"><a href="index.html">Spicy Restaurant</a></h1>
+        <h1 id="logo_name"><a href="index.html">Tasty Eats</a></h1>
         <span><a id="header_search" href="index.html">&#128270;</a></span>
-        <span><a id="header_cart" href="cart.html">&#x1f6d2;</a></span>
-        <a id="header_avatar" href="user.html"><img src="docs/user.png" alt="logo"></a>
+
+        <div id="header_signup">
+            <a class="link_button" href="register.html">Sign in</a>
+            <a class="link_button" href="login.html">Login</a>
+        </div>
     </header>
 
+
+    <nav id="navbar">
+        <input type="checkbox" id="hamburger">
+        <label class="hamburger" for="hamburger"></label>
+
+        <ul>
+            <li><a href="index.html">Italian</a></li>
+            <li><a href="index.html">Japanese</a></li>
+            <li><a href="index.html">Indian</a></li>
+            <li><a href="index.html">Portuguese</a></li>
+            <li><a href="index.html">Vietnamese</a></li>
+            <li><a href="index.html">Vegan</a></li>
+        </ul>
+    </nav>
+
     <main>
- 
-            <article id="plate_page">
-                <h2>Plate page</h2>
-                <div id="plate_left">
-                    <h2>Pizza de Atum</h2>
-                    <img src="docs/pizza.jpg" alt="">
-                    <p>13,99 $</p>
+
+        <article id="plate_page">
+            <h2>Plate page</h2>
+            <div id="plate_left">
+                <h2>Pizza de Atum</h2>
+                <img src="docs/pizza.jpg" alt="">
+                <p>13,99 $</p>
+            </div>
+
+            <div id="plate_right">
+                <h2>Ingredients</h2>
+
+                <div id="ingredients_list">
+                    <ul>
+                        <li>Batata</li>
+                        <li>Batata</li>
+                        <li>Batata</li>
+                        <li>Batata</li>
+
+
+                    </ul>
+                    <ul>
+                        <li>Batata</li>
+                        <li>Batata</li>
+                        <li>Batata</li>
+                        <li>Batata</li>
+                    </ul>
                 </div>
 
-                <div id="plate_right">
-                    <h2>Ingredients</h2>
+                <form>
+                    <input type="submit" value="Buy  &#x1f6d2;">
+                </form>
+            </div>
 
-                    <div id="ingredients_list">
-                        <ul>
-                            <li>Batata</li>
-                            <li>Batata</li>
-                            <li>Batata</li>
-                            <li>Batata</li>
+            <a href="restaurant.html" id="plate_restaurant">
+                <h2>See Restaurant</h2>
+            </a>
 
- 
-                        </ul>
-                        <ul>
-                            <li>Batata</li>
-                            <li>Batata</li>
-                            <li>Batata</li>
-                            <li>Batata</li>
-                        </ul>
-                    </div>
+            <div id="plate_description">
+                <h2>Description</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut
+                    enim ad minim veniam, quis nostrud
+                    exercitation ullamco laboris nisi ut aliquip ex ea
+                    commodo consequat.
+                </p>
 
-                    <form>
-                        <input type="submit" value="Buy  &#x1f6d2;">
-                    </form>
+                <div>
+                    <a href="#">Italian</a>
+                    <a href="#">Spicy</a>
                 </div>
 
-                <a href="restaurant.html" id="plate_restaurant"><h2>See Restaurant</h2></a>
+            </div>
 
-                <div id="plate_description">
-                    <h2>Description</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut
-                        enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat.
-                    </p>
+        </article>
 
-                    <div>
-                        <a href="#">Italian</a>
-                        <a href="#">Spicy</a>
-                    </div>
 
-                </div>
-
-            </article>
-  
-        
     </main>
     <footer>
-        <p>Spicy Restaurant LTW 2021/22</p>
+        <p>Tasty Eats LTW 2021/22</p>
     </footer>
 </body>
 

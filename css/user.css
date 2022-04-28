@@ -1,5 +1,4 @@
 #user_info {
-    font-size: 1.2em;
     padding: 0.8em;
     background-image: url("../docs/pizza.jpg");
 }
@@ -7,6 +6,7 @@
 #user_info h2 {
     margin-bottom: 0.5em;
 }
+
 
 #user_info #info_display h3 {
     margin-top: 0.4em;
@@ -27,39 +27,28 @@
 }
 
 #user_info>section {
-    background-color: var(--bg_color);
-    padding: 1em;
+    margin: 1em auto;
+    width: 80%;
+    max-width: 25em;
+}
+
+#user_info a {
+    padding: 0.5em 3.2em;
     border-radius: 7px;
-    margin: 2em auto;
-    width: 16em;
-    box-shadow: 5px 5px 20px black;
-    width: 25em;
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-weight: bolder;
+    font-size: 1em;
+    box-shadow: 1.5px 1.5px 5px black;
 }
 
 #user_info a#edit_account {
-    box-shadow: 1.5px 1.5px 5px black;
-    padding: 0.5em 3.2em;
-    border-radius: 7px;
     margin: 3em 0 0 0;
     background-color: var(--title_color);
-    display: flex;
-    justify-content: center;
-    color: white;
-    font-weight: bolder;
-    font-size: 1em;
-    text-decoration: none;
 }
 
 #user_info a:not(#edit_account) {
-    box-shadow: 1.5px 1.5px 5px black;
-    padding: 0.5em 3.2em;
-    border-radius: 7px;
     margin: 1.5em 0 0 0;
     background-color: var(--accent_color);
-    display: flex;
-    justify-content: center;
-    color: white;
-    font-weight: bolder;
-    font-size: 1em;
-    text-decoration: none;
 }

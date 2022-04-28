@@ -3,27 +3,28 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Spicy Restaurant</title>
+    <title>Tasty Eats</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/forms.css">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=5.0, minimum-scale=0.5">
 </head>
 
 <body>
 
     <header>
         <a href="index.html"><img src="docs/logo.jpg" width="50" height="50" alt="logo"></a>
-        <h1 id="logo_name"><a href="index.html">Spicy Restaurant</a></h1>
+        <h1 id="logo_name"><a href="index.html">Tasty Eats</a></h1>
         <span><a id="header_search" href="index.html">&#128270;</a></span>
         <span><a id="header_cart" href="cart.html">&#x1f6d2;</a></span>
         <a id="header_avatar" href="user.html"><img src="docs/user.png" alt="logo"></a>
     </header>
 
     <main>
-        <article id="register">
-            <div id="sign_form">
+        <section id="register">
+            <div class="container sign_form">
                 <form>
                     <h2>Register</h2>
-    
+
                     <div class="left_login">
                         <label>
                             Name <input type="text" placeholder="Name" name="name" required>
@@ -35,7 +36,7 @@
                             Adress <input type="text" placeholder="Adress" name="adress" required>
                         </label>
                     </div>
-    
+
                     <div class="right_login">
                         <label>
                             Username <input type="text" placeholder="Username" name="username" required>
@@ -43,22 +44,21 @@
                         <label>
                             Password <input type="password" placeholder="Password" name="password" required>
                         </label>
-                        <button formaction="#" formmethod="post">Register</button>
+                        <button class="form_button" formaction="#" formmethod="post">Register</button>
                     </div>
                     <input style="visibility: hidden;margin:0;padding: 0;height: 0;">
                 </form>
-                <form>
-                    <div id="sign_option">
-                        <p><span class="bold">Already have an account?</span></p>
-                        <button formaction="login.html">Login</button>
-                    </div>
-                </form>
+                <div class="form_alternative">
+                    <p><span class="bold">Already have an account?</span></p>
+                    <a class="form_button" href="login.html">Login</a>
+                </div>
             </div>
-        </article>
+
+        </section>
     </main>
 
     <footer>
-        <p>Spicy Restaurant LTW 2021/22</p>
+        <p>Tasty Eats LTW 2021/22</p>
     </footer>
 </body>
 

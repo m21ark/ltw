@@ -1,37 +1,39 @@
+<?php function output_header()
+{ ?>
 
-<?php function output_header(){?>
+    <!DOCTYPE html>
+    <html lang="en">
 
-<!DOCTYPE html> 
-<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tasty Eats</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Spicy Restaurant</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
+    <body>
 
-<body>
+        <header>
+            <a href="index.html"><img src="docs/logo.jpg" width="50" height="50" alt="logo"></a>
+            <h1 id="logo_name"><a href="index.html">Tasty Eats</a></h1>
+            <span><a id="header_search" href="index.html">&#128270;</a></span>
+            <a class="header_right" id="signup" href="login.html">Sign in</a><!-- TODO: if session ... -->
+        </header>
+        <main>
 
-    <header>
-        <a href="index.html"><img src="docs/logo.jpg" width="50" height="50" alt="logo"></a>
-        <h1 id="logo_name"><a href="index.html">Spicy Restaurant</a></h1>
-        <span><a id="header_search" href="index.html">&#128270;</a></span>
-        <a class="header_right" id="signup" href="login.html">Sign in</a><!-- TODO: if session ... -->
-    </header>
-    <main>
-
-<?php }?>
+        <?php } ?>
 
 
-<?php function output_footer(){?>
+        <?php function output_footer()
+        { ?>
 
-    </main>
+        </main>
 
-    <footer>
-        <p>Spicy Restaurant LTW 2021/22</p>
-    </footer>
-</body>
+        <footer>
+            <p>Spicy Restaurant LTW 2021/22</p>
+        </footer>
+    </body>
 
-</html>
+    </html>
 
-<?php }?>
+<?php } ?>

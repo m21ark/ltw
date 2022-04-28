@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Iceberg&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
 
+/*  Setting variables  */
+
 :root {
     --accent_color: #4a954b;
     --light_color: #c1d5b2;
@@ -8,19 +10,22 @@
     --light_bg_color: #faebd7;
     --title_color: #6d4c3d;
     --text_color: #403d39;
+
     --logo_font: 'Krona One', sans-serif;
     --header_font: 'Iceberg', cursive;
+    --text_font: Tahoma, Verdana, sans-serif;
+
+
 }
+
+
+
+/*  Setting the basics  */
 
 * {
     margin: 0;
     padding: 0;
 }
-
-p {
-    color: var(--text_color)
-}
-
 
 html {
     scroll-behavior: smooth;
@@ -28,22 +33,37 @@ html {
 }
 
 body {
-    width: 70em;
+    width: 100%;
+    max-width: 70em;
     margin: 0 auto;
     box-shadow: 2px 2px 20px grey;
     background-color: white;
 }
 
 
-h1,h2 {
+
+/*  Setting fonts  */
+
+p, a {
+    color: var(--text_color);
+    font-family: var(--text_font);
+    text-decoration: none;
+    transition: 0.2s ease-out;
+}
+
+a:hover {
+    filter: brightness(120%);
+    cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6 {
     color: var(--title_color);
     font-family: var(--header_font);
 }
 
-span.bold{
+span.bold {
     font-weight: bolder;
 }
-
 
 
 /*  Header  */
@@ -54,41 +74,32 @@ header {
     grid-template-columns: 0.5fr 9fr 1fr auto auto;
     grid-template-areas: "logo" "name" "search" "cart" "avatar";
     padding: 1em;
-    align-items:center;
+    align-items: center;
 }
+
 
 header>h1 {
     font-family: var(--logo_font);
+    color: var(--title_color);
     margin-left: 1em;
     margin-top: 0.2em;
-}
-
-
-header a {
-    text-decoration: none;
 }
 
 header>h1 a:visited {
     color: var(--title_color);
 }
 
-
-header .header_right {
-    grid-area: "avatar";
-    right: 1em;
-    padding: 0.5em 1.6em;
-    font-size: 1.4em;
-    border-radius: 7px;
-    background-color: var(--accent_color);
-    box-shadow: 1.5px 1.5px 5px black;
-    color: white;
+header a.link_button{
+    padding: 0.7em 1em;
+    margin-left: 1em;
 }
+
 
 header #header_avatar {
     grid-column: "avatar";
 }
 
-header #header_avatar>img{
+header #header_avatar>img {
     width: 60px;
     height: 60px;
     padding-top: 0.2em;
@@ -96,17 +107,60 @@ header #header_avatar>img{
 }
 
 
-header a#header_cart{
+header a#header_cart {
     font-weight: bolder;
     font-size: 2.5em;
     margin: 0em;
     margin-right: 0.8em;
     padding: 0;
 }
-header a#header_search{
+
+header a#header_search {
     font-weight: bolder;
     font-size: 2.5em;
 }
+
+/*  Nav bar  */
+
+#navbar {
+    border-top: 0.2em solid var(--title_color);
+}
+
+#navbar li {
+    background-color: var(--bg_color);
+    text-align: center;
+    list-style-type: none;
+    padding: 1em 0;
+    font-weight: bold;
+    transition: 0.2s ease-out;
+}
+
+#navbar li a {
+    color: var(--text_color);
+    font-family: var(--text_font);
+}
+
+#navbar li:hover {
+    filter:brightness(120%) ;
+    cursor: pointer;
+}
+
+#hamburger, .hamburger {
+    display: none;
+}
+
+#navbar ul {
+    display: flex;
+    flex-direction: row;
+}
+
+#navbar li {
+    display: block;
+    flex: 1;
+}
+
+
+
 
 
 /*  Main Search */
@@ -134,17 +188,20 @@ article #search_box {
     transform: translate(-50%, -50%);
 }
 
-article #search_box h2{
+article #search_box h2 {
     margin-bottom: 0.8em;
 }
 
-article #search_box input[type="text"] {
+article #search_box input[type="search"] {
     grid-column: 1;
     padding: 1.2em 1em;
     border-radius: 7px;
     border-width: 0;
-
     box-shadow: 1px 1px 5px grey;
+}
+
+article #search_box input[type="submit"]:hover{
+    filter:brightness(120%);
 }
 
 article #search_box input[type="submit"] {
@@ -157,6 +214,8 @@ article #search_box input[type="submit"] {
     grid-column: 2;
     margin-left: 2em;
     box-shadow: 1.5px 1.5px 5px black;
+    cursor: pointer;
+    transition: 0.2s ease-out;
 }
 
 
@@ -164,7 +223,7 @@ article #search_box input[type="submit"] {
 /*  Image Carrosel   */
 
 
-article.restaurants, article.plates{
+article.restaurants, article.plates {
     box-shadow: 2px 2px 20px grey;
 }
 
@@ -192,9 +251,6 @@ article .carrosel_nav button {
     box-shadow: 2px 1.5px 3px grey;
 }
 
-.rm_linkdecor{
-    text-decoration: none;
-}
 
 .img_carrosel img {
     border-radius: 7px;
@@ -207,6 +263,7 @@ article .carrosel_nav button {
     color: white;
     border-radius: 7px;
     box-shadow: 2px 2px 10px grey;
+    
 }
 
 .img_carrosel .restaurant_item p {
@@ -232,6 +289,11 @@ article .carrosel_nav button {
     text-align: center;
 }
 
+.carrosel_nav>button:hover{
+    filter: brightness(135%);
+    cursor: pointer;
+}
+
 /*  Main   */
 
 article.restaurants {
@@ -253,6 +315,10 @@ article.plates {
     background-color: var(--bg_color);
 }
 
+article.restaurants a:hover, article.plates a:hover {
+    filter: brightness(110%);
+}
+
 
 
 /*  Footer  */
@@ -268,4 +334,30 @@ footer>p {
     color: var(--title_color)
 }
 
+
+
+
+
+/*  Custom Class Templates   */
+
+.container {
+    padding: 2em;
+    background-color: var(--bg_color);
+    box-shadow: 5px 5px 20px black;
+    border-radius: 7px;
+}
+
+
+.link_button {
+    box-shadow: 1.5px 1.5px 5px black;
+    font-size: 0.7em;
+    padding: 1em 2em;
+    background-color: var(--accent_color);
+    border-radius: 7px;
+    font-size: 1rem;
+    color: white;
+    font-weight: bold;
+    border-width: 0;
+    border-width: 0;
+}
 

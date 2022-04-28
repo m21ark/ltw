@@ -3,43 +3,82 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Spicy Restaurant</title>
+    <title>Tasty Eats</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/cart.css">
     <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/plate.css">
+    <link rel="stylesheet" href="css/restaurant.css">
+    <link rel="stylesheet" href="css/user.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=5.0, minimum-scale=0.5">
 </head>
 
 <body>
 
     <header>
         <a href="index.html"><img src="docs/logo.jpg" width="50" height="50" alt="logo"></a>
-        <h1 id="logo_name"><a href="index.html">Spicy Restaurant</a></h1>
+        <h1 id="logo_name"><a href="index.html">Tasty Eats</a></h1>
         <span><a id="header_search" href="index.html">&#128270;</a></span>
-        <span><a id="header_cart" href="cart.html">&#x1f6d2;</a></span>
-        <a id="header_avatar" href="user.html"><img src="docs/user.png" alt="logo"></a>
+
+        <div id="header_signup">
+            <a class="link_button" href="register.html">Sign in</a>
+            <a class="link_button" href="login.html">Login</a>
+        </div>
     </header>
 
+
+    <nav id="navbar">
+        <input type="checkbox" id="hamburger">
+        <label class="hamburger" for="hamburger"></label>
+
+        <ul>
+            <li><a href="index.html">Italian</a></li>
+            <li><a href="index.html">Japanese</a></li>
+            <li><a href="index.html">Indian</a></li>
+            <li><a href="index.html">Portuguese</a></li>
+            <li><a href="index.html">Vietnamese</a></li>
+            <li><a href="index.html">Vegan</a></li>
+        </ul>
+    </nav>
+
     <main>
-        <article id="review">
-            <div id="sign_form">
-                <form>
+        <section id="review">
+            <div class="container sign_form">
+                <form  >
                     <h2>Review</h2>
                     <label>
                         Write your review <textarea name="review" style="resize: none;" cols="30" rows="16"></textarea>
                     </label>
-                    <label>
-                        Score <input type="number" required placeholder="1-5" name="star_review">
-                    </label>
+                    <label>Score </label>
+
+                    <div class="feedback" >
+                        <div id="star_rating">
+                            <input type="radio" name="rating" id="rating-5">
+                            <label for="rating-5"></label>
+                            <input type="radio" name="rating" id="rating-4">
+                            <label for="rating-4"></label>
+                            <input type="radio" name="rating" id="rating-3" checked>
+                            <label for="rating-3"></label>
+                            <input type="radio" name="rating" id="rating-2">
+                            <label for="rating-2"></label>
+                            <input type="radio" name="rating" id="rating-1">
+                            <label for="rating-1"></label>
+                        </div>
+                    </div>
+
                     <div id="review_options">
-                        <button formaction="#" formmethod="post">Publish</button>
+                        <button class="form_button" formaction="#" formmethod="post">Publish</button>
                         <a href="index.html">Go back</a>
                     </div>
                 </form>
             </div>
         </article>
     </main>
-    
+
     <footer>
-        <p>Spicy Restaurant LTW 2021/22</p>
+        <p>Tasty Eats LTW 2021/22</p>
     </footer>
 </body>
 

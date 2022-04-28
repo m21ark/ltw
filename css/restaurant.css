@@ -8,13 +8,12 @@
 }
 
 
-#presentation #left h1{
+#presentation #left h1 {
     margin-bottom: 0.6em;
 }
 
-#presentation #left a{
-    color:var(--accent_color);
-    text-decoration: none;
+#presentation #left a {
+    color: var(--accent_color);
     font-weight: bolder;
 }
 
@@ -30,22 +29,13 @@
     margin-bottom: 0.5em;
 }
 
-#presentation #right a {
-    background-color: var(--accent_color);
-    text-decoration: none;
-    color: white;
-    padding: 0.4em;
-    border-radius: 7px;
-}
-
-
-
 
 /*  Description  */
 
 #description {
-    margin: 1em auto 2em auto ;
-    width: 40em;
+    margin: 1em auto 2em auto;
+    width: 80%;
+    max-width: 40em;
     background-color: var(--bg_color);
     padding: 1.5em 3em;
     display: grid;
@@ -68,22 +58,12 @@
 }
 
 #description>a {
-    grid-column-start: 1;
-    grid-column-end: 3;
+    grid-column: 1 / span 4;
     width: 10em;
-    margin: auto;
-    margin-top: 1.5em;
-    background-color: var(--accent_color);
-    padding: 1em;
+    margin: 1.5em auto auto;
     display: flex;
-    align-items: center;
     justify-content: center;
-    border-radius: 7px;
-    text-decoration: none;
-    color: white;
     font-size: large;
-    font-weight: bolder;
-    box-shadow: 2px 1.5px 10px grey;
 }
 
 
@@ -109,16 +89,8 @@
 }
 
 #share_exp a {
-    font-weight: bold;
-    font-size: larger;
-    color: white;
-    border-width: 0;
-    background-color: var(--accent_color);
     padding: 0.8em 2em;
     margin-left: 1em;
-    border-radius: 7px;
-    text-decoration: none;
-    box-shadow: 2px 1.5px 3px grey;
 }
 
 
@@ -160,6 +132,7 @@
     background-color: white;
     padding: 0.8em;
     border-radius: 7px;
+    box-shadow: 1px 1px 10px grey;
 }
 
 .rest_review .review_name {
@@ -174,6 +147,7 @@
 .rest_review img {
     width: 95%;
     border-radius: 7px;
+    box-shadow: 1px 1px 10px grey;
 }
 
 .rest_review .review_score {

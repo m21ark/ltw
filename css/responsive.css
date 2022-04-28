@@ -1,0 +1,56 @@
+@media (max-width:70em) {
+    #navbar .hamburger {
+        display: block;
+        background-color: var(--bg_color);
+        color: var(--title_color);
+        font-size: 1.8em;
+        font-weight: bolder;
+        padding: 0.5em;
+    }
+
+    #navbar .hamburger:before {
+        content: '\2630';
+    }
+
+    #navbar ul {
+        flex-direction: column;
+    }
+
+    #hamburger:checked+.hamburger+ul li {
+        max-height: 1em;
+        padding: 1em;
+        opacity: 1;
+    }
+
+    #hamburger:checked+.hamburger:before {
+        content: '\2715';
+    }
+
+    #navbar li {
+        max-height: 0;
+        padding: 0 1em;
+        background-color: var(--bg_color);
+        text-align: left;
+        opacity: 0;
+        transition: all .1s ease-in-out;
+    }
+
+    #navbar li:nth-child(2n+1) {
+        border-top: none;
+        border-left: 10px solid var(--accent_color);
+    }
+
+    #navbar li:nth-child(2n) {
+        border-top: none;
+        border-left: 10px solid var(--text_color);
+    }
+
+}
+
+@media (max-width:30em){
+
+        
+
+    
+   
+}

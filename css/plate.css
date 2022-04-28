@@ -91,7 +91,6 @@
 
 
 #plate_restaurant {
-    text-decoration: none;
     color: var(--title_color);
 }
 
@@ -126,7 +125,6 @@
 #plate_description div * {
     padding: 0.5em;
     margin: 0.4em;
-    text-decoration: none;
     font-weight: bold;
     text-align: center;
     color: var(--text_color);

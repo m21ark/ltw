@@ -3,23 +3,53 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Spicy Restaurant</title>
+    <title>Tasty Eats</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/plate.css">
+    <link rel="stylesheet" href="css/restaurant.css">
+    <link rel="stylesheet" href="css/user.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=5.0, minimum-scale=0.5">
 </head>
 
 <body>
 
     <header>
         <a href="index.html"><img src="docs/logo.jpg" width="50" height="50" alt="logo"></a>
-        <h1 id="logo_name"><a href="index.html">Spicy Restaurant</a></h1>
+        <h1 id="logo_name"><a href="index.html">Tasty Eats</a></h1>
         <span><a id="header_search" href="index.html">&#128270;</a></span>
-        <a class="header_right" id="signup" href="login.html">Sign in</a>
+
+        <div id="header_signup">
+            <a class="link_button" href="register.html">Sign in</a>
+            <a class="link_button" href="login.html">Login</a>
+        </div>
     </header>
+
+
+    <nav id="navbar">
+        <input type="checkbox" id="hamburger">
+        <label class="hamburger" for="hamburger"></label>
+
+        <ul>
+            <li><a href="index.html">Italian</a></li>
+            <li><a href="index.html">Japanese</a></li>
+            <li><a href="index.html">Indian</a></li>
+            <li><a href="index.html">Portuguese</a></li>
+            <li><a href="index.html">Vietnamese</a></li>
+            <li><a href="index.html">Vegan</a></li>
+        </ul>
+    </nav>
+
+
+
     <main>
         <article id="search">
             <form id="search_box">
                 <h2>Search</h2>
-                <input type="text" name="search" autofocus placeholder="Search">
+                <input type="search" name="search" autofocus placeholder="Search">
                 <input type="submit" value="Search   &#128270;">
             </form>
         </article>
@@ -115,7 +145,7 @@
     </main>
 
     <footer>
-        <p>Spicy Restaurant LTW 2021/22</p>
+        <p>Tasty Eats LTW 2021/22</p>
     </footer>
 </body>
 
