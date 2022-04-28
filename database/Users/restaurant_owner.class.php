@@ -6,6 +6,7 @@ declare(strict_types=1);
 include_once("user.interface.php");
 include_once("../restaurant.class.php");
 include_once("../order.class.php");
+include_once('user.abstract.php');
 
 class RestaurantOwner extends User
 {
@@ -23,7 +24,7 @@ class RestaurantOwner extends User
 
         if ($customer = $stmt->fetch()) {
             return new RestaurantOwner(
-                $customer['UserId'],
+                (int)$customer['UserId'],
                 $customer['username'],
                 $customer['Address'],
                 $customer['phoneNumber'],

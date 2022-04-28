@@ -31,7 +31,7 @@ class Customer extends User
 
         if ($customer = $stmt->fetch()) {
             return new Customer(
-                $customer['UserId'],
+                (int)$customer['UserId'],
                 $customer['username'],
                 $customer['Address'],
                 $customer['phoneNumber'],

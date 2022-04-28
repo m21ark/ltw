@@ -18,7 +18,9 @@ class UserComposite extends User
 
     public function addPermission(?User $user): void
     {
-        array_push($permissions, $user);
+        if ($user == null)
+            return;
+        array_push($this->permissions, $user);
     }
 
     public static function login(PDO $db, string $email, string $password): ?User
