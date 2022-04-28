@@ -31,13 +31,13 @@ section#login, section#register, section#review {
 }
 
 
-div.sign_form{
+div.sign_form {
     width: 90%;
     max-width: 35em;
     margin: 2.5em auto;
 }
 
-section#login div.sign_form{
+section#login div.sign_form {
     width: 90%;
     max-width: 20em;
 }

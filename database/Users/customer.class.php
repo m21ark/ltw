@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-include_once("../restaurant.class.php");
+require_once(__DIR__ . "/../restaurant.class.php");
+require_once(__DIR__ . "/user.abstract.php");
 
 class Customer extends User
 {
@@ -31,7 +32,7 @@ class Customer extends User
 
         if ($customer = $stmt->fetch()) {
             return new Customer(
-                $customer['UserId'],
+                (int)$customer['UserId'],
                 $customer['username'],
                 $customer['Address'],
                 $customer['phoneNumber'],
@@ -72,7 +73,7 @@ class Customer extends User
 
         $stmt = $db->prepare('
             INSERT INTO CustomerFavoriteRestaurants VALUES (?, ?);
-        ');        
+        ');
 
         return $stmt->execute(array($this->id, $restaurant->id));
     }
@@ -95,7 +96,7 @@ class Customer extends User
         $stmt = $db->prepare('
             DELETE FROM CustomerFavoriteDishes
             WHERE CustomerID = ? AND DishID = ?);
-        ');        
+        ');
 
         return $stmt->execute(array($this->id, $dish->id));
     }
@@ -107,7 +108,7 @@ class Customer extends User
         $stmt = $db->prepare('
             DELETE FROM CustomerFavoriteRestaurants
             WHERE CustomerID = ? AND RestaurantID = ?);
-        ');        
+        ');
 
         return $stmt->execute(array($this->id, $restaurant->id));
     }

@@ -1,4 +1,9 @@
-<?php function output_header()
+<?php
+require_once(__DIR__ . '/../database/Users/concrete_user_factory.class.php');
+
+session_start();
+
+function output_header()
 { ?>
 
     <!DOCTYPE html>
@@ -6,18 +11,32 @@
 
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Tasty Eats</title>
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" href="css/cart.css">
+        <link rel="stylesheet" href="css/forms.css">
+        <link rel="stylesheet" href="css/plate.css">
+        <link rel="stylesheet" href="css/restaurant.css">
+        <link rel="stylesheet" href="css/user.css">
+        <link rel="stylesheet" href="css/layout.css">
+        <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=5.0, minimum-scale=0.5">
     </head>
 
     <body>
 
         <header>
             <a href="index.html"><img src="docs/logo.jpg" width="50" height="50" alt="logo"></a>
-            <h1 id="logo_name"><a href="index.html">Tasty Eats</a></h1>
+            <h1 id="logo_name"><a href="index.html">Spicy Restaurant</a></h1>
             <span><a id="header_search" href="index.html">&#128270;</a></span>
-            <a class="header_right" id="signup" href="login.html">Sign in</a><!-- TODO: if session ... -->
+            <?php if (!isset($_SESSION['user'])) { ?>
+                <a class="header_right" id="signup" href="login.html">Sign in</a>
+            <?php } else {
+                $user = unserialize($_SESSION['user']); // TODO ::: THE LOGO MUST CORRESPOND TO THE SESSION
+            ?>
+                <span><a id="header_cart" href="cart.html">&#x1f6d2;</a></span>
+                <a id="header_avatar" href="user.html"><img src="docs/user.png" alt="logo"></a>
+            <?php } ?>
         </header>
         <main>
 

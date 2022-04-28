@@ -3,9 +3,10 @@
 declare(strict_types=1);
 
 
-include_once("user.interface.php");
-include_once("../restaurant.class.php");
-include_once("../order.class.php");
+require_once(__DIR__ . "/user.abstract.php");
+require_once(__DIR__ . "/../restaurant.class.php");
+require_once(__DIR__ . "/../order.class.php");
+require_once(__DIR__ . '/user.abstract.php');
 
 class RestaurantOwner extends User
 {
@@ -23,7 +24,7 @@ class RestaurantOwner extends User
 
         if ($customer = $stmt->fetch()) {
             return new RestaurantOwner(
-                $customer['UserId'],
+                (int)$customer['UserId'],
                 $customer['username'],
                 $customer['Address'],
                 $customer['phoneNumber'],
@@ -60,8 +61,8 @@ class RestaurantOwner extends User
             UPDATE "Order"
             SET OrderStateID = ?
             WHERE OrderID = ?);
-        ');        
+        ');
 
-        return $stmt->execute(array($orderStatus,$order->id));;
+        return $stmt->execute(array($orderStatus, $order->id));;
     }
 }

@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-include_once("review.class.php");
+
+require_once("review.class.php");
 
 class Menu
 {
@@ -42,7 +43,8 @@ class Dish
         $this->category = $category;
     }
 
-    public static function getDish(PDO $db, int $id) : ?Dish {
+    public static function getDish(PDO $db, int $id): ?Dish
+    {
         $stmt = $db->prepare('
             SELECT *
             FROM Dish
@@ -61,7 +63,8 @@ class Dish
         } else return null;
     }
 
-    public static function getRandomDishes(PDO $db, int $limit) :array {
+    public static function getRandomDishes(PDO $db, int $limit): array
+    {
 
         $dishes = [];
         $stmt = $db->prepare('
@@ -75,7 +78,7 @@ class Dish
 
         $arr = $stmt->fetchAll();
 
-        foreach($arr as $dish) {
+        foreach ($arr as $dish) {
             array_push($dishes, new Dish(
                 (int)$dish['DishID'],
                 $dish['Name'],
@@ -152,8 +155,8 @@ class Restaurant
 
         $reviews = $stmt->fetchAll();
         $array = [];
-        
-        foreach($reviews as $review) {
+
+        foreach ($reviews as $review) {
             array_push($array, new Review(
                 $review['ReviewID'],
                 $review['Score'],
@@ -165,7 +168,8 @@ class Restaurant
         return $array;
     }
 
-    public static function getRandomRestaurants(PDO $db, int $limit) :array {
+    public static function getRandomRestaurants(PDO $db, int $limit): array
+    {
 
         $restaurants = [];
         $stmt = $db->prepare('
@@ -179,7 +183,7 @@ class Restaurant
 
         $arr = $stmt->fetchAll();
 
-        foreach($arr as $restaurant) {
+        foreach ($arr as $restaurant) {
             array_push($restaurants, new Restaurant(
                 (int)$restaurant['RestaurantID'], // does the array returned from the querie is always a string ?
                 $restaurant['Name'],

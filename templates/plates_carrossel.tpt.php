@@ -20,7 +20,7 @@ function drawPlatesCarrossel(array $plates)
                     <div class="plate_item">
                         <p><?= $dish->name ?></p>
                         <img src="docs/pizza.jpg" width="200" alt="pizza">
-                        <p><?= $dish->price ?></p>
+                        <p><?= $dish->price . "€" ?></p>
                     </div>
                 </a>
             <?php } ?>
