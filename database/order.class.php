@@ -2,8 +2,8 @@
 
     declare(strict_types = 1);
 
-    include_once("restaurant.class.php");
-    include_once("Users/user.interface.php");
+    require_once(__DIR__ . "/restaurant.class.php");
+    require_once(__DIR__ . "/Users/user.abstract.php");
 
     class OrderStatus {
         const  received  = 0;

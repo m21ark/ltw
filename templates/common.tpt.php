@@ -21,7 +21,7 @@ function output_header(){?>
         <a href="index.html"><img src="docs/logo.jpg" width="50" height="50" alt="logo"></a>
         <h1 id="logo_name"><a href="index.html">Spicy Restaurant</a></h1>
         <span><a id="header_search" href="index.html">&#128270;</a></span>
-        <?php if ($_SESSION['user'] == null) {?>
+        <?php if (!isset($_SESSION['user'])) {?>
             <a class="header_right" id="signup" href="login.html">Sign in</a>
         <?php } else {
             $user = unserialize($_SESSION['user']); // TODO ::: THE LOGO MUST CORRESPOND TO THE SESSION?>

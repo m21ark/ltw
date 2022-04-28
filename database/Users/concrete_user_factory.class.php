@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-include_once("user_factory.interface.php");
-include_once("costumer.class.php");
-include_once("restaurant_owner.class.php");
-include_once('user_factory.interface.php');
-include_once('user_composite.class.php');
+require_once("user_factory.interface.php");
+require_once("customer.class.php");
+require_once("restaurant_owner.class.php");
+require_once('user_factory.interface.php');
+require_once('user_composite.class.php');
 
 class ConcreteUserFactory implements UserFactory
 {
@@ -22,7 +22,7 @@ class ConcreteUserFactory implements UserFactory
 
         if (empty($user->permissions))
             return null;
-            
+
         return $user;
     }
 }

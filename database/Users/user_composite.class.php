@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-include_once("user.abstract.php");
-include_once("customer.class.php");
-include_once("concrete_user_factory.class.php");
+require_once("user.abstract.php");
+require_once("customer.class.php");
+require_once("concrete_user_factory.class.php");
 
 class UserComposite extends User
 {

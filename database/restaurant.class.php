@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-include_once("review.class.php");
+
+require_once("review.class.php");
 
 class Menu
 {

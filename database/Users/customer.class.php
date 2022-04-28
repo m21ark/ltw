@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-include_once("../restaurant.class.php");
+require_once(__DIR__ . "/../restaurant.class.php");
+require_once(__DIR__ . "/user.abstract.php");
 
 class Customer extends User
 {
