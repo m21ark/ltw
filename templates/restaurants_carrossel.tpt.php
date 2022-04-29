@@ -16,7 +16,7 @@ function drawRestaurantsCarrossel(array $restaurants)
         <div class="img_carrosel">
 
             <?php foreach ($restaurants as $restaurant) { ?>
-                <a href=<?= "restaurant.html?id=" . $restaurant->id ?> class="rm_linkdecor">
+                <a href=<?= "restaurant.php?id=" . $restaurant->id ?> class="rm_linkdecor">
                     <div class="restaurant_item">
                         <p><?= $restaurant->name ?></p>
                         <img src="docs/restaurant.jpg" width="200" alt="pizza">
