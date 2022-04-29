@@ -12,9 +12,10 @@ DROP TABLE IF EXISTS CustomerFavoriteDishes;
 DROP TABLE IF EXISTS CustomerFavoriteRestaurants;
 DROP TABLE IF EXISTS User;
 
-CREATE TABLE Restaurant ( -- ADICIONAR TELEFONE
+CREATE TABLE Restaurant ( 
 	RestaurantID INTEGER PRIMARY KEY,
 	Name VARCHAR NOT NULL,
+	Telefone VARCHAR NOT NULL,
 	Address VARCHAR NOT NULL,
 	Category VARCHAR );
 	
@@ -32,7 +33,7 @@ CREATE TABLE Customer (
 	CustomerID INT PRIMARY KEY,
 	FOREIGN KEY (CustomerID) REFERENCES User(CustomerID));
 	
-CREATE TABLE "Order" ( -- FALTAVA O RESTAURANTE
+CREATE TABLE "Order" ( 
 	OrderID INTEGER PRIMARY KEY,
 	OrderStateID INTEGER,
 	CustomerID INTEGER,
@@ -48,7 +49,7 @@ CREATE TABLE Menu ( -- Não é só um dish --> assim já dará
  	FOREIGN KEY (DishID) REFERENCES Dish(DishID),
 	PRIMARY KEY (RestaurantID, DishID));
 	
-CREATE TABLE Review ( --- FALTA LIGAR COM O RESTAURANTE
+CREATE TABLE Review ( 
 	ReviewID INTEGER PRIMARY KEY,
 	Score INTEGER,
 	ReviewComment VARCHAR NOT NULL,
@@ -61,7 +62,7 @@ CREATE TABLE Photo ( --- Não será assim o formato (com URL) deverá ser um BLO
 	PhotoID Dishes PRIMARY KEY,
 	URL VARCHAR NOT NULL);
 	
-CREATE TABLE Owner ( --- Faltava LIGAR COM RESTAURANTE e Ligar com User
+CREATE TABLE Owner ( 
 	OwnerID INTEGER,
 	RestaurantID INTEGER,
 	FOREIGN KEY (RestaurantID) REFERENCES Restaurant(RestaurantID),
@@ -93,6 +94,7 @@ CREATE TABLE User ( --- adicionar foto
 	username VARCHAR,
 	password VARCHAR,
 	Address VARCHAR,
-	phoneNumber VARCHAR
-)
+	phoneNumber VARCHAR,
+	PhotoUrl VARCHAR
+);
 	
