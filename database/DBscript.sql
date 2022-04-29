@@ -12,11 +12,13 @@ DROP TABLE IF EXISTS CustomerFavoriteDishes;
 DROP TABLE IF EXISTS CustomerFavoriteRestaurants;
 DROP TABLE IF EXISTS User;
 
-CREATE TABLE Restaurant ( -- ADICIONAR TELEFONE
+CREATE TABLE Restaurant ( 
 	RestaurantID INTEGER PRIMARY KEY,
 	Name VARCHAR NOT NULL,
+	Telefone VARCHAR NOT NULL,
 	Address VARCHAR NOT NULL,
-	Category VARCHAR );
+	Category VARCHAR NOT NULL,
+	Description VARCHAR NOT NULL);
 	
 CREATE TABLE Dish (
 	DishID INTEGER PRIMARY KEY,
@@ -32,7 +34,7 @@ CREATE TABLE Customer (
 	CustomerID INT PRIMARY KEY,
 	FOREIGN KEY (CustomerID) REFERENCES User(CustomerID));
 	
-CREATE TABLE "Order" ( -- FALTAVA O RESTAURANTE
+CREATE TABLE "Order" ( 
 	OrderID INTEGER PRIMARY KEY,
 	OrderStateID INTEGER,
 	CustomerID INTEGER,
@@ -48,7 +50,7 @@ CREATE TABLE Menu ( -- Não é só um dish --> assim já dará
  	FOREIGN KEY (DishID) REFERENCES Dish(DishID),
 	PRIMARY KEY (RestaurantID, DishID));
 	
-CREATE TABLE Review ( --- FALTA LIGAR COM O RESTAURANTE
+CREATE TABLE Review ( 
 	ReviewID INTEGER PRIMARY KEY,
 	Score INTEGER,
 	ReviewComment VARCHAR NOT NULL,
@@ -57,11 +59,11 @@ CREATE TABLE Review ( --- FALTA LIGAR COM O RESTAURANTE
 	FOREIGN KEY (RestaurantID) REFERENCES Restaurant(RestaurantID)
 );
 	
-CREATE TABLE Photo ( --- Não será assim o formato (com URL) deverá ser um BLOB
-	PhotoID Dishes PRIMARY KEY,
-	URL VARCHAR NOT NULL);
+CREATE TABLE Photo ( 
+	PhotoID INTEGER PRIMARY KEY,
+	ImageB BLOB NOT NULL);
 	
-CREATE TABLE Owner ( --- Faltava LIGAR COM RESTAURANTE e Ligar com User
+CREATE TABLE Owner ( 
 	OwnerID INTEGER,
 	RestaurantID INTEGER,
 	FOREIGN KEY (RestaurantID) REFERENCES Restaurant(RestaurantID),
@@ -87,12 +89,14 @@ CREATE TABLE CustomerFavoriteRestaurants (
 	FOREIGN KEY (RestaurantID) REFERENCES Restaurant(RestaurantID),
 	FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID));
 	
-CREATE TABLE User ( --- adicionar foto
+CREATE TABLE User ( 
 	UserId INTEGER PRIMARY KEY,
 	email VARCHAR UNIQUE,
 	username VARCHAR,
 	password VARCHAR,
 	Address VARCHAR,
-	phoneNumber VARCHAR
-)
+	phoneNumber VARCHAR,
+	PhotoID INTEGER,
+	FOREIGN KEY (PhotoID) REFERENCES Photo(PhotoID);
+);
 	
