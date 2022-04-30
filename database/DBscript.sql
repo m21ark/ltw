@@ -17,7 +17,8 @@ CREATE TABLE Restaurant (
 	Name VARCHAR NOT NULL,
 	Telefone VARCHAR NOT NULL,
 	Address VARCHAR NOT NULL,
-	Category VARCHAR );
+	Category VARCHAR NOT NULL,
+	Description VARCHAR NOT NULL);
 	
 CREATE TABLE Dish (
 	DishID INTEGER PRIMARY KEY,
@@ -58,9 +59,9 @@ CREATE TABLE Review (
 	FOREIGN KEY (RestaurantID) REFERENCES Restaurant(RestaurantID)
 );
 	
-CREATE TABLE Photo ( --- Não será assim o formato (com URL) deverá ser um BLOB
-	PhotoID Dishes PRIMARY KEY,
-	URL VARCHAR NOT NULL);
+CREATE TABLE Photo ( 
+	PhotoID INTEGER PRIMARY KEY,
+	ImageB BLOB NOT NULL);
 	
 CREATE TABLE Owner ( 
 	OwnerID INTEGER,
@@ -88,13 +89,14 @@ CREATE TABLE CustomerFavoriteRestaurants (
 	FOREIGN KEY (RestaurantID) REFERENCES Restaurant(RestaurantID),
 	FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID));
 	
-CREATE TABLE User ( --- adicionar foto
+CREATE TABLE User ( 
 	UserId INTEGER PRIMARY KEY,
 	email VARCHAR UNIQUE,
 	username VARCHAR,
 	password VARCHAR,
 	Address VARCHAR,
 	phoneNumber VARCHAR,
-	PhotoUrl VARCHAR
+	PhotoID INTEGER,
+	FOREIGN KEY (PhotoID) REFERENCES Photo(PhotoID);
 );
 	

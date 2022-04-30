@@ -1,3 +1,5 @@
+/* Nav Bar  */
+
 @media (max-width:70em) {
     #navbar .hamburger {
         display: block;
@@ -47,4 +49,82 @@
 
 }
 
-@media (max-width:30em) {}
+
+/*  Cart Page  */
+
+@media (min-width:40em) {
+
+    #cart_list .container {
+        display: grid;
+        grid-template-rows: 1fr 5fr;
+        grid-template-columns: 4fr 2fr 1.5fr 2.5fr 1fr;
+    }
+
+    #cart_list .container_name {
+        grid-row: 1;
+    }
+
+    #cart_list .container_delete {
+        grid-column: 5;
+    }
+
+    #cart_list *:not(.container_name) {
+        grid-row: 2;
+    }
+}
+
+@media (max-width:50em) {
+    #cart_list .container {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+/*  Register Page  */
+
+@media (min-width:50em) {
+    section#register .left_login {
+        float: left;
+    }
+
+    section#register .right_login {
+        float: right;
+    }
+}
+
+
+/*  Plate Page  */
+
+@media (min-width:55em) {
+    #plate_page {
+        padding-bottom: 7em;
+        display: grid;
+        grid-template-rows: 4em 20em 2em 2em 5em;
+        grid-template-columns: 5fr 2.5fr 5fr;
+        grid-template-areas: "title . ."
+            "plate ingredients ingredients"
+            ". . ."
+            ". link ."
+            " description description description";
+    }
+
+    #plate_right {
+        margin-left: 2em;
+    }
+}
+
+@media (max-width:55em) {
+    #plate_page {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5em;
+        align-items: center;
+        padding-bottom: 2em;
+    }
+
+    #plate_right {
+        padding: 2em 10em;
+       
+    }
+}

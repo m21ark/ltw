@@ -27,13 +27,10 @@
 section#login, section#register, section#review {
     padding: 1em;
     background-image: url("../docs/pizza.jpg");
-
 }
 
-
 div.sign_form {
-    width: 90%;
-    max-width: 35em;
+    max-width: 30em;
     margin: 2.5em auto;
 }
 
@@ -42,14 +39,12 @@ section#login div.sign_form {
     max-width: 20em;
 }
 
-
-
 textarea {
     resize: none;
     box-shadow: 1px 1px 10px grey;
     padding: 1em;
     margin: 1em auto;
-    width: 25em;
+    width: 90%;
     height: 10em;
     font-size: 1.1em;
     font-family: 'Times New Roman', Times, serif;
@@ -57,7 +52,7 @@ textarea {
 }
 
 section#review div.sign_form {
-    width: 30em;
+    max-width: 30em;
     padding-bottom: 2em;
 }
 
@@ -98,16 +93,10 @@ div.sign_form p {
     text-align: center;
 }
 
-section#register .left_login {
-    float: left;
-    width: 50%;
-}
 
-section#register .right_login {
-    float: right;
-    width: 50%;
+section#register>* {
+    width: 60%;
 }
-
 
 
 /*  Start rating system   */
