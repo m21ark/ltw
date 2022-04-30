@@ -144,3 +144,32 @@
         width: 60%;
     }
 }
+
+/*  Rest Review Section  */
+
+@media (max-width:40em) {
+
+    #reviews .rest_review {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        align-items: center;
+        padding: 2em;
+    }
+
+    #reviews .rest_review div:last-child {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        margin-left: 0;
+    }
+
+    #reviews .review_score {
+        font-size: 1.8em;
+    }
+
+    #reviews .rest_review img {
+        width: 50%;
+        max-width: 15em;
+    }
+}
