@@ -1,3 +1,5 @@
+/*  Presentation  */
+
 #presentation {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -6,7 +8,6 @@
     justify-items: center;
     font-size: 1.5em;
 }
-
 
 #presentation #left h1 {
     margin-bottom: 0.6em;
@@ -92,8 +93,6 @@
     padding: 0.8em 2em;
     margin-left: 1em;
 }
-
-
 
 /*  Reviews */
 

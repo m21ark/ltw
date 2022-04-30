@@ -19,7 +19,6 @@ function output_header()
         <link rel="stylesheet" href="css/plate.css">
         <link rel="stylesheet" href="css/restaurant.css">
         <link rel="stylesheet" href="css/user.css">
-        <link rel="stylesheet" href="css/layout.css">
         <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=5.0, minimum-scale=0.5">
     </head>
 
@@ -106,7 +105,6 @@ function output_header()
 <?php function drawRegister()
 { ?>
 
-
     <section id="register">
         <div class="container sign_form">
             <form>
@@ -155,16 +153,16 @@ function output_header()
         <?php for ($i = 0; $i < 5; $i++) { ?>
 
             <div class="container">
-                <p class="container_name">Pizza de Atum</p>
+                <a href="plate.php" class="container_name">Pizza de Atum</a>
                 <img src="docs/pizza.jpg" alt="pizza">
                 <p class="container_price">13,99$</p>
 
                 <div class="cart_qnt_arrows">
-                    <button style="  transform: rotate(270deg);">&#10145;</button>
-                    <button style="  transform: rotate(90deg);">&#10145;</button>
+                    <span class="input-number-decrement">-</span>
+                    <input class="input-number" readonly type="text" value="1" min="0" max="10">
+                    <span class="input-number-increment">+</span>
                 </div>
 
-                <p class="container_qnt"> Qnt: 1</p>
                 <p class="container_delete">&#128465;</p>
             </div>
 
@@ -198,6 +196,7 @@ function output_header()
         <div>
             <a href="#">Italian</a>
             <a href="#">Spicy</a>
+            <a href="#">Oven</a>
         </div>
 
     </div>

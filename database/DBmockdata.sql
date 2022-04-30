@@ -48,7 +48,7 @@ INSERT INTO OrderState VALUES (3, "Delivered");
 INSERT INTO OrderState VALUES (4, "Ready");
 
 -- all passwords are batata
-INSERT INTO "User" VALUES (1, "lkoche0@artisteer.com", "mbean0", "8467b174e821587c4a0545fd8e57204a398c66d4", "6 Kim Road", "6976825671");
+INSERT INTO "User" VALUES (1, "user@gmail.com", "mbean0", "8467b174e821587c4a0545fd8e57204a398c66d4", "6 Kim Road", "6976825671");
 INSERT INTO "User" VALUES (2, "cgolborn1@arstechnica.com", "bmcgill1", "8467b174e821587c4a0545fd8e57204a398c66d4", "1 Talisman Center", "5531077427");
 INSERT INTO "User" VALUES (3, "nsuddock2@edublogs.org", "llampkin2", "8467b174e821587c4a0545fd8e57204a398c66d4", "05928 Pine View Crossing", "3189560591");
 INSERT INTO "User" VALUES (4, "eshalliker3@sitemeter.com", "dlaidel3", "8467b174e821587c4a0545fd8e57204a398c66d4", "40576 Portage Alley", "9762677183");
