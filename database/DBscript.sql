@@ -97,6 +97,6 @@ CREATE TABLE User (
 	Address VARCHAR,
 	phoneNumber VARCHAR,
 	PhotoID INTEGER,
-	FOREIGN KEY (PhotoID) REFERENCES Photo(PhotoID);
+	FOREIGN KEY (PhotoID) REFERENCES Photo(PhotoID)
 );
 	

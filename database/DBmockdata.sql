@@ -48,26 +48,26 @@ INSERT INTO OrderState VALUES (3, "Delivered");
 INSERT INTO OrderState VALUES (4, "Ready");
 
 -- all passwords are batata
-INSERT INTO "User" VALUES (1, "user@gmail.com", "mbean0", "8467b174e821587c4a0545fd8e57204a398c66d4", "6 Kim Road", "6976825671");
-INSERT INTO "User" VALUES (2, "cgolborn1@arstechnica.com", "bmcgill1", "8467b174e821587c4a0545fd8e57204a398c66d4", "1 Talisman Center", "5531077427");
-INSERT INTO "User" VALUES (3, "nsuddock2@edublogs.org", "llampkin2", "8467b174e821587c4a0545fd8e57204a398c66d4", "05928 Pine View Crossing", "3189560591");
-INSERT INTO "User" VALUES (4, "eshalliker3@sitemeter.com", "dlaidel3", "8467b174e821587c4a0545fd8e57204a398c66d4", "40576 Portage Alley", "9762677183");
-INSERT INTO "User" VALUES (5, "gbrandt4@nature.com", "svanderbaaren4", "8467b174e821587c4a0545fd8e57204a398c66d4", "25377 Debra Junction", "3703743271");
-INSERT INTO "User" VALUES (6, "drudkin5@china.com.cn", "fmilton5", "8467b174e821587c4a0545fd8e57204a398c66d4", "44587 Sunbrook Road", "9985967728");
-INSERT INTO "User" VALUES (7, "opattlel6@jigsy.com", "esoaper6", "8467b174e821587c4a0545fd8e57204a398c66d4", "93 Roth Junction", "9105645396");
-INSERT INTO "User" VALUES (8, "epiggen7@cyberchimps.com", "gantonovic7", "8467b174e821587c4a0545fd8e57204a398c66d4", "4023 Blaine Trail", "8232671441");
-INSERT INTO "User" VALUES (9, "bsanchez8@vk.com", "aathy8", "8467b174e821587c4a0545fd8e57204a398c66d4", "34 Eggendart Terrace", "6344913699");
-INSERT INTO "User" VALUES (10, "fdepinna9@uol.com.br", "gmcphilip9", "8467b174e821587c4a0545fd8e57204a398c66d4", "79616 David Crossing", "1176162274");
-INSERT INTO "User" VALUES (11, "kpamphilona@liveinternet.ru", "bpimmea", "8467b174e821587c4a0545fd8e57204a398c66d4", "46653 Nelson Center", "7845811784");
-INSERT INTO "User" VALUES (12, "rgonningb@sciencedaily.com", "khalifaxb", "8467b174e821587c4a0545fd8e57204a398c66d4", "1601 Larry Drive", "2391248603");
-INSERT INTO "User" VALUES (13, "abrimblecombc@mapy.cz", "cnorwoodc", "8467b174e821587c4a0545fd8e57204a398c66d4", "27443 Pepper Wood Terrace", "4619580426");
-INSERT INTO "User" VALUES (14, "obrouardd@sphinn.com", "hhadyed", "8467b174e821587c4a0545fd8e57204a398c66d4", "63 Butterfield Circle", "7826437935");
-INSERT INTO "User" VALUES (15, "thartfleete@4shared.com", "jpole", "8467b174e821587c4a0545fd8e57204a398c66d4", "0205 School Circle", "4402716689");
-INSERT INTO "User" VALUES (16, "abengocheaf@wikipedia.org", "mrustanf", "8467b174e821587c4a0545fd8e57204a398c66d4", "09765 Becker Avenue", "7587843434");
-INSERT INTO "User" VALUES (17, "rbrislaneg@godaddy.com", "ewhiffg", "8467b174e821587c4a0545fd8e57204a398c66d4", "55 Oriole Park", "8575196407");
-INSERT INTO "User" VALUES (18, "gcosstickh@themeforest.net", "sglederh", "8467b174e821587c4a0545fd8e57204a398c66d4", "2683 Ohio Terrace", "9796527227");
-INSERT INTO "User" VALUES (19, "vaspinali@amazon.co.jp", "ewellsteadi", "8467b174e821587c4a0545fd8e57204a398c66d4", "51543 Commercial Lane", "6835259373");
-INSERT INTO "User" VALUES (20, "msayerj@redcross.org", "rhazelhurstj", "8467b174e821587c4a0545fd8e57204a398c66d4", "68041 Gina Place", "1498615352");
+INSERT INTO "User" VALUES (1, "user@gmail.com", "mbean0", "8467b174e821587c4a0545fd8e57204a398c66d4", "6 Kim Road", "6976825671", 1);
+INSERT INTO "User" VALUES (2, "cgolborn1@arstechnica.com", "bmcgill1", "8467b174e821587c4a0545fd8e57204a398c66d4", "1 Talisman Center", "5531077427", 2);
+INSERT INTO "User" VALUES (3, "nsuddock2@edublogs.org", "llampkin2", "8467b174e821587c4a0545fd8e57204a398c66d4", "05928 Pine View Crossing", "3189560591", 4);
+INSERT INTO "User" VALUES (4, "eshalliker3@sitemeter.com", "dlaidel3", "8467b174e821587c4a0545fd8e57204a398c66d4", "40576 Portage Alley", "9762677183", 3);
+INSERT INTO "User" VALUES (5, "gbrandt4@nature.com", "svanderbaaren4", "8467b174e821587c4a0545fd8e57204a398c66d4", "25377 Debra Junction", "3703743271", 5);
+INSERT INTO "User" VALUES (6, "drudkin5@china.com.cn", "fmilton5", "8467b174e821587c4a0545fd8e57204a398c66d4", "44587 Sunbrook Road", "9985967728",6);
+INSERT INTO "User" VALUES (7, "opattlel6@jigsy.com", "esoaper6", "8467b174e821587c4a0545fd8e57204a398c66d4", "93 Roth Junction", "9105645396",7);
+INSERT INTO "User" VALUES (8, "epiggen7@cyberchimps.com", "gantonovic7", "8467b174e821587c4a0545fd8e57204a398c66d4", "4023 Blaine Trail", "8232671441",8);
+INSERT INTO "User" VALUES (9, "bsanchez8@vk.com", "aathy8", "8467b174e821587c4a0545fd8e57204a398c66d4", "34 Eggendart Terrace", "6344913699",9);
+INSERT INTO "User" VALUES (10, "fdepinna9@uol.com.br", "gmcphilip9", "8467b174e821587c4a0545fd8e57204a398c66d4", "79616 David Crossing", "1176162274",10);
+INSERT INTO "User" VALUES (11, "kpamphilona@liveinternet.ru", "bpimmea", "8467b174e821587c4a0545fd8e57204a398c66d4", "46653 Nelson Center", "7845811784",11);
+INSERT INTO "User" VALUES (12, "rgonningb@sciencedaily.com", "khalifaxb", "8467b174e821587c4a0545fd8e57204a398c66d4", "1601 Larry Drive", "2391248603",12);
+INSERT INTO "User" VALUES (13, "abrimblecombc@mapy.cz", "cnorwoodc", "8467b174e821587c4a0545fd8e57204a398c66d4", "27443 Pepper Wood Terrace", "4619580426",13);
+INSERT INTO "User" VALUES (14, "obrouardd@sphinn.com", "hhadyed", "8467b174e821587c4a0545fd8e57204a398c66d4", "63 Butterfield Circle", "7826437935",14);
+INSERT INTO "User" VALUES (15, "thartfleete@4shared.com", "jpole", "8467b174e821587c4a0545fd8e57204a398c66d4", "0205 School Circle", "4402716689",15);
+INSERT INTO "User" VALUES (16, "abengocheaf@wikipedia.org", "mrustanf", "8467b174e821587c4a0545fd8e57204a398c66d4", "09765 Becker Avenue", "7587843434",16);
+INSERT INTO "User" VALUES (17, "rbrislaneg@godaddy.com", "ewhiffg", "8467b174e821587c4a0545fd8e57204a398c66d4", "55 Oriole Park", "8575196407",17);
+INSERT INTO "User" VALUES (18, "gcosstickh@themeforest.net", "sglederh", "8467b174e821587c4a0545fd8e57204a398c66d4", "2683 Ohio Terrace", "9796527227",18);
+INSERT INTO "User" VALUES (19, "vaspinali@amazon.co.jp", "ewellsteadi", "8467b174e821587c4a0545fd8e57204a398c66d4", "51543 Commercial Lane", "6835259373",19);
+INSERT INTO "User" VALUES (20, "msayerj@redcross.org", "rhazelhurstj", "8467b174e821587c4a0545fd8e57204a398c66d4", "68041 Gina Place", "1498615352",20);
 
 
 INSERT INTO Customer VALUES (1);
