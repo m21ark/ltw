@@ -6,15 +6,27 @@ include_once("templates/restaurant.tpt.php");
 require_once("database/connection.php");
 require_once("database/restaurant.class.php");
 
-$db = getDatabaseConnection();
-$restaurants = Restaurant::getRandomRestaurants($db, 4);
-$dishes = Dish::getRandomDishes($db, 4);
 
+if (!isset($_GET['id'])) {
+    die(header('Location: /'));
+}
+
+
+$db = getDatabaseConnection();
+
+$restaurant = Restaurant::getRestaurant($db, $_GET['id']);
+
+if ($restaurant === null)
+    die(header('Location: /'));
+
+$menu = $restaurant->getMenu($db);
+$dishes = $menu->getMenuDishes($db); // TODO : We need to take the information about the length on the carrossel
 // maybe later we can set cokkies that determine the above res/dishes
+$reviews = $restaurant->getRestaurantReviews($db);
 
 output_header();
-drawRestaurantPresentation();
+drawRestaurantPresentation($restaurant);
 drawPlatesCarrossel($dishes);
 drawRestaurantAskReview();
-drawRestaurantReviews();
+drawRestaurantReviews($reviews);
 output_footer();

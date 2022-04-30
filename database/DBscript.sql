@@ -15,7 +15,7 @@ DROP TABLE IF EXISTS User;
 CREATE TABLE Restaurant ( 
 	RestaurantID INTEGER PRIMARY KEY,
 	Name VARCHAR NOT NULL,
-	Telefone VARCHAR NOT NULL,
+	phone VARCHAR NOT NULL,
 	Address VARCHAR NOT NULL,
 	Category VARCHAR NOT NULL,
 	Description VARCHAR NOT NULL);
@@ -50,7 +50,7 @@ CREATE TABLE Menu ( -- Não é só um dish --> assim já dará
  	FOREIGN KEY (DishID) REFERENCES Dish(DishID),
 	PRIMARY KEY (RestaurantID, DishID));
 	
-CREATE TABLE Review ( 
+CREATE TABLE Review ( -- falta quem fez a review
 	ReviewID INTEGER PRIMARY KEY,
 	Score INTEGER,
 	ReviewComment VARCHAR NOT NULL,
