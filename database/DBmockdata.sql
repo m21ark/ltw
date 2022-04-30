@@ -95,11 +95,11 @@ INSERT INTO "Order" VALUES (5, 3, 2, 1);
 -- TODO: MORE DISHES TO THE MENU AND MORE MENUS
 INSERT INTO Menu VALUES (1, 1);
 
-INSERT INTO Review VALUES (1, "1", "Good food, great service", "2022-01-09", 1);
-INSERT INTO Review VALUES (2, "1", "Had a great time", "2022-02-19", 2);
-INSERT INTO Review VALUES (3, "2", "Not the best service, but the food was good", "2022-01-22", 3);
-INSERT INTO Review VALUES (4, "4", "Food was cold and staff was rude", "2022-03-01", 4);
-INSERT INTO Review VALUES (5, "5", "Best restaurant ever", "2022-02-10", 5);
+INSERT INTO Review VALUES (1, "1", "Good food, great service", "2022-01-09", 1, 1);
+INSERT INTO Review VALUES (2, "1", "Had a great time", "2022-02-19", 2, 2);
+INSERT INTO Review VALUES (3, "2", "Not the best service, but the food was good", "2022-01-22", 3, 3);
+INSERT INTO Review VALUES (4, "4", "Food was cold and staff was rude", "2022-03-01", 4, 4);
+INSERT INTO Review VALUES (5, "5", "Best restaurant ever", "2022-02-10", 5, 5);
 
 INSERT INTO Owner VALUES (16, 1);
 INSERT INTO Owner VALUES (16, 2);

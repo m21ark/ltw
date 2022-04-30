@@ -56,6 +56,8 @@ CREATE TABLE Review ( -- falta quem fez a review
 	ReviewComment VARCHAR NOT NULL,
 	DateOfReview INTEGER NOT NULL,  --- insert the date in epoch format
 	RestaurantID INTEGER NOT NULL,
+	CustomerID INTEGER NOT NULL,
+	FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
 	FOREIGN KEY (RestaurantID) REFERENCES Restaurant(RestaurantID)
 );
 	
@@ -99,4 +101,5 @@ CREATE TABLE User (
 	PhotoID INTEGER,
 	FOREIGN KEY (PhotoID) REFERENCES Photo(PhotoID)
 );
+
 	
