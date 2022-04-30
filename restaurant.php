@@ -25,7 +25,8 @@ $dishes = $menu->getMenuDishes($db); // TODO : We need to take the information a
 $reviews = $restaurant->getRestaurantReviews($db);
 
 output_header();
-drawRestaurantPresentation($restaurant);
+drawRestaurantDescriptionName($restaurant);
+drawRestaurantDescription();
 drawPlatesCarrossel($dishes);
 drawRestaurantAskReview();
 drawRestaurantReviews($reviews);

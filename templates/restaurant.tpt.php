@@ -53,14 +53,6 @@ session_start(); ?>
 
 <?php } ?>
 
-
-<?php function drawRestaurantPresentation()
-{
-    drawRestaurantDescriptionName();
-    drawRestaurantDescription();
-} ?>
-
-
 <?php function drawRestaurantAskReview()
 { ?>
 
