@@ -68,6 +68,8 @@ INSERT INTO "User" VALUES (17, "rbrislaneg@godaddy.com", "ewhiffg", "8467b174e82
 INSERT INTO "User" VALUES (18, "gcosstickh@themeforest.net", "sglederh", "8467b174e821587c4a0545fd8e57204a398c66d4", "2683 Ohio Terrace", "9796527227",18);
 INSERT INTO "User" VALUES (19, "vaspinali@amazon.co.jp", "ewellsteadi", "8467b174e821587c4a0545fd8e57204a398c66d4", "51543 Commercial Lane", "6835259373",19);
 INSERT INTO "User" VALUES (20, "msayerj@redcross.org", "rhazelhurstj", "8467b174e821587c4a0545fd8e57204a398c66d4", "68041 Gina Place", "1498615352",20);
+INSERT INTO "User" VALUES (21, "msay@redcross.org", "rhazelhurstj", "8467b174e821587c4a0545fd8e57204a398c66d4", "68041 Rita Place", "9998615352",21);
+
 
 
 INSERT INTO Customer VALUES (1);
@@ -86,11 +88,11 @@ INSERT INTO Customer VALUES (13);
 INSERT INTO Customer VALUES (14);
 INSERT INTO Customer VALUES (15);
 
-INSERT INTO "Order" VALUES (1, 2, 3, 4);
-INSERT INTO "Order" VALUES (2, 4, 2, 3);
-INSERT INTO "Order" VALUES (3, 1, 3, 5);
-INSERT INTO "Order" VALUES (4, 2, 4, 5);
-INSERT INTO "Order" VALUES (5, 3, 2, 1);
+INSERT INTO "Order" VALUES (1, 2, 3, 4, 21);
+INSERT INTO "Order" VALUES (2, 4, 2, 3, 21);
+INSERT INTO "Order" VALUES (3, 1, 3, 5, 21);
+INSERT INTO "Order" VALUES (4, 2, 4, 5, 21);
+INSERT INTO "Order" VALUES (5, 3, 2, 1, 21);
 
 -- TODO: MORE DISHES TO THE MENU AND MORE MENUS
 INSERT INTO Menu VALUES (1, 1);
@@ -130,3 +132,5 @@ INSERT INTO CustomerFavoriteDishes VALUES (4, 4);
 INSERT INTO CustomerFavoriteDishes VALUES (5, 5);
 -- Nota : falta o de cima mas para restaurantes
 -- Nota : também se podiam adicionar mais pratos favoritos ao costumers
+
+INSERT INTO Courier VALUES (21);

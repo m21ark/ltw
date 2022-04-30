@@ -11,6 +11,7 @@ DROP TABLE IF EXISTS DishOrder;
 DROP TABLE IF EXISTS CustomerFavoriteDishes;
 DROP TABLE IF EXISTS CustomerFavoriteRestaurants;
 DROP TABLE IF EXISTS User;
+DROP TABLE IF EXISTS Courier;
 
 CREATE TABLE Restaurant ( 
 	RestaurantID INTEGER PRIMARY KEY,
@@ -39,9 +40,11 @@ CREATE TABLE "Order" (
 	OrderStateID INTEGER,
 	CustomerID INTEGER,
 	RestaurantID INTEGER,
+	CourierID INTEGER,
 	FOREIGN KEY (RestaurantID) REFERENCES Restaurant(RestaurantID),
 	FOREIGN KEY (OrderStateID) REFERENCES OrderState(OrderStateID),
-	FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID));
+	FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
+	FOREIGN KEY (CourierID) REFERENCES Courier(CourierID));
 	
 CREATE TABLE Menu ( -- Não é só um dish --> assim já dará
 	RestaurantID INTEGER,
@@ -99,7 +102,9 @@ CREATE TABLE User (
 	Address VARCHAR,
 	phoneNumber VARCHAR,
 	PhotoID INTEGER,
-	FOREIGN KEY (PhotoID) REFERENCES Photo(PhotoID)
-);
+	FOREIGN KEY (PhotoID) REFERENCES Photo(PhotoID));
 
+CREATE TABLE Courier (
+	CourierID INTEGER PRIMARY KEY,
+	FOREIGN KEY (CourierID) REFERENCES User(CourierID));
 	
