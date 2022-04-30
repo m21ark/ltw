@@ -4,11 +4,11 @@ require_once(__DIR__ . '/../database/Users/concrete_user_factory.class.php');
 session_start(); ?>
 
 
-<?php function drawRestaurantPresentation()
+<?php function drawRestaurantDescriptionName()
 { ?>
 
     <section id="presentation">
-        <div id="left">
+        <div>
             <h1>Restaurant 1</h1>
             <!--http://maps.google.com/maps?daddr=Rua das Amoreiras, Lisboa-->
             <p>Adress: <a href="https://www.google.com/maps/place/Rua das Amoreiras, Lisboa" target="#">Rua das
@@ -16,12 +16,17 @@ session_start(); ?>
             <p>Contact: <a href="tel:+4733378901">22456789</a></p>
         </div>
 
-        <div id="right">
+        <div>
             <p>3/5 &star;</p>
             <a class="link_button" href="#">Italian Food</a>
         </div>
     </section>
 
+<?php } ?>
+
+
+<?php function drawRestaurantDescription()
+{ ?>
 
     <section id="description" class="container">
         <div>
@@ -40,6 +45,13 @@ session_start(); ?>
     </section>
 
 <?php } ?>
+
+
+<?php function drawRestaurantPresentation()
+{
+    drawRestaurantDescriptionName();
+    drawRestaurantDescription();
+} ?>
 
 
 <?php function drawRestaurantAskReview()

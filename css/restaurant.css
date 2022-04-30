@@ -1,6 +1,7 @@
 /*  Presentation  */
 
 #presentation {
+    width: 90%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 2em 2em;
@@ -9,23 +10,22 @@
     font-size: 1.5em;
 }
 
-#presentation #left h1 {
+#presentation>div:nth-child(1) h1 {
     margin-bottom: 0.6em;
 }
 
-#presentation #left a {
+#presentation>div:nth-child(1) a {
     color: var(--accent_color);
     font-weight: bolder;
 }
 
-
-#presentation #right {
+#presentation>div:nth-child(2) {
     text-align: center;
     font-weight: bolder;
 }
 
 
-#presentation #right p {
+#presentation>div:nth-child(2) p {
     font-size: 2em;
     margin-bottom: 0.5em;
 }
@@ -34,26 +34,29 @@
 /*  Description  */
 
 #description {
-    margin: 1em auto 2em auto;
-    width: 80%;
+    margin: 1em auto 2em;
+    width: 90%;
     max-width: 40em;
     padding: 1.5em 3em;
     display: grid;
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 2fr 1fr;
     font-size: 1.2em;
 }
 
 #description img {
+    margin-left: 2em;
     margin-top: 1em;
-    width: 12em;
+    width: 15em;
     border-radius: 7px;
 }
 
 #description p {
     text-align: justify;
-    margin-right: 5em;
     margin-top: 1em;
     font-size: 1.1em;
+    background-color: white;
+    padding: 0.7em;
+    border-radius: 7px;
 }
 
 #description>a {
