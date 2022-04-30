@@ -2,16 +2,18 @@
 
 declare(strict_types=1);
 
-function drawPlatesCarrossel(array $plates)
+function drawPlatesCarrossel(array $plates, bool $showNav = true)
 {  // TODO ::: this is a repetition of the restaurant, maybe consider making a carrossel draw if possible
 ?>
     <article class="plates">
         <h2>Plates</h2>
 
+        <?php if ($showNav) { ?>
         <div class="carrosel_nav">
             <button style="  transform: scale(-1, 1);">&#10145;</button>
             <button>&#10145;</button>
         </div>
+        <?php } ?>
 
         <div class="img_carrosel">
 

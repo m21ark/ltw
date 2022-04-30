@@ -1,0 +1,58 @@
+#favorite_cards .img_carrosel {
+    grid-column: 1/3;
+    margin-top: 1em;
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+
+#favorite_cards .restaurant_item {
+    grid-column: 1/3;
+    margin-top: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    cursor: pointer;
+    transition: 1s ease-in-out;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+#favorite_cards .restaurant_item:hover {
+    transform: rotateY(0.5turn);
+}
+
+#favorite_cards .restaurant_face {
+    backface-visibility: hidden;
+    transition: 1s ease-in-out;
+}
+
+#favorite_cards .restaurant_face--front {
+    transform: rotateY(0turn);
+    z-index: 2;
+}
+
+#favorite_cards .restaurant_face--back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+
+    transform: rotateY(0.5turn);
+    z-index: 1;
+}
+
+#favorite_cards .restaurant_face--back>p{
+    margin-top: 1em;
+}
+
+
+#favorite_cards .plate_item {
+    grid-column: 1/3;
+    margin-top: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+
+#favorite_cards {
+    padding: 2em 5em;
+}
