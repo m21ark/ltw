@@ -78,22 +78,19 @@ header {
 }
 
 
-header>h1 {
-    font-family: var(--logo_font);
-    color: var(--title_color);
-    margin-left: 1em;
-    margin-top: 0.2em;
+header>h1 a {
+    margin-left: 0.3em;
+    font-family: var(--header_font);
 }
 
 header>h1 a:visited {
     color: var(--title_color);
 }
 
-header a.link_button{
+header a.link_button {
     padding: 0.7em 1em;
     margin-left: 1em;
 }
-
 
 header #header_avatar {
     grid-column: "avatar";
@@ -141,7 +138,7 @@ header a#header_search {
 }
 
 #navbar li:hover {
-    filter:brightness(120%) ;
+    filter: brightness(120%);
     cursor: pointer;
 }
 
@@ -161,61 +158,39 @@ header a#header_search {
 
 
 
+/*  Search Section */
 
-
-/*  Main Search */
-
-article#search {
-    position: relative;
-    padding: 1em;
-    height: 30em;
+.search {
+    display: grid;
+    height: 25em;
     background-image: url("../docs/pizza.jpg");
-
 }
 
-article #search_box {
-    box-shadow: 5px 5px 15px black;
-    background-color: var(--bg_color);
+.search_box {
     display: grid;
     grid-template-columns: 2;
     grid-template-rows: 2;
+    margin: auto;
     padding: 2em;
-    width: 50%;
-    border-radius: 7px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 70%;
+    max-width: 35em;
 }
 
-article #search_box h2 {
-    margin-bottom: 0.8em;
-}
-
-article #search_box input[type="search"] {
+.search_box input[type="search"] {
     grid-column: 1;
     padding: 1.2em 1em;
     border-radius: 7px;
     border-width: 0;
+    margin-top: 0.8em;
     box-shadow: 1px 1px 5px grey;
 }
 
-article #search_box input[type="submit"]:hover{
-    filter:brightness(120%);
-}
 
-article #search_box input[type="submit"] {
-    border-radius: 7px;
-    border-width: 0;
-    font-size: 1.2em;
-    background-color: var(--accent_color);
-    color: white;
-    font-weight: bold;
+.search_box input[type="submit"] {
+    margin-top: 0.8em;
     grid-column: 2;
     margin-left: 2em;
-    box-shadow: 1.5px 1.5px 5px black;
-    cursor: pointer;
-    transition: 0.2s ease-out;
+    max-width: 15em;
 }
 
 
@@ -251,7 +226,6 @@ article .carrosel_nav button {
     box-shadow: 2px 1.5px 3px grey;
 }
 
-
 .img_carrosel img {
     border-radius: 7px;
     margin: auto;
@@ -263,7 +237,7 @@ article .carrosel_nav button {
     color: white;
     border-radius: 7px;
     box-shadow: 2px 2px 10px grey;
-    
+
 }
 
 .img_carrosel .restaurant_item p {
@@ -289,7 +263,7 @@ article .carrosel_nav button {
     text-align: center;
 }
 
-.carrosel_nav>button:hover{
+.carrosel_nav>button:hover {
     filter: brightness(135%);
     cursor: pointer;
 }
@@ -358,6 +332,10 @@ footer>p {
     color: white;
     font-weight: bold;
     border-width: 0;
-    border-width: 0;
+    transition: 0.2s ease-out;
 }
 
+.link_button:hover {
+    cursor: pointer;
+    filter: brightness(120%);
+}
