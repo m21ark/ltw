@@ -21,7 +21,7 @@ class Menu
         $array = array();
 
         foreach ($this->resDishes as $pair) {
-            array_push($array, Dish::getDish($db, $pair["DishID"]));
+            array_push($array, Dish::getDish($db, (int)$pair["DishID"]));
         }
 
         return $array;
@@ -96,15 +96,15 @@ class Restaurant
     public int $id;
     public string $name;
     public string $address;
-    //public string $phone;
+    public string $phone;
     public string $category;
 
-    public function __construct(int $id, string $name, string $address, string $category)
+    public function __construct(int $id, string $name, string $address, string $phone ,string $category)
     {
         $this->id = $id;
         $this->name = $name;
         $this->address = $address;
-        //$this->phone = $phone;
+        $this->phone = $phone;
         $this->category = $category;
     }
 
@@ -124,6 +124,7 @@ class Restaurant
                 (int)$restaurant['RestaurantID'],
                 $restaurant['Name'],
                 $restaurant['Address'],
+                $restaurant['phone'],
                 $restaurant['Category']
             );
         } else return null;
@@ -158,8 +159,8 @@ class Restaurant
 
         foreach ($reviews as $review) {
             array_push($array, new Review(
-                $review['ReviewID'],
-                $review['Score'],
+                (int)$review['ReviewID'],
+                (int)$review['Score'],
                 $review['ReviewComment'],
                 $review['DateOfReview'],
             ));
@@ -188,6 +189,7 @@ class Restaurant
                 (int)$restaurant['RestaurantID'], // does the array returned from the querie is always a string ?
                 $restaurant['Name'],
                 $restaurant['Address'],
+                $restaurant['phone'],
                 $restaurant['Category']
             ));
         }

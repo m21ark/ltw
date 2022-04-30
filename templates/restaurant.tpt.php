@@ -1,24 +1,31 @@
 <?php
 require_once(__DIR__ . '/../database/Users/concrete_user_factory.class.php');
-
+require_once(__DIR__ . '/../database/restaurant.class.php');
 session_start(); ?>
 
 
-<?php function drawRestaurantPresentation()
+<?php function drawRestaurantPresentation(Restaurant $restaurant)
 { ?>
 
     <section id="presentation">
         <div id="left">
-            <h1>Restaurant 1</h1>
+            <h1><?=$restaurant->name?></h1>
             <!--http://maps.google.com/maps?daddr=Rua das Amoreiras, Lisboa-->
-            <p>Adress: <a href="https://www.google.com/maps/place/Rua das Amoreiras, Lisboa" target="#">Rua das
-                    Amoreiras - Lisboa</a></p>
-            <p>Contact: <a href="tel:+4733378901">22456789</a></p>
+            <p>Adress: 
+                <a href=<?="https://www.google.com/maps?daddr=" . str_replace(' ','%20',$restaurant->address)?> target="#">
+                    <?=$restaurant->address?>
+                </a>
+            </p>
+            <p>Contact: <a href=<?="tel:" . $restaurant->phone?>><?=$restaurant->phone?></a></p>
         </div>
 
         <div id="right">
-            <p>3/5 &star;</p>
-            <a class="link_button" href="#">Italian Food</a>
+            <p>TODO/5 &star;</p>
+            <?php // TODO ::: THE CATEGORY database should not be has it is as it's a bad design 
+                // the design makes us hard to Have 2 categories, we could use explode but that we need to check
+                // if we loose points for that
+            ?>
+            <a class="link_button" href="#"><?=$restaurant->category?></a>
         </div>
     </section>
 
@@ -54,13 +61,13 @@ session_start(); ?>
 
 
 
-<?php function drawRestaurantReviews()
+<?php function drawRestaurantReviews(array $reviews)
 { ?>
     <article id="reviews">
         <h2>Reviews</h2>
 
-        <?php for ($i = 0; $i < 3; $i++) {
-            drawRestaurantReview();
+        <?php foreach($reviews as $review) {
+            drawRestaurantReview($review);
         } ?>
     </article>
 
@@ -68,25 +75,22 @@ session_start(); ?>
 
 
 
-<?php function drawRestaurantReview()
+<?php function drawRestaurantReview(Review $review)
 { ?>
 
     <article class="rest_review">
         <div>
             <div class="review_header">
-                <p class="review_name">James Workman</p>
-                <p class="review_date">2022-12-2</p>
+                <p class="review_name"><?='ERRO NA BASE DE DADOS: falta saber quem fez a review'?></p>
+                <p class="review_date"><?=$review->date->format('Y-m-d')?></p>
             </div>
             <p class="review_text">
-                Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam.
+                <?=$review->text?>
             </p>
         </div>
         <div>
             <img src="docs/pizza.jpg" alt="">
-            <p class="review_score">3/5 &star;</p>
+            <p class="review_score"><?=$review->score?>/5 &star;</p>
         </div>
     </article>
 
