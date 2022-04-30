@@ -259,24 +259,24 @@ function output_header()
 
 
 
-<?php function drawUserInfoPage()
-{ ?>
-
-
-
+<?php require_once(__DIR__ . "/../database/Users/user_composite.class.php"); function drawUserInfoPage(UserComposite $user)
+{  ?>
     <div id="user_info">
         <section class="container">
             <h2>User</h2>
             <div id="info_display">
                 <img id="user_photo" src="docs/user.png" width="200" height="200" alt="logo">
-                <h3>Ricardo Almeida</h3>
-                <p><span class="bold">Username:</span> Ricardo320 </p>
-                <p><span class="bold">Adress:</span> Rua das Amoreiras 3º Esquerdo</p>
-                <p><span class="bold">Email:</span> up202001234@up.pt</p>
+                <h3><?=$user->permissions[0]->username?></h3>
+                <p><span class="bold">Username:</span> <?=$user->permissions[0]->username?></p>
+                <p><span class="bold">Adress:</span> <?=$user->permissions[0]->address?></p>
+                <p><span class="bold">Email:</span> <?=$user->permissions[0]->email?></p>
 
-                <p><a href="#"><span class="bold">Favorite Restaurants &star;</span></a></p>
-                <p><a href="#"><span class="bold">Favorite Dishes &star;</span></a></p>
-
+                <?php if ($user->hasPermission("Customer") !== null) { ?>
+                    <p><a href="perfil_info.php"><span class="bold">Favorites &star;</span></a></p>
+                <?php }?>
+                <?php if ($user->hasPermission("RestaurantOwner") !== null) { ?>
+                    <p><a href="perfil_info.php"><span class="bold">TODO: Restaurant owner Page &#9749;</span></a></p>
+                <?php }?>
             </div>
             <a href="register.php" id="edit_account">Edit account details</a>
 

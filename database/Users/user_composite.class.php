@@ -30,10 +30,8 @@ class UserComposite extends User
 
     public function hasPermission(string $type): ?User
     {
-        if (empty($permissions))
-            return null;
-        foreach ($permissions as $permission) {
-            if (gettype($permission) === $type) {
+        foreach ($this->permissions as $permission) {
+            if (get_class($permission) == $type) {
                 return $permission;
             }
         }

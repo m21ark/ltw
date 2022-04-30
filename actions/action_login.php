@@ -12,10 +12,11 @@ $db = getDatabaseConnection();
 
 $user = ConcreteUserFactory::getUserAccordingToType($db, (string)$_POST["email"], $_POST["password"]);
 
-if ($user !== null) 
+if ($user !== null) {
     $_SESSION['user'] = serialize($user);
+    die(header('Location: /'));
+}
 
 // TODO: ELSE RETURN ERROR POP UP
-
 
 header('Location: ' . $_SERVER['HTTP_REFERER']);
