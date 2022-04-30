@@ -30,7 +30,7 @@ session_start(); ?>
     </section>
 
 
-    <section id="description">
+    <section id="description" class="container">
         <div>
             <h2>Description</h2>
             <p>
@@ -52,7 +52,7 @@ session_start(); ?>
 <?php function drawRestaurantAskReview()
 { ?>
 
-    <section id="share_exp">
+    <section id="share_exp" class="container">
         <p>Share your experience</p>
         <a class="link_button" href="review.php">Review</a>
     </section>
@@ -78,7 +78,7 @@ session_start(); ?>
 <?php function drawRestaurantReview(Review $review)
 { ?>
 
-    <article class="rest_review">
+    <article class="rest_review container">
         <div>
             <div class="review_header">
                 <p class="review_name"><?='ERRO NA BASE DE DADOS: falta saber quem fez a review'?></p>

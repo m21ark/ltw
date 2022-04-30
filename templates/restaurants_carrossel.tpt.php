@@ -26,10 +26,13 @@ function drawRestaurantsCarrossel(array $restaurants, bool $showNav = true)
                             <p>3/5 &star;</p>
                         </div>
                         <div class="restaurant_face restaurant_face--back">
-                            <p><a href="https://www.google.com/maps/place/Rua das Amoreiras, Lisboa" target="#">Rua das Amoreiras - Lisboa</a></p>
-                            <p><a href="tel:+4733378901">22456789</a></p>
-                            <p><a class="link_button" href="#">Italian Food</a></p>
-                            <p><a class="link_button" href="#">Italian Food</a></p>
+                            <p><a href=<?= "https://www.google.com/maps?daddr=" . str_replace(' ', '%20', $restaurant->address) ?> target="#">
+                                    <?= $restaurant->address ?>
+                                </a>
+                            </p>
+                            <p><a href=<?="tel:" . $restaurant->phone?>><?=$restaurant->phone?></a></p>
+                            <!--- TODO :: It can have more than one category  --->
+                            <p><a class="link_button" href="#"><?=$restaurant->category?></a></p>
                         </div>
                     </div>
                 </a>

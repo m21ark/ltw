@@ -37,11 +37,9 @@
     margin: 1em auto 2em auto;
     width: 80%;
     max-width: 40em;
-    background-color: var(--bg_color);
     padding: 1.5em 3em;
     display: grid;
     grid-template-columns: 4fr 1fr;
-    box-shadow: 2px 1.5px 10px grey;
     font-size: 1.2em;
 }
 
@@ -72,21 +70,17 @@
 
 #share_exp {
     margin-top: 1.5em;
-    background-color: var(--bg_color);
     padding: 1.5em;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 2px 1.5px 10px grey;
-    /*border: 0.3em solid var(--title_color);
-     border-radius: 7px;*/
 }
 
 
 #share_exp p {
     font-weight: bolder;
     font-size: 1.5em;
-    margin-right: 2em;
+    margin-right: 1em;
 }
 
 #share_exp a {
@@ -94,10 +88,11 @@
     margin-left: 1em;
 }
 
+
 /*  Reviews */
 
 #reviews {
-    margin: 3em 7em;
+    margin: 3em 1em;
 }
 
 #reviews h2 {
@@ -105,16 +100,13 @@
 }
 
 .rest_review {
-    background-color: var(--bg_color);
-    padding: 1.5em 3em;
+    margin: auto;
+    max-width: 35em;
+    padding: 1.5em;
     font-size: 1.2em;
     margin-bottom: 2em;
     display: grid;
     grid-template-columns: 7fr 3fr;
-    border-radius: 7px;
-    box-shadow: 2px 1.5px 3px grey;
-    align-items: center;
-    justify-items: center;
 }
 
 .rest_review .review_header {
@@ -124,7 +116,6 @@
 
 .rest_review p {
     text-align: justify;
-    margin-right: 1em;
 }
 
 .rest_review .review_text {
@@ -139,19 +130,22 @@
     margin-bottom: 1em;
 }
 
-.rest_review div:last-of-type {
-    margin-left: 1.2em;
+.rest_review div:last-child {
+    width: 90%;
+    margin-left: 1em;
+    display: flex;
+    flex-direction: column;
 }
 
 .rest_review img {
-    width: 95%;
+    width: 100%;
+    margin-bottom: 0.6em;
     border-radius: 7px;
     box-shadow: 1px 1px 10px grey;
 }
 
 .rest_review .review_score {
-    margin-top: 0.2em;
+    margin: auto;
     font-weight: bolder;
-    font-size: 1.3em;
-    text-align: center;
+    font-size: 1.5em;
 }

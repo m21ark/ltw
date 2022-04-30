@@ -217,7 +217,7 @@ function output_header()
 <?php function drawPlateInfo()
 { ?>
 
-    <article id="plate_page">
+    <article id="plate_page" class="container">
         <h2>Plate page</h2>
         <div id="plate_left">
             <h2>Pizza de Atum</h2>
@@ -259,24 +259,25 @@ function output_header()
 
 
 
-<?php require_once(__DIR__ . "/../database/Users/user_composite.class.php"); function drawUserInfoPage(UserComposite $user)
+<?php require_once(__DIR__ . "/../database/Users/user_composite.class.php");
+function drawUserInfoPage(UserComposite $user)
 {  ?>
     <div id="user_info">
         <section class="container">
             <h2>User</h2>
             <div id="info_display">
                 <img id="user_photo" src="docs/user.png" width="200" height="200" alt="logo">
-                <h3><?=$user->permissions[0]->username?></h3>
-                <p><span class="bold">Username:</span> <?=$user->permissions[0]->username?></p>
-                <p><span class="bold">Adress:</span> <?=$user->permissions[0]->address?></p>
-                <p><span class="bold">Email:</span> <?=$user->permissions[0]->email?></p>
+                <h3><?= $user->permissions[0]->username ?></h3>
+                <p><span class="bold">Username:</span> <?= $user->permissions[0]->username ?></p>
+                <p><span class="bold">Adress:</span> <?= $user->permissions[0]->address ?></p>
+                <p><span class="bold">Email:</span> <?= $user->permissions[0]->email ?></p>
 
                 <?php if ($user->hasPermission("Customer") !== null) { ?>
                     <p><a href="perfil_info.php"><span class="bold">Favorites &star;</span></a></p>
                 <?php } // TODO :: MAKE A BUTTON THAT SAYS :: BECOME A CUSTOMER, so this for the other option?>
                 <?php if ($user->hasPermission("RestaurantOwner") !== null) { ?>
                     <p><a href="perfil_info.php"><span class="bold">TODO: Restaurant owner Page &#9749;</span></a></p>
-                <?php }?>
+                <?php } ?>
             </div>
             <a href="register.php" id="edit_account">Edit account details</a>
 
@@ -321,5 +322,20 @@ function output_header()
             </form>
         </div>
     </section>
+
+<?php } ?>
+
+
+
+<?php function drawUserFavCards($dishes, $restaurants)
+{ ?>
+
+    <form id="favorite_cards">
+        <h2>Favorites</h2>
+        <?php
+        drawPlatesCarrossel($dishes, false);
+        drawRestaurantsCarrossel($restaurants, false);
+        ?>
+    </form>
 
 <?php } ?>

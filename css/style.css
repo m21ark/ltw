@@ -19,7 +19,6 @@
 }
 
 
-
 /*  Setting the basics  */
 
 * {
@@ -317,13 +316,13 @@ footer>p {
 .container {
     padding: 2em;
     background-color: var(--bg_color);
-    box-shadow: 5px 5px 20px black;
+    box-shadow: 5px 5px 20px grey;
     border-radius: 7px;
 }
 
 
 .link_button {
-    box-shadow: 1.5px 1.5px 5px black;
+    box-shadow: 0.5px 0.5px 10px #333;
     font-size: 0.7em;
     padding: 1em 2em;
     background-color: var(--accent_color);
