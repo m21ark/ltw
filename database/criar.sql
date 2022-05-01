@@ -36,6 +36,7 @@ CREATE TABLE Customer (
 	
 CREATE TABLE "Order" ( 
 	OrderID INTEGER PRIMARY KEY,
+	DateOrder datetime not null, -- '2007-01-01 10:00:00'
 	OrderStateID INTEGER,
 	CustomerID INTEGER,
 	RestaurantID INTEGER,

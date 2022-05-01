@@ -22,7 +22,7 @@ function drawRestaurantsCarrossel(array $restaurants, bool $showNav = true)
                     <div class="restaurant_item">
                         <div class="restaurant_face restaurant_face--front">
                             <p><?= $restaurant->name ?></p>
-                            <img src="docs/restaurant.jpg" width="200" alt="pizza">
+                            <img src="docs/restaurant/<?= $restaurant->id ?>.jpg" width="200" alt="pizza">
                             <p>3/5 &star;</p>
                         </div>
                         <div class="restaurant_face restaurant_face--back">
@@ -30,9 +30,9 @@ function drawRestaurantsCarrossel(array $restaurants, bool $showNav = true)
                                     <?= $restaurant->address ?>
                                 </a>
                             </p>
-                            <p><a href=<?="tel:" . $restaurant->phone?>><?=$restaurant->phone?></a></p>
+                            <p><a href=<?= "tel:" . $restaurant->phone ?>><?= $restaurant->phone ?></a></p>
                             <!--- TODO :: It can have more than one category  --->
-                            <p><a class="link_button" href="#"><?=$restaurant->category?></a></p>
+                            <p><a class="link_button" href="#"><?= $restaurant->category ?></a></p>
                         </div>
                     </div>
                 </a>

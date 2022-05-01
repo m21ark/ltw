@@ -9,19 +9,18 @@ function drawPlatesCarrossel(array $plates, bool $showNav = true)
         <h2>Plates</h2>
 
         <?php if ($showNav) { ?>
-        <div class="carrosel_nav">
-            <button style="  transform: scale(-1, 1);">&#10145;</button>
-            <button>&#10145;</button>
-        </div>
+            <div class="carrosel_nav">
+                <button style="  transform: scale(-1, 1);">&#10145;</button>
+                <button>&#10145;</button>
+            </div>
         <?php } ?>
 
         <div class="img_carrosel">
-
             <?php foreach ($plates as $dish) { ?>
                 <a href=<?= "plate.php?id=" . $dish->id ?> class="rm_linkdecor">
                     <div class="plate_item">
                         <p><?= $dish->name ?></p>
-                        <img src="docs/pizza.jpg" width="200" alt="pizza">
+                        <img src="docs/food/<?= $dish->id ?>.jpg" width="200" alt="pizza">
                         <p><?= $dish->price . "€" ?></p>
                     </div>
                 </a>
