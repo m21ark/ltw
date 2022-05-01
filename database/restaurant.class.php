@@ -98,14 +98,16 @@ class Restaurant
     public string $address;
     public string $phone;
     public string $category;
+    public string $description;
 
-    public function __construct(int $id, string $name, string $address, string $phone ,string $category)
+    public function __construct(int $id, string $name, string $address, string $phone ,string $category, string $description)
     {
         $this->id = $id;
         $this->name = $name;
         $this->address = $address;
         $this->phone = $phone;
         $this->category = $category;
+        $this->description = $description;
     }
 
     public static function getRestaurant(PDO $db, int $id): ?Restaurant
@@ -125,7 +127,8 @@ class Restaurant
                 $restaurant['Name'],
                 $restaurant['Address'],
                 $restaurant['phone'],
-                $restaurant['Category']
+                $restaurant['Category'],
+                $restaurant['Description']
             );
         } else return null;
     }
@@ -163,6 +166,7 @@ class Restaurant
                 (int)$review['Score'],
                 $review['ReviewComment'],
                 $review['DateOfReview'],
+                $review['CustomerID']
             ));
         }
 
@@ -190,10 +194,34 @@ class Restaurant
                 $restaurant['Name'],
                 $restaurant['Address'],
                 $restaurant['phone'],
-                $restaurant['Category']
+                $restaurant['Category'],
+                $restaurant['Description']
             ));
         }
 
         return $restaurants;
+    }
+
+    public function getMediumScore(PDO $db) : float{
+        
+        $medium = 0;
+        $count = 0;
+
+        $stmt = $db->prepare('
+            SELECT Score
+            FROM Restaurant LEFT JOIN Review on (Restaurant.RestaurantID = Review.RestaurantID)
+            WHERE Restaurant.RestaurantID = ?
+        ');
+
+        $stmt->execute(array($this->id));
+
+        $arr = $stmt->fetchAll();
+    
+        foreach($arr as $score) {
+            $medium += $score['Score'];
+            $count++;
+        }
+
+        return (float)$medium / $count;
     }
 }

@@ -22,7 +22,7 @@ function drawRestaurantsCarrossel(array $restaurants, bool $showNav = true)
                     <div class="restaurant_item">
                         <div class="restaurant_face restaurant_face--front">
                             <p><?= $restaurant->name ?></p>
-                            <img src="docs/restaurant/<?= $restaurant->id ?>.jpg" width="200" alt="pizza">
+                            <img src="docs/restaurant/<?= $restaurant->id ?>.jpg" width="200" height="154" alt="pizza">
                             <p>3/5 &star;</p>
                         </div>
                         <div class="restaurant_face restaurant_face--back">

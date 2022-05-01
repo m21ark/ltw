@@ -1,10 +1,10 @@
 <?php
-include_once("templates/common.tpt.php");
-include_once("templates/plates_carrossel.tpt.php");
-include_once("templates/restaurant.tpt.php");
-
-require_once("database/connection.php");
-require_once("database/restaurant.class.php");
+require_once(__DIR__ . "/templates/common.tpt.php");
+require_once(__DIR__ . "/templates/plates_carrossel.tpt.php");
+require_once(__DIR__ . "/templates/restaurant.tpt.php");
+ 
+require_once(__DIR__ . "/database/connection.php");
+require_once(__DIR__ . "/database/restaurant.class.php");
 
 
 if (!isset($_GET['id'])) {
@@ -25,9 +25,9 @@ $dishes = $menu->getMenuDishes($db); // TODO : We need to take the information a
 $reviews = $restaurant->getRestaurantReviews($db);
 
 output_header();
-drawRestaurantDescriptionName($restaurant);
-drawRestaurantDescription();
+drawRestaurantDescriptionName( $db, $restaurant);
+drawRestaurantDescription($restaurant);
 drawPlatesCarrossel($dishes);
 drawRestaurantAskReview();
-drawRestaurantReviews($reviews);
+drawRestaurantReviews($db , $reviews);
 output_footer();

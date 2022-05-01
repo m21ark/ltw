@@ -8,10 +8,10 @@ class Review
     public int $score;
     public string $text;
     public DateTime $date;
-    // also photo
+    public string $reviewer;
 
 
-    public function __construct(int $id, int $score, string $text, string $date)
+    public function __construct(int $id, int $score, string $text, string $date, string $reviewer)
     {
         // TODO : ADAPT THE DATETIME LATTER ::: THE DB CONTAINS AN ERROR (epecho mode not set)
 
@@ -19,7 +19,20 @@ class Review
         $this->score = $score;
         $this->text = $text;
         $this->date = new DateTime($date);
+        $this->reviewer = $reviewer;
+    }
+
+    public function getReviewerName(PDO $db) : string
+    {
+        $stmt = $db->prepare('
+            SELECT DISTINCT username
+            FROM User
+            WHERE UserId = ?
+        ');
+
+        $stmt->execute(array($this->reviewer));
+
+        return $stmt->fetch()['username'];
     }
 }
 
-    // TODO:: GET REVIEW MEDIUM FOR A RESTURANT

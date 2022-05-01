@@ -4,7 +4,7 @@ require_once(__DIR__ . '/../database/restaurant.class.php');
 session_start(); ?>
 
 
-<?php function drawRestaurantDescriptionName(Restaurant $restaurant)
+<?php function drawRestaurantDescriptionName(PDO $db ,Restaurant $restaurant)
 { ?>
 
     <section id="presentation">
@@ -20,7 +20,7 @@ session_start(); ?>
         </div>
 
         <div>
-            <p>TODO/5 &star;</p>
+            <p><?=$restaurant->getMediumScore($db)?>/5 &star;</p>
             <?php // TODO ::: THE CATEGORY database should not be has it is as it's a bad design 
             // the design makes us hard to Have 2 categories, we could use explode but that we need to check
             // if we loose points for that
@@ -32,19 +32,14 @@ session_start(); ?>
 <?php } ?>
 
 
-<?php function drawRestaurantDescription()
+<?php function drawRestaurantDescription(Restaurant $restaurant)
 { ?>
 
     <section id="description" class="container">
         <div>
             <h2>Description</h2>
             <p>
-                Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam, quis
-                nostrud exercitation ullamco laboris nisi ut
-                aliquip ex ea commodo consequat.
+                <?=$restaurant->description;?>
             </p>
         </div>
         <img src="docs/restaurant.jpg" alt="">
@@ -65,13 +60,14 @@ session_start(); ?>
 
 
 
-<?php function drawRestaurantReviews(array $reviews)
+<?php function drawRestaurantReviews(PDO $db , array $reviews)
 { ?>
     <article id="reviews">
         <h2>Reviews</h2>
 
         <?php foreach ($reviews as $review) {
-            drawRestaurantReview($review);
+            $reviewer = $review->getReviewerName($db);
+            drawRestaurantReview($review, $reviewer);
         } ?>
     </article>
 
@@ -79,13 +75,13 @@ session_start(); ?>
 
 
 
-<?php function drawRestaurantReview(Review $review)
+<?php function drawRestaurantReview(Review $review, string $reviewer)
 { ?>
 
     <article class="rest_review container">
         <div>
             <div class="review_header">
-                <p class="review_name"><?= 'ERRO NA BASE DE DADOS: falta saber quem fez a review' ?></p>
+                <p class="review_name"><?=$reviewer?></p>
                 <p class="review_date"><?= $review->date->format('Y-m-d') ?></p>
             </div>
             <p class="review_text">
