@@ -98,6 +98,14 @@ function output_header()
                 <label>
                     Password <input type="password" required placeholder="Password" name="password">
                 </label>
+
+                <?php if (isset($_GET["error"])) {
+                    echo "  <h4>
+                        Username and password dont match!
+                    </h4>";
+                }
+                ?>
+
                 <button class="form_button" formaction="actions/action_login.php" formmethod="post">Login</button>
             </form>
             <div class="form_alternative">
@@ -274,7 +282,8 @@ function drawUserInfoPage(UserComposite $user)
 
                 <?php if ($user->hasPermission("Customer") !== null) { ?>
                     <p><a href="perfil_info.php"><span class="bold">Favorites &star;</span></a></p>
-                <?php } // TODO :: MAKE A BUTTON THAT SAYS :: BECOME A CUSTOMER, so this for the other option?>
+                <?php } // TODO :: MAKE A BUTTON THAT SAYS :: BECOME A CUSTOMER, so this for the other option
+                ?>
                 <?php if ($user->hasPermission("RestaurantOwner") !== null) { ?>
                     <p><a href="perfil_info.php"><span class="bold">TODO: Restaurant owner Page &#9749;</span></a></p>
                 <?php } ?>

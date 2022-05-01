@@ -15,8 +15,6 @@ $user = ConcreteUserFactory::getUserAccordingToType($db, (string)$_POST["email"]
 if ($user !== null) {
     $_SESSION['user'] = serialize($user);
     die(header('Location: /'));
-}
-
-// TODO: ELSE RETURN ERROR POP UP
+} else die(header('Location: ' . $_SERVER['HTTP_REFERER'] . '?error=1'));
 
 header('Location: ' . $_SERVER['HTTP_REFERER']);
