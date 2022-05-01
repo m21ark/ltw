@@ -38,6 +38,7 @@
     overflow: hidden;
 
     transform: rotateY(0.5turn);
+    transition: 0s;
     z-index: 1;
 
     justify-content: center;
