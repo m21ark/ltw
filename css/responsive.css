@@ -207,3 +207,25 @@
         align-self: flex-start;
     }
 }
+
+@media (max-width:36em) {
+    div.img_carrosel .card_item {
+        width: 90%;
+        min-width: 25em;
+        height: 10em;
+    }
+
+    div.card_item>* {
+        flex-direction: row;
+    }
+
+    div.card_item>* img{
+        max-width: 7em;
+        max-height: 7em;
+        margin-right: 1em;
+    }
+
+    div.card_item:hover {
+        transform: none;
+    }
+}
