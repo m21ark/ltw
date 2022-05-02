@@ -19,7 +19,7 @@ function drawRestaurantsCarrossel(array $restaurants, bool $showNav = true)
 
             <?php foreach ($restaurants as $restaurant) { ?>
                 <a href=<?= "restaurant.php?id=" . $restaurant->id ?> class="rm_linkdecor">
-                    <div class="restaurant_item">
+                    <div class="restaurant_item container">
                         <div class="restaurant_face restaurant_face--front">
                             <p><?= $restaurant->name ?></p>
                             <img src="docs/restaurant/<?= $restaurant->id ?>.jpg" width="200" height="154" alt="pizza">

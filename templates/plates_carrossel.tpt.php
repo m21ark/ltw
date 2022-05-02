@@ -17,8 +17,8 @@ function drawPlatesCarrossel(array $plates, bool $showNav = true)
 
         <div class="img_carrosel">
             <?php foreach ($plates as $dish) { ?>
-                <a href=<?= "plate.php?id=" . $dish->id ?> class="rm_linkdecor">
-                    <div class="plate_item">
+                <a href=<?= "plate.php?id=" . $dish->id ?>>
+                    <div class="plate_item container">
                         <p><?= $dish->name ?></p>
                         <img src="docs/food/<?= $dish->id ?>.jpg" width="200" height="154" alt="pizza">
                         <p><?= $dish->price . "€" ?></p>
