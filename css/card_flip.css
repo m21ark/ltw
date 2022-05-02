@@ -1,58 +1,124 @@
-.restaurant_item {
+/*  Main   */
+
+.carrosel {
+    display: grid;
+    grid-template-rows: 2;
+    grid-template-columns: 9fr 1fr;
+    padding: 2em 1em;
+    margin-top: 2em;
+    border-radius: 0;
+}
+
+.carrosel .img_carrosel>a:hover {
+    filter: brightness(100%);
+}
+
+/*  Image Carrosel   */
+
+.img_carrosel {
     grid-column: 1/3;
-    margin-top: 1em;
-    margin-right: 1em;
-    margin-bottom: 1em;
-    cursor: pointer;
-    transition: 1s ease-in-out;
-    transform-style: preserve-3d;
-    position: relative;
-    /*transition: transform 3000ms, opacity 0ms 1500ms; */
+    display: flex;
+    flex: 1 1 40em;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.3em;
 }
 
-.restaurant_item:hover {
-    transform: rotateY(0.5turn);
+article.img_carrosel a {
+    margin: 0;
+    padding: 0;
 }
 
-.restaurant_item:hover .restaurant_face--front{
-    opacity: 0;
+article .carrosel_nav {
+    display: flex;
+    margin-right: 2.2em;
 }
 
-.restaurant_face {
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    transition: 1s ease-in-out;
+article .carrosel_nav button {
+    font-weight: bold;
+    font-size: larger;
+    color: white;
+    border-width: 0;
+    background-color: var(--title_color);
+    padding: 0.5em 1em;
+    margin-left: 1em;
+    border-radius: 7px;
+    box-shadow: 2px 1.5px 3px grey;
 }
 
-.restaurant_face--front {
-    transform: rotateY(0turn);
-    z-index: 2;
+.img_carrosel .card_item img {
+    display: block;
+    border-radius: 7px;
+    margin: auto;
 }
 
-.restaurant_face--back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%; 
-    overflow: hidden;
-
-    transform: rotateY(0.5turn);
-    transition: 0s;
-    z-index: 1;
-
+.img_carrosel .card_item {
+    margin: 1em 0.2em;
+    background-color: var(--light_bg_color);
+    padding: 1em;
+    color: white;
+    width: 14em;
+    height: 22em;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.restaurant_face--back>p{
-    margin-top: 1em;
+.img_carrosel .card_item p {
+    font-size: 1.6em;
+    font-weight: bold;
+    margin: 0.2em;
+    text-align: center;
 }
 
 
-.plate_item {
+/*  Flip Cards  */
+
+.card_item {
     grid-column: 1/3;
-    margin-top: 1em;
-    margin-right: 1em;
-    margin-bottom: 1em;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: 1s ease-in-out;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.card_item:hover {
+    transform: rotateY(0.5turn);
+}
+
+.card_item:hover .card_face--front {
+    opacity: 0;
+}
+
+.card_item>* {
+    position: absolute;
+    height: 80%;
+    width: 90%;
+    overflow: hidden;
+
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition: 1s ease-in-out;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card_face_front {
+    transform: rotateY(0turn);
+    z-index: 2;
+}
+
+.card_face_back {
+    transform: rotateY(0.5turn);
+    transition: 0s;
+    z-index: 1;
+}
+
+.card_item .link_button {
+    padding: 0.4em;
 }
