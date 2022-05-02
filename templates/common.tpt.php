@@ -283,14 +283,17 @@ function drawUserInfoPage(UserComposite $user)
 
                 <?php if ($user->hasPermission("Customer") !== null) { ?>
                     <p><a href="perfil_info.php"><span class="bold">Favorites &star;</span></a></p>
-                <?php } // TODO :: MAKE A BUTTON THAT SAYS :: BECOME A CUSTOMER, so this for the other option
-                ?>
+                <?php } else {?>
+                    <p><a href=""><span class="bold">Become a Costumer</span></a></p>
+                <?php } ?>
                 <?php if ($user->hasPermission("RestaurantOwner") !== null) { ?>
                     <p><a href="perfil_info.php"><span class="bold">TODO: Restaurant owner Page &#9749;</span></a></p>
-                <?php } ?>
+                <?php } else {?>
+                    <p><a href=""><span class="bold">Add your Restaurant &#9749;</span></a></p>
+                <?php }?>
             </div>
             <a href="register.php" id="edit_account">Edit account details</a>
-
+            <a href="../actions/action_logout.php" id="logout">Logout  &times;</a>
         </section>
     </div>
 

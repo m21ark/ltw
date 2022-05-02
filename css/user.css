@@ -47,7 +47,12 @@
     background-color: var(--title_color);
 }
 
-#user_info a:not(#edit_account) {
+#user_info a#logout {
+    margin: 1.5em 0 0 0;
+    background-color: var(--title_color);
+}
+
+#user_info a:not(#edit_account, #logout) {
     margin: 1.5em 0 0 0;
     background-color: var(--accent_color);
 }
