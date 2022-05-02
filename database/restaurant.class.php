@@ -222,6 +222,6 @@ class Restaurant
             $count++;
         }
 
-        return (float)$medium / $count;
+        return (float)number_format((float)$medium / (float)$count, 2, '.', '');
     }
 }

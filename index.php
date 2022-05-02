@@ -15,6 +15,6 @@ $dishes = Dish::getRandomDishes($db, 4);
 
 output_header();
 drawSearchScreen();
-drawRestaurantsCarrossel($restaurants);
+drawRestaurantsCarrossel($db, $restaurants);
 drawPlatesCarrossel($dishes);
 output_footer();

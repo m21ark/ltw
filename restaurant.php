@@ -28,6 +28,6 @@ output_header();
 drawRestaurantDescriptionName( $db, $restaurant);
 drawRestaurantDescription($restaurant);
 drawPlatesCarrossel($dishes);
-drawRestaurantAskReview();
+drawRestaurantAskReview($restaurant);
 drawRestaurantReviews($db , $reviews);
 output_footer();

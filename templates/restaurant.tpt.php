@@ -48,12 +48,12 @@ session_start(); ?>
 
 <?php } ?>
 
-<?php function drawRestaurantAskReview()
+<?php function drawRestaurantAskReview(Restaurant $restaurant)
 { ?>
 
     <section id="share_exp" class="container">
         <p>Share your experience</p>
-        <a class="link_button" href="review.php">Review</a>
+        <a class="link_button" href=<?="review.php?id=". $restaurant->id?>>Review</a>
     </section>
 
 <?php } ?>

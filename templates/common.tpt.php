@@ -306,30 +306,30 @@ function drawUserInfoPage(UserComposite $user)
 
     <section id="review">
         <div class="container sign_form">
-            <form>
+            <form action="../actions/action_make_review.php" method="post">
                 <h2>Review</h2>
                 <label>
                     Write your review <textarea name="review" style="resize: none;" cols="30" rows="16"></textarea>
                 </label>
                 <label>Score </label>
-
+                <input type="hidden" id="id" name="id" value="<?=$_GET["id"]?>">
                 <div class="feedback">
                     <div id="star_rating">
-                        <input type="radio" name="rating" id="rating-5">
+                        <input type="radio" name="rating" id="rating-5" value="5">
                         <label for="rating-5"></label>
-                        <input type="radio" name="rating" id="rating-4">
+                        <input type="radio" name="rating" id="rating-4" value="4">
                         <label for="rating-4"></label>
-                        <input type="radio" name="rating" id="rating-3" checked>
+                        <input type="radio" name="rating" id="rating-3" value="3" checked>
                         <label for="rating-3"></label>
-                        <input type="radio" name="rating" id="rating-2">
+                        <input type="radio" name="rating" id="rating-2" value="2">
                         <label for="rating-2"></label>
-                        <input type="radio" name="rating" id="rating-1">
+                        <input type="radio" name="rating" id="rating-1" value="1">
                         <label for="rating-1"></label>
                     </div>
                 </div>
 
                 <div id="review_options">
-                    <button class="form_button" formaction="#" formmethod="post">Publish</button>
+                    <button class="form_button" >Publish</button>
                     <a href="index.php">Go back</a>
                 </div>
             </form>
