@@ -341,13 +341,13 @@ function drawUserInfoPage(UserComposite $user)
 
 
 <?php function drawUserFavCards($dishes, $restaurants)
-{ ?>
+{ require_once(__DIR__ . "/../database/connection.php"); $db = getDatabaseConnection();?>
 
     <form id="favorite_cards">
         <h2>Favorites</h2>
         <?php
         drawPlatesCarrossel($dishes, false);
-        drawRestaurantsCarrossel($restaurants, false);
+        drawRestaurantsCarrossel($db, $restaurants, false);
         ?>
     </form>
 
