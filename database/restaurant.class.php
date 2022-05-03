@@ -40,7 +40,8 @@ class Dish
         $this->id = $id;
         $this->name = $name;
         $this->price = $price;
-        $this->category = $category;
+        $this->category = $category; //TODO A dish may belong to more than a single category
+        // A dish has to have a list of ingredients
     }
 
     public static function getDish(PDO $db, int $id): ?Dish
@@ -100,7 +101,7 @@ class Restaurant
     public string $category;
     public string $description;
 
-    public function __construct(int $id, string $name, string $address, string $phone ,string $category, string $description)
+    public function __construct(int $id, string $name, string $address, string $phone, string $category, string $description)
     {
         $this->id = $id;
         $this->name = $name;
@@ -202,8 +203,9 @@ class Restaurant
         return $restaurants;
     }
 
-    public function getMediumScore(PDO $db) : float{
-        
+    public function getMediumScore(PDO $db): float
+    {
+
         $medium = 0;
         $count = 0;
 
@@ -216,8 +218,8 @@ class Restaurant
         $stmt->execute(array($this->id));
 
         $arr = $stmt->fetchAll();
-    
-        foreach($arr as $score) {
+
+        foreach ($arr as $score) {
             $medium += $score['Score'];
             $count++;
         }

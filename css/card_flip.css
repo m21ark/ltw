@@ -82,6 +82,7 @@ article .carrosel_nav button {
     transition: 1s ease-in-out;
     transform-style: preserve-3d;
     position: relative;
+    box-shadow: 5px 5px 10px grey;
 }
 
 .card_item:hover {

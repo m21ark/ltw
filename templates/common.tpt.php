@@ -162,19 +162,20 @@ function output_header()
 
 
 <?php function drawCartList(PDO $db, array $cart)
-{ require_once(__DIR__ . "/../database/restaurant.class.php"); ?>
+{
+    require_once(__DIR__ . "/../database/restaurant.class.php"); ?>
 
     <form id="cart_list" method="post">
         <h2>Cart List</h2>
 
-        <?php foreach ($cart as $dishID) { 
+        <?php foreach ($cart as $dishID) {
             $dish = Dish::getDish($db, $dishID);
-            ?>
+        ?>
 
             <div class="container">
-                <a href="plate.php" class="container_name"><?=$dish->name?></a>
-                <img src=<?="docs/food/" . $dishID .".jpg" ?> alt=<?=$dish->name?>>
-                <p class="container_price"><?=$dish->price?>$</p>
+                <a href="plate.php" class="container_name"><?= $dish->name ?></a>
+                <img src=<?= "docs/food/" . $dishID . ".jpg" ?> alt=<?= $dish->name ?>>
+                <p class="container_price"><?= $dish->price ?>$</p>
 
                 <div class="cart_qnt_arrows">
                     <span class="input-number-decrement">-</span>
@@ -182,8 +183,8 @@ function output_header()
                     <span class="input-number-increment">+</span>
                 </div>
 
-                <button type="text" formaction="actions/action_remove_from_cart.php" formmethod="POST" name="id" value=<?=$dishID?>>
-                    <p class="container_delete" >&#128465;</p>
+                <button type="text" formaction="actions/action_remove_from_cart.php" formmethod="POST" name="id" value=<?= $dishID ?>>
+                    <p class="container_delete">&#128465;</p>
                 </button>
 
             </div>
@@ -227,15 +228,16 @@ function output_header()
 
 
 
-<?php function drawPlateInfo()
+<?php function drawPlateInfo(Dish $dish)
 { ?>
 
     <article id="plate_page" class="container">
         <h2>Plate page</h2>
+        
         <div id="plate_left">
-            <h2>Pizza de Atum</h2>
-            <img src="docs/pizza.jpg" alt="">
-            <p>13,99 $</p>
+            <h2><?= $dish->name ?></h2>
+            <img src="docs/food/<?= $dish->id ?>.jpg" alt="">
+            <p><?= $dish->price ?> €</p>
         </div>
 
         <div id="plate_right">
@@ -247,8 +249,6 @@ function output_header()
                     <li>Batata</li>
                     <li>Batata</li>
                     <li>Batata</li>
-
-
                 </ul>
                 <ul>
                     <li>Batata</li>
@@ -259,7 +259,7 @@ function output_header()
             </div>
 
             <form action="../actions/action_add_to_cart.php" method="post">
-                <input type="hidden" id="id" name="id" value="<?=$_GET["id"]?>">
+                <input type="hidden" id="id" name="id" value="<?= $_GET["id"] ?>">
                 <input type="submit" value="Buy  &#x1f6d2;">
             </form>
         </div>
@@ -288,17 +288,17 @@ function drawUserInfoPage(UserComposite $user)
 
                 <?php if ($user->hasPermission("Customer") !== null) { ?>
                     <p><a href="perfil_info.php"><span class="bold">Favorites &star;</span></a></p>
-                <?php } else {?>
+                <?php } else { ?>
                     <p><a href=""><span class="bold">Become a Costumer</span></a></p>
                 <?php } ?>
                 <?php if ($user->hasPermission("RestaurantOwner") !== null) { ?>
                     <p><a href="perfil_info.php"><span class="bold">TODO: Restaurant owner Page &#9749;</span></a></p>
-                <?php } else {?>
+                <?php } else { ?>
                     <p><a href=""><span class="bold">Add your Restaurant &#9749;</span></a></p>
-                <?php }?>
+                <?php } ?>
             </div>
             <a href="register.php" id="edit_account">Edit account details</a>
-            <a href="../actions/action_logout.php" id="logout">Logout  &times;</a>
+            <a href="../actions/action_logout.php" id="logout">Logout &times;</a>
         </section>
     </div>
 
@@ -317,7 +317,7 @@ function drawUserInfoPage(UserComposite $user)
                     Write your review <textarea name="review" style="resize: none;" cols="30" rows="16"></textarea>
                 </label>
                 <label>Score </label>
-                <input type="hidden" id="id" name="id" value="<?=$_GET["id"]?>">
+                <input type="hidden" id="id" name="id" value="<?= $_GET["id"] ?>">
                 <div class="feedback">
                     <div id="star_rating">
                         <input type="radio" name="rating" id="rating-5" value="5">
@@ -334,7 +334,7 @@ function drawUserInfoPage(UserComposite $user)
                 </div>
 
                 <div id="review_options">
-                    <button class="form_button" >Publish</button>
+                    <button class="form_button">Publish</button>
                     <a href="index.php">Go back</a>
                 </div>
             </form>
@@ -346,7 +346,9 @@ function drawUserInfoPage(UserComposite $user)
 
 
 <?php function drawUserFavCards($dishes, $restaurants)
-{ require_once(__DIR__ . "/../database/connection.php"); $db = getDatabaseConnection();?>
+{
+    require_once(__DIR__ . "/../database/connection.php");
+    $db = getDatabaseConnection(); ?>
 
     <form id="favorite_cards">
         <h2>Favorites</h2>
