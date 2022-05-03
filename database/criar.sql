@@ -43,8 +43,7 @@ CREATE TABLE Customer (
 
 CREATE TABLE "Order" (
 	OrderID INTEGER PRIMARY KEY,
-	DateOrder datetime not null,
-	-- '2007-01-01 10:00:00'
+	DateOrder datetime not null, -- '2007-01-01 10:00:00'
 	OrderStateID INTEGER,
 	CustomerID INTEGER,
 	RestaurantID INTEGER,
@@ -55,12 +54,12 @@ CREATE TABLE "Order" (
 	FOREIGN KEY (CourierID) REFERENCES Courier(CourierID)
 );
 
-CREATE TABLE Menu (
-	--Não é só um dish --> assim já dará RestaurantID INTEGER,
-	DishID INTEGER,
+
+CREATE TABLE Menu ( -- Não é só um dish --> assim já dará
 	RestaurantID INTEGER,
+	DishID INTEGER,
 	FOREIGN KEY (RestaurantID) REFERENCES Restaurant(RestaurantID),
-	FOREIGN KEY (DishID) REFERENCES Dish(DishID),
+ 	FOREIGN KEY (DishID) REFERENCES Dish(DishID),
 	PRIMARY KEY (RestaurantID, DishID)
 );
 
