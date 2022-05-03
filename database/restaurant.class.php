@@ -40,8 +40,10 @@ class Dish
         $this->id = $id;
         $this->name = $name;
         $this->price = $price;
-        $this->category = $category; //TODO A dish may belong to more than a single category
-        // A dish has to have a list of ingredients
+        $this->category = $category; //TODO A dish may belong to more than a single category (significant changes are required)
+        // A dish has to have a list of ingredients --> add to db
+        // plate should also have a description (maybe just hardcode lorem ipsum to avoid changing the db)
+
     }
 
     public static function getDish(PDO $db, int $id): ?Dish
@@ -62,6 +64,21 @@ class Dish
                 $dish['Category']
             );
         } else return null;
+    }
+
+    public function getRestaurantID(PDO $db): int
+    {
+
+        $stmt = $db->prepare('
+        SELECT restaurantID
+        FROM Menu
+        WHERE DishID = ?');
+
+        $stmt->execute(array($this->id));
+
+        if ($id = $stmt->fetch()) {
+            return (int)$id['RestaurantID'];
+        } else return 0;
     }
 
     public static function getRandomDishes(PDO $db, int $limit): array

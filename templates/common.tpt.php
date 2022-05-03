@@ -197,14 +197,11 @@ function output_header()
 <?php } ?>
 
 
-<?php function plate_description()
+<?php function plate_description(Dish $dish)
 { ?>
 
-    <a href="restaurant.php" id="plate_restaurant">
-        <h2>See Restaurant</h2>
-    </a>
-
     <div id="plate_description">
+
         <h2>Description</h2>
         <p>
             Lorem ipsum dolor sit amet, consectetur
@@ -216,9 +213,12 @@ function output_header()
         </p>
 
         <div>
-            <a href="#">Italian</a>
-            <a href="#">Spicy</a>
-            <a href="#">Oven</a>
+
+            <?php /*  foreach ($dish->categories as $acategory) { ?>
+                <a href="#"><?= $acategory ?></a>
+            <?php } */ ?>
+            <a href="#"><?= $dish->category ?></a>
+
         </div>
 
     </div>
@@ -228,12 +228,12 @@ function output_header()
 
 
 
-<?php function drawPlateInfo(Dish $dish)
+<?php function drawPlateInfo(Dish $dish, int $restaurantID)
 { ?>
 
     <article id="plate_page" class="container">
         <h2>Plate page</h2>
-        
+
         <div id="plate_left">
             <h2><?= $dish->name ?></h2>
             <img src="docs/food/<?= $dish->id ?>.jpg" alt="">
@@ -264,7 +264,12 @@ function output_header()
             </form>
         </div>
 
-        <?php plate_description(); ?>
+
+        <a href="restaurant.php?id=<?= $restaurantID ?>" id="plate_restaurant">
+            <h2>See Restaurant (<?= $restaurantID ?>)</h2>
+        </a>
+
+        <?php plate_description($dish); ?>
 
     </article>
 

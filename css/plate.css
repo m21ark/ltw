@@ -10,7 +10,23 @@
 #plate_left {
     box-shadow: 2px 2px 10px grey;
     grid-area: plate;
-    padding: 1em 6em;
+    padding: 1em;
+    background-color: white;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#plate_left * {
+    margin: 0.5em;
+}
+
+#plate_left p {
+    font-weight: bolder;
+    font-size: 1.6em;
+    color: var(--title_color);
 }
 
 #plate_right {
@@ -24,8 +40,6 @@
     align-items: center;
 }
 
-
-
 #plate_restaurant {
     grid-area: link;
     grid-column: 1/span 3;
@@ -35,27 +49,10 @@
 
 #plate_page img {
     width: 13em;
+    max-height: 11.5em;
     border-radius: 7px;
 }
 
-
-#plate_left {
-    background-color: white;
-    border-radius: 7px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#plate_left * {
-    padding: 1.1em;
-}
-
-#plate_left p {
-    font-weight: bolder;
-    font-size: 1.6em;
-}
 
 
 #ingredients_list {

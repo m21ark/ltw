@@ -15,7 +15,9 @@ $dish = Dish::getDish($db, $_GET['id']);
 if ($dish === null)
     die(header('Location: /'));
 
-    
+
+$restaurantID = $dish->getRestaurantID($db);
+
 output_header();
-drawPlateInfo($dish);
+drawPlateInfo($dish, $restaurantID);
 output_footer();
