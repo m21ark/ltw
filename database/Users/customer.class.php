@@ -10,6 +10,7 @@ class Customer extends User
 
     public array $favoriteRestaurants;
     public array $favoriteDishes;
+    public array $cart = [];
 
     public function __construct(int $id, string $username, string $address, string $phone, string $email)
     {
@@ -51,7 +52,8 @@ class Customer extends User
 
         $stmt->execute(array($this->id));
 
-        return $stmt->fetchAll();
+        $favoriteRestaurants = $stmt->fetchAll();
+        return $favoriteRestaurants;
     }
 
     public function getFavoriteDishes(PDO $db): array
@@ -64,12 +66,13 @@ class Customer extends User
 
         $stmt->execute(array($this->id));
 
-        return $stmt->fetchAll();
+        $favoriteDishes = $stmt->fetchAll();
+        return $favoriteDishes;
     }
 
     public function addToFavoriteRestaurants(PDO $db, Restaurant $restaurant): bool
     {
-        array_push($favoriteRestaurants, $restaurant);
+        array_push($favoriteRestaurants, $restaurant->id);
 
         $stmt = $db->prepare('
             INSERT INTO CustomerFavoriteRestaurants VALUES (?, ?);
@@ -80,7 +83,7 @@ class Customer extends User
 
     public function addToFavoriteDishes(PDO $db, Dish $dish): bool
     {
-        array_push($favoriteRestaurants, $dish);
+        array_push($favoriteRestaurants, $dish->id);
 
         $stmt = $db->prepare('
             INSERT INTO CustomerFavoriteDishes VALUES (?, ?);
@@ -91,7 +94,7 @@ class Customer extends User
 
     public function removeFromFavoriteDishes(PDO $db, Dish $dish): bool
     {
-        unset($favoriteDishes[$dish]);
+        unset($favoriteDishes[$dish->id]);
 
         $stmt = $db->prepare('
             DELETE FROM CustomerFavoriteDishes
@@ -103,7 +106,7 @@ class Customer extends User
 
     public function removeFromFavoriteRestaurants(PDO $db, Restaurant $restaurant): bool
     {
-        unset($favoriteRestaurants[$restaurant]);
+        unset($favoriteRestaurants[$restaurant->id]);
 
         $stmt = $db->prepare('
             DELETE FROM CustomerFavoriteRestaurants
@@ -131,5 +134,15 @@ class Customer extends User
             }
             return true;
         } else return false;
+    }
+
+
+    public function addToCart(int $dishId) {
+        
+        array_push($this->cart, $dishId);
+    }
+
+    public function deleteFromCart(int $dishId) {
+        $this->cart = \array_diff($this->cart, [$dishId]);
     }
 }

@@ -161,18 +161,20 @@ function output_header()
 <?php } ?>
 
 
-<?php function drawCartList()
-{ ?>
+<?php function drawCartList(PDO $db, array $cart)
+{ require_once(__DIR__ . "/../database/restaurant.class.php"); ?>
 
-    <form id="cart_list">
+    <form id="cart_list" method="post">
         <h2>Cart List</h2>
 
-        <?php for ($i = 0; $i < 5; $i++) { ?>
+        <?php foreach ($cart as $dishID) { 
+            $dish = Dish::getDish($db, $dishID);
+            ?>
 
             <div class="container">
-                <a href="plate.php" class="container_name">Pizza de Atum</a>
-                <img src="docs/pizza.jpg" alt="pizza">
-                <p class="container_price">13,99$</p>
+                <a href="plate.php" class="container_name"><?=$dish->name?></a>
+                <img src=<?="docs/food/" . $dishID .".jpg" ?> alt=<?=$dish->name?>>
+                <p class="container_price"><?=$dish->price?>$</p>
 
                 <div class="cart_qnt_arrows">
                     <span class="input-number-decrement">-</span>
@@ -180,9 +182,11 @@ function output_header()
                     <span class="input-number-increment">+</span>
                 </div>
 
-                <p class="container_delete">&#128465;</p>
-            </div>
+                <button type="text" formaction="actions/action_remove_from_cart.php" formmethod="POST" name="id" value=<?=$dishID?>>
+                    <p class="container_delete" >&#128465;</p>
+                </button>
 
+            </div>
 
         <?php } ?>
 
@@ -254,7 +258,8 @@ function output_header()
                 </ul>
             </div>
 
-            <form>
+            <form action="../actions/action_add_to_cart.php" method="post">
+                <input type="hidden" id="id" name="id" value="<?=$_GET["id"]?>">
                 <input type="submit" value="Buy  &#x1f6d2;">
             </form>
         </div>
