@@ -251,12 +251,12 @@ function output_header()
                 </ul>
             </div>
 
-            <form action="../actions/action_add_to_cart.php" method="post">
-                <input type="hidden" id="id" name="id" value="<?= $_GET["id"] ?>">
-                <input type="submit" value="Buy  &#x1f6d2;">
-            </form>
         </div>
 
+        <form action="../actions/action_add_to_cart.php" method="post">
+            <input type="hidden" id="id" name="id" value="<?= $_GET["id"] ?>">
+            <input type="submit" class="link_button" value="Buy  &#x1f6d2;">
+        </form>
 
         <a href="restaurant.php?id=<?= $restaurantID ?>" id="plate_restaurant">
             <h2>See Restaurant (<?= $restaurantID ?>)</h2>

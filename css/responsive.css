@@ -105,6 +105,8 @@
         grid-template-areas: "title . ."
             "plate ingredients ingredients"
             ". . ."
+            ". buy ."
+            ". . ."
             ". link ."
             " description description description";
     }
@@ -219,7 +221,7 @@
         flex-direction: row;
     }
 
-    div.card_item>* img{
+    div.card_item>* img {
         max-width: 7em;
         max-height: 7em;
         margin-right: 1em;

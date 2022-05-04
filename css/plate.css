@@ -38,7 +38,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1em;
+    padding: 2em;
+}
+
+#plate_page form {
+    grid-area: buy;
+    margin: auto;
 }
 
 #plate_restaurant {
@@ -72,20 +77,7 @@
 }
 
 #ingredients_list li{
-    flex-grow: 0;
-    flex-shrink: 0;
     flex-basis: 45%;
-    
-}
-
-#plate_right input {
-    padding: 0.7em 4em;
-    border-radius: 7px;
-    background-color: var(--accent_color);
-    color: white;
-    font-weight: bolder;
-    font-size: 1.2em;
-
 }
 
 
