@@ -18,6 +18,8 @@ if ($dish === null)
 
 $restaurantID = $dish->getRestaurantID($db);
 
+$ingredients = $dish->getIngredients($db);
+
 output_header();
-drawPlateInfo($dish, $restaurantID);
+drawPlateInfo($dish, $ingredients, $restaurantID);
 output_footer();

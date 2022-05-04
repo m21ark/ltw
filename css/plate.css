@@ -38,6 +38,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 1em;
 }
 
 #plate_restaurant {
@@ -59,16 +60,23 @@
     display: flex;
     font-size: 1.4em;
     margin: 1em auto;
+
 }
 
-#ingredients_list li {
-    margin-bottom: 0.6em;
+
+#ingredients_list ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap:1em;
 }
 
-#ingredients_list ul:first-of-type {
-    margin-right: 6em;
+#ingredients_list li{
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 45%;
+    
 }
-
 
 #plate_right input {
     padding: 0.7em 4em;

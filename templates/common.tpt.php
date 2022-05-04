@@ -228,7 +228,7 @@ function output_header()
 
 
 
-<?php function drawPlateInfo(Dish $dish, int $restaurantID)
+<?php function drawPlateInfo(Dish $dish, array $ingredients,  int $restaurantID)
 { ?>
 
     <article id="plate_page" class="container">
@@ -245,16 +245,9 @@ function output_header()
 
             <div id="ingredients_list">
                 <ul>
-                    <li>Batata</li>
-                    <li>Batata</li>
-                    <li>Batata</li>
-                    <li>Batata</li>
-                </ul>
-                <ul>
-                    <li>Batata</li>
-                    <li>Batata</li>
-                    <li>Batata</li>
-                    <li>Batata</li>
+                    <?php for ($i = 0; $i < 8; $i++) { ?>
+                        <li><?= $ingredients[$i]['IngredientName'] ?></li>
+                    <?php } ?>
                 </ul>
             </div>
 

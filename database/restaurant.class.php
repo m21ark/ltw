@@ -34,6 +34,7 @@ class Dish
     public string $name;
     public string $price;
     public string $category;
+    public array $ingredients;
 
     public function __construct(int $id, string $name, string $price, string $category)
     {
@@ -79,6 +80,17 @@ class Dish
         if ($id = $stmt->fetch()) {
             return (int)$id['RestaurantID'];
         } else return 0;
+    }
+
+    public function getIngredients(PDO $db): array
+    {
+        $stmt = $db->prepare('select IngredientName
+         from Ingredient natural join DishIngredients
+         where DishID = ?');
+
+        $stmt->execute(array($this->id));
+        $ings = $stmt->fetchAll();
+        return $ings;
     }
 
     public static function getRandomDishes(PDO $db, int $limit): array
