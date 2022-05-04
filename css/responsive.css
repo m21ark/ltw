@@ -98,9 +98,9 @@
 
 @media (min-width:55em) {
     #plate_page {
-        padding-bottom: 7em;
+        padding-bottom: 6em;
         display: grid;
-        grid-template-rows: 4em 20em 2em 2em 5em;
+        grid-template-rows: 4em 20em 2em 3em 2em 2em 5em;
         grid-template-columns: 5fr 2.5fr 5fr;
         grid-template-areas: "title . ."
             "plate ingredients ingredients"
