@@ -139,7 +139,8 @@ class Customer extends User
 
     public function addToCart(int $dishId) {
         
-        array_push($this->cart, $dishId);
+        if (!in_array($dishId, $this->cart))
+            array_push($this->cart, $dishId);
     }
 
     public function deleteFromCart(int $dishId) {
