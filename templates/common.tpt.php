@@ -174,7 +174,7 @@ function output_header()
         ?>
 
             <div class="container">
-                <a href="plate.php" class="container_name"><?= $dish->name ?></a>
+                <a href="plate.php?id=<?=$dishID?>" class="container_name"><?= $dish->name ?></a>
                 <img src=<?= "docs/food/" . $dishID . ".jpg" ?> alt=<?= $dish->name ?>>
                 <p class="container_price"><?= $dish->price ?>$</p>
 
