@@ -43,7 +43,7 @@ session_start(); ?>
             </p>
         </div>
         <img src="docs/restaurant.jpg" alt="">
-        <a class="link_button" href="#">Add to favorites &star;</a>
+        <a class="link_button add_to_favorites" href="#">Add to favorites &star;</a>
     </section>
 
 <?php } ?>
