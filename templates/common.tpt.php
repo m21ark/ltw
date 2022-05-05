@@ -22,6 +22,7 @@ function output_header()
         <link rel="stylesheet" href="css/perfil_infos.css">
         <link rel="stylesheet" href="css/card_flip.css">
         <script src="events/increment_decrement_order.js" defer></script> 
+        <script src="events/Notification/notification_handler.js" defer></script> 
         <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=5.0, minimum-scale=0.5">
     </head>
 
