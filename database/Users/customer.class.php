@@ -146,4 +146,20 @@ class Customer extends User
     public function deleteFromCart(int $dishId) {
         $this->cart = \array_diff($this->cart, [$dishId]);
     }
+
+    public static function addCostumer(PDO $db, $email) {
+        $stmt = $db->prepare('
+            SELECT  UserID
+            FROM User
+            WHERE lower(email) = ? 
+      ');
+
+        $stmt->execute(array(strtolower($email)));
+
+        $stmt2 = $db->prepare('
+            INSERT INTO CUSTOMER VALUES (?)
+      ');
+
+        $stmt2->execute(array($stmt->fetch()['UserId']));
+    }
 }

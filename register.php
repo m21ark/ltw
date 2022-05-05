@@ -1,8 +1,7 @@
 <?php
-include_once("templates/common.tpt.php");
-include_once("templates/login.tpt.php");
-
-require_once("database/connection.php");
+require_once( __DIR__ . "/templates/common.tpt.php");
+ 
+require_once( __DIR__ . "/database/connection.php");
 
 
 output_header();

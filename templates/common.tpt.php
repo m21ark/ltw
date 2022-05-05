@@ -129,27 +129,27 @@ function output_header()
                 <h2>Register</h2>
 
                 <div class="left_login">
-                    <label>
-                        Name <input type="text" placeholder="Name" name="name" required>
+                    <label> <!--- TODO: URGENTE ... Não temos nome na base de dados, metemos ?--->
+                        Username <input type="text" placeholder="Username" name="username" required>
                     </label>
                     <label>
                         Email <input type="email" placeholder="Email" name="email" required>
                     </label>
                     <label>
-                        Adress <input type="text" placeholder="Adress" name="adress" required>
+                        Address <input type="text" placeholder="Address" name="address" required>
                     </label>
                 </div>
 
                 <div class="right_login">
                     <label>
-                        Username <input type="text" placeholder="Username" name="username" required>
+                        Phone Number <input type="text" placeholder="Phone Number" name="phone" required>
                     </label>
                     <label>
                         Password <input type="password" placeholder="Password" name="password" required>
                     </label>
-                    <button class="form_button" formaction="#" formmethod="post">Register</button>
+                    <button class="form_button" formaction="actions/action_register.php" formmethod="post">Register</button>
                 </div>
-                <input style="visibility: hidden;margin:0;padding: 0;height: 0;">
+                <input style="visibility: hidden;margin:0;padding: 0;height: 0;"> <!--- STYLE Não pode estar aqui--->
             </form>
             <div class="form_alternative">
                 <p><span class="bold">Already have an account?</span></p>

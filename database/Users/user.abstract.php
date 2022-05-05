@@ -25,4 +25,30 @@ abstract class User
     }
 
     public static abstract function login(PDO $db, string $email, string $password): ?User;
+
+    public static function userExists(PDO $db, string $email) :bool {
+        $stmt = $db->prepare('
+            SELECT UserId
+            FROM USER 
+            WHERE lower(email) = ? 
+      ');
+
+        $stmt->execute(array(strtolower($email)));
+
+        if ($owner = $stmt->fetch()) {
+            if (empty($owner)) {
+                return false;
+            }
+            return true;
+        } else return false;
+    }
+
+    public static function saveUser(PDO $db, string $username, $password , string $address, string $phone, string $email) {
+
+        $stmt = $db->prepare('
+            INSERT INTO "User" VALUES (NULL, ? , ? , ? , ? , ? , NULL )
+        '); // TODO :: ADD THE IMAGE
+
+        $stmt->execute(array(strtolower($email), $username, sha1($password), $address, $phone));
+    }
 }

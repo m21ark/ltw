@@ -29,6 +29,25 @@ class Courier extends User {
         } else return null;
     }
 
+    public static function isCourier(PDO $db, string $email): bool
+    {
+
+        $stmt = $db->prepare('
+            SELECT  UserID
+            FROM Courier LEFT JOIN USER on (CustomerID = UserID)
+            WHERE lower(email) = ? 
+      ');
+
+        $stmt->execute(array(strtolower($email)));
+
+        if ($courier = $stmt->fetch()) {
+            if (empty($courier)) {
+                return false;
+            }
+            return true;
+        } else return false;
+    }
+
     public static function getAssignedOrder(PDO $db) : array{
         return [];
     }

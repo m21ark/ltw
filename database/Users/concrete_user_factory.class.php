@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-require_once("user_factory.interface.php");
-require_once("customer.class.php");
-require_once("restaurant_owner.class.php");
-require_once('user_factory.interface.php');
-require_once('user_composite.class.php');
+require_once(__DIR__ . "/user_factory.interface.php");
+require_once(__DIR__ . "/customer.class.php");
+require_once(__DIR__ . "/restaurant_owner.class.php");
+require_once(__DIR__ . '/user_factory.interface.php');
+require_once(__DIR__ . '/user_composite.class.php');
+require_once(__DIR__ . "/courier.class.php");
 
 class ConcreteUserFactory implements UserFactory
 {
@@ -19,6 +20,9 @@ class ConcreteUserFactory implements UserFactory
         if (Customer::isCustomer($db, $email)) {
             $user->addPermission(Customer::login($db, $email, $password));
         }
+        //if (Courier::isCourier($db, $email)) {
+        //    $user->addPermission(Courier::login($db, $email, $password));
+        //}
 
         if (empty($user->permissions))
             return null;
