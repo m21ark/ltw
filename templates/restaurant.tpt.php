@@ -58,7 +58,14 @@ session_start(); ?>
 
 <?php } ?>
 
+<?php function drawRestaurantOwnerReview()
+{ ?>
 
+    <section id="share_exp" class="container">
+        <p>Check Your Client Opinions</p>
+    </section>
+
+<?php } ?>
 
 <?php function drawRestaurantReviews(PDO $db , array $reviews)
 { ?>

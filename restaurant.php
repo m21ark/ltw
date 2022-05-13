@@ -11,6 +11,7 @@ if (!isset($_GET['id'])) {
     die(header('Location: /'));
 }
 
+$user = unserialize($_SESSION['user']);
 
 $db = getDatabaseConnection();
 
@@ -28,6 +29,22 @@ output_header();
 drawRestaurantDescriptionName( $db, $restaurant);
 drawRestaurantDescription($restaurant);
 drawPlatesCarrossel($dishes);
-drawRestaurantAskReview($restaurant);
+
+$owner = $user->hasPermission("RestaurantOwner");
+if ($owner !== NULL){
+    $restaurants = $owner->getOwnerRestaurants($db);
+    $isOwner = false;
+    foreach($restaurants as $res) {
+        if ($res == $restaurant->id)
+            $isOwner = true;
+    }
+    if ($isOwner) {
+        drawRestaurantOwnerReview();
+    } else {
+        drawRestaurantAskReview($restaurant);
+    }
+}
+else
+    drawRestaurantAskReview($restaurant);
 drawRestaurantReviews($db , $reviews);
 output_footer();
