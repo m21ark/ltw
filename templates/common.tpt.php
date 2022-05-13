@@ -21,9 +21,9 @@ function output_header()
         <link rel="stylesheet" href="css/user.css">
         <link rel="stylesheet" href="css/perfil_infos.css">
         <link rel="stylesheet" href="css/card_flip.css">
-        <script src="events/increment_decrement_order.js" defer></script> 
-        <script src="events/toggle_favorites.js" defer></script> 
-        <script src="events/Notification/notification_handler.js" defer></script> 
+        <script src="events/increment_decrement_order.js" defer></script>
+        <script src="events/toggle_favorites.js" defer></script>
+        <script src="events/Notification/notification_handler.js" defer></script>
         <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=5.0, minimum-scale=0.5">
     </head>
 
@@ -131,7 +131,8 @@ function output_header()
                 <h2>Register</h2>
 
                 <div class="left_login">
-                    <label> <!--- TODO: URGENTE ... Não temos nome na base de dados, metemos ?--->
+                    <label>
+                        <!--- TODO: URGENTE ... Não temos nome na base de dados, metemos ?--->
                         Username <input type="text" placeholder="Username" name="username" required>
                     </label>
                     <label>
@@ -151,7 +152,8 @@ function output_header()
                     </label>
                     <button class="form_button" formaction="actions/action_register.php" formmethod="post">Register</button>
                 </div>
-                <input style="visibility: hidden;margin:0;padding: 0;height: 0;"> <!--- STYLE Não pode estar aqui--->
+                <input style="visibility: hidden;margin:0;padding: 0;height: 0;">
+                <!--- STYLE Não pode estar aqui--->
             </form>
             <div class="form_alternative">
                 <p><span class="bold">Already have an account?</span></p>
@@ -176,7 +178,7 @@ function output_header()
         ?>
 
             <div class="container">
-                <a href="plate.php?id=<?=$dishID?>" class="container_name"><?= $dish->name ?></a>
+                <a href="plate.php?id=<?= $dishID ?>" class="container_name"><?= $dish->name ?></a>
                 <img src=<?= "docs/food/" . $dishID . ".jpg" ?> alt=<?= $dish->name ?>>
                 <p class="container_price"><?= $dish->price ?>$</p>
 
@@ -216,12 +218,7 @@ function output_header()
         </p>
 
         <div>
-
-            <?php /*  foreach ($dish->categories as $acategory) { ?>
-                <a href="#"><?= $acategory ?></a>
-            <?php } */ ?>
             <a href="#"><?= $dish->category ?></a>
-
         </div>
 
     </div>

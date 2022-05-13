@@ -34,14 +34,13 @@ class Dish
     public string $name;
     public string $price;
     public string $category;
-    public array $ingredients;
 
     public function __construct(int $id, string $name, string $price, string $category)
     {
         $this->id = $id;
         $this->name = $name;
         $this->price = $price;
-        $this->category = $category; //TODO A dish may belong to more than a single category (significant changes are required)
+        $this->category = $category;
         // A dish has to have a list of ingredients --> add to db
         // plate should also have a description (maybe just hardcode lorem ipsum to avoid changing the db)
 

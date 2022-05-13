@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+require_once("database/connection.php");
+
+
+
 function drawPlatesCarrossel(array $plates, bool $showNav = true)
 {  // TODO ::: this is a repetition of the restaurant, maybe consider making a carrossel draw if possible
 ?>
@@ -24,11 +28,18 @@ function drawPlatesCarrossel(array $plates, bool $showNav = true)
                             <img src="docs/food/<?= $dish->id ?>.jpg" width="200" height="154" alt="pizza">
                             <p><?= $dish->price . "€" ?></p>
                         </div>
+
                         <div class="card_face_back">
-                            <p> BACK SIDE INFO </p>
-                            <img src="docs/food/<?= $dish->id ?>.jpg" width="200" height="154" alt="pizza">
-                            <p><?= $dish->price . "$" ?></p>
+                            <?php
+                            $db = getDatabaseConnection();
+                            $ingredients = $dish->getIngredients($db);
+                            foreach ($ingredients as $ing) {  ?>
+                                <p>- <?= $ing['IngredientName'] ?></p>
+                            <?php } ?>
+
+
                         </div>
+
                     </div>
                 </a>
             <?php } ?>

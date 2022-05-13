@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 require_once(__DIR__ . "/../database/connection.php");
 
-function drawRestaurantsCarrossel(PDO $db,array $restaurants, bool $showNav = true)
+function drawRestaurantsCarrossel(PDO $db, array $restaurants, bool $showNav = true)
 {
 ?>
 
@@ -26,7 +26,7 @@ function drawRestaurantsCarrossel(PDO $db,array $restaurants, bool $showNav = tr
                         <div class="card_face_front">
                             <p><?= $restaurant->name ?></p>
                             <img src="docs/restaurant/<?= $restaurant->id ?>.jpg" width="200" height="154" alt="pizza">
-                            <p><?=$restaurant->getMediumScore($db)?>/5 &star;</p>
+                            <p><?= $restaurant->getMediumScore($db) ?>/5 &star;</p>
                         </div>
 
                         <div class="card_face_back">
@@ -42,46 +42,4 @@ function drawRestaurantsCarrossel(PDO $db,array $restaurants, bool $showNav = tr
 <?php }
 
 
-/*
- <article class="carrosel container">
-        <h2>Restaurants</h2>
-
-        <?php if ($showNav) { ?>
-            <div class="carrosel_nav">
-                <button style="  transform: scale(-1, 1);">&#10145;</button>
-                <button>&#10145;</button>
-            </div>
-        <?php } ?>
-
-
-        <div class="img_carrosel">
-            <?php foreach ($restaurants as $restaurant) { ?>
-                <a href=<?= "restaurant.php?id=" . $restaurant->id ?>>
-                    <div class="card_item">
-
-                        <div class="card_face_front">
-                            <p><?= $restaurant->name ?></p>
-                            <img src="docs/restaurant/<?= $restaurant->id ?>.jpg" width="200" height="154" alt="pizza">
-                            <p>3/5 &star;</p>
-                        </div>
-
-                        <div class="card_face_back">
-                            <p><a href=<?= "https://www.google.com/maps?daddr=" . str_replace(' ', '%20', $restaurant->address) ?> target="#">
-                                    <?= $restaurant->address ?>
-                                </a>
-                            </p>
-                            <p><a href=<?= "tel:" . $restaurant->phone ?>><?= $restaurant->phone ?></a></p>
-                            <!--- TODO :: It can have more than one category  --->
-                            <p><a class="link_button" href="#"><?= $restaurant->category ?></a></p>
-                        </div>
-
-                    </div>
-                </a>
-            <?php } ?>
-        </div>
-
-
-
-    </article>
-*/
 ?>
