@@ -41,6 +41,7 @@ section#login div.sign_form {
 
 textarea {
     resize: none;
+    border-radius: 7px;
     box-shadow: 1px 1px 10px grey;
     padding: 1em;
     margin: 1em auto;
@@ -142,4 +143,37 @@ section#register>* {
     align-items: center;
     box-shadow: 0 4px 30px rgba(0, 0, 0, .05);
     margin: 1em 3em 4em;
+}
+
+
+.custom_input {
+    margin: 0.6em auto 1em auto;
+    display: block;
+    width: 90%;
+    padding: 0.8em 0.5em;
+    font-size: 0.9em;
+    box-shadow: 1px 1px 10px grey;
+    border-radius: 7px;
+    border-width: 0;
+    background-color: white;
+}
+
+.edit_form {
+    display: flex;
+    width: 80%;
+    gap: 0.7em;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit_form img {
+    margin-bottom: 2em;
+}
+
+
+
+.edit_form>label {
+    color: var(--title_color);
+    font-family: var(--);
 }

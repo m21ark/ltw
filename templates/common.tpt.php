@@ -229,7 +229,9 @@ function output_header()
     <article id="plate_page" class="container">
         <h2>Plate page</h2>
         <!-- TEMPORARY! SHOULD ONLY BE SEEN BY REST OWNER -->
-        <a  href="edit_plate.php?pid=<?= $dish->id ?>"><h3>(Edit Plate)</h3></a>
+        <a href="edit_plate.php?pid=<?= $dish->id ?>">
+            <h3>(Edit Plate)</h3>
+        </a>
 
         <div id="plate_left">
             <h2><?= $dish->name ?></h2>
@@ -274,20 +276,20 @@ function output_header()
 { ?>
     <article id="plate_page" class="container" style="display: block;">
         <h2>Edit Plate</h2>
-        <form action="actions/<?= $edit ? 'action_edit_plate.php' : 'action_add_plate.php' ?>" method="post" enctype="multipart/form-data" style="display: flex;width:60%; flex-direction:column">
+        <form class="edit_form" action="actions/<?= $edit ? 'action_edit_plate.php' : 'action_add_plate.php' ?>" method="post" enctype="multipart/form-data">
 
 
             <label for="p_name">Plate Name</label>
-            <input type="text" name="p_name" required value="<?= $edit ? $dish->name : null ?>">
+            <input class="custom_input" type="text" name="p_name" required value="<?= $edit ? $dish->name : null ?>">
 
             <label for="price">Price</label>
-            <input type="number" step=0.01 name="price" required value="<?= $edit ? $dish->price : null ?>">
+            <input class="custom_input" type="number" step=0.01 name="price" required value="<?= $edit ? $dish->price : null ?>">
 
             <label for="category">Category</label>
-            <input type="text" name="category" required value="<?= $edit ? $dish->category : null ?>">
+            <input class="custom_input" type="text" name="category" required value="<?= $edit ? $dish->category : null ?>">
 
-            <label for="image">Uploud Plate Photo</label>
-            <input type="file" name="image" accept="image/png,image/jpeg" <?= $edit ? null : 'required' ?>>
+            <label for="image">Plate Photo</label>
+            <input class="custom_input" type="file" name="image" accept="image/png,image/jpeg" <?= $edit ? null : 'required' ?>>
 
             <?php if ($edit) { ?>
                 <img src="docs/food/<?= $dish->id ?>.jpg" alt="Plate Picture">
