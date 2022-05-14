@@ -177,3 +177,8 @@ section#register>* {
     color: var(--title_color);
     font-family: var(--);
 }
+
+.edit_form #del_dish {
+    margin-top: 2em;
+    background-color: #CC0000;
+}

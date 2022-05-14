@@ -257,9 +257,8 @@ function output_header()
             <input type="submit" class="link_button" value="Buy  &#x1f6d2;">
         </form>
 
-
         <a href="restaurant.php?id=<?= $restaurantID ?>" id="plate_restaurant">
-            <h2>See Restaurant (<?= $restaurantID ?>)</h2>
+            <h2>See Restaurant</h2>
         </a>
 
         <?php plate_description($dish); ?>
@@ -308,6 +307,10 @@ function output_header()
             <input type="hidden" name="plateID" value=<?= $dish->id ?>>
 
             <input class="link_button" type="submit" value="Publish">
+
+            <?php if ($edit) { ?>
+                <a class="link_button" id="del_dish" href="actions/action_delete_plate.php?pid=<?= $dish->id ?>&rest_id=<?= $restaurantID ?>">Delete</a>
+            <?php } ?>
 
         </form>
     </article>
