@@ -28,7 +28,8 @@ CREATE TABLE Dish (
 	DishID INTEGER PRIMARY KEY,
 	Name VARCHAR NOT NULL,
 	Price VARCHAR NOT NULL,
-	Category VARCHAR
+	Category VARCHAR,
+	Description VARCHAR DEFAULT 'Sunt cumque exercitationem incidunt dolores vitae. Voluptatem voluptatum fugiat accusamus incidunt voluptas. Perferendis aperiam asperiores voluptas in error. Neque excepturi tempore non veritatis.'
 );
 
 CREATE TABLE OrderState (
