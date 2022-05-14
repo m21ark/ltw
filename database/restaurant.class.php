@@ -34,22 +34,15 @@ class Dish
     public string $name;
     public string $price;
     public string $category;
-    public string $description = "Lorem ipsum dolor sit amet, consectetur
-    adipiscing elit, sed do eiusmod tempor
-    incididunt ut labore et dolore magna aliqua. Ut
-    enim ad minim veniam, quis nostrud
-    exercitation ullamco laboris nisi ut aliquip ex ea
-    commodo consequat."; // Temporary! Should be added to the database
+    public string $description;
 
-    public function __construct(int $id, string $name, string $price, string $category)
+    public function __construct(int $id, string $name, string $price, string $category, string $description)
     {
         $this->id = $id;
         $this->name = $name;
         $this->price = $price;
         $this->category = $category;
-        // A dish has to have a list of ingredients --> add to db
-        // plate should also have a description (maybe just hardcode lorem ipsum to avoid changing the db)
-
+        $this->description = $description;
     }
 
     public static function getDish(PDO $db, int $id): ?Dish
@@ -67,7 +60,8 @@ class Dish
                 (int)$dish['DishID'],
                 $dish['Name'],
                 $dish['Price'],
-                $dish['Category']
+                $dish['Category'],
+                $dish['Description']
             );
         } else return null;
     }
@@ -118,7 +112,8 @@ class Dish
                 (int)$dish['DishID'],
                 $dish['Name'],
                 $dish['Price'],
-                $dish['Category']
+                $dish['Category'],
+                $dish['Description']
             ));
         }
 
