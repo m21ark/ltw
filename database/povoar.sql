@@ -3,6 +3,7 @@ INSERT INTO Restaurant VALUES (1, "Ole Cafe Northfield", 4062181317, "9081 Suthe
 INSERT INTO Restaurant VALUES (2, "The Old Spaghetti Factory", 1889390156, "82 Dawn Plaza", "Thai", "Fusce eros augue, mattis vitae convallis quis, porttitor et turpis.");
 INSERT INTO Restaurant VALUES (3, "Cheeseburger in Paradise", 6718619852, "1 Merrick Center", "Burguer", "Phasellus hendrerit vel purus ut aliquam.");
 INSERT INTO Restaurant VALUES (4, "Cold Stone Creamery", 3102975046, "2464 Hudson Street", "Italian", "Quisque vel mollis neque, ut varius enim.");
+INSERT INTO Restaurant VALUES (5, "The hot place", 4102931046, "9164 Sutherland Sparks", "Thai", "Lorem ipsum dolor sit amet, ut varius enim.");
 INSERT INTO Restaurant VALUES (6, "Chili's Grill & Bar", 2541854295, "33069 Doe Crossing Crossing", "Grill", "Cras viverra auctor nisi tristique laoreet.");
 INSERT INTO Restaurant VALUES (7, "Claim Jumper Restaurants", 3549218898, "0800 Lawn Court", "French", "Nam nisi eros, congue sit amet ornare sed, ullamcorper non risus.");
 INSERT INTO Restaurant VALUES (8, "Panera Bread", 6484169262, "00 Ridge Oak Court", "Burguer", "Phasellus porttitor pellentesque blandit.");

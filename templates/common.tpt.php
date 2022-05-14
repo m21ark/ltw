@@ -219,9 +219,6 @@ function output_header()
 
     </div>
 
-    <!-- TEMPORARY! SHOULD ONLY BE SEEN BY REST OWNER -->
-    <a class="link_button" href="edit_plate.php?pid=<?= $dish->id ?>">EDIT</a>
-
 <?php } ?>
 
 
@@ -231,6 +228,10 @@ function output_header()
 
     <article id="plate_page" class="container">
         <h2>Plate page</h2>
+        <!-- TEMPORARY! SHOULD ONLY BE SEEN BY REST OWNER -->
+        <a href="edit_plate.php?pid=<?= $dish->id ?>">
+            <h3>(Edit Plate)</h3>
+        </a>
 
         <div id="plate_left">
             <h2><?= $dish->name ?></h2>
@@ -256,9 +257,8 @@ function output_header()
             <input type="submit" class="link_button" value="Buy  &#x1f6d2;">
         </form>
 
-
         <a href="restaurant.php?id=<?= $restaurantID ?>" id="plate_restaurant">
-            <h2>See Restaurant (<?= $restaurantID ?>)</h2>
+            <h2>See Restaurant</h2>
         </a>
 
         <?php plate_description($dish); ?>
@@ -271,25 +271,24 @@ function output_header()
 
 
 
-
 <?php function drawPlateEdit(?Dish $dish, ?array $ingredients,  int $restaurantID, bool $edit)
 { ?>
     <article id="plate_page" class="container" style="display: block;">
         <h2>Edit Plate</h2>
-        <form action="actions/<?= $edit ? 'action_edit_plate.php' : 'action_add_plate.php' ?>" method="post" enctype="multipart/form-data" style="display: flex;width:60%; flex-direction:column">
+        <form class="edit_form" action="actions/<?= $edit ? 'action_edit_plate.php' : 'action_add_plate.php' ?>" method="post" enctype="multipart/form-data">
 
 
             <label for="p_name">Plate Name</label>
-            <input type="text" name="p_name" required value="<?= $edit ? $dish->name : null ?>">
+            <input class="custom_input" type="text" name="p_name" required value="<?= $edit ? $dish->name : null ?>">
 
             <label for="price">Price</label>
-            <input type="number" step=0.01 name="price" required value="<?= $edit ? $dish->price : null ?>">
+            <input class="custom_input" type="number" step=0.01 name="price" required value="<?= $edit ? $dish->price : null ?>">
 
             <label for="category">Category</label>
-            <input type="text" name="category" required value="<?= $edit ? $dish->category : null ?>">
+            <input class="custom_input" type="text" name="category" required value="<?= $edit ? $dish->category : null ?>">
 
-            <label for="image">Uploud Plate Photo</label>
-            <input type="file" name="image" accept="image/png,image/jpeg" <?= $edit ? null : 'required' ?>>
+            <label for="image">Plate Photo</label>
+            <input class="custom_input" type="file" name="image" accept="image/png,image/jpeg" <?= $edit ? null : 'required' ?>>
 
             <?php if ($edit) { ?>
                 <img src="docs/food/<?= $dish->id ?>.jpg" alt="Plate Picture">
@@ -301,13 +300,17 @@ function output_header()
             <label for="ingredients">Ingredients</label>
             <textarea name="ingredients" required><?php foreach ($ingredients as $ing) {
                                                         echo $ing['IngredientName'];
-                                                        echo "\n";
+                                                        echo ",\n";
                                                     } ?></textarea>
 
             <input type="hidden" name="restID" value=<?= $restaurantID ?>>
+            <input type="hidden" name="plateID" value=<?= $dish->id ?>>
 
             <input class="link_button" type="submit" value="Publish">
 
+            <?php if ($edit) { ?>
+                <a class="link_button" id="del_dish" href="actions/action_delete_plate.php?pid=<?= $dish->id ?>&rest_id=<?= $restaurantID ?>">Delete</a>
+            <?php } ?>
 
         </form>
     </article>

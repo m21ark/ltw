@@ -19,6 +19,14 @@
     align-items: center;
 }
 
+#plate_page h3 {
+    color: var(--accent_color);
+    display: inline-block;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
 #plate_left * {
     margin: 0.5em;
 }
@@ -73,10 +81,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap:1em;
+    gap: 1em;
 }
 
-#ingredients_list li{
+#ingredients_list li {
     flex-basis: 45%;
 }
 

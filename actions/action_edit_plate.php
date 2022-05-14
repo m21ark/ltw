@@ -13,47 +13,67 @@ $user = unserialize($_SESSION['user']);
 
 $db = getDatabaseConnection();
 
+$ings = $_POST['ingredients'];
+$ings = explode(',', $ings);
 
-die(); // TO BE DONE
+$plateID = $_POST['plateID'];
 
+$noNewImage = !is_uploaded_file($_FILES['image']['tmp_name']);
 
 // _________________________________add to dishes_________________________________
 
-$stmt = $db->prepare("INSERT INTO Dish 
-    VALUES (NULL, ?,  ?, ?, ?)
+$stmt = $db->prepare("DELETE FROM DISH WHERE DishID=?");
+$stmt->execute(array($plateID));
+
+
+
+$stmt = $db->prepare("INSERT INTO Dish
+    VALUES (?, ?,  ?, ?, ?)
 ");
-
-$stmt->execute(array($_POST['name'], $_POST['price'], $_POST['category']));
-
-$plateID = $db->lastInsertId();
-
+$stmt->execute(array($plateID, $_POST['p_name'], $_POST['price'], $_POST['category'], $_POST['description']));
 
 // _________________________________add to Restaurant Menu_________________________________
+
+$stmt = $db->prepare("DELETE FROM Menu WHERE DishID=?");
+$stmt->execute(array($plateID));
+
 
 $stmt = $db->prepare("INSERT INTO Menu 
     VALUES (?, ?)
 ");
-
 $stmt->execute(array($_POST['restID'], $plateID));
 
 
 // _________________________________Add Ingredients_________________________________
 
-$num_ings = 3;
+$stmt = $db->prepare("DELETE FROM DishIngredients WHERE DishID=?");
+$stmt->execute(array($plateID));
 
-for ($i = 0; $i < $num_ings; $i++) {
+foreach ($ings as $ing) {
 
-	// make drop down option with built in ingridients insted of creating new ones
+	$stmt = $db->prepare("INSERT INTO Ingredient
+    VALUES (null, ?)
+	");
+	$stmt->execute(array($ing));
+
+
+	$ingID = $db->lastInsertId();
 
 	$stmt = $db->prepare("INSERT INTO DishIngredients 
     VALUES (?, ?)
 	");
-	$stmt->execute(array($plateID, $_POST['ing' . $i]));
+	$stmt->execute(array($plateID, $ingID));
 }
 
+// _________________________________Add Image_________________________________
 
 
+$originalFileName = "../docs/food/$plateID.jpg";
 
+if (!$noNewImage) {
+	unlink($originalFileName);
 
+	move_uploaded_file($_FILES['image']['tmp_name'], $originalFileName);
+}
 
-die(header("Location: ../restaurant.php?id=" . $_POST['id']));
+die(header("Location: ../plate.php?id=" . $plateID));
