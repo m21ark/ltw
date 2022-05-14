@@ -34,6 +34,12 @@ class Dish
     public string $name;
     public string $price;
     public string $category;
+    public string $description = "Lorem ipsum dolor sit amet, consectetur
+    adipiscing elit, sed do eiusmod tempor
+    incididunt ut labore et dolore magna aliqua. Ut
+    enim ad minim veniam, quis nostrud
+    exercitation ullamco laboris nisi ut aliquip ex ea
+    commodo consequat."; // Temporary! Should be added to the database
 
     public function __construct(int $id, string $name, string $price, string $category)
     {

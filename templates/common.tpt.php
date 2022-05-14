@@ -209,20 +209,18 @@ function output_header()
 
         <h2>Description</h2>
         <p>
-            Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut
-            enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat.
+            <?= $dish->description ?>
         </p>
 
         <div>
             <a href="#"><?= $dish->category ?></a>
         </div>
 
+
     </div>
 
+    <!-- TEMPORARY! SHOULD ONLY BE SEEN BY REST OWNER -->
+    <a class="link_button" href="edit_plate.php?pid=<?= $dish->id ?>">EDIT</a>
 
 <?php } ?>
 
@@ -258,16 +256,64 @@ function output_header()
             <input type="submit" class="link_button" value="Buy  &#x1f6d2;">
         </form>
 
+
         <a href="restaurant.php?id=<?= $restaurantID ?>" id="plate_restaurant">
             <h2>See Restaurant (<?= $restaurantID ?>)</h2>
         </a>
 
         <?php plate_description($dish); ?>
 
+
     </article>
 
 
 <?php } ?>
+
+
+
+
+<?php function drawPlateEdit(?Dish $dish, ?array $ingredients,  int $restaurantID, bool $edit)
+{ ?>
+    <article id="plate_page" class="container" style="display: block;">
+        <h2>Edit Plate</h2>
+        <form action="actions/<?= $edit ? 'action_edit_plate.php' : 'action_add_plate.php' ?>" method="post" enctype="multipart/form-data" style="display: flex;width:60%; flex-direction:column">
+
+
+            <label for="p_name">Plate Name</label>
+            <input type="text" name="p_name" required value="<?= $edit ? $dish->name : null ?>">
+
+            <label for="price">Price</label>
+            <input type="number" step=0.01 name="price" required value="<?= $edit ? $dish->price : null ?>">
+
+            <label for="category">Category</label>
+            <input type="text" name="category" required value="<?= $edit ? $dish->category : null ?>">
+
+            <label for="image">Uploud Plate Photo</label>
+            <input type="file" name="image" accept="image/png,image/jpeg" <?= $edit ? null : 'required' ?>>
+
+            <?php if ($edit) { ?>
+                <img src="docs/food/<?= $dish->id ?>.jpg" alt="Plate Picture">
+            <?php } ?>
+
+            <label for="description">Description</label>
+            <textarea name="description" required><?= $edit ? $dish->description : null ?></textarea>
+
+            <label for="ingredients">Ingredients</label>
+            <textarea name="ingredients" required><?php foreach ($ingredients as $ing) {
+                                                        echo $ing['IngredientName'];
+                                                        echo "\n";
+                                                    } ?></textarea>
+
+            <input type="hidden" name="restID" value=<?= $restaurantID ?>>
+
+            <input class="link_button" type="submit" value="Publish">
+
+
+        </form>
+    </article>
+<?php } ?>
+
+
 
 
 
