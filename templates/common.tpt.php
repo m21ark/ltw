@@ -219,9 +219,6 @@ function output_header()
 
     </div>
 
-    <!-- TEMPORARY! SHOULD ONLY BE SEEN BY REST OWNER -->
-    <a class="link_button" href="edit_plate.php?pid=<?= $dish->id ?>">EDIT</a>
-
 <?php } ?>
 
 
@@ -231,6 +228,8 @@ function output_header()
 
     <article id="plate_page" class="container">
         <h2>Plate page</h2>
+        <!-- TEMPORARY! SHOULD ONLY BE SEEN BY REST OWNER -->
+        <a  href="edit_plate.php?pid=<?= $dish->id ?>"><h3>(Edit Plate)</h3></a>
 
         <div id="plate_left">
             <h2><?= $dish->name ?></h2>
@@ -271,7 +270,6 @@ function output_header()
 
 
 
-
 <?php function drawPlateEdit(?Dish $dish, ?array $ingredients,  int $restaurantID, bool $edit)
 { ?>
     <article id="plate_page" class="container" style="display: block;">
@@ -301,7 +299,7 @@ function output_header()
             <label for="ingredients">Ingredients</label>
             <textarea name="ingredients" required><?php foreach ($ingredients as $ing) {
                                                         echo $ing['IngredientName'];
-                                                        echo "\n";
+                                                        echo ",\n";
                                                     } ?></textarea>
 
             <input type="hidden" name="restID" value=<?= $restaurantID ?>>

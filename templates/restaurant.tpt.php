@@ -45,12 +45,12 @@ session_start(); ?>
             </p>
         </div>
         <img src="docs/restaurant.jpg" alt="">
-        <a class="link_button add_to_favorites" href="#">Add to favorites &star;</a>
+        <div id="rest_links">
+            <a class="link_button" href="edit_restaurant.php?restId=<?= $restaurant->id ?>">Edit Restaurant</a>
+            <a class="link_button" href="#">Add to favorites &star;</a>
+            <a class="link_button" href="edit_plate.php?pid=0&restId=<?= $restaurant->id ?>">Add Plate</a>
 
-        <!-- TEMPORARY! SHOULD ONLY BE SEEN BY REST OWNER -->
-        <a class="link_button" href="edit_restaurant.php?restId=<?= $restaurant->id ?>">Edit Restaurant</a>
-        <!-- TEMPORARY! SHOULD ONLY BE SEEN BY REST OWNER -->
-        <a class="link_button" href="edit_plate.php?pid=0&restId=<?= $restaurant->id ?>">Add Plate</a>
+        </div>
     </section>
 
 <?php } ?>

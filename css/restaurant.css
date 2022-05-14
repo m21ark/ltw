@@ -59,13 +59,18 @@
     border-radius: 7px;
 }
 
-#description>a {
+#description>div#rest_links {
     grid-column: 1 / span 4;
-    width: 10em;
-    margin: 1.5em auto auto;
     display: flex;
+    gap: 0.8em;
+    margin-top: 1em;
+}
+
+#description>div>a {
+    display: flex;
+    width: 10em;
+    margin: auto 0.6em;
     justify-content: center;
-    font-size: large;
 }
 
 
