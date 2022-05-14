@@ -305,9 +305,9 @@ function output_header()
                                                     } ?></textarea>
 
             <input type="hidden" name="restID" value=<?= $restaurantID ?>>
+            <input type="hidden" name="plateID" value=<?= $dish->id ?>>
 
             <input class="link_button" type="submit" value="Publish">
-
 
         </form>
     </article>
