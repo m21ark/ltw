@@ -19,11 +19,11 @@ $ings = explode(',', $ings);
 
 // _________________________________add to dishes_________________________________
 
-$stmt = $db->prepare("INSERT INTO Dish 
-    VALUES (NULL, ?,  ?, ?)
+$stmt = $db->prepare("INSERT INTO Dish
+    VALUES (NULL, ?,  ?, ?, ?)
 ");
 
-$stmt->execute(array($_POST['p_name'], $_POST['price'], $_POST['category']));
+$stmt->execute(array($_POST['p_name'], $_POST['price'], $_POST['category'], $_POST['description']));
 
 $plateID = $db->lastInsertId();
 

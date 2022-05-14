@@ -2,6 +2,11 @@
 include_once("templates/common.tpt.php");
 require_once("database/connection.php");
 
+// TODO should be the rest owner!!!
+session_start();
+if ($_SESSION['user'] == null) die(header('Location: /'));
+
+
 if (!isset($_GET['pid'])) {
     die(header('Location: /'));
 }

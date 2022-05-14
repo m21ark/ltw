@@ -243,7 +243,7 @@ function output_header()
 
             <div id="ingredients_list">
                 <ul>
-                    <?php for ($i = 0; $i < 8; $i++) { ?>
+                    <?php for ($i = 0; $i < sizeof($ingredients); $i++) { ?>
                         <li><?= $ingredients[$i]['IngredientName'] ?></li>
                     <?php } ?>
                 </ul>
