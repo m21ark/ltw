@@ -4,8 +4,9 @@ require_once(__DIR__ . '/../database/restaurant.class.php');
 session_start(); ?>
 
 
-<?php function drawRestaurantDescriptionName(PDO $db ,Restaurant $restaurant)
+<?php function drawRestaurantDescriptionName(PDO $db, Restaurant $restaurant)
 { ?>
+
 
     <section id="presentation">
         <div>
@@ -20,13 +21,14 @@ session_start(); ?>
         </div>
 
         <div>
-            <p><?=$restaurant->getMediumScore($db)?>/5 &star;</p>
+            <p><?= $restaurant->getMediumScore($db) ?>/5 &star;</p>
             <?php // TODO ::: THE CATEGORY database should not be has it is as it's a bad design 
             // the design makes us hard to Have 2 categories, we could use explode but that we need to check
             // if we loose points for that
             ?>
             <a class="link_button" href="#"><?= $restaurant->category ?></a>
         </div>
+
     </section>
 
 <?php } ?>
@@ -39,11 +41,16 @@ session_start(); ?>
         <div>
             <h2>Description</h2>
             <p>
-                <?=$restaurant->description;?>
+                <?= $restaurant->description; ?>
             </p>
         </div>
         <img src="docs/restaurant.jpg" alt="">
         <a class="link_button add_to_favorites" href="#">Add to favorites &star;</a>
+
+        <!-- TEMPORARY! SHOULD ONLY BE SEEN BY REST OWNER -->
+        <a class="link_button" href="edit_restaurant.php?restId=<?= $restaurant->id ?>">Edit Restaurant</a>
+        <!-- TEMPORARY! SHOULD ONLY BE SEEN BY REST OWNER -->
+        <a class="link_button" href="edit_plate.php?pid=0&restId=<?= $restaurant->id ?>">Add Plate</a>
     </section>
 
 <?php } ?>
@@ -53,14 +60,14 @@ session_start(); ?>
 
     <section id="share_exp" class="container">
         <p>Share your experience</p>
-        <a class="link_button" href=<?="review.php?id=". $restaurant->id?>>Review</a>
+        <a class="link_button" href=<?= "review.php?id=" . $restaurant->id ?>>Review</a>
     </section>
 
 <?php } ?>
 
 
 
-<?php function drawRestaurantReviews(PDO $db , array $reviews)
+<?php function drawRestaurantReviews(PDO $db, array $reviews)
 { ?>
     <article id="reviews">
         <h2>Reviews</h2>
@@ -81,7 +88,7 @@ session_start(); ?>
     <article class="rest_review container">
         <div>
             <div class="review_header">
-                <p class="review_name"><?=$reviewer?></p>
+                <p class="review_name"><?= $reviewer ?></p>
                 <p class="review_date"><?= $review->date->format('Y-m-d') ?></p>
             </div>
             <p class="review_text">
