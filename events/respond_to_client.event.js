@@ -22,9 +22,11 @@ function respondClient() {
             request.send(encodeForAjax({id: button.getAttribute("value"), comment: button.parentNode.querySelector('textarea').value.trimStart()}));
             const element = document.createElement('p');
             element.classList.add('response_text');
-            element.value = button.parentNode.querySelector('textarea').value.trimStart() + ' ✔' 
-            button.parentElement.parentNode.removeChild(button.parentElement.parentNode.querySelector('.response_form'))
+            element.textContent = button.parentNode.querySelector('textarea').value.trimStart() + ' ✔' 
             button.parentElement.parentNode.appendChild(element)
+
+            button.parentElement.parentNode.removeChild(button.parentElement.parentNode.querySelector('.response_form'))
+            
         });
     }
 }
