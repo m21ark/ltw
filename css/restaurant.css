@@ -177,4 +177,6 @@ textarea[id="owner_response"] {
 
 .response_text {
     margin-top: 1em;
+    overflow-wrap: break-word;
+    max-width: 25em;
 }

@@ -28,7 +28,7 @@ $dishes = $menu->getMenuDishes($db);
 $reviews = $restaurant->getRestaurantReviews($db);
 
 $isOwner = false;
-$owner = isset($user)? $user->hasPermission("RestaurantOwner") : NULL;
+$owner = isset($_SESSION['user'])? $user->hasPermission("RestaurantOwner") : NULL;
 if ($owner !== NULL){
     $isOwner = $owner->isTheOwner($db, $restaurant->id);
 }

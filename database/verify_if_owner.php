@@ -1,7 +1,7 @@
 <?php
 
 $isOwner = false;
-$owner = isset($user)? $user->hasPermission("RestaurantOwner") : null;
+$owner = isset($_SESSION['user'])? $user->hasPermission("RestaurantOwner") : null;
 if ($owner !== null){
     $isOwner = $owner->isTheOwner($db, $restaurantID);
 }else {

@@ -23,7 +23,7 @@ $restaurantID = $dish->getRestaurantID($db);
 $ingredients = $dish->getIngredients($db);
 
 $isOwner = false;
-$owner = isset($user)? $user->hasPermission("RestaurantOwner") : NULL;
+$owner = isset($_SESSION['user'])? $user->hasPermission("RestaurantOwner") : NULL;
 if ($owner !== NULL){
     $isOwner = $owner->isTheOwner($db, $restaurantID);
 }

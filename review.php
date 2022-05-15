@@ -9,11 +9,12 @@ if (!isset($_SESSION['user']))
 
 $user = unserialize($_SESSION['user']);
 $db = getDatabaseConnection();
+$dish = Dish::getDish($db, $_GET['id']);
+$restaurantID = $dish->getRestaurantID($db);
+
 $isOwner = false;
 $owner = isset($user)? $user->hasPermission("RestaurantOwner") : null;
 
-$dish = Dish::getDish($db, $_GET['id']);
-$restaurantID = $dish->getRestaurantID($db);
 if ($owner !== null){
     $isOwner = $owner->isTheOwner($db, $restaurantID);
 }
