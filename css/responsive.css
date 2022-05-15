@@ -102,7 +102,7 @@
         display: grid;
         grid-template-rows: 4em 20em 2em 3em 2em 2em 5em;
         grid-template-columns: 5fr 2.5fr 5fr;
-        grid-template-areas: "title . ."
+        grid-template-areas: "title edit ."
             "plate ingredients ingredients"
             ". . ."
             ". buy ."
@@ -186,6 +186,10 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    #description>div#rest_links{
+        flex-direction: column;
     }
 
     section#description img {

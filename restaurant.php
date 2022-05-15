@@ -47,5 +47,5 @@ if ($isOwner) {
     drawRestaurantAskReview($restaurant);
 }
 
-drawRestaurantReviews($db , $reviews, $restaurant->id, $isOwner);
+drawRestaurantReviews($db , $reviews, $isOwner);
 output_footer();

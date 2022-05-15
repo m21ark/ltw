@@ -10,6 +10,7 @@ session_start();
 <?php function drawRestaurantDescriptionName(PDO $db, Restaurant $restaurant)
 { ?>
 
+
     <section id="presentation">
         <div>
             <h1><?= $restaurant->name ?></h1>
@@ -30,6 +31,7 @@ session_start();
             ?>
             <a class="link_button" href="#"><?= $restaurant->category ?></a>
         </div>
+
     </section>
 
 <?php } ?>
@@ -45,8 +47,13 @@ session_start();
                 <?= $restaurant->description; ?>
             </p>
         </div>
-        <img src="docs/restaurant.jpg" alt="">
-        <a class="link_button add_to_favorites" href="#">Add to favorites &star;</a>
+        <img src="docs/restaurant/<?= $restaurant->id ?>.jpg" alt="">
+        <div id="rest_links">
+            <a class="link_button" href="edit_restaurant.php?id=<?= $restaurant->id ?>">Edit Restaurant</a>
+            <a class="link_button" href="#">Add to favorites &star;</a>
+            <a class="link_button" href="edit_plate.php?pid=0&restId=<?= $restaurant->id ?>">Add Plate</a>
+
+        </div>
     </section>
 
 <?php } ?>
@@ -70,19 +77,13 @@ session_start();
 
 <?php } ?>
 
-<?php function drawRestaurantReviews(PDO $db, array $reviews, int $restaurantID, bool $isOwner)
+<?php function drawRestaurantReviews(PDO $db, array $reviews, bool $isOwner)
 { ?>
     <article id="reviews">
         <h2>Reviews</h2>
 
         <?php foreach ($reviews as $review) {
             $reviewer = $review->getReviewerName($db);
-            // $restaurants = RestaurantOwner::getOwnerRestaurants($db, $review->reviewer);
-            // $isOwner = false;
-            // foreach ($restaurants as $res) {
-            //     if ($res == $restaurantID)
-            //         $isOwner = true;
-            // }
             drawRestaurantReview($review, $reviewer, $isOwner);
         } ?>
     </article>

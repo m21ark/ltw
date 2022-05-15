@@ -210,20 +210,15 @@ function output_header()
 
         <h2>Description</h2>
         <p>
-            Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut
-            enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat.
+            <?= $dish->description ?>
         </p>
 
         <div>
             <a href="#"><?= $dish->category ?></a>
         </div>
 
-    </div>
 
+    </div>
 
 <?php } ?>
 
@@ -234,6 +229,10 @@ function output_header()
 
     <article id="plate_page" class="container">
         <h2>Plate page</h2>
+        <!-- TEMPORARY! SHOULD ONLY BE SEEN BY REST OWNER -->
+        <a href="edit_plate.php?pid=<?= $dish->id ?>">
+            <h3>(Edit Plate)</h3>
+        </a>
 
         <div id="plate_left">
             <h2><?= $dish->name ?></h2>
@@ -246,7 +245,7 @@ function output_header()
 
             <div id="ingredients_list">
                 <ul>
-                    <?php for ($i = 0; $i < 8; $i++) { ?>
+                    <?php for ($i = 0; $i < sizeof($ingredients); $i++) { ?>
                         <li><?= $ingredients[$i]['IngredientName'] ?></li>
                     <?php } ?>
                 </ul>
@@ -260,15 +259,109 @@ function output_header()
         </form>
 
         <a href="restaurant.php?id=<?= $restaurantID ?>" id="plate_restaurant">
-            <h2>See Restaurant (<?= $restaurantID ?>)</h2>
+            <h2>See Restaurant</h2>
         </a>
 
         <?php plate_description($dish); ?>
+
 
     </article>
 
 
 <?php } ?>
+
+
+
+<?php function drawPlateEdit(?Dish $dish, ?array $ingredients,  int $restaurantID, bool $edit)
+{ ?>
+    <article id="plate_page" class="container" style="display: block;">
+        <h2><?= $edit ? "Edit" : "Add" ?> Plate</h2>
+        <form class="edit_form" action="actions/<?= $edit ? 'action_edit_plate.php' : 'action_add_plate.php' ?>" method="post" enctype="multipart/form-data">
+
+
+            <label for="p_name">Plate Name</label>
+            <input class="custom_input" type="text" name="p_name" required value="<?= $edit ? $dish->name : null ?>">
+
+            <label for="price">Price</label>
+            <input class="custom_input" type="number" step=0.01 name="price" required value="<?= $edit ? $dish->price : null ?>">
+
+            <label for="category">Category</label>
+            <input class="custom_input" type="text" name="category" required value="<?= $edit ? $dish->category : null ?>">
+
+            <label for="image">Plate Photo</label>
+            <input class="custom_input" type="file" name="image" accept="image/png,image/jpeg" <?= $edit ? null : 'required' ?>>
+
+            <?php if ($edit) { ?>
+                <img src="docs/food/<?= $dish->id ?>.jpg" alt="Plate Picture">
+            <?php } ?>
+
+            <label for="description">Description</label>
+            <textarea name="description" required><?= $edit ? $dish->description : null ?></textarea>
+
+            <label for="ingredients">Ingredients</label>
+            <textarea name="ingredients" required><?php foreach ($ingredients as $ing) {
+                                                        echo $ing['IngredientName'];
+                                                        echo ",\n";
+                                                    } ?></textarea>
+
+            <input type="hidden" name="restID" value=<?= $restaurantID ?>>
+            <input type="hidden" name="plateID" value=<?= $dish->id ?>>
+
+            <input class="link_button" type="submit" value="Publish">
+
+            <?php if ($edit) { ?>
+                <a class="link_button" id="del_dish" href="actions/action_delete_plate.php?pid=<?= $dish->id ?>&rest_id=<?= $restaurantID ?>">Delete</a>
+            <?php } ?>
+
+        </form>
+    </article>
+<?php } ?>
+
+
+<?php function drawRestEdit(?Restaurant $restaurant, int $userID, bool $edit)
+{ ?>
+    <article id="plate_page" class="container" style="display: block;">
+        <h2><?= $edit ? "Edit" : "Create" ?> Restaurant</h2>
+        <form class="edit_form" action="actions/<?= $edit ? 'action_edit_rest.php' : 'action_add_rest.php' ?>" method="post" enctype="multipart/form-data">
+
+            <label for="name">Restaurant Name</label>
+            <input class="custom_input" type="text" name="name" required value="<?= $edit ? $restaurant->name : null ?>">
+
+            <label for="category">Category</label>
+            <input class="custom_input" type="text" name="category" required value="<?= $edit ? $restaurant->category : null ?>">
+
+            <label for="address">Address</label>
+            <input class="custom_input" type="text" name="address" required value="<?= $edit ? $restaurant->address : null ?>">
+
+            <label for="phone">Phone</label>
+            <input class="custom_input" type="phone" name="phone" required value="<?= $edit ? $restaurant->phone : null ?>">
+
+            <label for="image">Restaurant Photo</label>
+            <input class="custom_input" type="file" name="image" accept="image/png,image/jpeg" <?= $edit ? null : 'required' ?>>
+
+            <?php if ($edit) { ?>
+                <img src="docs/restaurant/<?= $restaurant->id ?>.jpg" alt="Restaurant Picture">
+            <?php } ?>
+
+            <label for="description">Description</label>
+            <textarea name="description" required><?= $edit ? $restaurant->description : null ?></textarea>
+
+            <input type="hidden" name="uID" value=<?= $userID ?>>
+
+            <input class="link_button" type="submit" value="Publish">
+
+            <?php if ($edit) { ?>
+                <input type="hidden" name="rID" value=<?= $restaurant->id ?>>
+                <a class="link_button" id="del_dish" href="actions/action_delete_rest.php?rID=<?= $restaurant->id ?>">Delete</a>
+            <?php } ?>
+
+        </form>
+    </article>
+<?php } ?>
+
+
+
+
 
 
 
@@ -293,7 +386,7 @@ function drawUserInfoPage(UserComposite $user)
                 <?php if ($user->hasPermission("RestaurantOwner") !== null) { ?>
                     <p><a href="perfil_info.php"><span class="bold">TODO: Restaurant owner Page &#9749;</span></a></p>
                 <?php } else { ?>
-                    <p><a href=""><span class="bold">Add your Restaurant &#9749;</span></a></p>
+                    <p><a href="edit_restaurant.php?id=0"><span class="bold">Add your Restaurant &#9749;</span></a></p>
                 <?php } ?>
             </div>
             <a href="register.php" id="edit_account">Edit account details</a>
@@ -341,6 +434,9 @@ function drawUserInfoPage(UserComposite $user)
     </section>
 
 <?php } ?>
+
+
+
 
 
 

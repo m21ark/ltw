@@ -12,6 +12,3 @@ $stmt = $db->prepare("INSERT INTO Response
 ");
  
 $stmt->execute(array($_POST['id'], $_POST['comment']));
-
-header("Location: ". $_REQUEST['HTTP_REFERER']);
-die();
