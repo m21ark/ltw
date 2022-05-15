@@ -54,16 +54,16 @@ if (!$noNewImage) {
 
 unset($_SESSION['user']);
 
-/*
+
 session_start();
 
 require_once(__DIR__ . '/../database/Users/concrete_user_factory.class.php');
 
-$user = ConcreteUserFactory::getUserAccordingToType($db, (string)$_POST["email"], $_POST["password"]);
+$user = ConcreteUserFactory::getUserAccordingToType($db, (string)$_POST['email'], $_POST['new_password']);
 $_SESSION['user'] = serialize($user);
-*/
+
 
 //______________________________________________________________________________________________________________
 
 
-die(header("Location: ../user.php?id=" . $user->id));
+die(header("Location: ../user.php?id=" . $user->permissions[0]->id));
