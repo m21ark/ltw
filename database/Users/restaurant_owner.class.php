@@ -50,14 +50,14 @@ class RestaurantOwner extends User
         } else return false;
     }
 
-    public function getOwnerRestaurants(PDO $db) : array
+    public static function getOwnerRestaurants(PDO $db, int $id) : array
     {
         $stmt = $db->prepare('
         SELECT RestaurantID
         FROM Owner
         WHERE OwnerID = ?
     ');
-        $stmt->execute(array($this->id));
+        $stmt->execute(array($id));
 
         $array = $stmt->fetchAll();
         $rests = array();
