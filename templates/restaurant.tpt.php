@@ -1,7 +1,10 @@
 <?php
 require_once(__DIR__ . '/../database/Users/concrete_user_factory.class.php');
 require_once(__DIR__ . '/../database/restaurant.class.php');
-session_start(); ?>
+require_once(__DIR__ . '/../database/connection.php');
+session_start(); 
+
+?>
 
 
 <?php function drawRestaurantDescriptionName(PDO $db, Restaurant $restaurant)
@@ -65,16 +68,23 @@ session_start(); ?>
 
 <?php } ?>
 
+<?php function drawRestaurantOwnerReview(Restaurant $restaurant)
+{ ?>
 
+    <section id="share_exp" class="container">
+        <p>Respond To Your Client Opinions</p>
+    </section>
 
-<?php function drawRestaurantReviews(PDO $db, array $reviews)
+<?php } ?>
+
+<?php function drawRestaurantReviews(PDO $db, array $reviews, bool $isOwner)
 { ?>
     <article id="reviews">
         <h2>Reviews</h2>
 
         <?php foreach ($reviews as $review) {
             $reviewer = $review->getReviewerName($db);
-            drawRestaurantReview($review, $reviewer);
+            drawRestaurantReview($review, $reviewer, $isOwner);
         } ?>
     </article>
 
@@ -82,8 +92,8 @@ session_start(); ?>
 
 
 
-<?php function drawRestaurantReview(Review $review, string $reviewer)
-{ ?>
+<?php function drawRestaurantReview(Review $review, string $reviewer, bool $isOwner)
+{ $db = getDatabaseConnection(); ?>
 
     <article class="rest_review container">
         <div>
@@ -94,6 +104,20 @@ session_start(); ?>
             <p class="review_text">
                 <?= $review->text ?>
             </p>
+            <?php if ($review->getResponse($db) !== null) {
+            ?>
+            <p class="response_text">
+                <?=$review->getResponse($db);?> 
+                ✔
+            </p>
+            <?php } else if ($isOwner) { ?>
+                <div class="response_form">
+                    <label for="owner_response">Respond to Client:</label>
+                    <textarea id="owner_response" name="Owner_response" rows="1" cols="30">
+                    </textarea>
+                    <button class="respond_button" value=<?=$review->id?>>Respond</button>
+                </div>
+            <?php } ?>
         </div>
         <div>
             <img src="docs/pizza.jpg" alt="">

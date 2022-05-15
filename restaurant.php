@@ -11,6 +11,8 @@ if (!isset($_GET['id'])) {
     die(header('Location: /'));
 }
 
+if (isset($_SESSION['user']))
+    $user = unserialize($_SESSION['user']);
 
 $db = getDatabaseConnection();
 
@@ -24,10 +26,26 @@ $dishes = $menu->getMenuDishes($db); // TODO : We need to take the information a
 // maybe later we can set cokkies that determine the above res/dishes
 $reviews = $restaurant->getRestaurantReviews($db);
 
+$isOwner = false;
+$owner = isset($user)? $user->hasPermission("RestaurantOwner") : NULL;
+if ($owner !== NULL){
+    $restaurants = RestaurantOwner::getOwnerRestaurants($db, $owner->id);
+    foreach($restaurants as $res) {
+        if ($res == $restaurant->id)
+            $isOwner = true;
+    }
+}
+
 output_header();
 drawRestaurantDescriptionName( $db, $restaurant);
 drawRestaurantDescription($restaurant);
 drawPlatesCarrossel($dishes);
-drawRestaurantAskReview($restaurant);
-drawRestaurantReviews($db , $reviews);
+
+if ($isOwner) {
+    drawRestaurantOwnerReview($restaurant);
+} else {
+    drawRestaurantAskReview($restaurant);
+}
+
+drawRestaurantReviews($db , $reviews, $isOwner);
 output_footer();

@@ -8,10 +8,12 @@ function toggleFavorite() {
     const favorite = document.querySelector(".add_to_favorites");
 
     favorite.addEventListener('click', function(event) {
-        if (favorite.textContent == 'Add to favorites ☆') 
+        if (favorite.textContent == 'Add to favorites ☆') {
             favorite.textContent = 'Added ✔';
-        else
+        }
+        else {
             favorite.textContent = 'Add to favorites ☆';
+        }
     });
 }
 

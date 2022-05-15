@@ -50,8 +50,22 @@ class RestaurantOwner extends User
         } else return false;
     }
 
-    //TODO a Function that allows to get all restaurants of a owner
+    public static function getOwnerRestaurants(PDO $db, int $id) : array
+    {
+        $stmt = $db->prepare('
+        SELECT RestaurantID
+        FROM Owner
+        WHERE OwnerID = ?
+    ');
+        $stmt->execute(array($id));
 
+        $array = $stmt->fetchAll();
+        $rests = array();
+        foreach ($array as $rest) {
+            array_push($rests, $rest['RestaurantID']);
+        }
+        return $rests;
+    }
 
     public function changeOrderStatus(PDO $db, Order $order, OrderStatus $orderStatus): bool
     {
@@ -62,6 +76,6 @@ class RestaurantOwner extends User
             WHERE OrderID = ?);
         ');
 
-        return $stmt->execute(array($orderStatus, $order->id));;
+        return $stmt->execute(array($orderStatus, $order->id));
     }
 }

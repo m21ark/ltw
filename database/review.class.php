@@ -34,5 +34,23 @@ class Review
 
         return $stmt->fetch()['username'];
     }
+
+    public function getResponse(PDO $db) : ?string
+    {
+        $stmt = $db->prepare('
+            SELECT ResponseComment
+            FROM Response
+            WHERE ReviewID = ?
+        ');
+
+        $stmt->execute(array($this->id));
+
+        $res = $stmt->fetch();
+
+        if ($res === false)
+            return null;
+        
+        return $res['ResponseComment'];
+    }
 }
 

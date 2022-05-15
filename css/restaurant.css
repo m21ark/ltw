@@ -158,3 +158,23 @@
     font-weight: bolder;
     font-size: 1.5em;
 }
+
+
+/* Response from Owner */
+
+textarea[id="owner_response"] {
+    width: auto;
+    height: 1.5em;
+}
+
+.response_form{
+    margin-top: 0.5em;
+}
+
+.response_form button.respond_button {
+    width: 5em;
+}
+
+.response_text {
+    margin-top: 1em;
+}
