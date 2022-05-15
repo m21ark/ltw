@@ -224,16 +224,16 @@ function output_header()
 
 
 
-<?php function drawPlateInfo(Dish $dish, array $ingredients,  int $restaurantID)
+<?php function drawPlateInfo(Dish $dish, array $ingredients, int $restaurantID, bool $isOwner)
 { ?>
 
     <article id="plate_page" class="container">
         <h2>Plate page</h2>
-        <!-- TEMPORARY! SHOULD ONLY BE SEEN BY REST OWNER -->
+        <?php if ($isOwner) {?>
         <a href="edit_plate.php?pid=<?= $dish->id ?>">
             <h3>(Edit Plate)</h3>
         </a>
-
+        <?php }?>
         <div id="plate_left">
             <h2><?= $dish->name ?></h2>
             <img src="docs/food/<?= $dish->id ?>.jpg" alt="">

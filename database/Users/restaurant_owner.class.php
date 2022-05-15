@@ -67,6 +67,17 @@ class RestaurantOwner extends User
         return $rests;
     }
 
+    public function isTheOwner(PDO $db, int $restaurantID) : bool
+    {
+        $isOwner = false;
+        $restaurants = RestaurantOwner::getOwnerRestaurants($db, $this->id);
+        foreach ($restaurants as $res) {
+            if ($res == $restaurantID)
+                $isOwner = true;
+        }
+        return $isOwner;
+    }
+
     public function changeOrderStatus(PDO $db, Order $order, OrderStatus $orderStatus): bool
     {
 

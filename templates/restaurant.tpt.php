@@ -37,7 +37,7 @@ session_start();
 <?php } ?>
 
 
-<?php function drawRestaurantDescription(Restaurant $restaurant)
+<?php function drawRestaurantDescription(Restaurant $restaurant, bool $isOwner)
 { ?>
 
     <section id="description" class="container">
@@ -48,12 +48,13 @@ session_start();
             </p>
         </div>
         <img src="docs/restaurant/<?= $restaurant->id ?>.jpg" alt="">
+        <?php if ($isOwner){?>
         <div id="rest_links">
             <a class="link_button" href="edit_restaurant.php?id=<?= $restaurant->id ?>">Edit Restaurant</a>
             <a class="link_button" href="#">Add to favorites &star;</a>
             <a class="link_button" href="edit_plate.php?pid=0&restId=<?= $restaurant->id ?>">Add Plate</a>
-
         </div>
+        <?php }?>
     </section>
 
 <?php } ?>
