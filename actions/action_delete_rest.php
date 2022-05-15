@@ -15,6 +15,8 @@ $db = getDatabaseConnection();
 
 $restID = $_GET['rID'];
 
+// TODO Should Restaurant Menu, Orders be also deleted?
+
 // ___________________________________________________________________________
 
 $stmt = $db->prepare("DELETE FROM Restaurant WHERE RestaurantID=?");

@@ -100,6 +100,11 @@ section#register>* {
 }
 
 
+#user_photo {
+    border-radius: 100%;
+}
+
+
 /*  Start rating system   */
 
 #star_rating {
@@ -181,4 +186,17 @@ section#register>* {
 .edit_form #del_dish {
     margin-top: 2em;
     background-color: #CC0000;
+}
+
+
+
+.edit_profile div:last-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#user_info #edit_profile_options a.link_button {
+    background-color: #CC0000;
+    padding: 1em;
 }
