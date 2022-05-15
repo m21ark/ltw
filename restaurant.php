@@ -22,23 +22,20 @@ if ($restaurant === null)
     die(header('Location: /'));
 
 $menu = $restaurant->getMenu($db);
-$dishes = $menu->getMenuDishes($db); // TODO : We need to take the information about the length on the carrossel
+$dishes = $menu->getMenuDishes($db);
+// TODO : We need to take the information about the length on the carrossel
 // maybe later we can set cokkies that determine the above res/dishes
 $reviews = $restaurant->getRestaurantReviews($db);
 
 $isOwner = false;
 $owner = isset($user)? $user->hasPermission("RestaurantOwner") : NULL;
 if ($owner !== NULL){
-    $restaurants = RestaurantOwner::getOwnerRestaurants($db, $owner->id);
-    foreach($restaurants as $res) {
-        if ($res == $restaurant->id)
-            $isOwner = true;
-    }
+    $isOwner = $owner->isTheOwner($db, $restaurant->id);
 }
 
 output_header();
 drawRestaurantDescriptionName( $db, $restaurant);
-drawRestaurantDescription($restaurant);
+drawRestaurantDescription($restaurant, $isOwner);
 drawPlatesCarrossel($dishes);
 
 if ($isOwner) {
