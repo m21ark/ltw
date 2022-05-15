@@ -11,13 +11,13 @@ if (!isset($_GET['id'])) {
 if (isset($_SESSION['user']))
     $user = unserialize($_SESSION['user']);
 
+$db = getDatabaseConnection();
+
 $isOwner = false;
 $owner = isset($user)? $user->hasPermission("RestaurantOwner") : NULL;
 if ($owner !== NULL){
-    $isOwner = $owner->isTheOwner($db, $restaurant->id);
+    $isOwner = $owner->isTheOwner($db, (int)$restaurant->id);
 }
-
-$db = getDatabaseConnection();
 
 $dish = Dish::getDish($db, $_GET['id']);
 
