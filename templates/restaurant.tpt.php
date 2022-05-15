@@ -44,9 +44,9 @@ session_start(); ?>
                 <?= $restaurant->description; ?>
             </p>
         </div>
-        <img src="docs/restaurant.jpg" alt="">
+        <img src="docs/restaurant/<?= $restaurant->id ?>.jpg" alt="">
         <div id="rest_links">
-            <a class="link_button" href="edit_restaurant.php?restId=<?= $restaurant->id ?>">Edit Restaurant</a>
+            <a class="link_button" href="edit_restaurant.php?id=<?= $restaurant->id ?>">Edit Restaurant</a>
             <a class="link_button" href="#">Add to favorites &star;</a>
             <a class="link_button" href="edit_plate.php?pid=0&restId=<?= $restaurant->id ?>">Add Plate</a>
 

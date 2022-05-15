@@ -274,7 +274,7 @@ function output_header()
 <?php function drawPlateEdit(?Dish $dish, ?array $ingredients,  int $restaurantID, bool $edit)
 { ?>
     <article id="plate_page" class="container" style="display: block;">
-        <h2>Edit Plate</h2>
+        <h2><?= $edit ? "Edit" : "Add" ?> Plate</h2>
         <form class="edit_form" action="actions/<?= $edit ? 'action_edit_plate.php' : 'action_add_plate.php' ?>" method="post" enctype="multipart/form-data">
 
 
@@ -317,6 +317,50 @@ function output_header()
 <?php } ?>
 
 
+<?php function drawRestEdit(?Restaurant $restaurant, int $userID, bool $edit)
+{ ?>
+    <article id="plate_page" class="container" style="display: block;">
+        <h2><?= $edit ? "Edit" : "Create" ?> Restaurant</h2>
+        <form class="edit_form" action="actions/<?= $edit ? 'action_edit_rest.php' : 'action_add_rest.php' ?>" method="post" enctype="multipart/form-data">
+
+            <label for="name">Restaurant Name</label>
+            <input class="custom_input" type="text" name="name" required value="<?= $edit ? $restaurant->name : null ?>">
+
+            <label for="category">Category</label>
+            <input class="custom_input" type="text" name="category" required value="<?= $edit ? $restaurant->category : null ?>">
+
+            <label for="address">Address</label>
+            <input class="custom_input" type="text" name="address" required value="<?= $edit ? $restaurant->address : null ?>">
+
+            <label for="phone">Phone</label>
+            <input class="custom_input" type="phone" name="phone" required value="<?= $edit ? $restaurant->phone : null ?>">
+
+            <label for="image">Restaurant Photo</label>
+            <input class="custom_input" type="file" name="image" accept="image/png,image/jpeg" <?= $edit ? null : 'required' ?>>
+
+            <?php if ($edit) { ?>
+                <img src="docs/restaurant/<?= $restaurant->id ?>.jpg" alt="Restaurant Picture">
+            <?php } ?>
+
+            <label for="description">Description</label>
+            <textarea name="description" required><?= $edit ? $restaurant->description : null ?></textarea>
+
+            <input type="hidden" name="uID" value=<?= $userID ?>>
+
+            <input class="link_button" type="submit" value="Publish">
+
+            <?php if ($edit) { ?>
+                <input type="hidden" name="rID" value=<?= $restaurant->id ?>>
+                <a class="link_button" id="del_dish" href="actions/action_delete_rest.php?rID=<?= $restaurant->id ?>">Delete</a>
+            <?php } ?>
+
+        </form>
+    </article>
+<?php } ?>
+
+
+
+
 
 
 
@@ -341,7 +385,7 @@ function drawUserInfoPage(UserComposite $user)
                 <?php if ($user->hasPermission("RestaurantOwner") !== null) { ?>
                     <p><a href="perfil_info.php"><span class="bold">TODO: Restaurant owner Page &#9749;</span></a></p>
                 <?php } else { ?>
-                    <p><a href=""><span class="bold">Add your Restaurant &#9749;</span></a></p>
+                    <p><a href="edit_restaurant.php?id=0"><span class="bold">Add your Restaurant &#9749;</span></a></p>
                 <?php } ?>
             </div>
             <a href="register.php" id="edit_account">Edit account details</a>
@@ -389,6 +433,9 @@ function drawUserInfoPage(UserComposite $user)
     </section>
 
 <?php } ?>
+
+
+
 
 
 
