@@ -28,11 +28,10 @@ $stmt = $db->prepare("DELETE FROM DishIngredients WHERE DishID=?");
 $stmt->execute(array($plateID));
 
 
+// __________________________________________________________________
+
 $originalFileName = "../docs/food/$plateID.jpg";
 
 unlink($originalFileName);
-
-print_r("Done!");
-
 
 die(header("Location: ../restaurant.php?id=" . $_GET['rest_id']));

@@ -16,6 +16,16 @@ if (!isset($_GET['id'])) {
     die(header('Location: /'));
 }
 
+$user = unserialize($_SESSION['user']);
+$uid = $user->permissions[0]->id; // TODO verify if done properly
+
+// add mode
+if ($_GET['id'] == 0) {
+    output_header();
+    drawRestEdit(null,  $uid, false);
+    output_footer();
+    die();
+}
 
 $db = getDatabaseConnection();
 
@@ -24,15 +34,6 @@ $restaurant = Restaurant::getRestaurant($db, $_GET['id']);
 if ($restaurant === null)
     die(header('Location: /'));
 
-$menu = $restaurant->getMenu($db);
-$dishes = $menu->getMenuDishes($db); // TODO : We need to take the information about the length on the carrossel
-// maybe later we can set cokkies that determine the above res/dishes
-$reviews = $restaurant->getRestaurantReviews($db);
-
 output_header();
-drawRestaurantDescriptionName($db, $restaurant);
-drawRestaurantDescription($restaurant);
-drawPlatesCarrossel($dishes);
-drawRestaurantAskReview($restaurant);
-drawRestaurantReviews($db, $reviews);
+drawRestEdit($restaurant, $uid, true);
 output_footer();
