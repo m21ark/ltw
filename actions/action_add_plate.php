@@ -16,7 +16,6 @@ $db = getDatabaseConnection();
 $ings = $_POST['ingredients'];
 $ings = explode(',', $ings);
 
-
 // _________________________________add to dishes_________________________________
 
 $stmt = $db->prepare("INSERT INTO Dish

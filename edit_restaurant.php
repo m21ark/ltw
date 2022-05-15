@@ -16,18 +16,16 @@ if (!isset($_GET['id'])) {
 }
 
 $user = unserialize($_SESSION['user']);
-$uid = $user->permissions[0]->id; // TODO verify if done properly
-
-$isOwner = false;
-$owner = isset($user)? $user->hasPermission("RestaurantOwner") : NULL;
+$uid = $user->permissions[0]->id; 
+$restaurantID = $_GET['id'];
 $db = getDatabaseConnection();
 
-if ($owner !== NULL){
-    $isOwner = $owner->isTheOwner($db, $_GET['id']);
-}
+// -----------------------------------------------------------
 
-if (!$isOwner) 
-	die(header('location: /'));
+require_once(__DIR__ . "/database/verify_if_owner.php");
+
+// -----------------------------------------------------------
+
 
 // add mode
 if ($_GET['id'] == 0) {
