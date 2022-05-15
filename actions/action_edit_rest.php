@@ -13,7 +13,6 @@ $user = unserialize($_SESSION['user']);
 
 $db = getDatabaseConnection();
 
-$uid = 20; //Here It should be a verified owner id recieved by $_POST["uid"]
 $restID = $_POST['rID'];
 
 // ___________________________________________________________________________
@@ -26,16 +25,6 @@ $stmt = $db->prepare("INSERT INTO Restaurant
     VALUES (?, ?,  ?, ?, ?, ?)
 ");
 $stmt->execute(array($restID, $_POST['name'], $_POST['phone'], $_POST['address'], $_POST['category'], $_POST['description']));
-
-
-$stmt = $db->prepare("DELETE FROM Owner WHERE RestaurantID=?");
-$stmt->execute(array($restID));
-
-$stmt = $db->prepare("INSERT INTO Owner
-    VALUES (?, ?)
-");
-
-$stmt->execute(array($_POST['uid'], $restID));
 
 
 // _________________________________Add Image_________________________________

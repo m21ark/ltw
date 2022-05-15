@@ -11,13 +11,23 @@ require_once(__DIR__ . "/database/restaurant.class.php");
 session_start();
 if ($_SESSION['user'] == null) die(header('Location: /'));
 
-
 if (!isset($_GET['id'])) {
     die(header('Location: /'));
 }
 
 $user = unserialize($_SESSION['user']);
 $uid = $user->permissions[0]->id; // TODO verify if done properly
+
+$isOwner = false;
+$owner = isset($user)? $user->hasPermission("RestaurantOwner") : NULL;
+$db = getDatabaseConnection();
+
+if ($owner !== NULL){
+    $isOwner = $owner->isTheOwner($db, $_GET['id']);
+}
+
+if (!$isOwner) 
+	die(header('location: /'));
 
 // add mode
 if ($_GET['id'] == 0) {
@@ -27,7 +37,6 @@ if ($_GET['id'] == 0) {
     die();
 }
 
-$db = getDatabaseConnection();
 
 $restaurant = Restaurant::getRestaurant($db, $_GET['id']);
 

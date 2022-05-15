@@ -6,6 +6,7 @@ require_once("database/connection.php");
 session_start();
 if ($_SESSION['user'] == null) die(header('Location: /'));
 
+$user = unserialize($_SESSION['user']);
 
 if (!isset($_GET['pid'])) {
     die(header('Location: /'));
@@ -27,6 +28,15 @@ if ($dish === null)
 
 
 $restaurantID = $dish->getRestaurantID($db);
+
+$isOwner = false;
+$owner = isset($user)? $user->hasPermission("RestaurantOwner") : null;
+if ($owner !== null){
+    $isOwner = $owner->isTheOwner($db, $restaurantID);
+}
+
+if (!$isOwner) 
+	die(header('location: /'));
 
 $ingredients = $dish->getIngredients($db);
 

@@ -13,12 +13,6 @@ if (isset($_SESSION['user']))
 
 $db = getDatabaseConnection();
 
-$isOwner = false;
-$owner = isset($user)? $user->hasPermission("RestaurantOwner") : NULL;
-if ($owner !== NULL){
-    $isOwner = $owner->isTheOwner($db, (int)$restaurant->id);
-}
-
 $dish = Dish::getDish($db, $_GET['id']);
 
 if ($dish === null)
@@ -27,6 +21,12 @@ if ($dish === null)
 $restaurantID = $dish->getRestaurantID($db);
 
 $ingredients = $dish->getIngredients($db);
+
+$isOwner = false;
+$owner = isset($user)? $user->hasPermission("RestaurantOwner") : NULL;
+if ($owner !== NULL){
+    $isOwner = $owner->isTheOwner($db, $restaurantID);
+}
 
 output_header();
 drawPlateInfo($dish, $ingredients, $restaurantID, $isOwner);
