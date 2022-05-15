@@ -2,6 +2,7 @@
 require_once(__DIR__ . '/../database/Users/concrete_user_factory.class.php');
 
 session_start();
+$user = unserialize($_SESSION['user']);
 
 function output_header()
 { ?>
@@ -44,7 +45,7 @@ function output_header()
                 $user = unserialize($_SESSION['user']); // TODO ::: THE LOGO MUST CORRESPOND TO THE SESSION
             ?>
                 <span><a id="header_cart" href="cart.php">&#x1f6d2;</a></span>
-                <a id="header_avatar" href="user.php"><img src="docs/user.png" alt="logo"></a>
+                <a id="header_avatar" href="user.php"><img src="docs/users/<?= $user->permissions[0]->id ?>.jpg" alt="logo"></a>
             <?php } ?>
         </header>
 
@@ -165,6 +166,58 @@ function output_header()
     </section>
 
 <?php } ?>
+
+<?php function drawEditProfile(User $user)
+{ ?>
+
+    <?php $user = $user->permissions[0]; ?>
+
+    <div id="user_info">
+        <section class="container">
+
+            <form class="edit_profile" action="actions/action_edit_user.php" method="post" enctype="multipart/form-data">
+                <h2>Edit Profile</h2>
+
+                <div>
+                    <label>
+                        Username <input class="custom_input" type="text" placeholder="Username" name="username" required value="<?= $user->username  ?>">
+                    </label>
+                    <label>
+                        Email <input class="custom_input" type="email" placeholder="Email" name="email" required value="<?= $user->email  ?>">
+                    </label>
+                    <label>
+                        Address <input class="custom_input" type="text" placeholder="Address" name="address" required value="<?= $user->address  ?>">
+                    </label>
+
+                    <label>
+                        Phone Number <input class="custom_input" type="text" placeholder="Phone Number" name="phone" required value="<?= $user->phone  ?>">
+                    </label>
+                    <label>
+                        Old Password <input class="custom_input" type="password" placeholder="Old Password" name="old_password" required>
+                    </label>
+
+                    <label>
+                        New Password <input class="custom_input" type="password" placeholder="New Password" name="new_password" required>
+                    </label>
+
+                    <label for="image">Profile Image</label>
+                    <input class="custom_input" type="file" name="image" accept="image/png,image/jpeg">
+
+                </div>
+
+                <div id="edit_profile_options">
+                    <input class="link_button" type="submit" value="Apply Changes">
+                    <a class="link_button" href="actions/action_delete_user.php">Delete Account</a>
+                </div>
+            </form>
+
+
+    </div>
+    </section>
+
+
+<?php } ?>
+
 
 
 <?php function drawCartList(PDO $db, array $cart)
@@ -372,7 +425,7 @@ function drawUserInfoPage(UserComposite $user)
         <section class="container">
             <h2>User</h2>
             <div id="info_display">
-                <img id="user_photo" src="docs/user.png" width="200" height="200" alt="logo">
+                <img id="user_photo" src="docs/users/<?= $user->permissions[0]->id ?>.jpg" width="200" height="200" alt="logo">
                 <h3><?= $user->permissions[0]->username ?></h3>
                 <p><span class="bold">Username:</span> <?= $user->permissions[0]->username ?></p>
                 <p><span class="bold">Adress:</span> <?= $user->permissions[0]->address ?></p>
@@ -389,7 +442,7 @@ function drawUserInfoPage(UserComposite $user)
                     <p><a href="edit_restaurant.php?id=0"><span class="bold">Add your Restaurant &#9749;</span></a></p>
                 <?php } ?>
             </div>
-            <a href="register.php" id="edit_account">Edit account details</a>
+            <a href="edit_profile.php?<?= $user->permissions[0]->id ?>" id="edit_account">Edit account details</a>
             <a href="../actions/action_logout.php" id="logout">Logout &times;</a>
         </section>
     </div>
