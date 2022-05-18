@@ -1,8 +1,10 @@
 <?php
 require_once(__DIR__ . '/../database/Users/concrete_user_factory.class.php');
 
-session_start();
-$user = unserialize($_SESSION['user']);
+require_once(__DIR__ . '/../utils/session.php');
+$session = new Session();
+if ($session->isLoggedIn())
+    $user = unserialize($session->getUserSerialized());
 
 function output_header()
 { ?>
@@ -71,9 +73,7 @@ function output_header()
         <?php } ?>
 
 
-        <?php
-
-        function output_footer()
+        <?php function output_footer()
         { ?>
 
         </main>
@@ -105,12 +105,7 @@ function output_header()
                     Password <input type="password" required placeholder="Password" name="password">
                 </label>
 
-                <?php if (isset($_GET["error"])) {
-                    echo "  <h4>
-                        Username and password dont match!
-                    </h4>";
-                }
-                ?>
+                <?php drawUserMessages(); ?>
 
                 <button class="form_button" formaction="actions/action_login.php" formmethod="post">Login</button>
             </form>
@@ -282,11 +277,11 @@ function output_header()
 
     <article id="plate_page" class="container">
         <h2>Plate page</h2>
-        <?php if ($isOwner) {?>
-        <a href="edit_plate.php?pid=<?= $dish->id ?>">
-            <h3>(Edit Plate)</h3>
-        </a>
-        <?php }?>
+        <?php if ($isOwner) { ?>
+            <a href="edit_plate.php?pid=<?= $dish->id ?>">
+                <h3>(Edit Plate)</h3>
+            </a>
+        <?php } ?>
         <div id="plate_left">
             <h2><?= $dish->name ?></h2>
             <img src="docs/food/<?= $dish->id ?>.jpg" alt="">
@@ -505,5 +500,21 @@ function drawUserInfoPage(UserComposite $user)
         drawRestaurantsCarrossel($db, $restaurants, false);
         ?>
     </form>
+
+<?php } ?>
+
+
+
+<?php function drawUserMessages()
+{
+    $session = new Session();
+?>
+    <section id="messages">
+        <?php foreach ($session->getMessages() as $messsage) { ?>
+            <article class="<?= $messsage['type'] ?>">
+                <?= $messsage['text'] ?>
+            </article>
+        <?php } ?>
+    </section>
 
 <?php } ?>

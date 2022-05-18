@@ -1,25 +1,31 @@
 <?php
-include_once("templates/common.tpt.php");
 
+
+include_once("templates/common.tpt.php");
 require_once("database/connection.php");
 require_once("database/restaurant.class.php");
 
-if (!isset($_SESSION['user']))
-	die(header('location: /'));
+// Restricts access to logged in users
+require_once(__DIR__ . '/utils/session.php');
+$session = new Session();
+if (!$session->isLoggedIn()) die(header('Location: /'));
 
-$user = unserialize($_SESSION['user']);
+
 $db = getDatabaseConnection();
+
 $dish = Dish::getDish($db, $_GET['id']);
 $restaurantID = $dish->getRestaurantID($db);
 
+
+$user = unserialize($session->getUserSerialized());
+
 $isOwner = false;
-$owner = isset($user)? $user->hasPermission("RestaurantOwner") : null;
+$owner = isset($user) ? $user->hasPermission("RestaurantOwner") : null;
 
-if ($owner !== null){
-    $isOwner = $owner->isTheOwner($db, $restaurantID);
-}
+if ($owner !== null)
+	$isOwner = $owner->isTheOwner($db, $restaurantID);
 
-if ($isOwner) 
+if ($isOwner)
 	die(header('location: /'));
 
 output_header();

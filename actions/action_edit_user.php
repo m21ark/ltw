@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-session_start();
-
-if ($_SESSION['user'] == null) die(header('Location: /'));
+// Restricts access to logged in users
+require_once(__DIR__ . '/../utils/session.php');
+$session = new Session();
+if (!$session->isLoggedIn()) die(header('Location: /'));
 
 require_once(__DIR__ . "/../database/Users/user_composite.class.php");
 require_once(__DIR__ . "/../database/connection.php");
 
-$user = unserialize($_SESSION['user']);
+$user = $session->getUser();
 $user = $user->permissions[0];
 
 $db = getDatabaseConnection();
@@ -52,18 +53,15 @@ if (!$noNewImage) {
 //____________________________________________LOGIN BACK IN__________________________________________________
 
 
-unset($_SESSION['user']);
-
-
-session_start();
+$session->logout();
+$session = new Session();
 
 require_once(__DIR__ . '/../database/Users/concrete_user_factory.class.php');
 
 $user = ConcreteUserFactory::getUserAccordingToType($db, (string)$_POST['email'], $_POST['new_password']);
-$_SESSION['user'] = serialize($user);
 
+$session->setUser($user);
 
 //______________________________________________________________________________________________________________
-
 
 die(header("Location: ../user.php?id=" . $user->permissions[0]->id));
