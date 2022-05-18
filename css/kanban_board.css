@@ -30,6 +30,7 @@
 	background: white;
 	border-radius: 0.3em;
 	cursor: grab;
+    margin-bottom: 1em;
 }
 
 .kanban__dropzone {

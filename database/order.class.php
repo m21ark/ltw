@@ -32,4 +32,17 @@ class Order
         $this->date = new DateTime($date);
     }
 
+    function getOrderDishes(PDO $db) : array {
+        $stmt = $db->prepare('
+            SELECT DishID, count(OrderID) as Qnt
+            FROM DishOrder
+            WHERE OrderID = ?
+            Group by DishID
+        ');
+
+        $stmt->execute(array($this->id));
+
+        return $stmt->fetchAll();
+    } 
+
 }
