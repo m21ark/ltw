@@ -37,7 +37,7 @@ if ($owner !== null && $_GET['type'] == 'res') {
 }
 
 if ($customer != null && $_GET['type'] == 'fav') {
-    drawUserFavCards($dishes, $restaurants);
+
     $dishesID = $customer->getFavoriteDishes($db);
     $restaurantsID = $customer->getFavoriteRestaurants($db);
 
@@ -51,6 +51,8 @@ if ($customer != null && $_GET['type'] == 'fav') {
     foreach ($dishesID as $id) {
         array_push($dishes, Dish::getDish($db, (int)$id['DishID']));
     }
+
+    drawUserFavCards($dishes, $restaurants);
 }
 
 output_footer();

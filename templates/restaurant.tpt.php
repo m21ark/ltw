@@ -71,7 +71,8 @@ session_start();
 { ?>
 
     <section id="share_exp" class="container">
-        <p>Respond To Your Client Opinions</p>
+        <p>Respond To Your Client Reviews / Orders </p>
+        <a class="link_button" href="control_center.php?id=<?= $restaurant->id ?>">Control Center</a>
     </section>
 
 <?php } ?>

@@ -18,6 +18,7 @@ $db = getDatabaseConnection();
 
 $restaurant = Restaurant::getRestaurant($db, $_GET['id']);
 
+
 if ($restaurant === null)
     die(header('Location: /'));
 
