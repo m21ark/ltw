@@ -25,5 +25,5 @@ require_once(__DIR__ . "/database/verify_if_owner.php");
 // -----------------------------------------------------------
 
 output_header();
-drawKanbanBoard();
+drawKanbanBoard($db, $restaurantID);
 output_footer();
