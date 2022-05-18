@@ -25,30 +25,20 @@
 }
 
 .kanban__item-input {
-	padding: 10px 15px;
+	padding: 0.6em 0.7em;
 	box-sizing: border-box;
 	background: white;
-	border-radius: 5px;
-	cursor: pointer;
+	border-radius: 0.3em;
+	cursor: grab;
 }
 
 .kanban__dropzone {
-	height: 10px;
+	height: 1em;
 	transition: all 0.15s, height 0.15s;
 }
 
 .kanban__dropzone--active {
-	height: 20px;
+	height: 2em;
 	background: rgba(0, 0, 0, 0.25);
 }
 
-.kanban__add-item {
-	width: 100%;
-	padding: 10px 0;
-	font-size: 16px;
-	color: white;
-	background: rgba(0, 0, 0, 0.1);
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-}
