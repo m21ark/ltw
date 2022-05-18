@@ -23,6 +23,9 @@ function drawKanbanBoard(PDO $db, int $res)
                     </div>
             <?php }
             } ?>
+            <div class="kanban__items">
+                <div class="kanban__dropzone"></div>
+            </div>
         </div>
         <div class="kanban__column">
             <div class="kanban__column-title">Preparing</div>
@@ -37,7 +40,11 @@ function drawKanbanBoard(PDO $db, int $res)
                         <div class="kanban__dropzone"></div>
                     </div>
             <?php }
-            } ?>
+            }
+            ?>
+            <div class="kanban__items">
+                <div class="kanban__dropzone"></div>
+            </div>
         </div>
         <div class="kanban__column">
             <div class="kanban__column-title">Ready</div>
@@ -51,8 +58,13 @@ function drawKanbanBoard(PDO $db, int $res)
                         </div>
                         <div class="kanban__dropzone"></div>
                     </div>
+
             <?php }
-            } ?>
+            }
+            ?>
+            <div class="kanban__items">
+                <div class="kanban__dropzone"></div>
+            </div>
         </div>
     </div>
 <?php } ?>
