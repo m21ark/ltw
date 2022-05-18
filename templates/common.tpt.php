@@ -432,12 +432,12 @@ function drawUserInfoPage(UserComposite $user)
                 <p><span class="bold">Email:</span> <?= $user->permissions[0]->email ?></p>
 
                 <?php if ($user->hasPermission("Customer") !== null) { ?>
-                    <p><a href="perfil_info.php"><span class="bold">Favorites &star;</span></a></p>
+                    <p><a href="perfil_info.php?type=fav"><span class="bold">Favorites &star;</span></a></p>
                 <?php } else { ?>
                     <p><a href=""><span class="bold">Become a Costumer</span></a></p>
                 <?php } ?>
                 <?php if ($user->hasPermission("RestaurantOwner") !== null) { ?>
-                    <p><a href="perfil_info.php"><span class="bold">TODO: Restaurant owner Page &#9749;</span></a></p>
+                    <p><a href="perfil_info.php?type=res"><span class="bold">Restaurant owner Page &#9749;</span></a></p>
                 <?php } else { ?>
                     <p><a href="edit_restaurant.php?id=0"><span class="bold">Add your Restaurant &#9749;</span></a></p>
                 <?php } ?>
