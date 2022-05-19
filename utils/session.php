@@ -6,9 +6,7 @@ class Session
     public function __construct()
     {
         session_start();
-
         $this->messages = isset($_SESSION['messages']) ? $_SESSION['messages'] : array();
-        unset($_SESSION['messages']);
     }
 
     public function isLoggedIn(): bool
@@ -43,6 +41,7 @@ class Session
 
     public function getMessages()
     {
+        unset($_SESSION['messages']);
         return $this->messages;
     }
 
