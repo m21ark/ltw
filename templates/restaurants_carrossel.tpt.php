@@ -25,7 +25,7 @@ function drawRestaurantsCarrossel(PDO $db, array $restaurants, bool $showNav = t
                     <div class="card_item">
                         <div class="card_face_front">
                             <p><?= $restaurant->name ?></p>
-                            <img src="docs/restaurant/<?= $restaurant->id ?>.jpg" width="200" height="154" alt="pizza">
+                            <img src="../docs/restaurant/<?= $restaurant->id ?>.jpg" width="200" height="154" alt="pizza">
                             <p><?= $restaurant->getMediumScore($db) ?>/5 &star;</p>
                         </div>
 

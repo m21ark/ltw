@@ -48,7 +48,7 @@ $session = new Session();
                 <?= $restaurant->description; ?>
             </p>
         </div>
-        <img src="docs/restaurant/<?= $restaurant->id ?>.jpg" alt="">
+        <img src="../docs/restaurant/<?= $restaurant->id ?>.jpg" alt="">
         <div id="rest_links">
             <?php if ($isOwner) { ?><a class="link_button" href="edit_restaurant.php?id=<?= $restaurant->id ?>">Edit Restaurant</a><?php } ?>
             <a class="link_button add_to_favorites" href="#">Add to favorites &star;</a>
@@ -122,7 +122,7 @@ $session = new Session();
             <?php } ?>
         </div>
         <div>
-            <img src="docs/pizza.jpg" alt="">
+            <img src="../docs/pizza.jpg" alt="">
             <p class="review_score"><?= $review->score ?>/5 &star;</p>
         </div>
     </article>

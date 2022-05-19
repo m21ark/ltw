@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require_once("database/connection.php");
+require_once(__DIR__ . "/../database/connection.php");
 
 
 function drawPlatesCarrossel(array $plates, bool $showNav = true)
@@ -24,7 +24,7 @@ function drawPlatesCarrossel(array $plates, bool $showNav = true)
                     <div class="card_item">
                         <div class="card_face_front">
                             <p><?= $dish->name ?></p>
-                            <img src="docs/food/<?= $dish->id ?>.jpg" width="200" height="154" alt="pizza">
+                            <img src="../docs/food/<?= $dish->id ?>.jpg" width="200" height="154" alt="pizza">
                             <p><?= $dish->price . "€" ?></p>
                         </div>
 

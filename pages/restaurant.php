@@ -1,17 +1,15 @@
 <?php
-require_once(__DIR__ . "/templates/common.tpt.php");
-require_once(__DIR__ . "/templates/plates_carrossel.tpt.php");
-require_once(__DIR__ . "/templates/restaurant.tpt.php");
-
-require_once(__DIR__ . "/database/connection.php");
-require_once(__DIR__ . "/database/restaurant.class.php");
-
+require_once(__DIR__ . "/../templates/common.tpt.php");
+require_once(__DIR__ . "/../templates/plates_carrossel.tpt.php");
+require_once(__DIR__ . "/../templates/restaurant.tpt.php");
+require_once(__DIR__ . "/../database/connection.php");
+require_once(__DIR__ . "/../database/restaurant.class.php");
 
 if (!isset($_GET['id'])) {
     die(header('Location: /'));
 }
 
-require_once(__DIR__ . '/utils/session.php');
+require_once(__DIR__ . '/../utils/session.php');
 $session = new Session();
 if ($session->isLoggedIn())
     $user = unserialize($session->getUserSerialized());

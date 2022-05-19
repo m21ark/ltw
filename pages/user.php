@@ -2,21 +2,19 @@
 
 declare(strict_types=1);
 
-require_once(__DIR__ . "/../database/Users/user_composite.class.php");
+include_once(__DIR__ . "/../templates/common.tpt.php");
+include_once(__DIR__ . "/../templates/login.tpt.php");
 require_once(__DIR__ . "/../database/connection.php");
 
 // Restricts access to logged in users
 require_once(__DIR__ . '/../utils/session.php');
 $session = new Session();
-if (!$session->isLoggedIn()){
+if (!$session->isLoggedIn()) {
     $session->addMessage('erro', 'Login required. Redirected to main page');
     die(header('Location: /'));
 }
 
-$db = getDatabaseConnection();
 
-$stmt = $db->prepare("INSERT INTO Response  VALUES (?,  ?) ");
-
-$session->addMessage('sucesso', 'Response was added');
-
-$stmt->execute(array($_POST['id'], $_POST['comment']));
+output_header();
+drawUserInfoPage($session->getUser());
+output_footer();

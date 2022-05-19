@@ -15,29 +15,29 @@ function output_header()
     <head>
         <meta charset="UTF-8">
         <title>Tasty Eats</title>
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/responsive.css">
-        <link rel="stylesheet" href="css/cart.css">
-        <link rel="stylesheet" href="css/forms.css">
-        <link rel="stylesheet" href="css/plate.css">
-        <link rel="stylesheet" href="css/restaurant.css">
-        <link rel="stylesheet" href="css/user.css">
-        <link rel="stylesheet" href="css/perfil_infos.css">
-        <link rel="stylesheet" href="css/card_flip.css">
-        <link rel="stylesheet" href="css/kanban_board.css">
-        <script src="events/increment_decrement_order.js" defer></script>
-        <script src="events/toggle_favorites.js" defer></script>
-        <script src="events/kanban_board.js" defer></script>
-        <script src="events/Notification/notification_handler.js" defer></script>
-        <script src="events/respond_to_client.event.js" defer></script>
-        <script src="events/remove_notifications.event.js" defer></script>
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/responsive.css">
+        <link rel="stylesheet" href="../css/cart.css">
+        <link rel="stylesheet" href="../css/forms.css">
+        <link rel="stylesheet" href="../css/plate.css">
+        <link rel="stylesheet" href="../css/restaurant.css">
+        <link rel="stylesheet" href="../css/user.css">
+        <link rel="stylesheet" href="../css/perfil_infos.css">
+        <link rel="stylesheet" href="../css/card_flip.css">
+        <link rel="stylesheet" href="../css/kanban_board.css">
+        <script src="../events/increment_decrement_order.js" defer></script>
+        <script src="../events/toggle_favorites.js" defer></script>
+        <script src="../events/kanban_board.js" defer></script>
+        <script src="../events/Notification/notification_handler.js" defer></script>
+        <script src="../events/respond_to_client.event.js" defer></script>
+        <script src="../events/remove_notifications.event.js" defer></script>
         <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=5.0, minimum-scale=0.5">
     </head>
 
     <body>
 
         <header>
-            <a href="index.php"><img src="docs/logo.jpg" width="50" height="50" alt="logo"></a>
+            <a href="index.php"><img src="../docs/logo.jpg" width="50" height="50" alt="logo"></a>
             <h1 id="logo_name"><a href="index.php">Tasty Eats</a></h1>
             <span><a id="header_search" href="index.php">&#128270;</a></span>
 
@@ -50,7 +50,7 @@ function output_header()
                 $user = unserialize($_SESSION['user']); // TODO ::: THE LOGO MUST CORRESPOND TO THE SESSION
             ?>
                 <span><a id="header_cart" href="cart.php">&#x1f6d2;</a></span>
-                <a id="header_avatar" href="user.php"><img src="docs/users/<?= $user->permissions[0]->id ?>.jpg" alt="logo"></a>
+                <a id="header_avatar" href="user.php"><img src="../docs/users/<?= $user->permissions[0]->id ?>.jpg" alt="logo"></a>
             <?php } ?>
         </header>
 
@@ -118,7 +118,7 @@ function output_header()
                     Password <input type="password" required placeholder="Password" name="password">
                 </label>
 
-                <button class="form_button" formaction="actions/action_login.php" formmethod="post">Login</button>
+                <button class="form_button" formaction="../actions/action_login.php" formmethod="post">Login</button>
             </form>
             <div class="form_alternative">
                 <p><span class="bold">Don't have an account?</span></p>
@@ -158,7 +158,7 @@ function output_header()
                     <label>
                         Password <input type="password" placeholder="Password" name="password" required>
                     </label>
-                    <button class="form_button" formaction="actions/action_register.php" formmethod="post">Register</button>
+                    <button class="form_button" formaction="../actions/action_register.php" formmethod="post">Register</button>
                 </div>
                 <input style="visibility: hidden;margin:0;padding: 0;height: 0;">
                 <!--- STYLE Não pode estar aqui--->
@@ -181,7 +181,7 @@ function output_header()
     <div id="user_info">
         <section class="container">
 
-            <form class="edit_profile" action="actions/action_edit_user.php" method="post" enctype="multipart/form-data">
+            <form class="edit_profile" action="../actions/action_edit_user.php" method="post" enctype="multipart/form-data">
                 <h2>Edit Profile</h2>
 
                 <div>
@@ -199,11 +199,7 @@ function output_header()
                         Phone Number <input class="custom_input" type="text" placeholder="Phone Number" name="phone" required value="<?= $user->phone  ?>">
                     </label>
                     <label>
-                        Old Password <input class="custom_input" type="password" placeholder="Old Password" name="old_password" required>
-                    </label>
-
-                    <label>
-                        New Password <input class="custom_input" type="password" placeholder="New Password" name="new_password" required>
+                        Password <input class="custom_input" type="password" placeholder="Password" name="new_password" required>
                     </label>
 
                     <label for="image">Profile Image</label>
@@ -213,7 +209,7 @@ function output_header()
 
                 <div id="edit_profile_options">
                     <input class="link_button" type="submit" value="Apply Changes">
-                    <a class="link_button" href="actions/action_delete_user.php">Delete Account</a>
+                    <a class="link_button" href="../actions/action_delete_user.php">Delete Account</a>
                 </div>
             </form>
 
@@ -239,7 +235,7 @@ function output_header()
 
             <div class="container">
                 <a href="plate.php?id=<?= $dishID ?>" class="container_name"><?= $dish->name ?></a>
-                <img src=<?= "docs/food/" . $dishID . ".jpg" ?> alt=<?= $dish->name ?>>
+                <img src=<?= "../docs/food/" . $dishID . ".jpg" ?> alt=<?= $dish->name ?>>
                 <p class="container_price"><?= $dish->price ?>$</p>
 
                 <div class="cart_qnt_arrows">
@@ -248,7 +244,7 @@ function output_header()
                     <span class="input-number-increment">+</span>
                 </div>
 
-                <button type="text" formaction="actions/action_remove_from_cart.php" formmethod="POST" name="id" value=<?= $dishID ?>>
+                <button type="text" formaction="../actions/action_remove_from_cart.php" formmethod="POST" name="id" value=<?= $dishID ?>>
                     <p class="container_delete">&#128465;</p>
                 </button>
 
@@ -295,7 +291,7 @@ function output_header()
         <?php } ?>
         <div id="plate_left">
             <h2><?= $dish->name ?></h2>
-            <img src="docs/food/<?= $dish->id ?>.jpg" alt="">
+            <img src="../docs/food/<?= $dish->id ?>.jpg" alt="">
             <p><?= $dish->price ?> €</p>
         </div>
 
@@ -312,7 +308,7 @@ function output_header()
 
         </div>
 
-        <form action="../actions/action_add_to_cart.php" method="post">
+        <form action="../../actions/action_add_to_cart.php" method="post">
             <input type="hidden" id="id" name="id" value="<?= $_GET["id"] ?>">
             <input type="submit" class="link_button" value="Buy  &#x1f6d2;">
         </form>
@@ -335,7 +331,7 @@ function output_header()
 { ?>
     <article id="plate_page" class="container" style="display: block;">
         <h2><?= $edit ? "Edit" : "Add" ?> Plate</h2>
-        <form class="edit_form" action="actions/<?= $edit ? 'action_edit_plate.php' : 'action_add_plate.php' ?>" method="post" enctype="multipart/form-data">
+        <form class="edit_form" action="../actions/<?= $edit ? 'action_edit_plate.php' : 'action_add_plate.php' ?>" method="post" enctype="multipart/form-data">
 
 
             <label for="p_name">Plate Name</label>
@@ -351,7 +347,7 @@ function output_header()
             <input class="custom_input" type="file" name="image" accept="image/png,image/jpeg" <?= $edit ? null : 'required' ?>>
 
             <?php if ($edit) { ?>
-                <img src="docs/food/<?= $dish->id ?>.jpg" alt="Plate Picture">
+                <img src="../docs/food/<?= $dish->id ?>.jpg" alt="Plate Picture">
             <?php } ?>
 
             <label for="description">Description</label>
@@ -369,7 +365,7 @@ function output_header()
             <input class="link_button" type="submit" value="Publish">
 
             <?php if ($edit) { ?>
-                <a class="link_button" id="del_dish" href="actions/action_delete_plate.php?pid=<?= $dish->id ?>&rest_id=<?= $restaurantID ?>">Delete</a>
+                <a class="link_button" id="del_dish" href="../actions/action_delete_plate.php?pid=<?= $dish->id ?>&rest_id=<?= $restaurantID ?>">Delete</a>
             <?php } ?>
 
         </form>
@@ -381,7 +377,7 @@ function output_header()
 { ?>
     <article id="plate_page" class="container" style="display: block;">
         <h2><?= $edit ? "Edit" : "Create" ?> Restaurant</h2>
-        <form class="edit_form" action="actions/<?= $edit ? 'action_edit_rest.php' : 'action_add_rest.php' ?>" method="post" enctype="multipart/form-data">
+        <form class="edit_form" action="../actions/<?= $edit ? 'action_edit_rest.php' : 'action_add_rest.php' ?>" method="post" enctype="multipart/form-data">
 
             <label for="name">Restaurant Name</label>
             <input class="custom_input" type="text" name="name" required value="<?= $edit ? $restaurant->name : null ?>">
@@ -399,7 +395,7 @@ function output_header()
             <input class="custom_input" type="file" name="image" accept="image/png,image/jpeg" <?= $edit ? null : 'required' ?>>
 
             <?php if ($edit) { ?>
-                <img src="docs/restaurant/<?= $restaurant->id ?>.jpg" alt="Restaurant Picture">
+                <img src="../docs/restaurant/<?= $restaurant->id ?>.jpg" alt="Restaurant Picture">
             <?php } ?>
 
             <label for="description">Description</label>
@@ -411,16 +407,12 @@ function output_header()
 
             <?php if ($edit) { ?>
                 <input type="hidden" name="rID" value=<?= $restaurant->id ?>>
-                <a class="link_button" id="del_dish" href="actions/action_delete_rest.php?rID=<?= $restaurant->id ?>">Delete</a>
+                <a class="link_button" id="del_dish" href="../actions/action_delete_rest.php?rID=<?= $restaurant->id ?>">Delete</a>
             <?php } ?>
 
         </form>
     </article>
 <?php } ?>
-
-
-
-
 
 
 
@@ -431,7 +423,7 @@ function drawUserInfoPage(UserComposite $user)
         <section class="container">
             <h2>User</h2>
             <div id="info_display">
-                <img id="user_photo" src="docs/users/<?= $user->permissions[0]->id ?>.jpg" width="200" height="200" alt="logo">
+                <img id="user_photo" src="../docs/users/<?= $user->permissions[0]->id ?>.jpg" width="200" height="200" alt="logo">
                 <h3><?= $user->permissions[0]->username ?></h3>
                 <p><span class="bold">Username:</span> <?= $user->permissions[0]->username ?></p>
                 <p><span class="bold">Adress:</span> <?= $user->permissions[0]->address ?></p>
@@ -449,7 +441,7 @@ function drawUserInfoPage(UserComposite $user)
                 <?php } ?>
             </div>
             <a href="edit_profile.php?<?= $user->permissions[0]->id ?>" id="edit_account">Edit account details</a>
-            <a href="../actions/action_logout.php" id="logout">Logout &times;</a>
+            <a href="../../actions/action_logout.php" id="logout">Logout &times;</a>
         </section>
     </div>
 
@@ -462,7 +454,7 @@ function drawUserInfoPage(UserComposite $user)
 
     <section id="review">
         <div class="container sign_form">
-            <form action="../actions/action_make_review.php" method="post">
+            <form action="../../actions/action_make_review.php" method="post">
                 <h2>Review</h2>
                 <label>
                     Write your review <textarea name="review" style="resize: none;" cols="30" rows="16"></textarea>
