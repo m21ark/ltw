@@ -8,7 +8,10 @@ require_once(__DIR__ . "/database/restaurant.class.php");
 // Restricts access to logged in users
 require_once(__DIR__ . '/utils/session.php');
 $session = new Session();
-if (!$session->isLoggedIn()) die(header('Location: /'));
+if (!$session->isLoggedIn()){
+    $session->addMessage('erro', 'Login required. Redirected to main page');
+    die(header('Location: /'));
+}
 
 $user = $session->getUser();
 
@@ -39,8 +42,10 @@ if ($_GET['id'] == 0) {
 
 $restaurant = Restaurant::getRestaurant($db, $_GET['id']);
 
-if ($restaurant === null)
+if ($restaurant === null){
+    $session->addMessage('erro', 'Ownership required to make changes');
     die(header('Location: /'));
+}
 
 output_header();
 drawRestEdit($restaurant, $uid, true);

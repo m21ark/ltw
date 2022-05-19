@@ -15,8 +15,11 @@ $db = getDatabaseConnection();
 $user = new UserComposite();
 
 // register error and go back with the information
-if (User::userExists($db, $_POST['email']))
+if (User::userExists($db, $_POST['email'])){
+    $session->addMessage('erro', 'Email already being used');
     die(header('location: ' . $_SERVER['HTTP_REFERER']));
+}
+
 
 User::saveUser($db, $_POST['username'], $_POST['password'], $_POST['address'], $_POST['phone'], $_POST['email']);
 
