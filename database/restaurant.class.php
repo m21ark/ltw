@@ -254,4 +254,32 @@ class Restaurant
 
         return (float)number_format((float)$medium / (float)$count, 2, '.', '');
     }
+
+    static function getRestaurantOrders(PDO $db, int $res) :array{
+        $stmt = $db->prepare('
+            SELECT *
+            FROM "Order"
+            WHERE RestaurantID = ?
+        ');
+
+        $stmt->execute(array($res));
+
+        $orders = array();
+
+        $arr = $stmt->fetchAll();
+
+        foreach ($arr as $order) {
+            array_push($orders, new Order(
+                (int)$order['OrderID'], // does the array returned from the querie is always a string ?
+                (int)$order['CustomerID'],
+                (int)$order['OrderStateID'],
+                (int)$order['RestaurantID'],
+                (int)$order['CourierID'],
+                $order['DateOrder']
+            ));
+        }
+         return $orders;
+    }
 }
+
+

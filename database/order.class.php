@@ -16,7 +16,33 @@ class OrderStatus
 class Order
 {
     public int $id;
-    public User $user;
-    public OrderStatus $order_state;
-    public Restaurant $restaurant;
+    public int $user;
+    public int $order_state;
+    public int $restaurant;
+    public int $courier;
+    public DateTime $date;
+
+    public function __construct(int $id, int $user, int $order_state, int $restaurant, int $courier, string $date)
+    {
+        $this->id = $id;
+        $this->user = $user;
+        $this->order_state = $order_state;
+        $this->restaurant = $restaurant;
+        $this->courier = $courier;
+        $this->date = new DateTime($date);
+    }
+
+    function getOrderDishes(PDO $db) : array {
+        $stmt = $db->prepare('
+            SELECT DishID, count(OrderID) as Qnt
+            FROM DishOrder
+            WHERE OrderID = ?
+            Group by DishID
+        ');
+
+        $stmt->execute(array($this->id));
+
+        return $stmt->fetchAll();
+    } 
+
 }

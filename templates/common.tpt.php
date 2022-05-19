@@ -24,8 +24,10 @@ function output_header()
         <link rel="stylesheet" href="css/user.css">
         <link rel="stylesheet" href="css/perfil_infos.css">
         <link rel="stylesheet" href="css/card_flip.css">
+        <link rel="stylesheet" href="css/kanban_board.css">
         <script src="events/increment_decrement_order.js" defer></script>
         <script src="events/toggle_favorites.js" defer></script>
+        <script src="events/kanban_board.js" defer></script>
         <script src="events/Notification/notification_handler.js" defer></script>
         <script src="events/respond_to_client.event.js" defer></script>
         <script src="events/remove_notifications.event.js" defer></script>
@@ -436,12 +438,12 @@ function drawUserInfoPage(UserComposite $user)
                 <p><span class="bold">Email:</span> <?= $user->permissions[0]->email ?></p>
 
                 <?php if ($user->hasPermission("Customer") !== null) { ?>
-                    <p><a href="perfil_info.php"><span class="bold">Favorites &star;</span></a></p>
+                    <p><a href="perfil_info.php?type=fav"><span class="bold">Favorites &star;</span></a></p>
                 <?php } else { ?>
                     <p><a href=""><span class="bold">Become a Costumer</span></a></p>
                 <?php } ?>
                 <?php if ($user->hasPermission("RestaurantOwner") !== null) { ?>
-                    <p><a href="perfil_info.php"><span class="bold">TODO: Restaurant owner Page &#9749;</span></a></p>
+                    <p><a href="perfil_info.php?type=res"><span class="bold">Restaurant owner Page &#9749;</span></a></p>
                 <?php } else { ?>
                     <p><a href="edit_restaurant.php?id=0"><span class="bold">Add your Restaurant &#9749;</span></a></p>
                 <?php } ?>
