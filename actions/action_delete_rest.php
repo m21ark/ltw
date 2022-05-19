@@ -32,4 +32,7 @@ $originalFileName = "../docs/restaurant/$restID.jpg";
 
 unlink($originalFileName);
 
+
+$session->addMessage('sucesso', 'Restaurant was removed');
+
 die(header("Location: ../index.php"));

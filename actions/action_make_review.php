@@ -21,5 +21,7 @@ $stmt = $db->prepare("INSERT INTO Review
 
 $stmt->execute(array($_POST['rating'], $_POST['review'],  date('Y/m/d', time()), $_POST['id'], $user->permissions[0]->id));
 
+$session->addMessage('sucesso', 'Your review was published');
+
 header("Location: ../restaurant.php?id=" . $_POST['id']);
 die();

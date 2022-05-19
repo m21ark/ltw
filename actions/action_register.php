@@ -27,4 +27,6 @@ Customer::addCostumer($db, $_POST['email']);
 $user = ConcreteUserFactory::getUserAccordingToType($db, (string)$_POST["email"], $_POST["password"]);
 $session->setUser($user);
 
+$session->addMessage('sucesso', 'Your account was created. Welcome to our site!');
+
 header('Location: ../user.php');
