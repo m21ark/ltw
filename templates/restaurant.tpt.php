@@ -2,7 +2,9 @@
 require_once(__DIR__ . '/../database/Users/concrete_user_factory.class.php');
 require_once(__DIR__ . '/../database/restaurant.class.php');
 require_once(__DIR__ . '/../database/connection.php');
-session_start(); 
+
+require_once(__DIR__ . '/../utils/session.php');
+$session = new Session();
 
 ?>
 
@@ -14,7 +16,6 @@ session_start();
     <section id="presentation">
         <div>
             <h1><?= $restaurant->name ?></h1>
-            <!--http://maps.google.com/maps?daddr=Rua das Amoreiras, Lisboa-->
             <p>Adress:
                 <a href=<?= "https://www.google.com/maps?daddr=" . str_replace(' ', '%20', $restaurant->address) ?> target="#">
                     <?= $restaurant->address ?>
@@ -49,9 +50,9 @@ session_start();
         </div>
         <img src="docs/restaurant/<?= $restaurant->id ?>.jpg" alt="">
         <div id="rest_links">
-            <?php if ($isOwner){?><a class="link_button" href="edit_restaurant.php?id=<?= $restaurant->id ?>">Edit Restaurant</a><?php }?>
+            <?php if ($isOwner) { ?><a class="link_button" href="edit_restaurant.php?id=<?= $restaurant->id ?>">Edit Restaurant</a><?php } ?>
             <a class="link_button add_to_favorites" href="#">Add to favorites &star;</a>
-            <?php if ($isOwner){?><a class="link_button" href="edit_plate.php?pid=0&restId=<?= $restaurant->id ?>">Add Plate</a><?php } ?>
+            <?php if ($isOwner) { ?><a class="link_button" href="edit_plate.php?pid=0&restId=<?= $restaurant->id ?>">Add Plate</a><?php } ?>
         </div>
     </section>
 
@@ -93,7 +94,8 @@ session_start();
 
 
 <?php function drawRestaurantReview(Review $review, string $reviewer, bool $isOwner)
-{ $db = getDatabaseConnection(); ?>
+{
+    $db = getDatabaseConnection(); ?>
 
     <article class="rest_review container">
         <div>
@@ -106,16 +108,16 @@ session_start();
             </p>
             <?php if ($review->getResponse($db) !== null) {
             ?>
-            <p class="response_text">
-                <?=$review->getResponse($db);?> 
-                ✔
-            </p>
+                <p class="response_text">
+                    <?= $review->getResponse($db); ?>
+                    ✔
+                </p>
             <?php } else if ($isOwner) { ?>
                 <div class="response_form">
                     <label for="owner_response">Respond to Client:</label>
                     <textarea id="owner_response" name="Owner_response" rows="1" cols="30">
                     </textarea>
-                    <button class="respond_button" value=<?=$review->id?>>Respond</button>
+                    <button class="respond_button" value=<?= $review->id ?>>Respond</button>
                 </div>
             <?php } ?>
         </div>

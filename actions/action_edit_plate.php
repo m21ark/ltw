@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-session_start();
-
-if ($_SESSION['user'] == null) die(header('Location: /'));
-
 require_once(__DIR__ . "/../database/Users/user_composite.class.php");
 require_once(__DIR__ . "/../database/connection.php");
 
-$user = unserialize($_SESSION['user']);
+// Restricts access to logged in users
+require_once(__DIR__ . '/../utils/session.php');
+$session = new Session();
+if (!$session->isLoggedIn()) die(header('Location: /'));
+
 
 $db = getDatabaseConnection();
 
@@ -43,7 +43,6 @@ $stmt = $db->prepare("INSERT INTO Menu
 ");
 $stmt->execute(array($_POST['restID'], $plateID));
 
-
 // _________________________________Add Ingredients_________________________________
 
 $stmt = $db->prepare("DELETE FROM DishIngredients WHERE DishID=?");
@@ -72,8 +71,10 @@ $originalFileName = "../docs/food/$plateID.jpg";
 
 if (!$noNewImage) {
 	unlink($originalFileName);
-
 	move_uploaded_file($_FILES['image']['tmp_name'], $originalFileName);
 }
+
+
+$session->addMessage('info', 'Plate info was updated');
 
 die(header("Location: ../plate.php?id=" . $plateID));

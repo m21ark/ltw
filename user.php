@@ -1,17 +1,16 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
-session_start();
-
-if ($_SESSION['user'] == null) die(header('Location: /')); // TODO: MENSSAGE ERROR OR SOMETHING 
+// Restricts access to logged in users
+require_once(__DIR__ . '/utils/session.php');
+$session = new Session();
+if (!$session->isLoggedIn()) die(header('Location: /'));
 
 include_once("templates/common.tpt.php");
 include_once("templates/login.tpt.php");
 require_once("database/connection.php");
 
-$user = unserialize($_SESSION['user']);
-
 output_header();
-drawUserInfoPage($user);
+drawUserInfoPage($session->getUser());
 output_footer();

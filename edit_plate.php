@@ -2,14 +2,13 @@
 include_once("templates/common.tpt.php");
 require_once("database/connection.php");
 
-session_start();
-if ($_SESSION['user'] == null) die(header('Location: /'));
+// Restricts access to logged in users
+require_once(__DIR__ . '/utils/session.php');
+$session = new Session();
+if (!$session->isLoggedIn()) die(header('Location: /'));
 
-$user = unserialize($_SESSION['user']);
-
-if (!isset($_GET['pid'])) {
+if (!isset($_GET['pid']))
     die(header('Location: /'));
-}
 
 
 $db = getDatabaseConnection();
@@ -31,10 +30,8 @@ if ($_GET['pid'] == 0) {
     die();
 }
 
-
 if ($dish === null)
     die(header('Location: /'));
-
 
 $ingredients = $dish->getIngredients($db);
 

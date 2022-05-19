@@ -5,7 +5,6 @@ declare(strict_types=1);
 require_once("database/connection.php");
 
 
-
 function drawPlatesCarrossel(array $plates, bool $showNav = true)
 {  // TODO ::: this is a repetition of the restaurant, maybe consider making a carrossel draw if possible
 ?>

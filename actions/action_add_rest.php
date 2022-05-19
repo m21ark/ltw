@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-session_start();
-
-if ($_SESSION['user'] == null) die(header('Location: /'));
-
 require_once(__DIR__ . "/../database/Users/user_composite.class.php");
 require_once(__DIR__ . "/../database/connection.php");
 
-$user = unserialize($_SESSION['user']);
+
+// Restricts access to logged in users
+require_once(__DIR__ . '/../utils/session.php');
+$session = new Session();
+if (!$session->isLoggedIn()) die(header('Location: /'));
+
 
 $db = getDatabaseConnection();
-
 
 $uid = 20; //Here It should be a verified owner id recieved by $_POST["uid"]
 
@@ -44,5 +44,7 @@ $originalFileName = "../docs/restaurant/$restID.jpg";
 unlink($originalFileName);
 
 move_uploaded_file($_FILES['image']['tmp_name'], $originalFileName);
+
+$session->addMessage('sucesso', 'Restaurant was added');
 
 die(header("Location: ../restaurant.php?id=" . $restID));

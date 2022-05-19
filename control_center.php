@@ -3,18 +3,18 @@ include_once("templates/common.tpt.php");
 require_once(__DIR__ . "/templates/kanban_board.tpt.php");
 require_once("database/connection.php");
 
-session_start();
+// Restricts access to logged in users
+require_once(__DIR__ . '/utils/session.php');
+$session = new Session();
+if (!$session->isLoggedIn()) die(header('Location: /'));
 
-if (!isset($_GET['id'])) {
+if (!isset($_GET['id']))
     die(header('Location: /'));
-}
 
-if (!isset($_SESSION['user']))
-    die(header('Location: /'));
 
-$user = unserialize($_SESSION['user']);
+$user = unserialize($session->getUserSerialized());
 
-$uid = $user->permissions[0]->id; 
+$uid = $user->permissions[0]->id;
 $restaurantID = $_GET['id'];
 $db = getDatabaseConnection();
 

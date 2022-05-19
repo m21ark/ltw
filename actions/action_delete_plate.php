@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-session_start();
-
-if ($_SESSION['user'] == null) die(header('Location: /'));
-
 require_once(__DIR__ . "/../database/Users/user_composite.class.php");
 require_once(__DIR__ . "/../database/connection.php");
 
-$user = unserialize($_SESSION['user']);
+// Restricts access to logged in users
+require_once(__DIR__ . '/../utils/session.php');
+$session = new Session();
+if (!$session->isLoggedIn()) die(header('Location: /'));
+
 
 $db = getDatabaseConnection();
 
@@ -33,5 +33,7 @@ $stmt->execute(array($plateID));
 $originalFileName = "../docs/food/$plateID.jpg";
 
 unlink($originalFileName);
+
+$session->addMessage('sucesso', 'Plate was removed');
 
 die(header("Location: ../restaurant.php?id=" . $_GET['rest_id']));

@@ -1,8 +1,10 @@
 <?php
 require_once(__DIR__ . '/../database/Users/concrete_user_factory.class.php');
 
-session_start();
-$user = unserialize($_SESSION['user']);
+require_once(__DIR__ . '/../utils/session.php');
+$session = new Session();
+if ($session->isLoggedIn())
+    $user = unserialize($session->getUserSerialized());
 
 function output_header()
 { ?>
@@ -28,6 +30,7 @@ function output_header()
         <script src="events/kanban_board.js" defer></script>
         <script src="events/Notification/notification_handler.js" defer></script>
         <script src="events/respond_to_client.event.js" defer></script>
+        <script src="events/remove_notifications.event.js" defer></script>
         <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=5.0, minimum-scale=0.5">
     </head>
 
@@ -69,13 +72,21 @@ function output_header()
 
 
         <main>
+            <section id="session_messages">
+                <?php
+                $session = new Session();
+                foreach ($session->getMessages() as $messsage) { ?>
+                    <article class="<?= $messsage['type'] ?>">
+                        <p><?= $messsage['text'] ?></p>
+                    </article>
+                <?php } ?>
+            </section>
+
 
         <?php } ?>
 
 
-        <?php
-
-        function output_footer()
+        <?php function output_footer()
         { ?>
 
         </main>
@@ -106,13 +117,6 @@ function output_header()
                 <label>
                     Password <input type="password" required placeholder="Password" name="password">
                 </label>
-
-                <?php if (isset($_GET["error"])) {
-                    echo "  <h4>
-                        Username and password dont match!
-                    </h4>";
-                }
-                ?>
 
                 <button class="form_button" formaction="actions/action_login.php" formmethod="post">Login</button>
             </form>
@@ -284,11 +288,11 @@ function output_header()
 
     <article id="plate_page" class="container">
         <h2>Plate page</h2>
-        <?php if ($isOwner) {?>
-        <a href="edit_plate.php?pid=<?= $dish->id ?>">
-            <h3>(Edit Plate)</h3>
-        </a>
-        <?php }?>
+        <?php if ($isOwner) { ?>
+            <a href="edit_plate.php?pid=<?= $dish->id ?>">
+                <h3>(Edit Plate)</h3>
+            </a>
+        <?php } ?>
         <div id="plate_left">
             <h2><?= $dish->name ?></h2>
             <img src="docs/food/<?= $dish->id ?>.jpg" alt="">

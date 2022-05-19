@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-session_start();
-
-if ($_SESSION['user'] == null) die(header('Location: /'));
-
 require_once(__DIR__ . "/../database/Users/user_composite.class.php");
 require_once(__DIR__ . "/../database/connection.php");
 
-$user = unserialize($_SESSION['user']);
+// Restricts access to logged in users
+require_once(__DIR__ . '/../utils/session.php');
+$session = new Session();
+if (!$session->isLoggedIn()) die(header('Location: /'));
 
 $db = getDatabaseConnection();
 
@@ -17,6 +16,7 @@ $ings = $_POST['ingredients'];
 $ings = explode(',', $ings);
 
 // _________________________________add to dishes_________________________________
+
 
 $stmt = $db->prepare("INSERT INTO Dish
     VALUES (NULL, ?,  ?, ?, ?)
@@ -26,8 +26,6 @@ $stmt->execute(array($_POST['p_name'], $_POST['price'], $_POST['category'], $_PO
 
 $plateID = $db->lastInsertId();
 
-
-
 // _________________________________add to Restaurant Menu_________________________________
 
 $stmt = $db->prepare("INSERT INTO Menu 
@@ -36,9 +34,7 @@ $stmt = $db->prepare("INSERT INTO Menu
 
 $stmt->execute(array($_POST['restID'], $plateID));
 
-
 // _________________________________Add Ingredients_________________________________
-
 
 foreach ($ings as $ing) {
 
@@ -59,11 +55,12 @@ foreach ($ings as $ing) {
 
 // _________________________________Add Image_________________________________
 
-
 $originalFileName = "../docs/food/$plateID.jpg";
 
 unlink($originalFileName);
 
 move_uploaded_file($_FILES['image']['tmp_name'], $originalFileName);
+
+$session->addMessage('sucesso', 'Plate was added');
 
 die(header("Location: ../plate.php?id=" . $plateID));
