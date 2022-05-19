@@ -74,4 +74,7 @@ if (!$noNewImage) {
 	move_uploaded_file($_FILES['image']['tmp_name'], $originalFileName);
 }
 
+
+$session->addMessage('info', 'Plate info was updated');
+
 die(header("Location: ../plate.php?id=" . $plateID));

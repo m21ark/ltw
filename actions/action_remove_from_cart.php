@@ -23,4 +23,6 @@ $customer->deleteFromCart((int)$_POST['id']);
 
 $_SESSION['user'] = serialize($user);
 
+$session->addMessage('info', 'Item was removed from cart');
+
 die(header('Location: ' . $_SERVER['HTTP_REFERER']));

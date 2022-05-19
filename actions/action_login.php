@@ -15,9 +15,9 @@ $user = ConcreteUserFactory::getUserAccordingToType($db, (string)$_POST["email"]
 
 if ($user !== null) {
     $session->setUser($user);
-    $session->addMessage('success', 'Login successful!');
+    $session->addMessage('sucesso', 'Login successful!');
+    die(header('Location: ' . '../index.php'));
 } else
-    $session->addMessage('error', 'Wrong password!');
-
+    $session->addMessage('erro', 'Wrong password!');
 
 die(header('Location: ' . $_SERVER['HTTP_REFERER']));

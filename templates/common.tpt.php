@@ -28,6 +28,7 @@ function output_header()
         <script src="events/toggle_favorites.js" defer></script>
         <script src="events/Notification/notification_handler.js" defer></script>
         <script src="events/respond_to_client.event.js" defer></script>
+        <script src="events/remove_notifications.event.js" defer></script>
         <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=5.0, minimum-scale=0.5">
     </head>
 
@@ -69,6 +70,16 @@ function output_header()
 
 
         <main>
+            <section id="session_messages">
+                <?php
+                $session = new Session();
+                foreach ($session->getMessages() as $messsage) { ?>
+                    <article class="<?= $messsage['type'] ?>">
+                        <p><?= $messsage['text'] ?></p>
+                    </article>
+                <?php } ?>
+            </section>
+
 
         <?php } ?>
 
@@ -104,8 +115,6 @@ function output_header()
                 <label>
                     Password <input type="password" required placeholder="Password" name="password">
                 </label>
-
-                <?php drawUserMessages(); ?>
 
                 <button class="form_button" formaction="actions/action_login.php" formmethod="post">Login</button>
             </form>
@@ -500,21 +509,5 @@ function drawUserInfoPage(UserComposite $user)
         drawRestaurantsCarrossel($db, $restaurants, false);
         ?>
     </form>
-
-<?php } ?>
-
-
-
-<?php function drawUserMessages()
-{
-    $session = new Session();
-?>
-    <section id="messages">
-        <?php foreach ($session->getMessages() as $messsage) { ?>
-            <article class="<?= $messsage['type'] ?>">
-                <?= $messsage['text'] ?>
-            </article>
-        <?php } ?>
-    </section>
 
 <?php } ?>

@@ -14,4 +14,7 @@ $db = getDatabaseConnection();
 
 $stmt = $db->prepare("INSERT INTO Response  VALUES (?,  ?) ");
 
+
+$session->addMessage('sucesso', 'Response was added');
+
 $stmt->execute(array($_POST['id'], $_POST['comment']));

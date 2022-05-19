@@ -18,4 +18,6 @@ $customer->addToCart((int)$_POST['id']);
 
 $_SESSION['user'] = serialize($user);
 
+$session->addMessage('info', 'Added item to cart');
+
 die(header('Location: ' . $_SERVER['HTTP_REFERER']));

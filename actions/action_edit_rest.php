@@ -38,4 +38,6 @@ if (!$noNewImage) {
 	move_uploaded_file($_FILES['image']['tmp_name'], $originalFileName);
 }
 
+$session->addMessage('info', 'Restaurant info was updated');
+
 die(header("Location: ../restaurant.php?id=" . $restID));

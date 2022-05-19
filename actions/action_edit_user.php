@@ -64,4 +64,6 @@ $session->setUser($user);
 
 //______________________________________________________________________________________________________________
 
+$session->addMessage('info', 'User settings were updated');
+
 die(header("Location: ../user.php?id=" . $user->permissions[0]->id));

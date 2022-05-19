@@ -34,4 +34,6 @@ $originalFileName = "../docs/food/$plateID.jpg";
 
 unlink($originalFileName);
 
+$session->addMessage('sucesso', 'Plate was removed');
+
 die(header("Location: ../restaurant.php?id=" . $_GET['rest_id']));
