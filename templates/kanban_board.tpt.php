@@ -14,9 +14,9 @@ function drawKanbanBoard(PDO $db, int $res)
             <?php foreach ($orders as $order) {
                 if ($order->order_state === OrderStatus::received) { ?>
                     <div class="kanban__items">
-                        <div class="kanban__item-input" draggable="true" data-id=<?= $order->id ?>>
+                        <div class="kanban__item-input" draggable="true" data-id=<?= htmlentities("$order->id") ?>>
                             <?php foreach ($order->getOrderDishes($db) as $dish) { ?>
-                                <p>Plate: <?= Dish::getDish($db, $dish['DishID'])->name ?> Quantity: <?= $dish['Qnt'] ?></p>
+                                <p>Plate: <?= htmlentities(Dish::getDish($db, $dish['DishID'])->name) ?> Quantity: <?= htmlentities($dish['Qnt']) ?></p>
                             <?php } ?>
                         </div>
                         <div class="kanban__dropzone"></div>
@@ -32,9 +32,9 @@ function drawKanbanBoard(PDO $db, int $res)
             <?php foreach ($orders as $order) {
                 if ($order->order_state === OrderStatus::preparing) { ?>
                     <div class="kanban__items">
-                        <div class="kanban__item-input" draggable="true" data-id=<?= $order->id ?>>
+                        <div class="kanban__item-input" draggable="true" data-id=<?= htmlentities("$order->id") ?>>
                             <?php foreach ($order->getOrderDishes($db) as $dish) { ?>
-                                <p>Plate: <?= Dish::getDish($db, $dish['DishID'])->name ?> Quantity: <?= $dish['Qnt'] ?></p>
+                                <p>Plate: <?= htmlentities(Dish::getDish($db, $dish['DishID'])->name) ?> Quantity: <?= htmlentities($dish['Qnt']) ?></p>
                             <?php } ?>
                         </div>
                         <div class="kanban__dropzone"></div>
@@ -51,9 +51,9 @@ function drawKanbanBoard(PDO $db, int $res)
             <?php foreach ($orders as $order) {
                 if ($order->order_state === OrderStatus::ready) { ?>
                     <div class="kanban__items">
-                        <div class="kanban__item-input" draggable="true" data-id=<?= $order->id ?>>
+                        <div class="kanban__item-input" draggable="true" data-id=<?= htmlentities("$order->id") ?>>
                             <?php foreach ($order->getOrderDishes($db) as $dish) { ?>
-                                <p>Plate: <?= Dish::getDish($db, $dish['DishID'])->name ?> Quantity: <?= $dish['Qnt'] ?></p>
+                                <p>Plate: <?= htmlentities(Dish::getDish($db, $dish['DishID'])->name) ?> Quantity: <?= htmlentities($dish['Qnt']) ?></p>
                             <?php } ?>
                         </div>
                         <div class="kanban__dropzone"></div>

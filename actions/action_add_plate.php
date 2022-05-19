@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+// $name = preg_replace ("/[^a-zA-Z\s]/", '', $_GET['name']); // remove caracteres indesejados
+
 require_once(__DIR__ . "/../database/Users/user_composite.class.php");
 require_once(__DIR__ . "/../database/connection.php");
 

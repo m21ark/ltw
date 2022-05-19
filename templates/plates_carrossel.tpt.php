@@ -20,12 +20,12 @@ function drawPlatesCarrossel(array $plates, bool $showNav = true)
 
         <div class="img_carrosel">
             <?php foreach ($plates as $dish) { ?>
-                <a href=<?= "plate.php?id=" . $dish->id ?>>
+                <a href=<?= "plate.php?id=" . urlencode("$dish->id") ?>>
                     <div class="card_item">
                         <div class="card_face_front">
-                            <p><?= $dish->name ?></p>
-                            <img src="../docs/food/<?= $dish->id ?>.jpg" width="200" height="154" alt="pizza">
-                            <p><?= $dish->price . "€" ?></p>
+                            <p><?= htmlentities("$dish->name") ?></p>
+                            <img src="../docs/food/<?= htmlentities("$dish->id") ?>.jpg" width="200" height="154" alt="pizza">
+                            <p><?= htmlentities("$dish->price") . "€" ?></p>
                         </div>
 
                         <div class="card_face_back">
@@ -33,7 +33,7 @@ function drawPlatesCarrossel(array $plates, bool $showNav = true)
                             $db = getDatabaseConnection();
                             $ingredients = $dish->getIngredients($db);
                             foreach ($ingredients as $ing) {  ?>
-                                <p>- <?= $ing['IngredientName'] ?></p>
+                                <p>- <?= htmlentities($ing['IngredientName']) ?></p>
                             <?php } ?>
 
 

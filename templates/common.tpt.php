@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__ . '/../database/Users/concrete_user_factory.class.php');
-
 require_once(__DIR__ . '/../utils/session.php');
+
 $session = new Session();
 if ($session->isLoggedIn())
     $user = unserialize($session->getUserSerialized());
@@ -9,12 +9,13 @@ if ($session->isLoggedIn())
 function output_header()
 { ?>
 
-    <!DOCTYPE html> <!-- Comment -->
+    <!DOCTYPE html>
     <html lang="en">
 
     <head>
         <meta charset="UTF-8">
         <title>Tasty Eats</title>
+
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/responsive.css">
         <link rel="stylesheet" href="../css/cart.css">
@@ -25,12 +26,14 @@ function output_header()
         <link rel="stylesheet" href="../css/perfil_infos.css">
         <link rel="stylesheet" href="../css/card_flip.css">
         <link rel="stylesheet" href="../css/kanban_board.css">
+
         <script src="../events/increment_decrement_order.js" defer></script>
         <script src="../events/toggle_favorites.js" defer></script>
         <script src="../events/kanban_board.js" defer></script>
         <script src="../events/Notification/notification_handler.js" defer></script>
         <script src="../events/respond_to_client.event.js" defer></script>
         <script src="../events/remove_notifications.event.js" defer></script>
+
         <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=5.0, minimum-scale=0.5">
     </head>
 
@@ -47,10 +50,10 @@ function output_header()
                     <a class="link_button" href="login.php">Login</a>
                 </div>
             <?php } else {
-                $user = unserialize($_SESSION['user']); // TODO ::: THE LOGO MUST CORRESPOND TO THE SESSION
+                $user = unserialize($_SESSION['user']);
             ?>
                 <span><a id="header_cart" href="cart.php">&#x1f6d2;</a></span>
-                <a id="header_avatar" href="user.php"><img src="../docs/users/<?= $user->permissions[0]->id ?>.jpg" alt="logo"></a>
+                <a id="header_avatar" href="user.php"><img src="../docs/users/<?= htmlentities($user->permissions[0]->id) ?>.jpg" alt="logo"></a>
             <?php } ?>
         </header>
 
@@ -60,12 +63,12 @@ function output_header()
             <label class="hamburger" for="hamburger"></label>
 
             <ul>
-                <li><a href="index.php">Italian</a></li>
-                <li><a href="index.php">Japanese</a></li>
-                <li><a href="index.php">Indian</a></li>
-                <li><a href="index.php">Portuguese</a></li>
-                <li><a href="index.php">Vietnamese</a></li>
-                <li><a href="index.php">Vegan</a></li>
+                <li><a href="index.php?q=italian">Italian</a></li>
+                <li><a href="index.php?q=japanese">Japanese</a></li>
+                <li><a href="index.php?q=indian">Indian</a></li>
+                <li><a href="index.php?q=portuguese">Portuguese</a></li>
+                <li><a href="index.php?q=vietnamese">Vietnamese</a></li>
+                <li><a href="index.php?q=vegan">Vegan</a></li>
             </ul>
         </nav>
 
