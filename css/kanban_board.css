@@ -33,6 +33,10 @@
 	user-select: text;
 }
 
+.kanban__item-input h4{
+	border-bottom: 2px solid grey;
+}
+
 .kanban__item-input {
 	box-sizing: border-box;
 	background: white;
@@ -43,14 +47,18 @@
 }
 
 .kanban__item-input p:nth-child(2n+2) {
-	border-bottom: 2px solid lightgray;
-	margin: 0.7em auto;
+	margin: 0.5em auto;
 	color: var(--title_color);
-	font-weight: bolder;
+	font-weight: bold;
 }
 
+.kanban__item-input p:nth-child(2n+1){
+	border-bottom: 2px solid lightgray;
+}
+
+
 .kanban__dropzone {
-	height: 1em;
+	height: 1.5em;
 	transition: all 0.15s, height 0.15s;
 	background: rgba(0, 0, 0, 0.1);
 }

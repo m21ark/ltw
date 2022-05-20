@@ -39,10 +39,14 @@ function kanban_col($db, $orders, $OrderStatus)
 { ?>
     <div class="kanban__column">
         <div class="kanban__column-title"><?= OrderStatus::status[$OrderStatus] ?></div>
+        <div class="kanban__items">
+            <div class="kanban__dropzone"></div>
+        </div>
         <?php foreach ($orders as $order) {
             if ($order->order_state === $OrderStatus) { ?>
                 <div class="kanban__items">
                     <div class="kanban__item-input" draggable="true" data-id=<?= htmlentities("$order->id") ?>>
+                        <h4>Order Nº: <?= $order->id ?></h4>
                         <?php foreach ($order->getOrderDishes($db) as $dish) { ?>
                             <p>Plate: <?= htmlentities(Dish::getDish($db, $dish['DishID'])->name) ?></p>
                             <p>Qnt: <?= htmlentities($dish['Qnt']) ?></p>
@@ -51,8 +55,5 @@ function kanban_col($db, $orders, $OrderStatus)
                 </div>
         <?php }
         } ?>
-        <div class="kanban__items">
-            <div class="kanban__dropzone"></div>
-        </div>
     </div>
 <?php }
