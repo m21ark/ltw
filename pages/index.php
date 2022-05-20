@@ -13,7 +13,11 @@ $dishes = Dish::getRandomDishes($db, 4);
 
 // maybe later we can set cokkies that determine the above res/dishes
 output_header();
-drawSearchScreen();
+drawSearchBox();
+
+if (isset($_GET['q']))
+    drawSearchResults($restaurants, $dishes);
+
 drawRestaurantsCarrossel($db, $restaurants);
 drawPlatesCarrossel($dishes);
 output_footer();
