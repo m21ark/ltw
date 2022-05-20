@@ -8,6 +8,7 @@ function drawKanbanBoardOwner(PDO $db, int $res)
 {
     $orders = Restaurant::getRestaurantOrders($db, (int)$res);
 ?>
+    <h1 class="kanbanH1">Control Board</h1>
     <div class="kanban">
         <?php
         kanban_col($db, $orders, OrderStatus::received);
@@ -22,6 +23,7 @@ function drawKanbanBoardCourier(PDO $db, int $res)
 {
     $orders = Restaurant::getRestaurantOrders($db, (int)$res);
 ?>
+    <h1 class="kanbanH1">Control Board</h1>
     <div class="kanban">
         <?php
         kanban_col($db, $orders, OrderStatus::ready);
@@ -42,7 +44,8 @@ function kanban_col($db, $orders, $OrderStatus)
                 <div class="kanban__items">
                     <div class="kanban__item-input" draggable="true" data-id=<?= htmlentities("$order->id") ?>>
                         <?php foreach ($order->getOrderDishes($db) as $dish) { ?>
-                            <p>Plate: <?= htmlentities(Dish::getDish($db, $dish['DishID'])->name) ?> Quantity: <?= htmlentities($dish['Qnt']) ?></p>
+                            <p>Plate: <?= htmlentities(Dish::getDish($db, $dish['DishID'])->name) ?></p>
+                            <p>Qnt: <?= htmlentities($dish['Qnt']) ?></p>
                         <?php } ?>
                     </div>
                     <div class="kanban__dropzone"></div>

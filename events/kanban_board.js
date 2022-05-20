@@ -5,6 +5,7 @@ function dragItem() {
     items.forEach(element => {
 
         element.addEventListener("dragstart", function (ev) {
+            
             ev.dataTransfer.setData("text/plain", element.getAttribute('data-id'));
         });
 
