@@ -48,7 +48,6 @@ function kanban_col($db, $orders, $OrderStatus)
                             <p>Qnt: <?= htmlentities($dish['Qnt']) ?></p>
                         <?php } ?>
                     </div>
-                    <div class="kanban__dropzone"></div>
                 </div>
         <?php }
         } ?>
