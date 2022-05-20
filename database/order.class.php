@@ -7,10 +7,12 @@ require_once(__DIR__ . "/Users/user.abstract.php");
 
 class OrderStatus
 {
-    const  received  = 0;
-    const  preparing = 1;
-    const  ready     = 2;
-    const  delivered = 3;
+    const  received  = 1;
+    const  preparing = 2;
+    const  ready     = 3;
+    const  delivering = 4;
+    const  delivered = 5;
+    const status = ['', 'Received', 'Preparing', 'Ready', 'Delivering', 'Delivered'];
 }
 
 class Order
@@ -32,7 +34,8 @@ class Order
         $this->date = new DateTime($date);
     }
 
-    function getOrderDishes(PDO $db) : array {
+    function getOrderDishes(PDO $db): array
+    {
         $stmt = $db->prepare('
             SELECT DishID, count(OrderID) as Qnt
             FROM DishOrder
@@ -43,6 +46,5 @@ class Order
         $stmt->execute(array($this->id));
 
         return $stmt->fetchAll();
-    } 
-
+    }
 }
