@@ -358,10 +358,11 @@ function output_header()
             <textarea name="description" required><?= $edit ? $dish->description : null ?></textarea>
 
             <label for="ingredients">Ingredients</label>
-            <textarea name="ingredients" required><?php foreach ($ingredients as $ing) {
-                                                        echo $ing['IngredientName'];
+            <textarea name="ingredients" required><?php for ($i = 0; $i < sizeof($ingredients) - 1; $i++) {
+                                                        echo $ingredients[$i]['IngredientName'];
                                                         echo ",\n";
-                                                    } ?></textarea>
+                                                    }
+                                                    echo $ingredients[sizeof($ingredients) - 1]['IngredientName']; ?></textarea>
 
             <input type="hidden" name="restID" value=<?= $restaurantID ?>>
             <input type="hidden" name="plateID" value=<?= $dish->id ?>>

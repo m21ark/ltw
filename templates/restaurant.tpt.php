@@ -17,7 +17,7 @@ $session = new Session();
             <h1><?= htmlentities("$restaurant->name") ?></h1>
             <p>Adress:
                 <a href=<?= "https://www.google.com/maps?daddr=" . urlencode($restaurant->address) ?> target="#">
-                    <?= htmlentities("$$restaurant->address") ?>
+                    <?= htmlentities("$restaurant->address") ?>
                 </a>
             </p>
             <p>Contact: <a href=<?= "tel:" . urlencode("$restaurant->phone") ?>><?= htmlentities("$restaurant->phone") ?></a></p>
@@ -114,9 +114,8 @@ $session = new Session();
             <?php } else if ($isOwner) { ?>
                 <div class="response_form">
                     <label for="owner_response">Respond to Client:</label>
-                    <textarea id="owner_response" name="Owner_response" rows="1" cols="30">
-                    </textarea>
-                    <button class="respond_button" value=<?= htmlentities("$review->id") ?>>Respond</button>
+                    <textarea id="owner_response" name="Owner_response" rows="1" cols="30"></textarea>
+                    <button class="respond_button link_button" value=<?= htmlentities("$review->id") ?>>Respond</button>
                 </div>
             <?php } ?>
         </div>
