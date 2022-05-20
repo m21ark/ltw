@@ -39,6 +39,7 @@ $stmt->execute(array($_POST['uid'], $restID));
 
 // _________________________________Add Image_________________________________
 
+// TODO Atualizar a session para ter os previlegios de owner
 
 $originalFileName = "../docs/restaurant/$restID.jpg";
 

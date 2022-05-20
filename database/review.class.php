@@ -13,8 +13,6 @@ class Review
 
     public function __construct(int $id, int $score, string $text, string $date, string $reviewer)
     {
-        // TODO : ADAPT THE DATETIME LATTER ::: THE DB CONTAINS AN ERROR (epecho mode not set)
-
         $this->id = $id;
         $this->score = $score;
         $this->text = $text;

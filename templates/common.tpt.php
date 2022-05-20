@@ -33,6 +33,7 @@ function output_header()
         <script src="../events/Notification/notification_handler.js" defer></script>
         <script src="../events/respond_to_client.event.js" defer></script>
         <script src="../events/remove_notifications.event.js" defer></script>
+        <script src="../events/searchbox.event.js" defer></script>
 
         <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=5.0, minimum-scale=0.5">
     </head>
