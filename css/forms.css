@@ -70,6 +70,10 @@ section#review #review_options a {
     border-width: 0;
 }
 
+#review .link_button {
+    padding: 1em 2em;
+}
+
 
 div.sign_form h2 {
     margin-bottom: 1em;

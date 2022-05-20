@@ -70,4 +70,4 @@ $session->setUser($user);
 
 $session->addMessage('info', 'User settings were updated');
 
-die(header("Location: ../user.php?id=" . $user->permissions[0]->id));
+die(header("Location: ../pages/user.php?id=" . $user->permissions[0]->id));

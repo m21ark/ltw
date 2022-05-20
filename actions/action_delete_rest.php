@@ -8,7 +8,7 @@ require_once(__DIR__ . "/../database/connection.php");
 // Restricts access to logged in users
 require_once(__DIR__ . '/../utils/session.php');
 $session = new Session();
-if (!$session->isLoggedIn()){
+if (!$session->isLoggedIn()) {
     $session->addMessage('erro', 'Login required. Redirected to main page');
     die(header('Location: /'));
 }
@@ -38,4 +38,4 @@ unlink($originalFileName);
 
 $session->addMessage('sucesso', 'Restaurant was removed');
 
-die(header("Location: ../index.php"));
+die(header("Location: /"));

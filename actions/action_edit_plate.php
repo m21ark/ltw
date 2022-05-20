@@ -80,4 +80,4 @@ if (!$noNewImage) {
 
 $session->addMessage('info', 'Plate info was updated');
 
-die(header("Location: ../plate.php?id=" . $plateID));
+die(header("Location: ../pages/plate.php?id=" . $plateID));

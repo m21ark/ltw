@@ -43,4 +43,4 @@ if (!$noNewImage) {
 
 $session->addMessage('info', 'Restaurant info was updated');
 
-die(header("Location: ../restaurant.php?id=" . $restID));
+die(header("Location: ../pages/restaurant.php?id=" . $restID));

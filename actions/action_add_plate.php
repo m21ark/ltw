@@ -68,4 +68,4 @@ move_uploaded_file($_FILES['image']['tmp_name'], $originalFileName);
 
 $session->addMessage('sucesso', 'Plate was added');
 
-die(header("Location: ../plate.php?id=" . $plateID));
+die(header("Location: ../pages/plate.php?id=" . $plateID));

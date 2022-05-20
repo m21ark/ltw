@@ -30,8 +30,8 @@ function drawRestaurantsCarrossel(PDO $db, array $restaurants, bool $showNav = t
                         </div>
 
                         <div class="card_face_back">
-                            <p> <?= htmlentities("$$restaurant->address") ?> </p>
-                            <p><?= htmlentities("$$restaurant->phone") ?></p>
+                            <p> <?= htmlentities("$restaurant->address") ?> </p>
+                            <p><?= htmlentities("$restaurant->phone") ?></p>
                             <p class="link_button"><?= htmlentities("$restaurant->category") ?></p>
                         </div>
                     </div>

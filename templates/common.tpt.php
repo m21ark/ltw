@@ -458,11 +458,16 @@ function drawUserInfoPage(UserComposite $user)
 
     <section id="review">
         <div class="container sign_form">
-            <form action="../../actions/action_make_review.php" method="post">
+            <form action="../../actions/action_make_review.php" method="post" enctype="multipart/form-data">
                 <h2>Review</h2>
                 <label>
-                    Write your review <textarea name="review" style="resize: none;" cols="30" rows="16"></textarea>
+                    Write your review <textarea name="review" style="resize: none;" cols="30" rows="16" required></textarea>
                 </label>
+
+                <label for="image">Review Image</label>
+                <input class="custom_input" type="file" name="image" accept="image/png,image/jpeg" required>
+
+
                 <label>Score </label>
                 <input type="hidden" id="id" name="id" value="<?= $_GET["id"] ?>">
                 <div class="feedback">
@@ -481,8 +486,8 @@ function drawUserInfoPage(UserComposite $user)
                 </div>
 
                 <div id="review_options">
-                    <button class="form_button">Publish</button>
-                    <a href="index.php">Go back</a>
+                    <input type="submit" class="link_button" value="Publish"></button>
+                    <a href="restaurant.php?id=<?= $_GET["id"] ?>">Go back</a>
                 </div>
             </form>
         </div>

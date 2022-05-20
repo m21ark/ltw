@@ -28,4 +28,4 @@ $session->setUser($user);
 
 $session->addMessage('sucesso', 'Your account was created. Welcome to our site!');
 
-header('Location: ../user.php');
+header('Location: ../pages/user.php');

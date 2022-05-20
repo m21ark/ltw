@@ -20,7 +20,7 @@ $session = new Session();
                     <?= htmlentities("$$restaurant->address") ?>
                 </a>
             </p>
-            <p>Contact: <a href=<?= "tel:" . urlencode("$$restaurant->phone") ?>><?= htmlentities("$restaurant->phone") ?></a></p>
+            <p>Contact: <a href=<?= "tel:" . urlencode("$restaurant->phone") ?>><?= htmlentities("$restaurant->phone") ?></a></p>
         </div>
 
         <div>
@@ -121,7 +121,7 @@ $session = new Session();
             <?php } ?>
         </div>
         <div>
-            <img src="../docs/pizza.jpg" alt="">
+            <img src="../docs/reviews/<?= $review->id ?>.jpg" alt="">
             <p class="review_score"><?= htmlentities("$review->score") ?>/5 &star;</p>
         </div>
     </article>

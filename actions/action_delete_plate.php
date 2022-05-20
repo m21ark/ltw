@@ -39,4 +39,4 @@ unlink($originalFileName);
 
 $session->addMessage('sucesso', 'Plate was removed');
 
-die(header("Location: ../restaurant.php?id=" . $_GET['rest_id']));
+die(header("Location: ../pages/restaurant.php?id=" . $_GET['rest_id']));

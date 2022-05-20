@@ -22,10 +22,20 @@ $stmt = $db->prepare("INSERT INTO Review
     VALUES (NULL, ?,  ?, ?, ?, ?)
 ");
 
-
 $stmt->execute(array($_POST['rating'], $_POST['review'],  date('Y/m/d', time()), $_POST['id'], $user->permissions[0]->id));
+
+$reviewID = $db->lastInsertId();
+
+// ____________________________ADD PHOTO______________________________
+
+$originalFileName = "../docs/reviews/" . $reviewID . ".jpg";
+
+unlink($originalFileName);
+
+move_uploaded_file($_FILES['image']['tmp_name'], $originalFileName);
+
+// ___________________________________________________________________
 
 $session->addMessage('sucesso', 'Your review was published');
 
-header("Location: ../restaurant.php?id=" . $_POST['id']);
-die();
+header("Location: ../pages/restaurant.php?id=" . $_POST['id']);

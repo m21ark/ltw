@@ -8,14 +8,14 @@ require_once(__DIR__ . "/../database/connection.php");
 // Restricts access to logged in users
 require_once(__DIR__ . '/../utils/session.php');
 $session = new Session();
-if (!$session->isLoggedIn()){
+if (!$session->isLoggedIn()) {
     $session->addMessage('erro', 'Login required. Redirected to main page');
     die(header('Location: /'));
 }
 
 $db = getDatabaseConnection();
 
-$uid = 20; //Here It should be a verified owner id recieved by $_POST["uid"]
+$uid = 20; //TODO :: Here It should be a verified owner id recieved by $_POST["uid"]
 
 
 // ___________________________________________________________________________
@@ -49,4 +49,4 @@ move_uploaded_file($_FILES['image']['tmp_name'], $originalFileName);
 
 $session->addMessage('sucesso', 'Restaurant was added');
 
-die(header("Location: ../restaurant.php?id=" . $restID));
+die(header("Location: ../pages/restaurant.php?id=" . $restID));
