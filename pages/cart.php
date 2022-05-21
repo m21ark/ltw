@@ -18,8 +18,11 @@ $user = unserialize($session->getUserSerialized());
 
 // maybe later we can set cokkies that determine the above res/dishes
 
-$customer = $user->hasPermission('Customer');
-if ($customer == null) die(header('Location: /'));
+$customer = $user->hasPermission('C');
+if ($customer == null){
+    $session->addMessage('erro', 'You dont have customer permissions');
+    die(header('Location: /'));
+}
 
 $cart = $customer->cart;
 

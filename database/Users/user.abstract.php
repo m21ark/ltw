@@ -26,7 +26,8 @@ abstract class User
 
     public static abstract function login(PDO $db, string $email, string $password): ?User;
 
-    public static function userExists(PDO $db, string $email) :bool {
+    public static function userExists(PDO $db, string $email): bool
+    {
         $stmt = $db->prepare('
             SELECT UserId
             FROM USER 
@@ -43,11 +44,10 @@ abstract class User
         } else return false;
     }
 
-    public static function saveUser(PDO $db, string $username, $password , string $address, string $phone, string $email) {
+    public static function saveUser(PDO $db, string $username, $password, string $address, string $phone, string $email)
+    {
 
-        $stmt = $db->prepare('
-            INSERT INTO "User" VALUES (NULL, ? , ? , ? , ? , ? , NULL )
-        '); // TODO :: ADD THE IMAGE
+        $stmt = $db->prepare('INSERT INTO "User" VALUES (NULL, ? , ? , ? , ? , ? , NULL )');
 
         $stmt->execute(array(strtolower($email), $username, sha1($password), $address, $phone));
     }
