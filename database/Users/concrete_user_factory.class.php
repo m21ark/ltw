@@ -14,15 +14,14 @@ class ConcreteUserFactory implements UserFactory
     public static function getUserAccordingToType(PDO $db, string $email, string $password): ?User
     {
         $user = new UserComposite();
-        if (RestaurantOwner::isOwnerOfRestaurant($db, $email)) {
+        if (RestaurantOwner::isOwnerOfRestaurant($db, $email))
             $user->addPermission(RestaurantOwner::login($db, $email, $password));
-        }
-        if (Customer::isCustomer($db, $email)) {
+
+        if (Customer::isCustomer($db, $email))
             $user->addPermission(Customer::login($db, $email, $password));
-        }
-        //if (Courier::isCourier($db, $email)) {
-        //    $user->addPermission(Courier::login($db, $email, $password));
-        //}
+
+        if (Courier::isCourier($db, $email))
+            $user->addPermission(Courier::login($db, $email, $password));
 
         if (empty($user->permissions))
             return null;

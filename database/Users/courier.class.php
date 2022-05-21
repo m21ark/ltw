@@ -11,7 +11,7 @@ class Courier extends User {
     {
         $stmt = $db->prepare('
             SELECT UserID, username, Address, phoneNumber, email
-            FROM Courier LEFT JOIN USER on (OwnerID = UserID)
+            FROM Courier LEFT JOIN USER on (CourierID = UserID)
             WHERE lower(email) = ? AND password = ?
         ');
 
@@ -34,7 +34,7 @@ class Courier extends User {
 
         $stmt = $db->prepare('
             SELECT  UserID
-            FROM Courier LEFT JOIN USER on (CustomerID = UserID)
+            FROM Courier LEFT JOIN USER on (CourierID = UserID)
             WHERE lower(email) = ? 
       ');
 
