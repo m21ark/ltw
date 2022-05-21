@@ -147,7 +147,7 @@ class Customer extends User
         $this->cart = \array_diff($this->cart, [$dishId]);
     }
 
-    public static function addCostumer(PDO $db, $email) {
+    public static function addCostumer(PDO $db, string $email) {
         $stmt = $db->prepare('
             SELECT  UserID
             FROM User
@@ -161,5 +161,14 @@ class Customer extends User
       ');
 
         $stmt2->execute(array($stmt->fetch()['UserId']));
+    }
+
+    public static function addCostumerById(PDO $db, int $id) {
+
+        $stmt2 = $db->prepare('
+            INSERT INTO CUSTOMER VALUES (?)
+      ');
+
+        $stmt2->execute(array($id));
     }
 }

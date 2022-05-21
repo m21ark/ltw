@@ -34,6 +34,7 @@ function output_header()
         <script src="../events/respond_to_client.event.js" defer></script>
         <script src="../events/remove_notifications.event.js" defer></script>
         <script src="../events/searchbox.event.js" defer></script>
+        <script src="../events/become_customer.js" defer></script>
 
         <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=5.0, minimum-scale=0.5">
     </head>
@@ -437,7 +438,7 @@ function drawUserInfoPage(UserComposite $user)
                 <?php if ($user->hasPermission("Customer") !== null) { ?>
                     <p><a href="perfil_info.php?type=fav"><span class="bold">Favorites &star;</span></a></p>
                 <?php } else { ?>
-                    <p><a href=""><span class="bold">Become a Costumer</span></a></p>
+                    <p><a href=""><span class="bold becomeCustomer" data-id=<?=$user->permissions[0]->id?>>Become a Customer</span></a></p>
                 <?php } ?>
                 <?php if ($user->hasPermission("RestaurantOwner") !== null) { ?>
                     <p><a href="perfil_info.php?type=res"><span class="bold">Restaurant owner Page &#9749;</span></a></p>
