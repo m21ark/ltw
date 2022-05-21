@@ -14,6 +14,8 @@ if (!$session->isLoggedIn()) {
     die(header('Location: /'));
 }
 
+// TODO URGENTE :: COMO É QUE ALGUEM ADQUERE PRIVILEGIOS ? 
+// POR EX COMO É QUE ALGUEM PASSA A OWNER OU VIRA COURIER
 
 output_header();
 drawUserInfoPage($session->getUser());

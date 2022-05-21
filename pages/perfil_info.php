@@ -21,9 +21,14 @@ $user = unserialize($session->getUserSerialized());
 
 $customer = $user->hasPermission("Customer");
 $owner = $user->hasPermission("RestaurantOwner");
-if ($customer === null && $owner === null) die(header('Location: /'));
+$courier = $user->hasPermission("Courier");
 
+if ($customer === null && $owner === null && $courier === null) {
+    $session->addMessage('erro', 'You dont have permissions');
+    die(header('Location: /'));
+}
 
+// FALTA FAZER A PAG DE FAV PARA OS COURIER QUE ADQUIRIRAM ESTATUTO DE CUSTOMER --> Nao esta a funcionar
 
 $db = getDatabaseConnection();
 
@@ -37,7 +42,7 @@ if ($owner !== null && $_GET['type'] == 'res') {
     drawRestaurantsCarrossel($db, $oRest, false);
 }
 
-if ($customer != null && $_GET['type'] == 'fav') {
+if (($customer != null && $courier != null) && $_GET['type'] == 'fav') {
 
     $dishesID = $customer->getFavoriteDishes($db);
     $restaurantsID = $customer->getFavoriteRestaurants($db);

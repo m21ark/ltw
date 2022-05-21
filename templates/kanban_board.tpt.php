@@ -32,12 +32,14 @@ function drawKanbanBoardCourier(PDO $db, int $res)
         ?>
     </div>
 
+    <a class="link_button_courier" href="find_deliveries.php">Find Work</a>
+
 <?php }
 
 
 function kanban_col($db, $orders, $OrderStatus)
 { ?>
-    <div class="kanban__column" data-id=<?=$OrderStatus?>>
+    <div class="kanban__column" data-id=<?= $OrderStatus ?>>
         <div class="kanban__column-title"><?= OrderStatus::status[$OrderStatus] ?></div>
         <div class="kanban__items">
             <div class="kanban__dropzone"></div>

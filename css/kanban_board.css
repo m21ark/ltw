@@ -8,7 +8,7 @@
 	box-shadow: 5px 5px 20px grey;
 }
 
-.kanbanH1{
+.kanbanH1 {
 	display: flex;
 	justify-content: center;
 	margin: 0.6em auto;
@@ -33,7 +33,7 @@
 	user-select: text;
 }
 
-.kanban__item-input h4{
+.kanban__item-input h4 {
 	border-bottom: 2px solid grey;
 }
 
@@ -52,7 +52,7 @@
 	font-weight: bold;
 }
 
-.kanban__item-input p:nth-child(2n+1){
+.kanban__item-input p:nth-child(2n+1) {
 	border-bottom: 2px solid lightgray;
 }
 
@@ -66,4 +66,26 @@
 .kanban__dropzone--active {
 	height: 2em;
 	background: rgba(0, 0, 0, 0.25);
+}
+
+
+.link_button_courier {
+	display: block;
+	box-shadow: 0.5px 0.5px 10px #333;
+	font-size: 0.7em;
+	padding: 1em 2em;
+	background-color: var(--accent_color);
+	border-radius: 7px;
+	font-size: 1rem;
+	color: white;
+	font-weight: bold;
+	border-width: 0;
+	transition: 0.2s ease-out;
+	margin: 2em auto;
+	width: 5em;
+}
+
+.link_button_courier:hover {
+	cursor: pointer;
+	filter: brightness(120%);
 }

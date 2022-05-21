@@ -25,6 +25,7 @@ function output_header()
         <link rel="stylesheet" href="../css/user.css">
         <link rel="stylesheet" href="../css/perfil_infos.css">
         <link rel="stylesheet" href="../css/card_flip.css">
+        <link rel="stylesheet" href="../css/deliveries.css">
         <link rel="stylesheet" href="../css/kanban_board.css">
 
         <script src="../events/increment_decrement_order.js" defer></script>
