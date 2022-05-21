@@ -9,7 +9,7 @@ function drawRestaurantsCarrossel(PDO $db, array $restaurants, bool $showNav = t
 {
 ?>
 
-    <article class="carrosel container">
+    <article class="carrosel container restaurants">
         <h2>Restaurants</h2>
 
         <?php if ($showNav) { ?>
