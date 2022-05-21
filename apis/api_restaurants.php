@@ -8,10 +8,6 @@ require_once(__DIR__ . '/../utils/session.php');
 require_once(__DIR__ . "/../templates/restaurants_carrossel.tpt.php");
 
 $session = new Session();
-//if (!$session->isLoggedIn()) {
-//    $session->addMessage('erro', 'Login required. Redirected to main page');
-//    die(header('Location: /'));
-//}
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     header('Access-Control-Allow-Origin: *');
@@ -27,7 +23,7 @@ $restaurants = Restaurant::getRandomRestaurants($db, 4);
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
-    if ($_GET['response'] === "html") {
+    if ($_SERVER["CONTENT_TYPE"] == "text/html") {
         header('Content-Type: text/html');
         echo drawRestaurantsCarrossel($db, $restaurants);
     } else {
