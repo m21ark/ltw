@@ -13,6 +13,16 @@ if (!$session->isLoggedIn()) {
     die(header('Location: /'));
 }
 
+$user = unserialize($session->getUserSerialized());
+$restaurantID = $_GET['rID'];
+
+// -----------------------------------------------------------
+
+require_once(__DIR__ . "/../database/verify_if_owner.php");
+
+// -----------------------------------------------------------
+
+
 
 $db = getDatabaseConnection();
 
