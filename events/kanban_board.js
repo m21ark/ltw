@@ -52,10 +52,15 @@ function createDropZone() {
             if (droppedItemElement.contains(element)) {
                 return;
             }
-            console.log(insertAfter)
 
             insertAfter.after(droppedItemElement);
 
+            fetch(`../apis/api_order.php?id=${itemId}&st=${columnId}`, {
+                method: "PUT"
+            })
+            .then(function(res) {
+                return ;
+            })
         });
     });
 

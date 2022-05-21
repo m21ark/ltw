@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Methods: GET');
     header('Access-Control-Allow-Headers: Content-Type');
-    header('Access-Control-Max-Age: 86400'); // cache for 1 day
+    header('Access-Control-Max-Age: 86400'); 
     die();
 }
 
@@ -27,9 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         header('Content-Type: text/html');
         echo drawRestaurantsCarrossel($db, $restaurants);
     } else {
-
-        //   $artists = Artist::searchArtists($db, $_GET['search'], 8);
-
         echo json_encode($restaurants);
     }
 }

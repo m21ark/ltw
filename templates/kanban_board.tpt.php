@@ -37,7 +37,7 @@ function drawKanbanBoardCourier(PDO $db, int $res)
 
 function kanban_col($db, $orders, $OrderStatus)
 { ?>
-    <div class="kanban__column">
+    <div class="kanban__column" data-id=<?=$OrderStatus?>>
         <div class="kanban__column-title"><?= OrderStatus::status[$OrderStatus] ?></div>
         <div class="kanban__items">
             <div class="kanban__dropzone"></div>
