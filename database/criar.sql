@@ -16,6 +16,7 @@ DROP TABLE IF EXISTS DishIngredients;
 DROP TABLE IF EXISTS Ingredient;
 DROP TABLE IF EXISTS Response;
 DROP TABLE IF EXISTS TakenDelivery;
+DROP TABLE IF EXISTS "Notification";
 
 CREATE TABLE Restaurant (
 	RestaurantID INTEGER PRIMARY KEY,
@@ -159,3 +160,19 @@ CREATE TABLE Response (
 	ResponseComment VARCHAR,
 	FOREIGN KEY (ReviewID) REFERENCES Review(ReviewID)
 );
+
+
+CREATE TABLE "Notification" (
+	UserId INTEGER PRIMARY KEY,
+	OrderStateID INTEGER,
+	FOREIGN KEY (UserId) REFERENCES User(UserId),
+	FOREIGN KEY (OrderStateID) REFERENCES OrderState(OrderStateID)
+);
+
+DROP TRIGGER IF EXISTS add_notification;
+CREATE TRIGGER add_notification
+	BEFORE update ON "ORDER"
+	when old.OrderStateID <> new.OrderStateID
+BEGIN
+	insert into "Notification"(UserId, OrderStateID) Values (NEW.CustomerID, NEW.OrderStateID);
+END;

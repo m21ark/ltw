@@ -42,7 +42,7 @@ function createDropZone() {
             element.classList.remove("kanban__dropzone--active");
 
             const columnElement = element.closest(".kanban__column");
-            const columnId = Number(columnElement.dataset.id); // TO USE
+            const columnId = Number(columnElement.dataset.id); 
             const dropZonesInColumn = Array.from(columnElement.querySelectorAll(".kanban__dropzone"));
             const droppedIndex = dropZonesInColumn.indexOf(element);
             const itemId = Number(e.dataTransfer.getData("text/plain"));
