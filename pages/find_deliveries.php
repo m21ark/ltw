@@ -28,6 +28,25 @@ if ($acess === null) {
 $db = getDatabaseConnection();
 
 
+
+
+function getOrderDishes(PDO $db, $id): array
+{
+    $stmt = $db->prepare('
+        SELECT DishID, count(OrderID) as Qnt
+        FROM DishOrder
+        WHERE OrderID = ?
+        Group by DishID
+    ');
+
+    $stmt->execute(array($id));
+
+    return $stmt->fetchAll();
+}
+
+
+
+
 output_header();
 draw_deliverTaken();
 draw_deliveryOptions();

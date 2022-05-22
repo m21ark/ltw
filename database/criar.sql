@@ -15,6 +15,7 @@ DROP TABLE IF EXISTS Courier;
 DROP TABLE IF EXISTS DishIngredients;
 DROP TABLE IF EXISTS Ingredient;
 DROP TABLE IF EXISTS Response;
+DROP TABLE IF EXISTS TakenDelivery;
 
 CREATE TABLE Restaurant (
 	RestaurantID INTEGER PRIMARY KEY,
@@ -142,6 +143,16 @@ CREATE TABLE Courier (
 	CourierID INTEGER PRIMARY KEY,
 	FOREIGN KEY (CourierID) REFERENCES User(CourierID)
 );
+
+
+CREATE TABLE TakenDelivery (
+	OrderID   INTEGER,
+	CourierID INTEGER,
+	FOREIGN KEY (CourierID) REFERENCES Courier(CourierID),
+	FOREIGN KEY (OrderID) REFERENCES "Order"(OrderID),
+	PRIMARY KEY (CourierID, OrderID)
+);
+
 
 CREATE TABLE Response (
 	ReviewID INTEGER PRIMARY KEY,
