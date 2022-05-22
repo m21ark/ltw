@@ -59,7 +59,8 @@ class Session
 
     public function getId(): ?int
     {
-        return isset($_SESSION['id']) ? $_SESSION['id'] : null;
+        $user = unserialize($_SESSION['user']);
+        return $user->permissions[0]->id;
     }
 
     public function getName(): ?string

@@ -44,6 +44,7 @@
 	cursor: grab;
 	margin: 1em auto;
 	padding: 1em;
+	box-shadow: 5px 5px 10px grey;
 }
 
 .kanban__item-input p:nth-child(2n+2) {

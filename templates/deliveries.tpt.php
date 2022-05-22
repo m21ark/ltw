@@ -1,7 +1,7 @@
-<?php function draw_deliveries(PDO $db)
+<?php function draw_deliveries(PDO $db, Session $session)
 {
     draw_deliverTaken();
-    draw_deliveryOptions();
+    draw_deliveryOptions($session);
     getOrders($db);
 } ?>
 
@@ -70,10 +70,10 @@ function getOrders(PDO $db)
 
 
 
-<?php function draw_deliveryOptions()
+<?php function draw_deliveryOptions(Session $session)
 {
 ?>
-
+    <a class="link_button" id="goback_delivery" href="control_center.php?cid=<?= $session->getId() ?>"> Go back</a>
     <section id="delivery_container" class="container">
         <h2>Orders waiting delivery</h2>
         <div>

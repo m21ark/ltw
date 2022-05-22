@@ -29,5 +29,5 @@ $db = getDatabaseConnection();
 
 
 output_header();
-draw_deliveries($db);
+draw_deliveries($db, $session);
 output_footer();
