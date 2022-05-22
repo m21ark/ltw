@@ -54,8 +54,10 @@
 }
 
 
-.delivery_item .link_button {
-    padding: 0.6em;
+#delivery_container .delivery_item .link_button {
+    padding: 1em;
+    display: flex;
+    text-align: center;
 }
 
 .delivery_item>div {
