@@ -27,15 +27,15 @@ if ($acess === null) {
 
 $db = getDatabaseConnection();
 
-die();
 
 // ___________________________________________________________________________
 
-$stmt = $db->prepare("DELETE FROM User WHERE UserId=?");
-$stmt->execute(array($user->id));
+
+$stmt = $db->prepare('UPDATE "Order" SET OrderStateID = 3 WHERE OrderID = ?');
+$stmt->execute(array($_GET['oid']));
 
 // ___________________________________________________________________________
 
-$session->addMessage('sucesso', 'Delivery taken');
+$session->addMessage('info', 'Delivery canceled');
 
 die(header('Location: ' . $_SERVER['HTTP_REFERER']));

@@ -74,10 +74,20 @@ function kanban_col($db, $orders, $OrderStatus, $cid)
                 if ($order->order_state === $OrderStatus) { ?>
                 <div class="kanban__items">
                     <div class="kanban__item-input" draggable="true" data-id=<?= htmlentities("$order->id") ?>>
-                        <h4>Order Nº: <?= $order->id ?></h4>
+
+                        <h3>Order Nº: <?= $order->id ?></h3>
                         <?php foreach ($order->getOrderDishes($db) as $dish) { ?>
                             <p>Plate: <?= htmlentities(Dish::getDish($db, $dish['DishID'])->name) ?></p>
                             <p>Qnt: <?= htmlentities($dish['Qnt']) ?></p>
+                            <div>
+                                <p>Restaurante: XXXX</p>
+                                <p>Adress: XaXXX</p>
+                            </div>
+                        <?php } ?>
+                        <h3>Total Price: 29,99$</h3>
+                        <h3>Delivery Adress: Rua Belo Monte</h3>
+                        <?php if (OrderStatus::delivered !== $OrderStatus) { ?>
+                            <a class="cancel_order link_button" href="../actions/action_cancel_delivery.php?oid=<?= $order->id ?>">Cancel Order</a>
                         <?php } ?>
                     </div>
                 </div>

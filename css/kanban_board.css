@@ -90,3 +90,12 @@
 	cursor: pointer;
 	filter: brightness(120%);
 }
+
+.cancel_order {
+	display: block;
+	text-align: center;
+	margin: auto;
+	background-color: #CC0000;
+	width: 6em;
+	margin-top: 1em;
+}
