@@ -255,7 +255,8 @@ class Restaurant
         return (float)number_format((float)$medium / (float)$count, 2, '.', '');
     }
 
-    static function getRestaurantOrders(PDO $db, int $res) :array{
+    static function getRestaurantOrders(PDO $db, int $res): array
+    {
         $stmt = $db->prepare('
             SELECT *
             FROM "Order"
@@ -278,8 +279,6 @@ class Restaurant
                 $order['DateOrder']
             ));
         }
-         return $orders;
+        return $orders;
     }
 }
-
-
