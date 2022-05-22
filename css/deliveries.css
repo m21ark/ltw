@@ -1,97 +1,91 @@
-#delivery_container>div {
-    width: 95%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
 #delivery_container {
     margin: 2em;
     padding: 2em 1em;
+
 }
+
 
 #delivery_container>h2 {
     margin-bottom: 0.5em;
 }
 
-#delivery_container>div.delivery_taken {
+
+.delivery_list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+    justify-content: center;
+}
+
+
+.delivery_item {
+    box-sizing: border-box;
+    background: white;
+    border-radius: 0.3em;
+    padding: 1em;
+    box-shadow: 5px 5px 10px grey;
+    width: 45%;
+    min-width: 20em;
+}
+
+.delivery_item p {
+    font-size: 1.2em;
+    margin: 0.5em;
+}
+
+.delivery_item div {
+    border-bottom: 1px solid lightgray;
+}
+
+.delivery_item a {
+    display: block;
+    margin-top: 1em;
+    text-align: center;
+}
+
+.delivery_item h3 {
+    margin-top: 0.5em;
+    margin-bottom: 0.8em;
+}
+
+
+#goback_delivery {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    width: 10em;
+}
+
+
+.delivery_taken {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
     border-radius: 7px;
     box-shadow: 5px 5px 10px grey;
     background-color: var(--light_bg_color);
     padding: 3em 0.8em;
+    width: 90%;
+    margin: auto;
+}
+
+.delivery_taken a {
+    background-color: #DD2200;
 }
 
 
-#delivery_container>.delivery_taken .link_button {
-    background-color: #CC0000;
-}
+@media (max-width:50em) {
 
-.delivery_item {
-    margin: 0.4em;
-    background-color: var(--light_bg_color);
-    padding: 1em;
-    color: white;
-    width: 12em;
-    height: 18em;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 7px;
-    box-shadow: 5px 5px 10px grey;
-}
-
-.delivery_item p {
-    font-size: 1.6em;
-    font-weight: bold;
-    margin: 0.2em;
-    text-align: center;
-}
-
-
-#delivery_container .delivery_item .link_button {
-    padding: 1em;
-    display: flex;
-    text-align: center;
-}
-
-.delivery_item>div {
-    display: flex;
-    flex-direction: column;
-    gap: 3em;
-}
-
-
-@media (max-width:40em) {
-
-    #delivery_container>div.delivery_taken {
+    div.delivery_taken {
         flex-direction: column;
         gap: 1.8em;
         width: 90%;
     }
 
     .delivery_item {
-        width: 95%;
-        min-width: 20em;
-        height: 10em;
-        flex-direction: row;
-        margin-bottom: 1em;
+        width: 90%;
     }
 
-    .delivery_item>div {
-        padding: 2em;
-        display: flex;
-        flex-direction: row;
-        gap: 2em;
-    }
-
-    .delivery_item>div>* {
-        margin-top: 0.5em;
-    }
 
 }

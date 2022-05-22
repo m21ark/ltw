@@ -47,21 +47,21 @@
 	box-shadow: 5px 5px 10px grey;
 }
 
-.kanban__item-input p:nth-child(2n+2) {
-	margin: 0.5em auto;
-	color: var(--title_color);
-	font-weight: bold;
-}
-
-.kanban__item-input p:nth-child(2n+1) {
-	border-bottom: 2px solid lightgray;
-}
-
 
 .kanban__dropzone {
 	height: 1.5em;
 	transition: all 0.15s, height 0.15s;
 	background: rgba(0, 0, 0, 0.1);
+}
+
+.kanban__item-input>p {
+	margin: 0.5em auto;
+	color: var(--title_color);
+	font-weight: bold;
+}
+
+.kanban__item-input>div {
+	border-bottom: 2px solid lightgray;
 }
 
 .kanban__dropzone--active {

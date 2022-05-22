@@ -1,11 +1,8 @@
 <?php function draw_deliveries(PDO $db, Session $session)
 {
     draw_deliverTaken();
-    draw_deliveryOptions($session);
-    getOrders($db);
+    draw_deliveryOptions($session, $db, getOrders($db));
 } ?>
-
-
 
 
 
@@ -19,36 +16,22 @@ function getRestaurantIDS(PDO $db): array
 }
 
 
-function getOrders(PDO $db)
+function getOrders(PDO $db): array
 {
 
     $restIDS = getRestaurantIDS($db);
 
+    $orders = array();
+
     foreach ($restIDS as $res) {
-        $orders = Restaurant::getRestaurantOrders($db, (int)$res['RestaurantID']);
-        drawOrders($db, $orders);
+        $aux = Restaurant::getRestaurantOrders($db, (int)$res['RestaurantID']);
+        $orders = array_merge($orders, $aux);
     }
+    return $orders;
 }
 
 ?>
 
-<?php function drawOrders($db, $orders)
-{
-
-    foreach ($orders as $order) {
-        if ($order->order_state === OrderStatus::ready) { ?>
-            <div class="container" style="margin:2em">
-                <div class="kanban__item-input" draggable="true" data-id=<?= htmlentities("$order->id") ?>>
-                    <h4>Order Nº: <?= $order->id ?></h4>
-                    <?php foreach ($order->getOrderDishes($db) as $dish) { ?>
-                        <p>Plate: <?= htmlentities(Dish::getDish($db, $dish['DishID'])->name) ?></p>
-                        <p>Qnt: <?= htmlentities($dish['Qnt']) ?></p>
-                    <?php } ?>
-                </div>
-            </div>
-<?php }
-    }
-} ?>
 
 
 
@@ -70,27 +53,43 @@ function getOrders(PDO $db)
 
 
 
-<?php function draw_deliveryOptions(Session $session)
+<?php function draw_deliveryOptions($session, $db, $orders)
 {
 ?>
     <a class="link_button" id="goback_delivery" href="control_center.php?cid=<?= $session->getId() ?>"> Go back</a>
     <section id="delivery_container" class="container">
         <h2>Orders waiting delivery</h2>
-        <div>
 
-            <?php for ($i = 0; $i < 10; $i++) { ?>
+        <div class=delivery_list>
+
+            <?php
+
+            foreach ($orders as $order)
+                if ($order->order_state === OrderStatus::ready) { ?>
 
                 <article class="delivery_item">
-                    <div>
-                        <p><?= "Name" ?></p>
-                        <p><?= "14.95€" ?></p>
-                        <a class="link_button" href="#">Take Order</a>
-                    </div>
+
+                    <h3>Order Nº: <?= $order->id ?></h3>
+                    <?php foreach ($order->getOrderDishes($db) as $dish) { ?>
+                        <p>Plate: <?= htmlentities(Dish::getDish($db, $dish['DishID'])->name) ?></p>
+                        <p>Qnt: <?= htmlentities($dish['Qnt']) ?></p>
+                        <div>
+                            <p>Restaurante: XXXX</p>
+                            <p>Adress: XXXX</p>
+                        </div>
+                    <?php } ?>
+                    <h3>Total Price: 29,99$</h3>
+                    <h3>Delivery Adress: Rua Belo Monte</h3>
+                    <a class="link_button" href="#">Take Order</a>
                 </article>
 
             <?php } ?>
 
+
+
         </div>
+
+
     </section>
 
 <?php } ?>
