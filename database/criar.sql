@@ -146,15 +146,6 @@ CREATE TABLE Courier (
 );
 
 
-CREATE TABLE TakenDelivery (
-	OrderID   INTEGER,
-	CourierID INTEGER,
-	FOREIGN KEY (CourierID) REFERENCES Courier(CourierID),
-	FOREIGN KEY (OrderID) REFERENCES "Order"(OrderID),
-	PRIMARY KEY (CourierID, OrderID)
-);
-
-
 CREATE TABLE Response (
 	ReviewID INTEGER PRIMARY KEY,
 	ResponseComment VARCHAR,
@@ -163,7 +154,7 @@ CREATE TABLE Response (
 
 
 CREATE TABLE "Notification" (
-	UserId INTEGER PRIMARY KEY,
+	UserId INTEGER, -- temporarly removed the primary key
 	OrderStateID INTEGER,
 	FOREIGN KEY (UserId) REFERENCES User(UserId),
 	FOREIGN KEY (OrderStateID) REFERENCES OrderState(OrderStateID)

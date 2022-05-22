@@ -29,9 +29,13 @@ $db = getDatabaseConnection();
 
 // ___________________________________________________________________________
 
-$stmt = $db->prepare("INSERT INTO TakenDelivery VALUES (?, ?)");
 
-$stmt->execute(array($_GET['oid'], $_GET['cid']));
+$stmt = $db->prepare('UPDATE "Order" SET OrderStateID = 4 WHERE OrderID = ?');
+$stmt->execute(array($_GET['oid']));
+
+
+$stmt = $db->prepare('UPDATE "Order" SET CourierID = ? WHERE OrderID = ?');
+$stmt->execute(array($_GET['cid'], $_GET['oid']));
 
 // ___________________________________________________________________________
 

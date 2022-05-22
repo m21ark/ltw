@@ -10,9 +10,10 @@ class OrderStatus
     const  received  = 1;
     const  preparing = 2;
     const  ready     = 3;
-    const  delivering = 4;
-    const  delivered = 5;
-    const status = ['', 'Received', 'Preparing', 'Ready', 'Delivering', 'Delivered'];
+    const  taken     = 4;
+    const  delivering = 5;
+    const  delivered = 6;
+    const status = ['', 'Received', 'Preparing', 'Ready', 'Taken', 'Delivering', 'Delivered'];
 }
 
 class Order

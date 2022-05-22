@@ -1,6 +1,5 @@
 <?php function draw_deliveries(PDO $db, Session $session)
 {
-    draw_deliverTaken();
     draw_deliveryOptions($session, $db, getOrders($db));
 } ?>
 
@@ -32,24 +31,6 @@ function getOrders(PDO $db): array
 
 ?>
 
-<?php function draw_deliverTaken()
-{
-?>
-
-    <section id="delivery_container" class="container">
-        <h2>Order being taking</h2>
-
-        <div class="delivery_taken">
-            <h3><?= "Name" ?></h3>
-            <p><?= "14.95€" ?></p>
-            <a class="link_button" href="#">Cancel Order</a>
-        </div>
-    </section>
-
-<?php } ?>
-
-
-
 <?php function draw_deliveryOptions($session, $db, $orders)
 {
 ?>
@@ -78,6 +59,7 @@ function getOrders(PDO $db): array
                     <h3>Total Price: 29,99$</h3>
                     <h3>Delivery Adress: Rua Belo Monte</h3>
                     <a class="link_button" href="../actions/action_take_delivery.php?cid=<?= $session->getId() ?>&oid=<?= $order->id ?>">Take Order</a>
+                    
                 </article>
 
             <?php } ?>

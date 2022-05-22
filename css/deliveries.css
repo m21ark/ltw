@@ -37,7 +37,7 @@
     border-bottom: 1px solid lightgray;
 }
 
-.delivery_item div p{
+.delivery_item div p {
     font-weight: 600;
 }
 
@@ -56,41 +56,15 @@
 
 #goback_delivery {
     margin: auto;
+    margin-top: 1.5em;
     display: flex;
     justify-content: center;
     width: 10em;
 }
 
 
-.delivery_taken {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    border-radius: 7px;
-    box-shadow: 5px 5px 10px grey;
-    background-color: var(--light_bg_color);
-    padding: 3em 0.8em;
-    width: 90%;
-    margin: auto;
-}
-
-.delivery_taken a {
-    background-color: #DD2200;
-}
-
-
 @media (max-width:50em) {
-
-    div.delivery_taken {
-        flex-direction: column;
-        gap: 1.8em;
-        width: 90%;
-    }
-
     .delivery_item {
         width: 90%;
     }
-
-
 }
