@@ -32,9 +32,6 @@ function getOrders(PDO $db): array
 
 ?>
 
-
-
-
 <?php function draw_deliverTaken()
 {
 ?>
@@ -80,7 +77,7 @@ function getOrders(PDO $db): array
                     <?php } ?>
                     <h3>Total Price: 29,99$</h3>
                     <h3>Delivery Adress: Rua Belo Monte</h3>
-                    <a class="link_button" href="#">Take Order</a>
+                    <a class="link_button" href="../actions/action_take_delivery.php?cid=<?= $session->getId() ?>&oid=<?= $order->id ?>">Take Order</a>
                 </article>
 
             <?php } ?>

@@ -37,6 +37,11 @@
     border-bottom: 1px solid lightgray;
 }
 
+.delivery_item div p{
+    font-weight: 600;
+}
+
+
 .delivery_item a {
     display: block;
     margin-top: 1em;
