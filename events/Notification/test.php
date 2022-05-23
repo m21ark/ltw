@@ -1,15 +1,28 @@
 <?php
-require_once(__DIR__ . "/notification_types.php");
+declare(strict_types=1);
 
-if(rand(1,3) == 1){
-    /* Fake an error */
-    header("HTTP/1.0 404 Not Found");
+require_once(__DIR__ . "/../../database/connection.php");
+require_once(__DIR__ . "/../../database/notification.class.php");
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Methods: GET');
+    header('Access-Control-Allow-Headers: Content-Type');
+    header('Access-Control-Max-Age: 86400');
     die();
 }
 
-/*
-    THIS php file must be able to receive by post an id of a user and check if he has a notification, 
-    sending an array of the notifications, as described on the notifications type .php  
-*/
+$db = getDatabaseConnection();
 
-echo(json_encode($notifications));
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+    if ($_SERVER["CONTENT_TYPE"] == "application/json") {
+        header('Content-Type: application/json');
+
+        echo json_encode(Notification::userHasNotification((int)$_GET['id']));
+    } else {
+        echo json_encode("");
+    }
+}
+
+
