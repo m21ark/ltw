@@ -16,7 +16,7 @@ output_header();
 drawSearchBox();
 
 if (isset($_GET['q']))
-    drawSearchResults($restaurants, $dishes);
+    drawSearchResults();
 
 drawRestaurantsCarrossel($db, $restaurants);
 drawPlatesCarrossel($dishes);
