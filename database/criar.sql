@@ -154,6 +154,7 @@ CREATE TABLE Response (
 
 
 CREATE TABLE "Notification" (
+	id INTEGER PRIMARY KEY,
 	UserId INTEGER, -- temporarly removed the primary key
 	OrderStateID INTEGER,
 	FOREIGN KEY (UserId) REFERENCES User(UserId),
@@ -165,5 +166,5 @@ CREATE TRIGGER add_notification
 	BEFORE update ON "ORDER"
 	when old.OrderStateID <> new.OrderStateID
 BEGIN
-	insert into "Notification"(UserId, OrderStateID) Values (NEW.CustomerID, NEW.OrderStateID);
+	insert into "Notification"(id, UserId, OrderStateID) Values (NULL, NEW.CustomerID, NEW.OrderStateID);
 END;

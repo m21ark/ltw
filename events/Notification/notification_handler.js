@@ -18,7 +18,7 @@ function notification() {
     const id = document.querySelector('.user_id');
     if (id === null)
         return;
-    fetch(`../events/Notification/test.php?id=${parseInt(id.getAttribute('data-id'))}`, {
+    fetch(`../../apis/api_notification.php?id=${parseInt(id.getAttribute('data-id'))}`, {
         method: "GET",
         headers: new Headers({'Content-Type': 'application/json'}
     )})
@@ -37,7 +37,6 @@ function notification() {
             art.appendChild(p)
             myNotification.appendChild(art);
             document.querySelector('main').insertBefore(myNotification, document.querySelector('main').firstChild);
-            console.log(myNotification);
         }
     })    
 }

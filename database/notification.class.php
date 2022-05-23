@@ -19,15 +19,16 @@ class Notification
         
         $notf = $stmt->fetch();
 
-        // TODO: THIS SHOULD NOT BE A COMMENT ::: only used for testing porpuses 
+        if ($notf === false)
+            return null;
 
-        //$stmt = $db->prepare('
-        //    DELETE 
-        //    FROM "Notification"
-        //    WHERE rowid = ?
-        //');
-//
-        //$stmt->execute($notf['rowid']);
+        $stmt = $db->prepare('
+            DELETE 
+            FROM "Notification"
+            WHERE id = ?
+        ');
+
+        $stmt->execute(array((int)$notf['id']));
 
         
         return OrderStatus::status[$notf['OrderStateID']];
