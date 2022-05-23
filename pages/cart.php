@@ -18,7 +18,7 @@ $user = unserialize($session->getUserSerialized());
 
 // maybe later we can set cokkies that determine the above res/dishes
 
-$customer = $user->hasPermission('C');
+$customer = $user->hasPermission('Customer');
 if ($customer == null){
     $session->addMessage('erro', 'You dont have customer permissions');
     die(header('Location: /'));

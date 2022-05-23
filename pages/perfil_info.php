@@ -42,7 +42,7 @@ if ($owner !== null && $_GET['type'] == 'res') {
     drawRestaurantsCarrossel($db, $oRest, false);
 }
 
-if (($customer != null && $courier != null) && $_GET['type'] == 'fav') {
+if ($customer != null && $_GET['type'] == 'fav') {
 
     $dishesID = $customer->getFavoriteDishes($db);
     $restaurantsID = $customer->getFavoriteRestaurants($db);
