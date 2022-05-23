@@ -25,7 +25,20 @@ function notification() {
     .then(function(res) {
         return res.json();
     }).then (function (res) {
-        console.log(res)
+        if (res !== null) {
+            const audio = new Audio('../audio/notification.wav');
+            audio.play();
+            const myNotification = document.createElement('section');
+            myNotification.setAttribute('id', 'session_messages');
+            const art = document.createElement('article')
+            const p = document.createElement('p')
+            art.classList.add('info');
+            p.textContent = "Order State: " + res;
+            art.appendChild(p)
+            myNotification.appendChild(art);
+            document.querySelector('main').insertBefore(myNotification, document.querySelector('main').firstChild);
+            console.log(myNotification);
+        }
     })    
 }
 
