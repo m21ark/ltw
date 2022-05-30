@@ -14,27 +14,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     header('Access-Control-Allow-Methods: GET');
     header('Access-Control-Allow-Headers: Content-Type');
     header('Access-Control-Max-Age: 86400');
-    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-        $db = getDatabaseConnection();
-        if (!isset($_GET['q'])) {
-            $restaurants = Restaurant::getRandomRestaurants($db, 4);
-            if ($_SERVER["CONTENT_TYPE"] == "text/html") {
-                header('Content-Type: text/html');
-                echo drawRestaurantsCarrossel($db, $restaurants);
-            } else {
-                echo json_encode($restaurants);
-            }
+    $db = getDatabaseConnection();
+    if (!isset($_GET['q'])) {
+        $restaurants = Restaurant::getRandomRestaurants($db, 4);
+        if ($_SERVER["CONTENT_TYPE"] == "text/html") {
+            header('Content-Type: text/html');
+            echo drawRestaurantsCarrossel($db, $restaurants);
         } else {
-            $db = getDatabaseConnection();
-            $restaurants = Restaurant::getRestaurantBySearch($db, 
-            htmlentities($_GET['q']), $_GET['off'] !== null ? (int)htmlentities($_GET['off']) : 0);
-            if ($_SERVER["CONTENT_TYPE"] == "text/html") {
-                header('Content-Type: text/html');
-                echo drawRestaurantsCarrossel($db, $restaurants);
-            } else {
-                echo json_encode($restaurants);
-            }
+            echo json_encode($restaurants);
+        }
+    } else {
+        $restaurants = Restaurant::getRestaurantBySearch(
+            $db,
+            htmlentities($_GET['q']),
+            $_GET['off'] !== null ? (int)htmlentities($_GET['off']) : 0
+        );
+        if ($_SERVER["CONTENT_TYPE"] == "text/html") {
+            header('Content-Type: text/html');
+            echo drawRestaurantsCarrossel($db, $restaurants);
+        } else {
+            echo json_encode($restaurants);
         }
     }
+
     die();
 }

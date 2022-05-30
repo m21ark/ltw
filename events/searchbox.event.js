@@ -19,6 +19,22 @@ function searchBoxInput() {
                     div.insertBefore(element.querySelector('.img_carrosel'), carrosel);
                     div.removeChild(carrosel);
                 })
+            
+            fetch(`../apis/api_plates.php?q=${(this.value !== null) ? this.value.split(' ').join('%20') : ''}`, {
+                method: "GET",
+                headers: new Headers({ 'Content-Type': 'text/html' }
+                )
+            })
+                .then(function (res) {
+                    return res.text();
+                }).then(function (res) {
+                    console.log( res)
+                    const div = document.querySelector('.plates');
+                    const element = createElementFromHTML(res);
+                    const carrosel = div.querySelector('.img_carrosel');
+                    div.insertBefore(element.querySelector('.img_carrosel'), carrosel);
+                    div.removeChild(carrosel);
+                })
         })
     }
 }

@@ -7,7 +7,7 @@ function createElementFromHTML(htmlString) {
 
 function carousel_res() {
     const buttons = document.querySelectorAll(".restaurants .carrosel_nav button");
-    let offset = 0;
+    let offset = -1;
     buttons.forEach(element => {
         element.addEventListener('click', function (e) {
             const q = document.querySelector('#search_box_input').value;
@@ -28,9 +28,9 @@ function carousel_res() {
                     div.removeChild(carrosel);
 
                     if (offset < 0)
-                        offset = 0;
+                        offset = -1;
                     if (document.querySelector('.img_carrosel').firstElementChild === null)
-                        offset = 0;
+                        offset = -1;
                 })
         });
     });

@@ -118,6 +118,34 @@ class Dish
 
         return $dishes;
     }
+
+    public static function getDishesBySearch(PDO $db, string $query, int $offset = null): array
+    {
+
+        $dishes = [];
+        $stmt = $db->prepare('
+            SELECT *
+            FROM Dish
+            WHERE Name LIKE "%" || ? || "%"
+            LIMIT ?, 4
+        ');
+
+        $stmt->execute(array($query, $offset));
+
+        $arr = $stmt->fetchAll();
+
+        foreach ($arr as $dish) {
+            array_push($dishes, new Dish(
+                (int)$dish['DishID'],
+                $dish['Name'],
+                $dish['Price'],
+                $dish['Category'],
+                $dish['Description']
+            ));
+        }
+
+        return $dishes;
+    }    
 }
 
 class Restaurant

@@ -13,12 +13,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Methods: GET');
     header('Access-Control-Allow-Headers: Content-Type');
-    header('Access-Control-Max-Age: 86400'); // cache for 1 day
+    header('Access-Control-Max-Age: 86400');
     $db = getDatabaseConnection();
 
-    $dishes = Dish::getRandomDishes($db, 4);
-
-    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    if (!isset($_GET['q'])) {
+        $dishes = Dish::getRandomDishes($db, 4);
+        if ($_SERVER["CONTENT_TYPE"] == "text/html") {
+            header('Content-Type: text/html');
+            echo drawPlatesCarrossel($dishes);
+        } else {
+            echo json_encode($dishes);
+        }
+    } else {
+        $dishes = Dish::getDishesBySearch(
+            $db,
+            htmlentities($_GET['q']),
+            $_GET['off'] !== null ? (int)htmlentities($_GET['off']) : 0
+        );
 
         if ($_SERVER["CONTENT_TYPE"] == "text/html") {
             header('Content-Type: text/html');
@@ -27,5 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             echo json_encode($dishes);
         }
     }
+
     die();
 }
