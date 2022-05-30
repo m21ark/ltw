@@ -290,11 +290,10 @@ class Restaurant
             SELECT *
             FROM Restaurant
             where Name like "%" || ? || "%"
-            ORDER BY RANDOM()
-            LIMIT 4
+            LIMIT ?, 4
         ');
 
-        $stmt->execute(array($query));
+        $stmt->execute(array($query, $offset * 4));
 
         $arr = $stmt->fetchAll();
 

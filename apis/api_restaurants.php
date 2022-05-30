@@ -26,7 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             }
         } else {
             $db = getDatabaseConnection();
-            $restaurants = Restaurant::getRestaurantBySearch($db, htmlentities($_GET['q']));
+            $restaurants = Restaurant::getRestaurantBySearch($db, 
+            htmlentities($_GET['q']), $_GET['off'] !== null ? (int)htmlentities($_GET['off']) : 0);
             if ($_SERVER["CONTENT_TYPE"] == "text/html") {
                 header('Content-Type: text/html');
                 echo drawRestaurantsCarrossel($db, $restaurants);
