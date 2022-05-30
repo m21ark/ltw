@@ -9,7 +9,9 @@ function carousel_res() {
     const buttons = document.querySelectorAll(".restaurants .carrosel_nav button");
     buttons.forEach(element => {
         element.addEventListener('click', function(e) {
-            fetch(`../apis/api_restaurants.php`, {
+            const q = document.querySelector('#search_box_input').value;
+            console.log(q);
+            fetch(`../apis/api_restaurants.php?q=${(q !== null ) ? q.split(' ').join('%20') : ''}`, {
                 method: "GET",
                 headers: new Headers({'Content-Type': 'text/html'}
             )})

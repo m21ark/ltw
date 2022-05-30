@@ -281,4 +281,34 @@ class Restaurant
         }
         return $orders;
     }
+
+
+    static function getRestaurantBySearch(PDO $db, string $query, int $offset = null): array
+    {
+        $restaurants = [];
+        $stmt = $db->prepare('
+            SELECT *
+            FROM Restaurant
+            where Name like "%" || ? || "%"
+            ORDER BY RANDOM()
+            LIMIT 4
+        ');
+
+        $stmt->execute(array($query));
+
+        $arr = $stmt->fetchAll();
+
+        foreach ($arr as $restaurant) {
+            array_push($restaurants, new Restaurant(
+                (int)$restaurant['RestaurantID'],
+                $restaurant['Name'],
+                $restaurant['Address'],
+                $restaurant['phone'],
+                $restaurant['Category'],
+                $restaurant['Description']
+            ));
+        }
+
+        return $restaurants;
+    }
 }
