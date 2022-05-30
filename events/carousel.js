@@ -38,9 +38,12 @@ function carousel_res() {
 
 function carousel_plates() {
     const buttons = document.querySelectorAll(".plates .carrosel_nav button");
+    let offset = -1;
     buttons.forEach(element => {
         element.addEventListener('click', function (e) {
-            fetch(`../apis/api_plates.php`, {
+            const q = document.querySelector('#search_box_input').value;
+            offset += (element.parentNode.firstElementChild == element) ? -1 : 1;
+            fetch(`../apis/api_plates.php?q=${(q !== null) ? q.split(' ').join('%20') : ''}&off=${offset}`, {
                 method: "GET",
                 headers: new Headers({ 'Content-Type': 'text/html' }
                 )
@@ -53,6 +56,11 @@ function carousel_plates() {
                     const carrosel = div.querySelector('.img_carrosel');
                     div.insertBefore(element.querySelector('.img_carrosel'), carrosel);
                     div.removeChild(carrosel);
+                    
+                    if (offset < 0)
+                        offset = -1;
+                    if (document.querySelector('.img_carrosel').firstElementChild === null)
+                        offset = -1;
                 })
         });
     });

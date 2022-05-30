@@ -130,7 +130,7 @@ class Dish
             LIMIT ?, 4
         ');
 
-        $stmt->execute(array($query, $offset));
+        $stmt->execute(array($query, $offset * 4));
 
         $arr = $stmt->fetchAll();
 
