@@ -10,7 +10,8 @@ function carousel_res() {
     let offset = -1;
     buttons.forEach(element => {
         element.addEventListener('click', function (e) {
-            const q = document.querySelector('#search_box_input').value;
+            const searchBoxInput = document.querySelector('#search_box_input');
+            const q = (searchBoxInput !== null) ? searchBoxInput.value : "";
             offset += (element.parentNode.firstElementChild == element) ? -1 : 1;
             fetch(`../apis/api_restaurants.php?q=${(q !== null) ? q.split(' ').join('%20') : ''}&off=${offset}`, {
                 method: "GET",
@@ -41,7 +42,8 @@ function carousel_plates() {
     let offset = -1;
     buttons.forEach(element => {
         element.addEventListener('click', function (e) {
-            const q = document.querySelector('#search_box_input').value;
+            const searchBoxInput = document.querySelector('#search_box_input');
+            const q = (searchBoxInput !== null) ? searchBoxInput.value : "";
             offset += (element.parentNode.firstElementChild == element) ? -1 : 1;
             fetch(`../apis/api_plates.php?q=${(q !== null) ? q.split(' ').join('%20') : ''}&off=${offset}`, {
                 method: "GET",

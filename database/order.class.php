@@ -48,4 +48,16 @@ class Order
 
         return $stmt->fetchAll();
     }
+
+    static function getOrderRestaurantID(PDO $db, int $id) :int {
+        $stmt = $db->prepare('
+            SELECT RestaurantID
+            FROM "Order"
+            WHERE OrderID = ?
+        ');
+
+        $stmt->execute(array($id));
+
+        return (int)$stmt->fetch()['RestaurantID'];
+    }
 }
