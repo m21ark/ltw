@@ -77,7 +77,7 @@ function output_header()
             </ul>
         </nav>
 
-
+                
 
         <main>
             <section id="session_messages">
