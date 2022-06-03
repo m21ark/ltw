@@ -68,19 +68,19 @@ function output_header()
             <label class="hamburger" for="hamburger"></label>
 
             <ul>
-                <li><a href="index.php?q=Burguer">Burguer</a></li>
-                <li><a href="index.php?q=Swedish">Swedish</a></li>
-                <li><a href="index.php?q=Thai">Thai</a></li>
-                <li><a href="index.php?q=Italian">Italian</a></li>
-                <li><a href="index.php?q=Chinese">Chinese</a></li>
-                <li><a href="index.php?q=Mexican">Mexican</a></li>
-                <li><a href="index.php?q=French">French</a></li>
-                <li><a href="index.php?q=Spanish">Spanish</a></li>
-                <li><a href="index.php?q=Persian">Persian</a></li>
-                <li><a href="index.php?q=Mediterranian">Mediterranian</a></li>
+                <li><a href="index.php?w=Burguer">Burguer</a></li>
+                <li><a href="index.php?w=Swedish">Swedish</a></li>
+                <li><a href="index.php?w=Thai">Thai</a></li>
+                <li><a href="index.php?w=Italian">Italian</a></li>
+                <li><a href="index.php?w=Chinese">Chinese</a></li>
+                <li><a href="index.php?w=Mexican">Mexican</a></li>
+                <li><a href="index.php?w=French">French</a></li>
+                <li><a href="index.php?w=Spanish">Spanish</a></li>
+                <li><a href="index.php?w=Persian">Persian</a></li>
+                <li><a href="index.php?w=Mediterranian">Mediterranian</a></li>
             </ul>
             <?php
-                if (isset($_GET['q'])) 
+                if (isset($_GET['w'])) 
                     drawSearchResultsNavBar(); 
             ?>
         </nav>
@@ -127,7 +127,7 @@ function drawSearchResultsNavBar()
 
         <?php 
         $db = getDatabaseConnection();
-        $query = $_GET['q'];
+        $query = $_GET['w'];
         
         $restaurant_query = "SELECT Name FROM Restaurant WHERE Restaurant.Category LIKE '%$query%'";
         $rests = $db->query($restaurant_query);
