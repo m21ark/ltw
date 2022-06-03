@@ -68,13 +68,21 @@ function output_header()
             <label class="hamburger" for="hamburger"></label>
 
             <ul>
-                <li><a href="index.php?q=italian">Italian</a></li>
-                <li><a href="index.php?q=japanese">Japanese</a></li>
-                <li><a href="index.php?q=indian">Indian</a></li>
-                <li><a href="index.php?q=portuguese">Portuguese</a></li>
-                <li><a href="index.php?q=vietnamese">Vietnamese</a></li>
-                <li><a href="index.php?q=vegan">Vegan</a></li>
+                <li><a href="index.php?q=Burguer">Burguer</a></li>
+                <li><a href="index.php?q=Swedish">Swedish</a></li>
+                <li><a href="index.php?q=Thai">Thai</a></li>
+                <li><a href="index.php?q=Italian">Italian</a></li>
+                <li><a href="index.php?q=Chinese">Chinese</a></li>
+                <li><a href="index.php?q=Mexican">Mexican</a></li>
+                <li><a href="index.php?q=French">French</a></li>
+                <li><a href="index.php?q=Spanish">Spanish</a></li>
+                <li><a href="index.php?q=Persian">Persian</a></li>
+                <li><a href="index.php?q=Mediterranian">Mediterranian</a></li>
             </ul>
+            <?php
+                if (isset($_GET['q'])) 
+                    drawSearchResultsNavBar(); 
+            ?>
         </nav>
 
 
@@ -109,7 +117,35 @@ function output_header()
 <?php } ?>
 
 
+<?php
+function drawSearchResultsNavBar()
+{  
+?>
 
+    <section class="container" id="search_results">
+        <h2>Search Results</h2>
+
+        <?php 
+        $db = getDatabaseConnection();
+        $query = $_GET['q'];
+        
+        $restaurant_query = "SELECT Name FROM Restaurant WHERE Restaurant.Category LIKE '%$query%'";
+        $rests = $db->query($restaurant_query);
+        
+?>
+        <div id="search_results_rests">
+            <h4>Restaurants</h4>
+            <?php foreach ($rests as $rest) { ?>
+                <article>
+                    <p><?php echo implode('|', $rest) ?></p>
+                </article>
+            <?php } ?>
+        </div>
+
+
+    </section>
+
+<?php } ?>
 
 <?php function drawLogin()
 { ?>
