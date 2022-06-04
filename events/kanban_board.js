@@ -43,8 +43,8 @@ function createDropZone() {
 
             const columnElement = element.closest(".kanban__column");
             const columnId = Number(columnElement.dataset.id); 
-            const dropZonesInColumn = Array.from(columnElement.querySelectorAll(".kanban__dropzone"));
-            const droppedIndex = dropZonesInColumn.indexOf(element);
+      
+ 
             const itemId = Number(e.dataTransfer.getData("text/plain"));
             const droppedItemElement = document.querySelector(`[data-id="${itemId}"]`);
             const insertAfter = element.parentElement.classList.contains("kanban__item") ? element.parentElement : element;

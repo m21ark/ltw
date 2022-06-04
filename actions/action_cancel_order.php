@@ -35,7 +35,7 @@ $db = getDatabaseConnection();
 
 
 $stmt = $db->prepare('UPDATE "Order" SET OrderStateID = ? WHERE OrderID = ?');
-$stmt->execute(array(0, $_GET['oid']));
+$stmt->execute(array(7, $_GET['oid']));
 
 // ___________________________________________________________________________
 
