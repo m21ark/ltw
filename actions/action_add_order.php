@@ -25,54 +25,41 @@ if ($customer == null) {
 
 $cart = $customer->cart;
 
+function getRestaurantID(PDO $db, $dishID): int
+{
+    $stmt = $db->prepare('SELECT restaurantID FROM Menu WHERE DishID = ?');
+    $stmt->execute(array($dishID));
 
-for ($i = 0; $i < sizeof($cart); $i++) {
-    print_r($cart[$i]);
+    if ($id = $stmt->fetch()) {
+        return (int)$id['RestaurantID'];
+    } else return 0;
 }
 
-die();
 
-// -----------------------------------------------------------------------------------
+for ($i = 0; $i < sizeof($cart); $i++) {
 
-$stmt = $db->prepare("INSERT INTO 'Order' VALUES (NULL, ?,  ?, ?, ?, ?) ");
-$stmt->execute(array('2022-06-20 10:00:00', 1, $customer->id, $_POST['RestaurantID'], 0));
+    $dishID = $cart[$i][0];
+    $dishQnt = $cart[$i][1];
+    $restID = getRestaurantID($db, $dishID);
 
-$OrderID = $db->lastInsertId();
+    if ($restID == 0) continue;
 
-// -----------------------------------------------------------------------------------
+    $stmt = $db->prepare("INSERT INTO 'Order' VALUES (NULL, ?,  ?, ?, ?, ?) ");
+    $stmt->execute(array('2022-06-20 10:00:00', 1, $customer->id, $restID, 0));
 
-$stmt = $db->prepare("INSERT INTO DishOrder  VALUES (?, ?) ");
-$stmt->execute(array($_POST['DishID'], $OrderID));
+    $OrderID = $db->lastInsertId();
 
-// -----------------------------------------------------------------------------------
+    for ($j = 0; $j < $dishQnt; $j++) {
+        $stmt = $db->prepare("INSERT INTO DishOrder  VALUES (?, ?) ");
+        $stmt->execute(array($dishID, $OrderID));
+    }
+}
+
 
 $customer->emptyCart();
 
+$session->setUser($user);
+
+$session->addMessage('sucesso', 'Order was placed');
+
 die(header('Location: ' . $_SERVER['HTTP_REFERER']));
-
-
-/*
-                        Order
-
-	OrderID INTEGER PRIMARY KEY,
-	DateOrder datetime not null, -- '2007-01-01 10:00:00'
-	OrderStateID INTEGER,
-    
-	CustomerID INTEGER,
-	RestaurantID INTEGER,
-	CourierID INTEGER,
-
-	FOREIGN KEY (RestaurantID) REFERENCES Restaurant(RestaurantID),
-	FOREIGN KEY (OrderStateID) REFERENCES OrderState(OrderStateID),
-	FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
-	FOREIGN KEY (CourierID) REFERENCES Courier(CourierID)
-
-
-
-                     DishOrder
-
-    DishID INTEGER,
-	OrderID INTEGER, -- SE FIZERMOS ORDER DE 2 PRATOS IGUAIS - SERÁ QUE RESULTA? Parece que sim, mas confirmar ao povoar
-	FOREIGN KEY (DishID) REFERENCES Dish(DishID),
-	FOREIGN KEY (OrderID) REFERENCES "Order"(OrderID)
-*/

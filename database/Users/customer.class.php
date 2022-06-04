@@ -164,7 +164,7 @@ class Customer extends User
 
     public function emptyCart()
     {
-        $cart = [];
+        $this->cart = array();
     }
 
 
