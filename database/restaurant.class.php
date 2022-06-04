@@ -80,6 +80,39 @@ class Dish
         } else return 0;
     }
 
+    public function getRestaurantName(PDO $db): String
+    {
+
+        $stmt = $db->prepare('
+        SELECT Name
+        FROM Restaurant
+        WHERE RestaurantID = ?');
+
+        $restId  = $this->getRestaurantID($db);
+        $stmt->execute(array($restId));
+
+        if ($id = $stmt->fetch()) {
+            return (string)$id['Name'];
+        } else return 0;
+    }
+
+    public function getRestaurantAddress(PDO $db): String
+    {
+
+        $stmt = $db->prepare('
+        SELECT Address
+        FROM Restaurant
+        WHERE RestaurantID = ?');
+
+        $restId  = $this->getRestaurantID($db);
+        $stmt->execute(array($restId));
+
+        if ($id = $stmt->fetch()) {
+            return (string)$id['Address'];
+        } else return 0;
+    }
+
+
     public function getIngredients(PDO $db): array
     {
         $stmt = $db->prepare('select IngredientName
@@ -145,7 +178,7 @@ class Dish
         }
 
         return $dishes;
-    }    
+    }
 }
 
 class Restaurant

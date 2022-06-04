@@ -54,7 +54,7 @@
 	background: rgba(0, 0, 0, 0.1);
 }
 
-.kanban__item-input p {
+.kanban__item-input .kanban_bolder {
 	margin: 0.5em auto;
 	color: var(--title_color);
 	font-weight: bold;

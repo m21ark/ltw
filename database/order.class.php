@@ -36,6 +36,36 @@ class Order
         $this->date = new DateTime($date);
     }
 
+    public function getDeliveryAddress(PDO $db): string
+    {
+        $stmt = $db->prepare('
+            SELECT Address
+            FROM User
+            WHERE UserId = ?
+        ');
+
+        $stmt->execute(array($this->user));
+
+        return (string)$stmt->fetch()['Address'];
+    }
+
+    public function getTotalPrice(PDO $db)
+    {
+        return 69.24;
+        // TODO GET TOTAL PRICE
+
+        $stmt = $db->prepare('
+            SELECT DishID, count(OrderID) as Qnt
+            FROM DishOrder
+            WHERE OrderID = ?
+            Group by DishID
+        ');
+
+        $stmt->execute(array($this->id));
+
+        return (float)$stmt->fetch()['Address'];
+    }
+
     function getOrderDishes(PDO $db): array
     {
         $stmt = $db->prepare('
@@ -50,7 +80,8 @@ class Order
         return $stmt->fetchAll();
     }
 
-    static function getOrderRestaurantID(PDO $db, int $id) :int {
+    static function getOrderRestaurantID(PDO $db, int $id): int
+    {
         $stmt = $db->prepare('
             SELECT RestaurantID
             FROM "Order"

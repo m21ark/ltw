@@ -36,6 +36,7 @@ function getRestaurantID(PDO $db, $dishID): int
 }
 
 
+
 for ($i = 0; $i < sizeof($cart); $i++) {
 
     $dishID = $cart[$i][0];

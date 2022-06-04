@@ -77,13 +77,11 @@ function kanban_col_owner($db, $orders, $OrderStatus, $rid)
                     <div class="kanban__item-input" draggable="true" data-id=<?= htmlentities("$order->id") ?>>
                         <h3>Order Nº: <?= $order->id ?></h3>
                         <?php foreach ($order->getOrderDishes($db) as $dish) { ?>
-                            <div>
-                                <p>Plate: <?= htmlentities(Dish::getDish($db, $dish['DishID'])->name) ?></p>
-                                <p>Qnt: <?= htmlentities($dish['Qnt']) ?></p>
-                            </div>
+                            <p class="kanban_bolder">Plate: <?= htmlentities(Dish::getDish($db, $dish['DishID'])->name) ?></p>
+                            <p class="kanban_bolder">Qnt: <?= htmlentities($dish['Qnt']) ?></p>
+                            <div></div>
                         <?php } ?>
-                        <h3>Total Price: 29,99$</h3>
-                        <h3>Delivery Adress: Rua Belo Monte</h3>
+                        <h3>Total Price: <?= $order->getTotalPrice($db) ?>$</h3>
                         <a class="cancel_order link_button" href="../actions/action_cancel_order.php?oid=<?= $order->id ?>">Remove</a>
                     </div>
                 </div>
@@ -107,16 +105,19 @@ function kanban_col_courier($db, $orders, $OrderStatus, $cid)
                     <div class="kanban__item-input" draggable="true" data-id=<?= htmlentities("$order->id") ?>>
 
                         <h3>Order Nº: <?= $order->id ?></h3>
-                        <?php foreach ($order->getOrderDishes($db) as $dish) { ?>
-                            <p>Plate: <?= htmlentities(Dish::getDish($db, $dish['DishID'])->name) ?></p>
-                            <p>Qnt: <?= htmlentities($dish['Qnt']) ?></p>
-                            <div>
-                                <p>Restaurante: XXXX</p>
-                                <p>Adress: XaXXX</p>
-                            </div>
+                        <?php foreach ($order->getOrderDishes($db) as $dish) {
+
+                            $dishC = Dish::getDish($db, $dish['DishID']);
+                        ?>
+
+                            <p class="kanban_bolder">Plate: <?= htmlentities($dishC->name) ?></p>
+                            <p class="kanban_bolder">Qnt: <?= htmlentities($dish['Qnt']) ?></p>
+                            <p>Restaurante: <?= $dishC->getRestaurantName($db) ?></p>
+                            <p>Adress: <?= $dishC->getRestaurantAddress($db) ?></p>
+                            <div></div>
+
                         <?php } ?>
-                        <h3>Total Price: 29,99$</h3>
-                        <h3>Delivery Adress: Rua Belo Monte</h3>
+                        <h3>Delivery Adress: <?= $order->getDeliveryAddress($db) ?></h3>
                         <?php if (OrderStatus::delivered !== $OrderStatus) { ?>
                             <a class="cancel_order link_button" href="../actions/action_cancel_delivery.php?oid=<?= $order->id ?>">Cancel</a>
                         <?php } ?>
