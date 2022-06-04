@@ -1,3 +1,5 @@
+"use strict";
+
 function encodeForAjax(data) {
     return Object.keys(data).map(function (k) {
         return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
@@ -10,7 +12,7 @@ function respondClient() {
     for (const button of resButton) {
         button.addEventListener('click', function () {
 
-            if (button.parentNode.querySelector('textarea').value.trimStart.trimEnd) // TODO
+            if (button.parentNode.querySelector('textarea').value.trimStart.trimEnd)
                 return;
 
             const request = new XMLHttpRequest();

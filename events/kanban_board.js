@@ -5,7 +5,7 @@ function dragItem() {
     items.forEach(element => {
 
         element.addEventListener("dragstart", function (ev) {
-            
+
             ev.dataTransfer.setData("text/plain", element.getAttribute('data-id'));
         });
 
@@ -42,9 +42,9 @@ function createDropZone() {
             element.classList.remove("kanban__dropzone--active");
 
             const columnElement = element.closest(".kanban__column");
-            const columnId = Number(columnElement.dataset.id); 
-      
- 
+            const columnId = Number(columnElement.dataset.id);
+
+
             const itemId = Number(e.dataTransfer.getData("text/plain"));
             const droppedItemElement = document.querySelector(`[data-id="${itemId}"]`);
             const insertAfter = element.parentElement.classList.contains("kanban__item") ? element.parentElement : element;
@@ -58,9 +58,9 @@ function createDropZone() {
             fetch(`../apis/api_order.php?id=${itemId}&st=${columnId}`, {
                 method: "PUT"
             })
-            .then(function(res) {
-                return ;
-            })
+                .then(function (res) {
+                    return;
+                })
         });
     });
 

@@ -109,8 +109,6 @@ function output_header()
 <?php } ?>
 
 
-
-
 <?php function drawLogin()
 { ?>
 
