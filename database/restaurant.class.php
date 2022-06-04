@@ -80,6 +80,39 @@ class Dish
         } else return 0;
     }
 
+    public function getRestaurantName(PDO $db): String
+    {
+
+        $stmt = $db->prepare('
+        SELECT Name
+        FROM Restaurant
+        WHERE RestaurantID = ?');
+
+        $restId  = $this->getRestaurantID($db);
+        $stmt->execute(array($restId));
+
+        if ($id = $stmt->fetch()) {
+            return (string)$id['Name'];
+        } else return 0;
+    }
+
+    public function getRestaurantAddress(PDO $db): String
+    {
+
+        $stmt = $db->prepare('
+        SELECT Address
+        FROM Restaurant
+        WHERE RestaurantID = ?');
+
+        $restId  = $this->getRestaurantID($db);
+        $stmt->execute(array($restId));
+
+        if ($id = $stmt->fetch()) {
+            return (string)$id['Address'];
+        } else return 0;
+    }
+
+
     public function getIngredients(PDO $db): array
     {
         $stmt = $db->prepare('select IngredientName
@@ -145,8 +178,7 @@ class Dish
         ');
                 $stmt->execute(array($query, $rid, $cat, $offset * 4));
             }
-        }
-        elseif ($cat != null) {
+        } elseif ($cat != null) {
             $stmt = $db->prepare('
             SELECT *
             FROM Dish
@@ -155,7 +187,7 @@ class Dish
             LIMIT ?, 4
         ');
             $stmt->execute(array($query, $cat, $offset * 4));
-        }else {
+        } else {
             $stmt = $db->prepare('
             SELECT *
             FROM Dish
@@ -178,7 +210,7 @@ class Dish
         }
 
         return $dishes;
-    }    
+    }
 }
 
 class Restaurant
@@ -367,7 +399,7 @@ class Restaurant
             $stmt->execute(array($query, $offset * 4));
         }
 
-        
+
 
         $arr = $stmt->fetchAll();
 

@@ -68,7 +68,7 @@ function carousel_plates() {
                     const carrosel = div.querySelector('.img_carrosel');
                     div.insertBefore(element.querySelector('.img_carrosel'), carrosel);
                     div.removeChild(carrosel);
-                    
+
                     if (offset < 0)
                         offset = -1;
                     if (document.querySelector('.img_carrosel').firstElementChild === null)

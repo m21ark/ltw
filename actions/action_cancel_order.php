@@ -19,7 +19,7 @@ $user = unserialize($session->getUserSerialized());
 
 /* Problem checking permissions here.... 
 
-$acess1 = $user->hasPermission("Courier");
+$acess2 = $user->hasPermission("Owner");
 
 if (($acess2 !== 1)) {
     $session->addMessage('erro', 'You dont have owner permissions');
@@ -35,10 +35,10 @@ $db = getDatabaseConnection();
 
 
 $stmt = $db->prepare('UPDATE "Order" SET OrderStateID = ? WHERE OrderID = ?');
-$stmt->execute(array(3, $_GET['oid']));
+$stmt->execute(array(7, $_GET['oid']));
 
 // ___________________________________________________________________________
 
-$session->addMessage('info', 'Delivery canceled');
+$session->addMessage('info', 'Order canceled');
 
 die(header('Location: ' . $_SERVER['HTTP_REFERER']));

@@ -13,7 +13,8 @@ class OrderStatus
     const  taken     = 4;
     const  delivering = 5;
     const  delivered = 6;
-    const status = ['', 'Received', 'Preparing', 'Ready', 'Taken', 'Delivering', 'Delivered'];
+    const  canceled = 7;
+    const status = ['', 'Received', 'Preparing', 'Ready', 'Taken', 'Delivering', 'Delivered', 'Canceled'];
 }
 
 class Order
@@ -35,6 +36,19 @@ class Order
         $this->date = new DateTime($date);
     }
 
+    public function getDeliveryAddress(PDO $db): string
+    {
+        $stmt = $db->prepare('
+            SELECT Address
+            FROM User
+            WHERE UserId = ?
+        ');
+
+        $stmt->execute(array($this->user));
+
+        return (string)$stmt->fetch()['Address'];
+    }
+
     function getOrderDishes(PDO $db): array
     {
         $stmt = $db->prepare('
@@ -49,7 +63,8 @@ class Order
         return $stmt->fetchAll();
     }
 
-    static function getOrderRestaurantID(PDO $db, int $id) :int {
+    static function getOrderRestaurantID(PDO $db, int $id): int
+    {
         $stmt = $db->prepare('
             SELECT RestaurantID
             FROM "Order"

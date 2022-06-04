@@ -260,6 +260,7 @@ INSERT INTO OrderState VALUES (3, "Ready");
 INSERT INTO OrderState VALUES (4, "Taken");
 INSERT INTO OrderState VALUES (5, "Delivering");
 INSERT INTO OrderState VALUES (6, "Delivered");
+INSERT INTO OrderState VALUES (7, "Canceled");
 
 
 -- 20 users (all passwords are: batata)
