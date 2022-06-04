@@ -49,6 +49,13 @@ function searchCategory() {
         
         element.addEventListener('click', function (evt) {
             evt.preventDefault();
+            let url = `../apis/api_plates.php?q=${(searchContent!==null&&searchContent.value !== null) ? searchContent.value.split(' ').join('%20') : ''}&cat=${element.textContent}`;
+            const urlParams = new URLSearchParams(window.location.search);
+
+            const id = urlParams.get('id');
+            if (id !== null) {
+                url += "&rid=" + id;
+            } else {
             fetch(`../apis/api_restaurants.php?q=${(searchContent.value !== null) ? searchContent.value.split(' ').join('%20') : ''}&cat=${element.textContent}`, {
                 method: "GET",
                 headers: new Headers({ 'Content-Type': 'text/html' }
@@ -64,8 +71,8 @@ function searchCategory() {
                     div.insertBefore(element.querySelector('.img_carrosel'), carrosel);
                     div.removeChild(carrosel);
                 })
-
-            fetch(`../apis/api_plates.php?q=${(searchContent.value !== null) ? searchContent.value.split(' ').join('%20') : ''}&cat=${element.textContent}`, {
+            }
+            fetch(url, {
                 method: "GET",
                 headers: new Headers({ 'Content-Type': 'text/html' }
                 )

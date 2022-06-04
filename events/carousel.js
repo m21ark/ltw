@@ -1,3 +1,4 @@
+"use strict";
 function createElementFromHTML(htmlString) {
     var div = document.createElement('div');
     div.innerHTML = htmlString.trim();
@@ -13,7 +14,7 @@ function carousel_res() {
             const searchBoxInput = document.querySelector('#search_box_input');
             const q = (searchBoxInput !== null) ? searchBoxInput.value : "";
             offset += (element.parentNode.firstElementChild == element) ? -1 : 1;
-            url = `../apis/api_restaurants.php?q=${(q !== null) ? q.split(' ').join('%20') : ''}&off=${offset}`
+            let url = `../apis/api_restaurants.php?q=${(q !== null) ? q.split(' ').join('%20') : ''}&off=${offset}`
 
             fetch(url, {
                 method: "GET",
@@ -47,7 +48,7 @@ function carousel_plates() {
             const searchBoxInput = document.querySelector('#search_box_input');
             const q = (searchBoxInput !== null) ? searchBoxInput.value : "";
             offset += (element.parentNode.firstElementChild == element) ? -1 : 1;
-            url = `../apis/api_plates.php?q=${(q !== null) ? q.split(' ').join('%20') : ''}&off=${offset}`;
+            let url = `../apis/api_plates.php?q=${(q !== null) ? q.split(' ').join('%20') : ''}&off=${offset}`;
             const urlParams = new URLSearchParams(window.location.search);
 
             const id = urlParams.get('id');

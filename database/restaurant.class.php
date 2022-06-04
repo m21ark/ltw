@@ -125,14 +125,26 @@ class Dish
         $dishes = [];
         $stmt = null;
         if ($rid !== null) {
-            $stmt = $db->prepare('
+            if ($cat === null) {
+                $stmt = $db->prepare('
             SELECT *
             FROM Menu JOIN Dish ON (Menu.DishID = Dish.DishID)
             WHERE Name LIKE "%" || ? || "%"
             AND Menu.RestaurantID = ?
             LIMIT ?, 4
         ');
-            $stmt->execute(array($query, $rid, $offset * 4));
+                $stmt->execute(array($query, $rid, $offset * 4));
+            } else {
+                $stmt = $db->prepare('
+            SELECT *
+            FROM Menu JOIN Dish ON (Menu.DishID = Dish.DishID)
+            WHERE Name LIKE "%" || ? || "%"
+            AND Menu.RestaurantID = ?
+            AND Category LIKE ?
+            LIMIT ?, 4
+        ');
+                $stmt->execute(array($query, $rid, $cat, $offset * 4));
+            }
         }
         elseif ($cat != null) {
             $stmt = $db->prepare('

@@ -1,3 +1,4 @@
+"use strict";
 function totalCart() {
     const buyButton = document.querySelector('#cart_list>.form_button'); 
 
@@ -11,7 +12,6 @@ function totalCart() {
     }
 
     buyButton.value = "Buy for " + total + " $";
-    console.log(buyButton);
 }
 
 function incrementPlateOrders() {
