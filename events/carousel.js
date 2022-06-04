@@ -51,8 +51,7 @@ function carousel_plates() {
             const urlParams = new URLSearchParams(window.location.search);
 
             const id = urlParams.get('id');
-            console.log(id);
-            if (id !== "") {
+            if (id !== null) {
                 url += "&rid=" + id;
             }
             fetch(url, {
