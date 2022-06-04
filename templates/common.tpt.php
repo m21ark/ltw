@@ -233,7 +233,6 @@ function output_header()
 <?php function drawCartList(PDO $db, array $cart)
 {
 
-    print_r($cart);
     require_once(__DIR__ . "/../database/restaurant.class.php"); ?>
 
     <form id="cart_list" method="post" action="../actions/action_add_order.php">
@@ -253,9 +252,9 @@ function output_header()
                 <p class="container_price"><?= $dish->price ?>$</p>
 
                 <div class="cart_qnt_arrows">
-                    <span class="input-number-decrement">-</span>
+                    <span class="input-number-decrement" data-id="<?= $dishID ?>">-</span>
                     <input class="input-number" readonly type="text" value="<?= $dishQnt ?>" min="0" max="20">
-                    <span class="input-number-increment">+</span>
+                    <span class="input-number-increment" data-id="<?= $dishID ?>">+</span>
                 </div>
 
                 <button type="text" formaction="../actions/action_remove_from_cart.php" formmethod="POST" name="id" value=<?= $dishID ?>>

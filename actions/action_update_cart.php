@@ -5,6 +5,9 @@ declare(strict_types=1);
 require_once(__DIR__ . "/../database/Users/user_composite.class.php");
 require_once(__DIR__ . "/../database/connection.php");
 
+if (!isset($_POST['dishID']) || !isset($_POST['qnt']))
+    die(header('Location: /'));
+
 // Restricts access to logged in users
 require_once(__DIR__ . '/../utils/session.php');
 $session = new Session();
@@ -25,14 +28,12 @@ if ($customer == null) {
 
 $cart = $customer->cart;
 
+
 for ($i = 0; $i < sizeof($cart); $i++)
-    if ($cart[$i][0] == $_GET['dishID']) {
-        $customer->cart[$i][1] =  $_GET['qnt'];
+    if ($cart[$i][0] == $_POST['dishID']) {
+        $customer->cart[$i][1] =  $_POST['qnt'];
         break;
     }
 
-
-$session->addMessage('sucesso', 'Quantity changed');
 $session->setUser($user);
 print_r($cart);
-// die(header('Location: ' . $_SERVER['HTTP_REFERER']));

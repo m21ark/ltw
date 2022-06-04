@@ -24,6 +24,7 @@ function incrementPlateOrders() {
                 return;
             }
             button.previousElementSibling.value = parseInt(button.previousElementSibling.value, 10) + 1;
+            updateCart(button.dataset.id,parseInt(button.previousElementSibling.value, 10));
             totalCart();
         });
     }
@@ -39,9 +40,20 @@ function decrementPlateOrders() {
                 return;
             }
             button.nextElementSibling.value = parseInt(button.nextElementSibling.value, 10) - 1;
+            updateCart(button.dataset.id ,parseInt(button.nextElementSibling.value, 10));
             totalCart();
         });
     }
+}
+
+function updateCart(dish, qnt) {
+    const request = new XMLHttpRequest();
+    request.withCredentials = true;
+    request.open("POST", "../actions/action_update_cart.php", true);
+    request.setRequestHeader('Content-Type', 
+        'application/x-www-form-urlencoded')
+
+    request.send(encodeForAjax({dishID: dish, qnt: qnt}));
 }
 
 totalCart();
