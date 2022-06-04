@@ -233,6 +233,7 @@ function output_header()
 <?php function drawCartList(PDO $db, array $cart)
 {
 
+    print_r($cart);
     require_once(__DIR__ . "/../database/restaurant.class.php"); ?>
 
     <form id="cart_list" method="post" action="../actions/action_add_order.php">
