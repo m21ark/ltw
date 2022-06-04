@@ -58,7 +58,7 @@ function output_header()
             ?>
                 <span><a id="header_cart" href="cart.php">&#x1f6d2;</a></span>
                 <a id="header_avatar" href="user.php"><img src="../docs/users/<?= htmlentities($user->permissions[0]->id) ?>.jpg" alt="logo"></a>
-                <span class="user_id" data-id=<?=htmlentities($user->permissions[0]->id)?> hidden></span>
+                <span class="user_id" data-id=<?= htmlentities($user->permissions[0]->id) ?> hidden></span>
             <?php } ?>
         </header>
 
@@ -232,12 +232,17 @@ function output_header()
 
 <?php function drawCartList(PDO $db, array $cart)
 {
+
     require_once(__DIR__ . "/../database/restaurant.class.php"); ?>
 
-    <form id="cart_list" method="post">
+    <form id="cart_list" method="post" action="../actions/action_add_order.php">
         <h2>Cart List</h2>
 
-        <?php foreach ($cart as $dishID) {
+        <?php for ($i = 0; $i < sizeof($cart); $i++) {
+
+            $dishID = $cart[$i][0];
+            $dishQnt = $cart[$i][1];
+
             $dish = Dish::getDish($db, $dishID);
         ?>
 
@@ -248,7 +253,7 @@ function output_header()
 
                 <div class="cart_qnt_arrows">
                     <span class="input-number-decrement">-</span>
-                    <input class="input-number" readonly type="text" value="1" min="0" max="10">
+                    <input class="input-number" readonly type="text" value="<?= $dishQnt ?>" min="0" max="20">
                     <span class="input-number-increment">+</span>
                 </div>
 

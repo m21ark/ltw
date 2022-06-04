@@ -116,7 +116,6 @@ class Customer extends User
         return $stmt->execute(array($this->id, $restaurant->id));
     }
 
-
     public static function isCustomer(PDO $db, string $email): bool
     {
 
@@ -136,18 +135,41 @@ class Customer extends User
         } else return false;
     }
 
+    public function addToCart(int $dishId)
+    {
 
-    public function addToCart(int $dishId) {
-        
-        if (!in_array($dishId, $this->cart))
-            array_push($this->cart, $dishId);
+        // if already exists, increment
+        foreach ($this->cart as &$pair) {
+            if ($pair[0] === $dishId) {
+                $pair[1] = $pair[1] + 1;
+                return;
+            }
+        }
+
+        array_push($this->cart, [$dishId, 1]);
+
+        /*         if (!in_array($dishId, $this->cart))
+            array_push($this->cart, $dishId); */
     }
 
-    public function deleteFromCart(int $dishId) {
-        $this->cart = \array_diff($this->cart, [$dishId]);
+    public function deleteFromCart(int $dishId)
+    {
+
+        for ($i = 0; $i < sizeof($this->cart); $i++)
+            if ($this->cart[$i][0] === $dishId) {
+                \array_splice($this->cart, $i, 1);
+                return;
+            }
     }
 
-    public static function addCostumer(PDO $db, string $email) {
+    public function emptyCart()
+    {
+        $cart = [];
+    }
+
+
+    public static function addCostumer(PDO $db, string $email)
+    {
         $stmt = $db->prepare('
             SELECT  UserID
             FROM User
@@ -163,7 +185,8 @@ class Customer extends User
         $stmt2->execute(array($stmt->fetch()['UserId']));
     }
 
-    public static function addCostumerById(PDO $db, int $id) {
+    public static function addCostumerById(PDO $db, int $id)
+    {
 
         $stmt2 = $db->prepare('
             INSERT INTO CUSTOMER VALUES (?)

@@ -9,12 +9,6 @@ function removeDishFromCart() {
 
     for (const button of deleteButton) {
         button.addEventListener('click', function() {
-            //const hidden = document.createElement('input');
-            //hidden.type = 'hidden';
-            //hidden.id = 'id'
-            //hidden.name = 'id'
-            //hidden.value = button.value;
-            console.log(button.id);
             const request = new XMLHttpRequest();
             request.withCredentials = true;
             request.open("POST", "../actions/action_remove_from_cart.php", true);
