@@ -49,23 +49,6 @@ class Order
         return (string)$stmt->fetch()['Address'];
     }
 
-    public function getTotalPrice(PDO $db)
-    {
-        return 69.24;
-        // TODO GET TOTAL PRICE
-
-        $stmt = $db->prepare('
-            SELECT DishID, count(OrderID) as Qnt
-            FROM DishOrder
-            WHERE OrderID = ?
-            Group by DishID
-        ');
-
-        $stmt->execute(array($this->id));
-
-        return (float)$stmt->fetch()['Address'];
-    }
-
     function getOrderDishes(PDO $db): array
     {
         $stmt = $db->prepare('

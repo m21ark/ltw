@@ -48,18 +48,20 @@ function getOrders(PDO $db): array
                 <article class="delivery_item">
 
                     <h3>Order Nº: <?= $order->id ?></h3>
-                    <?php foreach ($order->getOrderDishes($db) as $dish) {
+                    <?php $dishC = -1;
+                    foreach ($order->getOrderDishes($db) as $dish) {
                         $dishC = Dish::getDish($db, $dish['DishID']);
                     ?>
 
                         <p class="delivery_item_bold">Plate: <?= htmlentities($dishC->name) ?></p>
                         <p class="delivery_item_bold">Qnt: <?= htmlentities($dish['Qnt']) ?></p>
-
-                        <p>Restaurante: <?= $dishC->getRestaurantName($db) ?></p>
-                        <p>Adress: <?= $dishC->getRestaurantAddress($db) ?></p>
                         <div></div>
 
                     <?php } ?>
+
+                    <p>Restaurante: <?= $dishC->getRestaurantName($db) ?></p>
+                    <p>Adress: <?= $dishC->getRestaurantAddress($db) ?></p>
+                    <div></div>
                     <h3>Delivery Adress: <?= $order->getDeliveryAddress($db) ?></h3>
                     <a class="link_button" href="../actions/action_take_delivery.php?cid=<?= $session->getId() ?>&oid=<?= $order->id ?>">Take Order</a>
 

@@ -36,7 +36,8 @@ function getRestaurantID(PDO $db, $dishID): int
 }
 
 
-
+$prevRest = -1;
+$OrderID = -1;
 for ($i = 0; $i < sizeof($cart); $i++) {
 
     $dishID = $cart[$i][0];
@@ -45,10 +46,12 @@ for ($i = 0; $i < sizeof($cart); $i++) {
 
     if ($restID == 0) continue;
 
-    $stmt = $db->prepare("INSERT INTO 'Order' VALUES (NULL, ?,  ?, ?, ?, ?) ");
-    $stmt->execute(array('2022-06-20 10:00:00', 1, $customer->id, $restID, 0));
-
-    $OrderID = $db->lastInsertId();
+    if (($prevRest == -1) || ($restID != $prevRest)) {
+        $stmt = $db->prepare("INSERT INTO 'Order' VALUES (NULL, ?,  ?, ?, ?, ?) ");
+        $stmt->execute(array('2022-06-20 10:00:00', 1, $customer->id, $restID, 0));
+        $prevRest = $restID;
+        $OrderID = $db->lastInsertId();
+    }
 
     for ($j = 0; $j < $dishQnt; $j++) {
         $stmt = $db->prepare("INSERT INTO DishOrder  VALUES (?, ?) ");
