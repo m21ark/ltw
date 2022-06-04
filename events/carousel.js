@@ -13,7 +13,9 @@ function carousel_res() {
             const searchBoxInput = document.querySelector('#search_box_input');
             const q = (searchBoxInput !== null) ? searchBoxInput.value : "";
             offset += (element.parentNode.firstElementChild == element) ? -1 : 1;
-            fetch(`../apis/api_restaurants.php?q=${(q !== null) ? q.split(' ').join('%20') : ''}&off=${offset}`, {
+            url = `../apis/api_restaurants.php?q=${(q !== null) ? q.split(' ').join('%20') : ''}&off=${offset}`
+
+            fetch(url, {
                 method: "GET",
                 headers: new Headers({ 'Content-Type': 'text/html' }
                 )
@@ -45,7 +47,15 @@ function carousel_plates() {
             const searchBoxInput = document.querySelector('#search_box_input');
             const q = (searchBoxInput !== null) ? searchBoxInput.value : "";
             offset += (element.parentNode.firstElementChild == element) ? -1 : 1;
-            fetch(`../apis/api_plates.php?q=${(q !== null) ? q.split(' ').join('%20') : ''}&off=${offset}`, {
+            url = `../apis/api_plates.php?q=${(q !== null) ? q.split(' ').join('%20') : ''}&off=${offset}`;
+            const urlParams = new URLSearchParams(window.location.search);
+
+            const id = urlParams.get('id');
+            console.log(id);
+            if (id !== "") {
+                url += "&rid=" + id;
+            }
+            fetch(url, {
                 method: "GET",
                 headers: new Headers({ 'Content-Type': 'text/html' }
                 )
