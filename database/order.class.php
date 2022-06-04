@@ -13,7 +13,8 @@ class OrderStatus
     const  taken     = 4;
     const  delivering = 5;
     const  delivered = 6;
-    const status = ['', 'Received', 'Preparing', 'Ready', 'Taken', 'Delivering', 'Delivered'];
+    const  canceled = 7;
+    const status = ['', 'Received', 'Preparing', 'Ready', 'Taken', 'Delivering', 'Delivered', 'Canceled'];
 }
 
 class Order

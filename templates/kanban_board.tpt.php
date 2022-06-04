@@ -36,9 +36,9 @@ function drawKanbanBoardOwner(PDO $db, int $res)
     <h1 class="kanbanH1">Control Board</h1>
     <div class="kanban">
         <?php
-        kanban_col($db, $orders, OrderStatus::received, 0);
-        kanban_col($db, $orders, OrderStatus::preparing, 0);
-        kanban_col($db, $orders, OrderStatus::ready, 0);
+        kanban_col_owner($db, $orders, OrderStatus::received, 0);
+        kanban_col_owner($db, $orders, OrderStatus::preparing, 0);
+        kanban_col_owner($db, $orders, OrderStatus::ready, 0);
         ?>
     </div>
 
@@ -51,9 +51,9 @@ function drawKanbanBoardCourier(PDO $db, int $cid)
     <h1 class="kanbanH1">Control Board</h1>
     <div class="kanban">
         <?php
-        kanban_col($db, $orders, OrderStatus::taken, $cid);
-        kanban_col($db, $orders, OrderStatus::delivering, $cid);
-        kanban_col($db, $orders, OrderStatus::delivered, $cid);
+        kanban_col_courier($db, $orders, OrderStatus::taken, $cid);
+        kanban_col_courier($db, $orders, OrderStatus::delivering, $cid);
+        kanban_col_courier($db, $orders, OrderStatus::delivered, $cid);
         ?>
     </div>
 
@@ -62,7 +62,38 @@ function drawKanbanBoardCourier(PDO $db, int $cid)
 <?php }
 
 
-function kanban_col($db, $orders, $OrderStatus, $cid)
+
+function kanban_col_owner($db, $orders, $OrderStatus, $cid)
+{ ?>
+    <div class="kanban__column" data-id=<?= $OrderStatus ?>>
+        <div class="kanban__column-title"><?= OrderStatus::status[$OrderStatus] ?></div>
+        <div class="kanban__items">
+            <div class="kanban__dropzone"></div>
+        </div>
+        <?php foreach ($orders as $order) {
+            if (($order->courier === $cid) || ($cid == 0))
+                if ($order->order_state === $OrderStatus) { ?>
+                <div class="kanban__items">
+                    <div class="kanban__item-input" draggable="true" data-id=<?= htmlentities("$order->id") ?>>
+                        <h3>Order Nº: <?= $order->id ?></h3>
+                        <?php foreach ($order->getOrderDishes($db) as $dish) { ?>
+                            <p>Plate: <?= htmlentities(Dish::getDish($db, $dish['DishID'])->name) ?></p>
+                            <p>Qnt: <?= htmlentities($dish['Qnt']) ?></p>
+                        <?php } ?>
+                        <h3>Total Price: 29,99$</h3>
+                        <h3>Delivery Adress: Rua Belo Monte</h3>
+                        <?php if (OrderStatus::delivered !== $OrderStatus) { ?>
+                            <a class="cancel_order link_button" href="../actions/action_cancel_order.php?oid=<?= $order->id ?>">Remove</a>
+                        <?php } ?>
+                    </div>
+                </div>
+        <?php }
+        } ?>
+    </div>
+<?php }
+
+
+function kanban_col_courier($db, $orders, $OrderStatus, $cid)
 { ?>
     <div class="kanban__column" data-id=<?= $OrderStatus ?>>
         <div class="kanban__column-title"><?= OrderStatus::status[$OrderStatus] ?></div>
@@ -87,7 +118,7 @@ function kanban_col($db, $orders, $OrderStatus, $cid)
                         <h3>Total Price: 29,99$</h3>
                         <h3>Delivery Adress: Rua Belo Monte</h3>
                         <?php if (OrderStatus::delivered !== $OrderStatus) { ?>
-                            <a class="cancel_order link_button" href="../actions/action_cancel_delivery.php?oid=<?= $order->id ?>">Cancel Order</a>
+                            <a class="cancel_order link_button" href="../actions/action_cancel_delivery.php?oid=<?= $order->id ?>">Cancel</a>
                         <?php } ?>
                     </div>
                 </div>
