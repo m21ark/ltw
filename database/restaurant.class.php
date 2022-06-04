@@ -119,18 +119,51 @@ class Dish
         return $dishes;
     }
 
-    public static function getDishesBySearch(PDO $db, string $query, int $offset = null): array
+    public static function getDishesBySearch(PDO $db, string $query, int $offset = null, ?string $cat = null, $rid = null): array
     {
 
         $dishes = [];
-        $stmt = $db->prepare('
+        $stmt = null;
+        if ($rid !== null) {
+            if ($cat === null) {
+                $stmt = $db->prepare('
+            SELECT *
+            FROM Menu JOIN Dish ON (Menu.DishID = Dish.DishID)
+            WHERE Name LIKE "%" || ? || "%"
+            AND Menu.RestaurantID = ?
+            LIMIT ?, 4
+        ');
+                $stmt->execute(array($query, $rid, $offset * 4));
+            } else {
+                $stmt = $db->prepare('
+            SELECT *
+            FROM Menu JOIN Dish ON (Menu.DishID = Dish.DishID)
+            WHERE Name LIKE "%" || ? || "%"
+            AND Menu.RestaurantID = ?
+            AND Category LIKE ?
+            LIMIT ?, 4
+        ');
+                $stmt->execute(array($query, $rid, $cat, $offset * 4));
+            }
+        }
+        elseif ($cat != null) {
+            $stmt = $db->prepare('
+            SELECT *
+            FROM Dish
+            WHERE Name LIKE "%" || ? || "%"
+            AND Category LIKE ?
+            LIMIT ?, 4
+        ');
+            $stmt->execute(array($query, $cat, $offset * 4));
+        }else {
+            $stmt = $db->prepare('
             SELECT *
             FROM Dish
             WHERE Name LIKE "%" || ? || "%"
             LIMIT ?, 4
         ');
-
-        $stmt->execute(array($query, $offset * 4));
+            $stmt->execute(array($query, $offset * 4));
+        }
 
         $arr = $stmt->fetchAll();
 
@@ -311,17 +344,30 @@ class Restaurant
     }
 
 
-    static function getRestaurantBySearch(PDO $db, string $query, int $offset = null): array
+    static function getRestaurantBySearch(PDO $db, string $query, int $offset = null, ?string $cat = null): array
     {
         $restaurants = [];
-        $stmt = $db->prepare('
+        $stmt = null;
+        if ($cat !== null) {
+            $stmt = $db->prepare('
             SELECT *
             FROM Restaurant
-            where Name like "%" || ? || "%"
+            where Name LIKE "%" || ? || "%"
+            AND Category LIKE ?
             LIMIT ?, 4
         ');
+            $stmt->execute(array($query, $cat, $offset * 4));
+        } else {
+            $stmt = $db->prepare('
+            SELECT *
+            FROM Restaurant
+            where Name LIKE "%" || ? || "%"
+            LIMIT ?, 4
+        ');
+            $stmt->execute(array($query, $offset * 4));
+        }
 
-        $stmt->execute(array($query, $offset * 4));
+        
 
         $arr = $stmt->fetchAll();
 

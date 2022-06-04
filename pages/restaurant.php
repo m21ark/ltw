@@ -23,7 +23,13 @@ if ($restaurant === null)
     die(header('Location: /'));
 
 $menu = $restaurant->getMenu($db);
-$dishes = $menu->getMenuDishes($db);
+$dishes = Dish::getDishesBySearch(
+    $db,
+    "",
+    0,
+    $_GET['cat'] !== null ? htmlentities($_GET['cat']) : null,
+    $_GET['id'] !== null ? htmlentities($_GET['id']) : null
+);
 
 // TODO : We need to take the information about the length on the carrossel
 // maybe later we can set cokkies that determine the above res/dishes
