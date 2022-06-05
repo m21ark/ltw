@@ -1,0 +1,72 @@
+#orders_list {
+    padding: 2em 5em;
+    display: flex;
+    gap:1.5em;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.orders_list_title{
+    margin-top: 1em;
+    margin-left: 2em;
+}
+
+#orders_list h2 {
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+
+#orders_list .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1em 1.5em;
+    font-weight: bolder;
+    margin-bottom: 1em;
+    width: 16em;
+    box-shadow: 5px 4px 10px grey;
+}
+
+#orders_list .container p:not(#orders_list .container_delete, #orders_list .container_price) {
+    font-size: 1.1em;
+}
+
+#orders_list .container_name {
+    padding-bottom: 0.5em;
+}
+
+#orders_list .container_price {
+    margin: auto 0.8em;
+    font-size: 1.4em;
+}
+
+#orders_list .container_delete {
+    color: red;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+#orders_list .container_delete:hover {
+    cursor: pointer;
+    color: orangered;
+}
+
+.cart_qnt_arrows {
+    display: flex;
+    align-items: center;
+}
+
+.cart_qnt_arrows *:hover {
+    filter: brightness(130%);
+    cursor: pointer;
+}
+
+
+#orders_list input {
+    font-size: 1.1em;
+}
+
+#orders_list h3:last-of-type{
+    font-size: 1.5em;
+}

@@ -27,6 +27,7 @@ function output_header()
         <link rel="stylesheet" href="../css/card_flip.css">
         <link rel="stylesheet" href="../css/deliveries.css">
         <link rel="stylesheet" href="../css/kanban_board.css">
+        <link rel="stylesheet" href="../css/orders_list.css">
 
         <script src="../events/increment_decrement_order.js" defer></script>
         <script src="../events/toggle_favorites.js" defer></script>
@@ -533,9 +534,8 @@ function drawUserInfoPage(UserComposite $user)
 { ?>
 
     <a class="link_button" id="goback_delivery" href="user.php"> Go back</a>
-    <div id="cart_list">
-        <h2>Orders List</h2>
-
+    <h2 class="orders_list_title">Orders List</h2>
+    <div id="orders_list">
         <?php foreach ($orders as $order) { ?>
 
             <div class="container">
@@ -559,10 +559,11 @@ function drawUserInfoPage(UserComposite $user)
 
                 <h3><?= OrderStatus::status[$order->order_state] ?></h3>
 
-
-                <a href="../actions/action_cancel_order.php?oid=<?= $order->id ?>">
-                    <p class="container_delete">&#128465;</p>
-                </a>
+                <?php if ($order->order_state < 6) { ?>
+                    <a href="../actions/action_cancel_order.php?oid=<?= $order->id ?>">
+                        <p class="container_delete">&#128465;</p>
+                    </a>
+                <?php } ?>
 
             </div>
 
