@@ -443,6 +443,7 @@ function drawUserInfoPage(UserComposite $user)
 
                 <?php if ($user->hasPermission("Customer") !== null) { ?>
                     <p><a href="perfil_info.php?type=fav"><span class="bold">Favorites &star; </span></a></p>
+                    <p><a href="orders.php"><span class="bold">My Orders</span></a></p>
                 <?php } else { ?>
                     <p><a href=""><span class="bold becomeCustomer" data-id=<?= $user->permissions[0]->id ?>>Become a Customer</span></a></p>
                 <?php } ?>
@@ -523,5 +524,51 @@ function drawUserInfoPage(UserComposite $user)
         drawRestaurantsCarrossel($db, $restaurants, false);
         ?>
     </form>
+
+<?php } ?>
+
+
+
+<?php function drawOrderList($db, $orders)
+{ ?>
+
+    <a class="link_button" id="goback_delivery" href="user.php"> Go back</a>
+    <div id="cart_list">
+        <h2>Orders List</h2>
+
+        <?php foreach ($orders as $order) { ?>
+
+            <div class="container">
+
+                <h2> <?= $order->id ?> </h2>
+                <h3><?= $order->getRestaurantName($db) ?></h3>
+
+                <div>
+                    <?php $dishC = -1;
+                    foreach ($order->getOrderDishes($db) as $dish) {
+
+                        $dishC = Dish::getDish($db, $dish['DishID']);
+                    ?>
+
+                        <p class="kanban_bolder">Plate: <?= htmlentities($dishC->name) ?></p>
+                        <p class="kanban_bolder">Qnt: <?= htmlentities($dish['Qnt']) ?></p>
+                        <div></div>
+
+                    <?php } ?>
+                </div>
+
+                <h3><?= OrderStatus::status[$order->order_state] ?></h3>
+
+
+                <a href="../actions/action_cancel_order.php?oid=<?= $order->id ?>">
+                    <p class="container_delete">&#128465;</p>
+                </a>
+
+            </div>
+
+        <?php } ?>
+    </div>
+
+
 
 <?php } ?>

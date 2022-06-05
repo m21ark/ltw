@@ -75,4 +75,19 @@ class Order
 
         return (int)$stmt->fetch()['RestaurantID'];
     }
+
+    public function getRestaurantName(PDO $db): String
+    {
+
+        $stmt = $db->prepare('
+        SELECT Name
+        FROM Restaurant
+        WHERE RestaurantID = ?');
+
+        $stmt->execute(array($this->restaurant));
+
+        if ($id = $stmt->fetch()) {
+            return (string)$id['Name'];
+        } else return 0;
+    }
 }

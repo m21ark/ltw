@@ -59,10 +59,10 @@ function getOrders(PDO $db): array
 
                     <?php } ?>
 
-                    <p>Restaurante: <?= $dishC->getRestaurantName($db) ?></p>
-                    <p>Adress: <?= $dishC->getRestaurantAddress($db) ?></p>
+                    <p>Restaurant: <?= $dishC->getRestaurantName($db) ?></p>
+                    <p>Address: <?= $dishC->getRestaurantAddress($db) ?></p>
                     <div></div>
-                    <h3>Delivery Adress: <?= $order->getDeliveryAddress($db) ?></h3>
+                    <h3>Delivery Address: <?= $order->getDeliveryAddress($db) ?></h3>
                     <a class="link_button" href="../actions/action_take_delivery.php?cid=<?= $session->getId() ?>&oid=<?= $order->id ?>">Take Order</a>
 
                 </article>

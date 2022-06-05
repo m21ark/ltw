@@ -104,7 +104,7 @@ function kanban_col_courier($db, $orders, $OrderStatus, $cid)
                     <div class="kanban__item-input" draggable="true" data-id=<?= htmlentities("$order->id") ?>>
 
                         <h3>Order Nº: <?= $order->id ?></h3>
-                        <?php $dish = -1;
+                        <?php $dishC = -1;
                         foreach ($order->getOrderDishes($db) as $dish) {
 
                             $dishC = Dish::getDish($db, $dish['DishID']);
@@ -115,10 +115,10 @@ function kanban_col_courier($db, $orders, $OrderStatus, $cid)
                             <div></div>
 
                         <?php } ?>
-                        <p>Restaurante: <?= $dishC->getRestaurantName($db) ?></p>
-                        <p>Adress: <?= $dishC->getRestaurantAddress($db) ?></p>
+                        <p>Restaurant: <?= $dishC->getRestaurantName($db) ?></p>
+                        <p>Address: <?= $dishC->getRestaurantAddress($db) ?></p>
                         <div></div>
-                        <h3>Delivery Adress: <?= $order->getDeliveryAddress($db) ?></h3>
+                        <h3>Delivery Address: <?= $order->getDeliveryAddress($db) ?></h3>
                         <?php if (OrderStatus::delivered !== $OrderStatus) { ?>
                             <a class="cancel_order link_button" href="../actions/action_cancel_delivery.php?oid=<?= $order->id ?>">Cancel</a>
                         <?php } ?>

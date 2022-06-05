@@ -194,4 +194,33 @@ class Customer extends User
 
         $stmt2->execute(array($id));
     }
+
+    function getCustomerOrders(PDO $db): array
+    {
+        $stmt = $db->prepare('
+            SELECT *
+            FROM "Order"
+            WHERE CustomerID = ?
+        ');
+
+        $stmt->execute(array($this->id));
+
+        $orders = array();
+
+        $arr = $stmt->fetchAll();
+
+        foreach ($arr as $order) {
+            array_push($orders, new Order(
+                (int)$order['OrderID'],
+                (int)$order['CustomerID'],
+                (int)$order['OrderStateID'],
+                (int)$order['RestaurantID'],
+                (int)$order['CourierID'],
+                $order['DateOrder']
+            ));
+        }
+        return $orders;
+    }
+
+
 }
