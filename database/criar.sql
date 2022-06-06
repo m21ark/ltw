@@ -161,7 +161,7 @@ CREATE TABLE "Notification" (
 );
 
 CREATE TABLE OrderLocation (
-	OrderID INTEGER,
+	OrderID INTEGER PRIMARY KEY,
 	lat INTEGER,
 	lon INTEGER,
 	FOREIGN KEY (OrderID) REFERENCES "Order"(OrderID)
