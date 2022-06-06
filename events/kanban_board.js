@@ -77,15 +77,31 @@ let marker;
 let position;
 function initMap() {
     const uluru = navigator.geolocation.getCurrentPosition(console.log);
-    position = {lat:41.17117474678112, lng: -8.59970502145923,}
-    const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 4,
-      center: position,
-    });
-    marker = new google.maps.Marker({
-      position: position,
-      map: map,
-    });
+    let maps = document.querySelectorAll(".map");
+    console.log(maps)
+    maps.forEach( function (e) {
+        console.log(e.id);
+        position = fetch(`../apis/api_order.php?id=${e.id}`, {
+            method: "GET",
+            headers: new Headers({ 'Content-Type': 'application/json'})
+        })
+            .then(function (res) {
+                return res.json();
+            })
+            .then(function (response) {
+                let pos = {lat: parseFloat(response.lat), lng: parseFloat(response.lon)};
+                console.log(response);
+                let map = new google.maps.Map(e, {
+                    zoom: 4,
+                    center: pos,
+                });
+                marker = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                });
+            })
+    }
+    )
   }
   
 window.initMap = initMap;
@@ -100,7 +116,7 @@ const updatePos = (order) => { return (pos) =>{
     request.setRequestHeader('Content-Type',
         'application/x-www-form-urlencoded')
 
-        console.log(pos)
+    console.log(pos)
 
     request.send(encodeForAjax({ OrderID: order, lat: position.lat, lng: position.lng}));
     }

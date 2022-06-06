@@ -274,7 +274,7 @@ footer>p {
     filter: brightness(120%);
 }
 
-#map {
+.map {
     height: 15em;
     width: inherit;
 }

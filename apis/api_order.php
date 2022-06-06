@@ -31,3 +31,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     die();
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $db = getDatabaseConnection();
+    
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Methods: GET');
+    header('Access-Control-Allow-Headers: Content-Type');
+    header('Access-Control-Max-Age: 86400');
+
+    if ($_SERVER["CONTENT_TYPE"] === "application/json") {
+        echo json_encode(Order::getOrderLocation($db, (int)htmlentities($_GET['id'])));
+    }
+
+    die();
+}
+

@@ -90,4 +90,15 @@ class Order
             return (string)$id['Name'];
         } else return 0;
     }
+
+    public static function getOrderLocation(PDO $db, int $Order) :array{
+        $stmt = $db->prepare('
+        SELECT *
+        FROM OrderLocation
+        WHERE OrderID = ?');
+
+        $stmt->execute(array($Order));
+
+        return $stmt->fetch();
+    }
 }
