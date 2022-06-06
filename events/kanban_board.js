@@ -76,20 +76,22 @@ dragItem();
 let marker;
 let position;
 function initMap() {
-    const uluru = navigator.geolocation.getCurrentPosition(console.log);
     let maps = document.querySelectorAll(".map");
-    console.log(maps)
-    maps.forEach( function (e) {
+    maps.forEach(function (e) {
         console.log(e.id);
+
+        setTimeout(function () {
+            initMap();
+        }, 120000);
         position = fetch(`../apis/api_order.php?id=${e.id}`, {
             method: "GET",
-            headers: new Headers({ 'Content-Type': 'application/json'})
+            headers: new Headers({ 'Content-Type': 'application/json' })
         })
             .then(function (res) {
                 return res.json();
             })
             .then(function (response) {
-                let pos = {lat: parseFloat(response.lat), lng: parseFloat(response.lon)};
+                let pos = { lat: parseFloat(response.lat), lng: parseFloat(response.lon) };
                 console.log(response);
                 let map = new google.maps.Map(e, {
                     zoom: 4,
@@ -102,22 +104,23 @@ function initMap() {
             })
     }
     )
-  }
-  
+}
+
 window.initMap = initMap;
 
 
-const updatePos = (order) => { return (pos) =>{
-    position = {lat: pos.coords.latitude, lng: pos.coords.longitude};
+const updatePos = (order) => {
+    return (pos) => {
+        position = { lat: pos.coords.latitude, lng: pos.coords.longitude };
 
-    const request = new XMLHttpRequest();
-    request.withCredentials = true;
-    request.open("POST", "../actions/action_update_position.php", true);
-    request.setRequestHeader('Content-Type',
-        'application/x-www-form-urlencoded')
+        const request = new XMLHttpRequest();
+        request.withCredentials = true;
+        request.open("POST", "../actions/action_update_position.php", true);
+        request.setRequestHeader('Content-Type',
+            'application/x-www-form-urlencoded')
 
-    console.log(pos)
+        console.log(pos)
 
-    request.send(encodeForAjax({ OrderID: order, lat: position.lat, lng: position.lng}));
+        request.send(encodeForAjax({ OrderID: order, lat: position.lat, lng: position.lng }));
     }
 }
