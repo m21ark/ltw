@@ -59,7 +59,7 @@ CREATE TABLE "Order" (
 );
 
 
-CREATE TABLE Menu ( -- Não é só um dish --> assim já dará
+CREATE TABLE Menu ( 
 	RestaurantID INTEGER,
 	DishID INTEGER,
 	FOREIGN KEY (RestaurantID) REFERENCES Restaurant(RestaurantID),
@@ -68,12 +68,10 @@ CREATE TABLE Menu ( -- Não é só um dish --> assim já dará
 );
 
 CREATE TABLE Review (
-	-- falta quem fez a review
 	ReviewID INTEGER PRIMARY KEY,
 	Score INTEGER,
 	ReviewComment VARCHAR NOT NULL,
 	DateOfReview INTEGER NOT NULL,
-	--- insert the date in epoch format
 	RestaurantID INTEGER NOT NULL,
 	CustomerID INTEGER NOT NULL,
 	FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
@@ -95,7 +93,7 @@ CREATE TABLE Owner (
 
 CREATE TABLE DishOrder (
 	DishID INTEGER,
-	OrderID INTEGER, -- SE FIZERMOS ORDER DE 2 PRATOS IGUAIS - SERÁ QUE RESULTA? Parece que sim, mas confirmar ao povoar
+	OrderID INTEGER,
 	FOREIGN KEY (DishID) REFERENCES Dish(DishID),
 	FOREIGN KEY (OrderID) REFERENCES "Order"(OrderID)
 );

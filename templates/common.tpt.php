@@ -553,7 +553,6 @@ function drawUserInfoPage(UserComposite $user)
                         <p class="kanban_bolder">Plate: <?= htmlentities($dishC->name) ?></p>
                         <p class="kanban_bolder">Qnt: <?= htmlentities($dish['Qnt']) ?></p>
                         <div></div>
-
                     <?php } ?>
                 </div>
 
@@ -565,6 +564,8 @@ function drawUserInfoPage(UserComposite $user)
                     </a>
                 <?php } ?>
 
+                <div id="map"></div>
+                
             </div>
 
         <?php } ?>

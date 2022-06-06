@@ -8,7 +8,6 @@ require_once(__DIR__ . "/../database/connection.php");
 if (!isset($_POST['dishID']) || !isset($_POST['qnt']))
     die(header('Location: /'));
 
-// Restricts access to logged in users
 require_once(__DIR__ . '/../utils/session.php');
 $session = new Session();
 if (!$session->isLoggedIn()) {

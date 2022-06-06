@@ -44,7 +44,6 @@ function searchCategory() {
 
 
     navCat.forEach(element => {
-        console.log(element)
         const searchContent = document.querySelector('#search_box_input')
 
         element.addEventListener('click', function (evt) {
@@ -63,6 +62,7 @@ function searchCategory() {
                 })
                     .then(function (res) {
                         return res.text();
+                        
                     }).then(function (res) {
 
                         const div = document.querySelector('.restaurants');

@@ -274,3 +274,8 @@ footer>p {
     filter: brightness(120%);
 }
 
+#map {
+    height: 15em;
+    width: auto;
+  }
+  
