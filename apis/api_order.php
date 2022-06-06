@@ -13,14 +13,9 @@ $session = new Session();
 if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     $db = getDatabaseConnection();
     $id = (string)ORDER::getOrderRestaurantID($db,(int)htmlentities($_GET['id']));
-    if ($_SERVER['HTTP_REFERER'] === 'http://localhost:9000/pages/control_center.php?id=' . $id) {
-        header('Access-Control-Allow-Methods: PUT');
-        header('Access-Control-Allow-Headers: Content-Type');
-        header('Access-Control-Max-Age: 86400');
-    } else {
-        header("HTTP/1.1 401 Unauthorized");
-        die();
-    }
+    header('Access-Control-Allow-Methods: PUT');
+    header('Access-Control-Allow-Headers: Content-Type');
+    header('Access-Control-Max-Age: 86400');
 
     $db = getDatabaseConnection();
 

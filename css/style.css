@@ -276,6 +276,6 @@ footer>p {
 
 #map {
     height: 15em;
-    width: auto;
-  }
+    width: inherit;
+}
   

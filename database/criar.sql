@@ -17,6 +17,7 @@ DROP TABLE IF EXISTS Ingredient;
 DROP TABLE IF EXISTS Response;
 DROP TABLE IF EXISTS TakenDelivery;
 DROP TABLE IF EXISTS "Notification";
+DROP TABLE IF EXISTS OrderLocation;
 
 CREATE TABLE Restaurant (
 	RestaurantID INTEGER PRIMARY KEY,
@@ -159,10 +160,25 @@ CREATE TABLE "Notification" (
 	FOREIGN KEY (OrderStateID) REFERENCES OrderState(OrderStateID)
 );
 
+CREATE TABLE OrderLocation (
+	OrderID INTEGER,
+	lat INTEGER,
+	lon INTEGER,
+	FOREIGN KEY (OrderID) REFERENCES "Order"(OrderID)
+);
+
 DROP TRIGGER IF EXISTS add_notification;
 CREATE TRIGGER add_notification
 	BEFORE update ON "ORDER"
 	when old.OrderStateID <> new.OrderStateID
 BEGIN
 	insert into "Notification"(id, UserId, OrderStateID) Values (NULL, NEW.CustomerID, NEW.OrderStateID);
+END;
+
+DROP TRIGGER IF EXISTS update_location;
+CREATE TRIGGER update_location
+	BEFORE update ON "ORDER"
+	when old.OrderStateID <> new.OrderStateID AND new.OrderStateID = 5
+BEGIN
+	insert into OrderLocation(OrderID, lat, lon) Values (new.OrderID, NULL, NULL);
 END;

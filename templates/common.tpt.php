@@ -564,8 +564,11 @@ function drawUserInfoPage(UserComposite $user)
                     </a>
                 <?php } ?>
 
-                <div id="map"></div>
-                
+                <?php if ($order->order_state === 5) { ?>
+                    <div id="map"></div>
+                    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzgJqREIIsXex1RCkEXXiJyA2odtCX394&callback=initMap">
+                    </script>
+                <?php } ?>
             </div>
 
         <?php } ?>
