@@ -180,5 +180,5 @@ CREATE TRIGGER update_location
 	BEFORE update ON "ORDER"
 	when old.OrderStateID <> new.OrderStateID AND new.OrderStateID = 5
 BEGIN
-	insert into OrderLocation(OrderID, lat, lon) Values (new.OrderID, NULL, NULL);
+	insert or replace into OrderLocation(OrderID, lat, lon) Values (new.OrderID, NULL, NULL);
 END;
