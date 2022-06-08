@@ -327,7 +327,7 @@ function output_header()
             <input type="submit" class="link_button" value="Buy  &#x1f6d2;">
         </form>
         <?php if($customer != null && in_array(array('DishID' => $dish->id) ,$customer->getFavoriteDishes($db))) {?>
-                    <a class="link_button remove_dish_from_favorites" >Added ✔</a>
+                    <a class="link_button add_dish_to_favorites" >Added ✔</a>
                 <?php } else {?>
                     <a class="link_button add_dish_to_favorites">Add to favorites &star;</a>
         <?php } ?>

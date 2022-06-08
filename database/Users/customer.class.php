@@ -98,7 +98,7 @@ class Customer extends User
 
         $stmt = $db->prepare('
             DELETE FROM CustomerFavoriteDishes
-            WHERE CustomerID = ? AND DishID = ?);
+            WHERE CustomerID = ? AND DishID = ?
         ');
 
         return $stmt->execute(array($this->id, $dish->id));
@@ -110,7 +110,7 @@ class Customer extends User
 
         $stmt = $db->prepare('
             DELETE FROM CustomerFavoriteRestaurants
-            WHERE CustomerID = ? AND RestaurantID = ?);
+            WHERE CustomerID = ? AND RestaurantID = ?
         ');
 
         return $stmt->execute(array($this->id, $restaurant->id));
