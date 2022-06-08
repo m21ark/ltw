@@ -37,13 +37,14 @@ $reviews = $restaurant->getRestaurantReviews($db);
 
 $isOwner = false;
 $owner = $session->isLoggedIn() ? $user->hasPermission("RestaurantOwner") : NULL;
+$customer = $session->isLoggedIn() ? $user->hasPermission("Customer") : NULL;
 
 if ($owner !== NULL)
     $isOwner = $owner->isTheOwner($db, $restaurant->id);
 
 output_header();
 drawRestaurantDescriptionName($db, $restaurant);
-drawRestaurantDescription($restaurant, $isOwner);
+drawRestaurantDescription($restaurant, $isOwner, $customer );
 drawPlatesCarrossel($dishes);
 
 if ($isOwner)

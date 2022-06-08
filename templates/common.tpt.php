@@ -35,6 +35,7 @@ function output_header()
         <script src="../events/Notification/notification_handler.js" defer></script>
         <script src="../events/respond_to_client.event.js" defer></script>
         <script src="../events/remove_notifications.event.js" defer></script>
+        <script src="../events/remove_dish_from_cart.js" defer></script>
         <script src="../events/searchbox.event.js" defer></script>
         <script src="../events/become_customer.js" defer></script>
         <script src="../events/carousel.js" defer></script>
@@ -256,7 +257,7 @@ function output_header()
                     <span class="input-number-increment" data-id="<?= $dishID ?>">+</span>
                 </div>
 
-                <button type="text" formaction="../actions/action_remove_from_cart.php" formmethod="POST" name="id" value=<?= $dishID ?>>
+                <button type="text" formaction="" formmethod="POST" name="id" value=<?= $dishID ?>>
                     <p class="container_delete">&#128465;</p>
                 </button>
 

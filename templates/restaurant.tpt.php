@@ -37,9 +37,9 @@ $session = new Session();
 <?php } ?>
 
 
-<?php function drawRestaurantDescription(Restaurant $restaurant, bool $isOwner)
-{ ?>
-
+<?php function drawRestaurantDescription(Restaurant $restaurant, bool $isOwner, Customer $customer )
+{ $db = getDatabaseConnection();?>
+    
     <section id="description" class="container">
         <div>
             <h2>Description</h2>
@@ -50,7 +50,12 @@ $session = new Session();
         <img src="../docs/restaurant/<?= urlencode($restaurant->id) ?>.jpg" alt="">
         <div id="rest_links">
             <?php if ($isOwner) { ?><a class="link_button" href="edit_restaurant.php?id=<?= urlencode($restaurant->id) ?>">Edit Restaurant</a><?php } ?>
-            <a class="link_button add_to_favorites" href="#">Add to favorites &star;</a>
+            <?php if(!$isOwner) { 
+                if(in_array($restaurant->id ,$customer->getFavoriteRestaurants($db))) {?>
+                    <a class="link_button remove_from_favorites" href="#">Added ✔</a>
+                <?php } else {?>
+                    <a class="link_button add_to_favorites" href="#">Add to favorites &star;</a>
+            <?php }} ?>
             <?php if ($isOwner) { ?><a class="link_button" href="edit_plate.php?pid=0&restId=<?= urlencode($restaurant->id) ?>">Add Plate</a><?php } ?>
         </div>
     </section>

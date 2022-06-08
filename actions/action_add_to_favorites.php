@@ -12,13 +12,7 @@ if (!$session->isLoggedIn()) {
     die(header('Location: /'));
 }
 
-/*
-
-    TODO :: I am repeting a lot of code just to check if user has permission, maybe we can create a class that controlls the permissions
-
-*/
-
-$user = unserialize($session->getUserSerialized());
+$user = unserialize($_SESSION['user']);
 
 $customer = $user->hasPermission('Customer');
 if ($customer == null) {
@@ -26,10 +20,9 @@ if ($customer == null) {
     die(header('Location: /'));
 }
 
-$customer->deleteFromCart((int)$_POST['id']);
+$dish = Dish::getDish($db, intval(htmlentities($_POST['dishID'])));
 
-$session->setUser($user);
+$customer->addToFavoriteDishes($db, $dish);
 
-$session->addMessage('info', 'Item was removed from cart');
 
 
