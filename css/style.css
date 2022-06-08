@@ -80,6 +80,7 @@ header {
 header>h1 a {
     margin-left: 0.3em;
     font-family: var(--header_font);
+    font-size: 0.9em;
 }
 
 header>h1 a:visited {
@@ -106,7 +107,7 @@ header #header_avatar>img {
 
 header a#header_cart {
     font-weight: bolder;
-    font-size: 2.5em;
+    font-size: 2.4em;
     margin: 0em;
     margin-right: 0.8em;
     padding: 0;
@@ -114,7 +115,7 @@ header a#header_cart {
 
 header a#header_search {
     font-weight: bolder;
-    font-size: 2.5em;
+    font-size: 2.4em;
 }
 
 /*  Nav bar  */

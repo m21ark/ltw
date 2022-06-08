@@ -6,19 +6,25 @@ declare(strict_types=1);
 require_once(__DIR__ . "/user.abstract.php");
 
 
-class Courier extends User {
+class Courier extends User
+{
     public static function login(PDO $db, string $email, string $password): ?User
     {
+
         $stmt = $db->prepare('
-            SELECT UserID, username, Address, phoneNumber, email
+            SELECT UserID, username, Address, phoneNumber, email, password
             FROM Courier LEFT JOIN USER on (CourierID = UserID)
-            WHERE lower(email) = ? AND password = ?
+            WHERE lower(email) = ?
         ');
 
-        $stmt->execute(array(strtolower($email), sha1($password)));
+        $stmt->execute(array(strtolower($email)));
+        $user = $stmt->fetch();
 
 
-        if ($customer = $stmt->fetch()) {
+        if (!($user && password_verify($password, $user['password'])))
+            return null;
+
+        if ($customer = $user) {
             return new Courier(
                 (int)$customer['UserId'],
                 $customer['username'],
@@ -48,7 +54,8 @@ class Courier extends User {
         } else return false;
     }
 
-    public static function getAssignedOrder(PDO $db) : array{
+    public static function getAssignedOrder(PDO $db): array
+    {
         return [];
     }
 }

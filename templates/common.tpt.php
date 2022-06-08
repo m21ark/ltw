@@ -16,6 +16,7 @@ function output_header()
     <head>
         <meta charset="UTF-8">
         <title>Tasty Eats</title>
+        <link rel="icon" type="image/x-icon" href="/docs/favicon.ico">
 
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/responsive.css">
@@ -47,7 +48,7 @@ function output_header()
     <body>
 
         <header>
-            <a href="index.php"><img src="../docs/logo.jpg" width="50" height="50" alt="logo"></a>
+            <a href="index.php"><img src="../docs/logo.png" width="50" height="50" alt="logo"></a>
             <h1 id="logo_name"><a href="index.php">Tasty Eats</a></h1>
             <span><a id="header_search" href="index.php">&#128270;</a></span>
 

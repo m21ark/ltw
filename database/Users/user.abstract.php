@@ -49,6 +49,11 @@ abstract class User
 
         $stmt = $db->prepare('INSERT INTO "User" VALUES (NULL, ? , ? , ? , ? , ? , NULL )');
 
-        $stmt->execute(array(strtolower($email), $username, sha1($password), $address, $phone));
+
+        // Password Salt Treatment & Hashing
+        $password = password_hash($password, PASSWORD_DEFAULT, ['cost' => 12]);
+
+
+        $stmt->execute(array(strtolower($email), $username, $password, $address, $phone));
     }
 }
