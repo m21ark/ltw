@@ -81,7 +81,7 @@ function kanban_col_owner($db, $orders, $OrderStatus, $rid)
                             <p class="kanban_bolder">Qnt: <?= htmlentities($dish['Qnt']) ?></p>
                             <div></div>
                         <?php } ?>
-                        <a class="cancel_order link_button" href="../actions/action_cancel_order.php?oid=<?= $order->id ?>">Remove</a>
+                        <a class="cancel_order link_button" href="../actions/action_cancel_order.php?oid=<?= urlencode($order->id) ?>">Remove</a>
                     </div>
                 </div>
         <?php }
@@ -120,7 +120,7 @@ function kanban_col_courier($db, $orders, $OrderStatus, $cid)
                         <div></div>
                         <h3>Delivery Address: <?= $order->getDeliveryAddress($db) ?></h3>
                         <?php if (OrderStatus::delivered !== $OrderStatus) { ?>
-                            <a class="cancel_order link_button" href="../actions/action_cancel_delivery.php?oid=<?= $order->id ?>">Cancel</a>
+                            <a class="cancel_order link_button" href="../actions/action_cancel_delivery.php?oid=<?= urlencode($order->id) ?>">Cancel</a>
                         <?php } ?>
                     </div>
                 </div>

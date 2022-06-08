@@ -15,6 +15,7 @@ function output_header()
     <head>
         <meta charset="UTF-8">
         <title>Tasty Eats</title>
+        <link rel="icon" type="image/x-icon" href="/docs/favicon.ico">
 
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/responsive.css">
