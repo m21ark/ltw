@@ -41,5 +41,4 @@ function drawRestaurantsCarrossel(PDO $db, array $restaurants, bool $showNav = t
     </article>
 <?php }
 
-
 ?>

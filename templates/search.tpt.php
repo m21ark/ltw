@@ -36,7 +36,7 @@ function drawSearchResults()
             <h4>Restaurants</h4>
             <?php foreach ($rests as $rest) { ?>
                 <article>
-                    <p><?php echo implode('|', $rest) ?></p>
+                    <p><?= htmlentities(implode('|', $rest)) ?></p>
                 </article>
             <?php } ?>
         </div>
@@ -45,7 +45,7 @@ function drawSearchResults()
             <h4>Plates</h4>
             <?php foreach ($plats as $plate) { ?>
                 <article>
-                    <p><?php echo implode('|', $plate) ?></p>
+                    <p><?= htmlentities(implode('|', $plate)) ?></p>
                 </article>
             <?php } ?>
         </div>

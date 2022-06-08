@@ -93,7 +93,7 @@ function kanban_col_owner($db, $orders, $OrderStatus, $rid)
 function kanban_col_courier($db, $orders, $OrderStatus, $cid)
 { ?>
     <div class="kanban__column" data-id=<?= $OrderStatus ?>>
-        <div class="kanban__column-title"><?= OrderStatus::status[$OrderStatus] ?></div>
+        <div class="kanban__column-title"><?= htmlentities(OrderStatus::status[$OrderStatus]) ?></div>
         <div class="kanban__items">
             <div class="kanban__dropzone"></div>
         </div>
@@ -103,7 +103,7 @@ function kanban_col_courier($db, $orders, $OrderStatus, $cid)
                 <div class="kanban__items">
                     <div class="kanban__item-input" draggable="true" data-id=<?= htmlentities("$order->id") ?>>
 
-                        <h3>Order Nº: <?= $order->id ?></h3>
+                        <h3>Order Nº: <?= htmlentities($order->id) ?></h3>
                         <?php $dishC = -1;
                         foreach ($order->getOrderDishes($db) as $dish) {
 
@@ -115,10 +115,10 @@ function kanban_col_courier($db, $orders, $OrderStatus, $cid)
                             <div></div>
 
                         <?php } ?>
-                        <p>Restaurant: <?= $dishC->getRestaurantName($db) ?></p>
-                        <p>Address: <?= $dishC->getRestaurantAddress($db) ?></p>
+                        <p>Restaurant: <?= htmlentities($dishC->getRestaurantName($db)) ?></p>
+                        <p>Address: <?= htmlentities($dishC->getRestaurantAddress($db)) ?></p>
                         <div></div>
-                        <h3>Delivery Address: <?= $order->getDeliveryAddress($db) ?></h3>
+                        <h3>Delivery Address: <?= htmlentities($order->getDeliveryAddress($db)) ?></h3>
                         <?php if (OrderStatus::delivered !== $OrderStatus) { ?>
                             <a class="cancel_order link_button" href="../actions/action_cancel_delivery.php?oid=<?= urlencode($order->id) ?>">Cancel</a>
                         <?php } ?>

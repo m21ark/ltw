@@ -34,7 +34,7 @@ function getOrders(PDO $db): array
 <?php function draw_deliveryOptions($session, $db, $orders)
 {
 ?>
-    <a class="link_button" id="goback_delivery" href="control_center.php?cid=<?= $session->getId() ?>"> Go back</a>
+    <a class="link_button" id="goback_delivery" href="control_center.php?cid=<?= urlencode($session->getId()) ?>"> Go back</a>
     <section id="delivery_container" class="container">
         <h2>Orders waiting delivery</h2>
 
@@ -47,7 +47,7 @@ function getOrders(PDO $db): array
 
                 <article class="delivery_item">
 
-                    <h3>Order Nº: <?= $order->id ?></h3>
+                    <h3>Order Nº: <?= htmlentities($order->id) ?></h3>
                     <?php $dishC = -1;
                     foreach ($order->getOrderDishes($db) as $dish) {
                         $dishC = Dish::getDish($db, $dish['DishID']);
@@ -59,11 +59,11 @@ function getOrders(PDO $db): array
 
                     <?php } ?>
 
-                    <p>Restaurant: <?= $dishC->getRestaurantName($db) ?></p>
-                    <p>Address: <?= $dishC->getRestaurantAddress($db) ?></p>
+                    <p>Restaurant: <?= htmlentities($dishC->getRestaurantName($db)) ?></p>
+                    <p>Address: <?= htmlentities($dishC->getRestaurantAddress($db)) ?></p>
                     <div></div>
-                    <h3>Delivery Address: <?= $order->getDeliveryAddress($db) ?></h3>
-                    <a class="link_button" href="../actions/action_take_delivery.php?cid=<?= $session->getId() ?>&oid=<?= $order->id ?>">Take Order</a>
+                    <h3>Delivery Address: <?= htmlentities($order->getDeliveryAddress($db)) ?></h3>
+                    <a class="link_button" href="../actions/action_take_delivery.php?cid=<?= urlencode($session->getId()) ?>&oid=<?= urlencode($order->id) ?>">Take Order</a>
 
                 </article>
             <?php } ?>

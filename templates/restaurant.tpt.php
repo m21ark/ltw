@@ -103,7 +103,7 @@ $session = new Session();
                 <p class="review_date"><?= htmlentities($review->date->format('Y-m-d')) ?></p>
             </div>
             <p class="review_text">
-                <?= $review->text ?>
+                <?= htmlentities($review->text) ?>
             </p>
             <?php if ($review->getResponse($db) !== null) {
             ?>
@@ -120,7 +120,7 @@ $session = new Session();
             <?php } ?>
         </div>
         <div>
-            <img src="../docs/reviews/<?= $review->id ?>.jpg" alt="">
+            <img src="../docs/reviews/<?= urlencode($review->id) ?>.jpg" alt="">
             <p class="review_score"><?= htmlentities("$review->score") ?>/5 &star;</p>
         </div>
     </article>
