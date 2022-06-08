@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 require_once(__DIR__ . "/../database/Users/user_composite.class.php");
+require_once(__DIR__ . "/../database/connection.php");
+require_once(__DIR__ . "/../database/restaurant.class.php");
 
 // Restricts access to logged in users
 require_once(__DIR__ . '/../utils/session.php');
@@ -20,9 +22,13 @@ if ($customer == null) {
     die(header('Location: /'));
 }
 
-$dish = Dish::getDish($db, intval(htmlentities($_POST['dishID'])));
 
-$customer->addToFavoriteDishes($db, $dish);
+
+$db = getDatabaseConnection();
+$dish = Restaurant::getRestaurant($db, intval(htmlentities($_POST['dishID'])));
+
+$customer->getFavoriteRestaurants($db);
+$customer->addToFavoriteRestaurants($db, $dish);
 
 
 

@@ -51,7 +51,7 @@ $session = new Session();
         <div id="rest_links">
             <?php if ($isOwner) { ?><a class="link_button" href="edit_restaurant.php?id=<?= urlencode($restaurant->id) ?>">Edit Restaurant</a><?php } ?>
             <?php if(!$isOwner) { 
-                if(in_array($restaurant->id ,$customer->getFavoriteRestaurants($db))) {?>
+                if(in_array(array('RestaurantID' => $restaurant->id) ,$customer->getFavoriteRestaurants($db))) {?>
                     <a class="link_button remove_from_favorites" href="#">Added ✔</a>
                 <?php } else {?>
                     <a class="link_button add_to_favorites" href="#">Add to favorites &star;</a>

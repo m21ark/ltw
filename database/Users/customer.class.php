@@ -8,8 +8,8 @@ require_once(__DIR__ . "/user.abstract.php");
 class Customer extends User
 {
 
-    public array $favoriteRestaurants;
-    public array $favoriteDishes;
+    public array $favoriteRestaurants = [];
+    public array $favoriteDishes = [];
     public array $cart = [];
 
     public function __construct(int $id, string $username, string $address, string $phone, string $email)
@@ -66,13 +66,13 @@ class Customer extends User
 
         $stmt->execute(array($this->id));
 
-        $favoriteDishes = $stmt->fetchAll();
-        return $favoriteDishes;
+        $this->favoriteDishes = $stmt->fetchAll();
+        return $this->favoriteDishes;
     }
 
     public function addToFavoriteRestaurants(PDO $db, Restaurant $restaurant): bool
     {
-        array_push($favoriteRestaurants, $restaurant->id);
+        array_push($this->favoriteDishes, $restaurant->id);
 
         $stmt = $db->prepare('
             INSERT INTO CustomerFavoriteRestaurants VALUES (?, ?);
@@ -83,7 +83,7 @@ class Customer extends User
 
     public function addToFavoriteDishes(PDO $db, Dish $dish): bool
     {
-        array_push($favoriteRestaurants, $dish->id);
+        array_push($this->favoriteDishes, $dish->id);
 
         $stmt = $db->prepare('
             INSERT INTO CustomerFavoriteDishes VALUES (?, ?);
