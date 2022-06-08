@@ -54,6 +54,11 @@
     margin: auto;
 }
 
+#plate_page form + a {
+    grid-area: fav;
+    margin: auto;
+}
+
 #plate_restaurant {
     grid-area: link;
     grid-column: 1/span 3;

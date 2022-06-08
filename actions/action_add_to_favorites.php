@@ -23,12 +23,17 @@ if ($customer == null) {
 }
 
 
+if (isset($_POST['resID'])) {
+    $db = getDatabaseConnection();
+    $dish = Restaurant::getRestaurant($db, intval(htmlentities($_POST['resID'])));
 
-$db = getDatabaseConnection();
-$dish = Restaurant::getRestaurant($db, intval(htmlentities($_POST['dishID'])));
+    $customer->getFavoriteRestaurants($db);
+    $customer->addToFavoriteRestaurants($db, $dish);
+}else if (isset($_POST['dishID'])) {
+    $db = getDatabaseConnection();
+    $dish = Dish::getDish($db, intval(htmlentities($_POST['dishID'])));
 
-$customer->getFavoriteRestaurants($db);
-$customer->addToFavoriteRestaurants($db, $dish);
-
-
+    $customer->getFavoriteDishes($db);
+    $customer->addToFavoriteDishes($db, $dish);
+}
 

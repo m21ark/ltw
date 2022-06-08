@@ -66,8 +66,8 @@ class Customer extends User
 
         $stmt->execute(array($this->id));
 
-        $this->favoriteDishes = $stmt->fetchAll();
-        return $this->favoriteDishes;
+        $favoriteDishes = $stmt->fetchAll();
+        return $favoriteDishes;
     }
 
     public function addToFavoriteRestaurants(PDO $db, Restaurant $restaurant): bool
