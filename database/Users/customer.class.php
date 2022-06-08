@@ -23,13 +23,25 @@ class Customer extends User
 
     public static function login(PDO $db, string $email, string $password): ?User
     {
+
+        $stmt = $db->prepare('SELECT * FROM User WHERE lower(email) = ?');
+        $stmt->execute(array($email));
+
+        $user = $stmt->fetch();
+
+        if (!($user && password_verify($password, $user['password'])))
+            return null;
+
+
+        // ------------------------------------------------------------------
+
         $stmt = $db->prepare('
             SELECT UserID, username, Address, phoneNumber, email
             FROM Customer LEFT JOIN USER on (CustomerID = UserID)
-            WHERE lower(email) = ? AND password = ?
+            WHERE lower(email) = ?
       ');
 
-        $stmt->execute(array(strtolower($email), sha1($password)));
+        $stmt->execute(array(strtolower($email)));
 
         if ($customer = $stmt->fetch()) {
             return new Customer(
@@ -221,6 +233,4 @@ class Customer extends User
         }
         return $orders;
     }
-
-
 }

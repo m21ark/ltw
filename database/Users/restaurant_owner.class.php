@@ -12,14 +12,25 @@ class RestaurantOwner extends User
 
     public static function login(PDO $db, string $email, string $password): ?User
     {
+
+        $stmt = $db->prepare('SELECT * FROM User WHERE lower(email) = ?');
+        $stmt->execute(array($email));
+
+        $user = $stmt->fetch();
+
+
+        if (!($user && password_verify($password, $user['password'])))
+            return null;
+
+        // ------------------------------------------------------------------
+
         $stmt = $db->prepare('
             SELECT UserID, username, Address, phoneNumber, email
             FROM Owner LEFT JOIN USER on (OwnerID = UserID)
-            WHERE lower(email) = ? AND password = ?
+            WHERE lower(email) = ?
         ');
 
-        $stmt->execute(array(strtolower($email), sha1($password)));
-
+        $stmt->execute(array(strtolower($email)));
 
         if ($customer = $stmt->fetch()) {
             return new RestaurantOwner(
@@ -50,7 +61,7 @@ class RestaurantOwner extends User
         } else return false;
     }
 
-    public static function getOwnerRestaurants(PDO $db, int $id) : array
+    public static function getOwnerRestaurants(PDO $db, int $id): array
     {
         $stmt = $db->prepare('
         SELECT RestaurantID
@@ -67,7 +78,7 @@ class RestaurantOwner extends User
         return $rests;
     }
 
-    public function isTheOwner(PDO $db, int $restaurantID) : bool
+    public function isTheOwner(PDO $db, int $restaurantID): bool
     {
         $isOwner = false;
         $restaurants = RestaurantOwner::getOwnerRestaurants($db, $this->id);
