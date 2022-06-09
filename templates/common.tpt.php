@@ -59,7 +59,7 @@ function output_header()
                 $user = unserialize($_SESSION['user']);
             ?>
                 <span><a id="header_cart" href="cart.php">&#x1f6d2;</a></span>
-                <a id="header_avatar" href="user.php"><img src="../docs/users/<?= htmlentities($user->permissions[0]->id) ?>.jpg" alt="logo"></a>
+                <a id="header_avatar" href="user.php"><img src="../docs/users/<?= urlencode($user->permissions[0]->id) ?>.jpg" alt="logo"></a>
                 <span class="user_id" data-id=<?= htmlentities($user->permissions[0]->id) ?> hidden></span>
             <?php } ?>
         </header>
@@ -86,8 +86,8 @@ function output_header()
                 <?php
                 $session = new Session();
                 foreach ($session->getMessages() as $messsage) { ?>
-                    <article class="<?= $messsage['type'] ?>">
-                        <p><?= $messsage['text'] ?></p>
+                    <article class="<?= htmlentities($messsage['type']) ?>">
+                        <p><?= htmlentities($messsage['text']) ?></p>
                     </article>
                 <?php } ?>
             </section>
@@ -148,7 +148,7 @@ function output_header()
 
                 <div class="left_login">
                     <label>
-                        <!--- TODO: URGENTE ... Não temos nome na base de dados, metemos ?--->
+
                         Username <input type="text" placeholder="Username" name="username" required>
                     </label>
                     <label>
@@ -168,8 +168,8 @@ function output_header()
                     </label>
                     <button class="form_button" formaction="../actions/action_register.php" formmethod="post">Register</button>
                 </div>
-                <input style="visibility: hidden;margin:0;padding: 0;height: 0;">
-                <!--- STYLE Não pode estar aqui--->
+                <input class="null_input">
+
             </form>
             <div class="form_alternative">
                 <p><span class="bold">Already have an account?</span></p>
@@ -194,17 +194,17 @@ function output_header()
 
                 <div>
                     <label>
-                        Username <input class="custom_input" type="text" placeholder="Username" name="username" required value="<?= $user->username  ?>">
+                        Username <input class="custom_input" type="text" placeholder="Username" name="username" required value="<?= htmlentities($user->username)  ?>">
                     </label>
                     <label>
-                        Email <input class="custom_input" type="email" placeholder="Email" name="email" required value="<?= $user->email  ?>">
+                        Email <input class="custom_input" type="email" placeholder="Email" name="email" required value="<?= htmlentities($user->email)  ?>">
                     </label>
                     <label>
-                        Address <input class="custom_input" type="text" placeholder="Address" name="address" required value="<?= $user->address  ?>">
+                        Address <input class="custom_input" type="text" placeholder="Address" name="address" required value="<?= htmlentities($user->address)  ?>">
                     </label>
 
                     <label>
-                        Phone Number <input class="custom_input" type="text" placeholder="Phone Number" name="phone" required value="<?= $user->phone  ?>">
+                        Phone Number <input class="custom_input" type="text" placeholder="Phone Number" name="phone" required value="<?= htmlentities($user->phone)  ?>">
                     </label>
                     <label>
                         Password <input class="custom_input" type="password" placeholder="Password" name="new_password" required>
@@ -247,17 +247,17 @@ function output_header()
         ?>
 
             <div class="container">
-                <a href="plate.php?id=<?= $dishID ?>" class="container_name"><?= $dish->name ?></a>
-                <img src=<?= "../docs/food/" . $dishID . ".jpg" ?> alt=<?= $dish->name ?>>
-                <p class="container_price"><?= $dish->price ?>$</p>
+                <a href="plate.php?id=<?= urlencode($dishID) ?>" class="container_name"><?= urlencode($dish->name) ?></a>
+                <img src=<?= "../docs/food/" . urlencode($dishID) . ".jpg" ?> alt=<?= $dish->name ?>>
+                <p class="container_price"><?= htmlentities($dish->price) ?>$</p>
 
                 <div class="cart_qnt_arrows">
-                    <span class="input-number-decrement" data-id="<?= $dishID ?>">-</span>
-                    <input class="input-number" readonly type="text" value="<?= $dishQnt ?>" min="0" max="20">
-                    <span class="input-number-increment" data-id="<?= $dishID ?>">+</span>
+                    <span class="input-number-decrement" data-id="<?= htmlentities($dishID) ?>">-</span>
+                    <input class="input-number" readonly type="text" value="<?= htmlentities($dishQnt) ?>" min="0" max="20">
+                    <span class="input-number-increment" data-id="<?= htmlentities($dishID) ?>">+</span>
                 </div>
 
-                <button type="text" formaction="../actions/action_remove_from_cart.php" formmethod="POST" name="id" value=<?= $dishID ?>>
+                <button type="text" formaction="../actions/action_remove_from_cart.php" formmethod="POST" name="id" value=<?= htmlentities($dishID) ?>>
                     <p class="container_delete">&#128465;</p>
                 </button>
 
@@ -278,13 +278,12 @@ function output_header()
 
         <h2>Description</h2>
         <p>
-            <?= $dish->description ?>
+            <?= htmlentities($dish->description) ?>
         </p>
 
         <div>
-            <a href="#"><?= $dish->category ?></a>
+            <a href="#"><?= htmlentities($dish->category) ?></a>
         </div>
-
 
     </div>
 
@@ -298,14 +297,14 @@ function output_header()
     <article id="plate_page" class="container">
         <h2>Plate page</h2>
         <?php if ($isOwner) { ?>
-            <a href="edit_plate.php?pid=<?= $dish->id ?>">
+            <a href="edit_plate.php?pid=<?= urlencode($dish->id) ?>">
                 <h3>(Edit Plate)</h3>
             </a>
         <?php } ?>
         <div id="plate_left">
-            <h2><?= $dish->name ?></h2>
-            <img src="../docs/food/<?= $dish->id ?>.jpg" alt="">
-            <p><?= $dish->price ?> €</p>
+            <h2><?= htmlentities($dish->name) ?></h2>
+            <img src="../docs/food/<?= urlencode($dish->id) ?>.jpg" alt="">
+            <p><?= htmlentities($dish->price) ?> €</p>
         </div>
 
         <div id="plate_right">
@@ -314,7 +313,7 @@ function output_header()
             <div id="ingredients_list">
                 <ul>
                     <?php for ($i = 0; $i < sizeof($ingredients); $i++) { ?>
-                        <li><?= $ingredients[$i]['IngredientName'] ?></li>
+                        <li><?= htmlentities($ingredients[$i]['IngredientName']) ?></li>
                     <?php } ?>
                 </ul>
             </div>
@@ -322,11 +321,11 @@ function output_header()
         </div>
 
         <form action="../../actions/action_add_to_cart.php" method="post">
-            <input type="hidden" id="id" name="id" value="<?= $_GET["id"] ?>">
+            <input type="hidden" id="id" name="id" value="<?= htmlentities($_GET["id"]) ?>">
             <input type="submit" class="link_button" value="Buy  &#x1f6d2;">
         </form>
 
-        <a href="restaurant.php?id=<?= $restaurantID ?>" id="plate_restaurant">
+        <a href="restaurant.php?id=<?= htmlentities($restaurantID) ?>" id="plate_restaurant">
             <h2>See Restaurant</h2>
         </a>
 
@@ -348,38 +347,38 @@ function output_header()
 
 
             <label for="p_name">Plate Name</label>
-            <input class="custom_input" type="text" name="p_name" required value="<?= $edit ? $dish->name : null ?>">
+            <input class="custom_input" type="text" name="p_name" required value="<?= htmlentities($edit ? $dish->name : null) ?>">
 
             <label for="price">Price</label>
-            <input class="custom_input" type="number" step=0.01 name="price" required value="<?= $edit ? $dish->price : null ?>">
+            <input class="custom_input" type="number" step=0.01 name="price" required value="<?= htmlentities($edit ? $dish->price : null) ?>">
 
             <label for="category">Category</label>
-            <input class="custom_input" type="text" name="category" required value="<?= $edit ? $dish->category : null ?>">
+            <input class="custom_input" type="text" name="category" required value="<?= htmlentities($edit ? $dish->category : null) ?>">
 
             <label for="image">Plate Photo</label>
-            <input class="custom_input" type="file" name="image" accept="image/png,image/jpeg" <?= $edit ? null : 'required' ?>>
+            <input class="custom_input" type="file" name="image" accept="image/png,image/jpeg,image/jpg" <?= htmlentities($edit ? null : 'required') ?>>
 
             <?php if ($edit) { ?>
-                <img src="../docs/food/<?= $dish->id ?>.jpg" alt="Plate Picture">
+                <img src="../docs/food/<?= urlencode($dish->id) ?>.jpg" alt="Plate Picture">
             <?php } ?>
 
             <label for="description">Description</label>
-            <textarea name="description" required><?= $edit ? $dish->description : null ?></textarea>
+            <textarea name="description" required><?= htmlentities($edit ? $dish->description : null) ?></textarea>
 
             <label for="ingredients">Ingredients</label>
             <textarea name="ingredients" required><?php for ($i = 0; $i < sizeof($ingredients) - 1; $i++) {
-                                                        echo $ingredients[$i]['IngredientName'];
+                                                        echo htmlentities($ingredients[$i]['IngredientName']);
                                                         echo ",\n";
                                                     }
-                                                    echo $ingredients[sizeof($ingredients) - 1]['IngredientName']; ?></textarea>
+                                                    echo htmlentities($ingredients[sizeof($ingredients) - 1]['IngredientName']); ?></textarea>
 
-            <input type="hidden" name="restID" value=<?= $restaurantID ?>>
-            <input type="hidden" name="plateID" value=<?= $dish->id ?>>
+            <input type="hidden" name="restID" value=<?= htmlentities($restaurantID) ?>>
+            <input type="hidden" name="plateID" value=<?= htmlentities($dish->id) ?>>
 
             <input class="link_button" type="submit" value="Publish">
 
             <?php if ($edit) { ?>
-                <a class="link_button" id="del_dish" href="../actions/action_delete_plate.php?pid=<?= $dish->id ?>&rest_id=<?= $restaurantID ?>">Delete</a>
+                <a class="link_button" id="del_dish" href="../actions/action_delete_plate.php?pid=<?= urlencode($dish->id) ?>&rest_id=<?= urlencode($restaurantID) ?>">Delete</a>
             <?php } ?>
 
         </form>
@@ -394,34 +393,34 @@ function output_header()
         <form class="edit_form" action="../actions/<?= $edit ? 'action_edit_rest.php' : 'action_add_rest.php' ?>" method="post" enctype="multipart/form-data">
 
             <label for="name">Restaurant Name</label>
-            <input class="custom_input" type="text" name="name" required value="<?= $edit ? $restaurant->name : null ?>">
+            <input class="custom_input" type="text" name="name" required value="<?= htmlentities($edit ? $restaurant->name : null) ?>">
 
             <label for="category">Category</label>
-            <input class="custom_input" type="text" name="category" required value="<?= $edit ? $restaurant->category : null ?>">
+            <input class="custom_input" type="text" name="category" required value="<?= htmlentities($edit ? $restaurant->category : null) ?>">
 
             <label for="address">Address</label>
-            <input class="custom_input" type="text" name="address" required value="<?= $edit ? $restaurant->address : null ?>">
+            <input class="custom_input" type="text" name="address" required value="<?= htmlentities($edit ? $restaurant->address : null) ?>">
 
             <label for="phone">Phone</label>
-            <input class="custom_input" type="phone" name="phone" required value="<?= $edit ? $restaurant->phone : null ?>">
+            <input class="custom_input" type="phone" name="phone" required value="<?= htmlentities($edit ? $restaurant->phone : null) ?>">
 
             <label for="image">Restaurant Photo</label>
-            <input class="custom_input" type="file" name="image" accept="image/png,image/jpeg" <?= $edit ? null : 'required' ?>>
+            <input class="custom_input" type="file" name="image" accept="image/png,image/jpeg" <?= htmlentities($edit ? null : 'required') ?>>
 
             <?php if ($edit) { ?>
-                <img src="../docs/restaurant/<?= $restaurant->id ?>.jpg" alt="Restaurant Picture">
+                <img src="../docs/restaurant/<?= urlencode($restaurant->id) ?>.jpg" alt="Restaurant Picture">
             <?php } ?>
 
             <label for="description">Description</label>
-            <textarea name="description" required><?= $edit ? $restaurant->description : null ?></textarea>
+            <textarea name="description" required><?= htmlentities($edit ? $restaurant->description : null) ?></textarea>
 
-            <input type="hidden" name="uID" value=<?= $userID ?>>
+            <input type="hidden" name="uID" value=<?= htmlentities($userID) ?>>
 
             <input class="link_button" type="submit" value="Publish">
 
             <?php if ($edit) { ?>
-                <input type="hidden" name="rID" value=<?= $restaurant->id ?>>
-                <a class="link_button" id="del_dish" href="../actions/action_delete_rest.php?rID=<?= $restaurant->id ?>">Delete</a>
+                <input type="hidden" name="rID" value=<?= htmlentities($restaurant->id) ?>>
+                <a class="link_button" id="del_dish" href="../actions/action_delete_rest.php?rID=<?= urlencode($restaurant->id) ?>">Delete</a>
             <?php } ?>
 
         </form>
@@ -437,20 +436,20 @@ function drawUserInfoPage(UserComposite $user)
         <section class="container">
             <h2>User</h2>
             <div id="info_display">
-                <img id="user_photo" src="../docs/users/<?= $user->permissions[0]->id ?>.jpg" width="200" height="200" alt="logo">
-                <h3><?= $user->permissions[0]->username ?></h3>
-                <p><span class="bold">Username:</span> <?= $user->permissions[0]->username ?></p>
-                <p><span class="bold">Adress:</span> <?= $user->permissions[0]->address ?></p>
-                <p><span class="bold">Email:</span> <?= $user->permissions[0]->email ?></p>
+                <img id="user_photo" src="../docs/users/<?= urlencode($user->permissions[0]->id) ?>.jpg" width="200" height="200" alt="logo">
+                <h3><?= htmlentities($user->permissions[0]->username) ?></h3>
+                <p><span class="bold">Username:</span> <?= htmlentities($user->permissions[0]->username) ?></p>
+                <p><span class="bold">Adress:</span> <?= htmlentities($user->permissions[0]->address) ?></p>
+                <p><span class="bold">Email:</span> <?= htmlentities($user->permissions[0]->email) ?></p>
 
                 <?php if ($user->hasPermission("Customer") !== null) { ?>
                     <p><a href="perfil_info.php?type=fav"><span class="bold">Favorites &star; </span></a></p>
                     <p><a href="orders.php"><span class="bold">My Orders</span></a></p>
                 <?php } else { ?>
-                    <p><a href=""><span class="bold becomeCustomer" data-id=<?= $user->permissions[0]->id ?>>Become a Customer</span></a></p>
+                    <p><a href=""><span class="bold becomeCustomer" data-id=<?= htmlentities($user->permissions[0]->id) ?>>Become a Customer</span></a></p>
                 <?php } ?>
                 <?php if ($user->hasPermission("Courier") !== null) { ?>
-                    <p><a href="control_center.php?cid=<?= $user->permissions[0]->id ?>"><span class="bold">My deliveries </span></a></p>
+                    <p><a href="control_center.php?cid=<?= htmlentities($user->permissions[0]->id) ?>"><span class="bold">My deliveries </span></a></p>
                 <?php } ?>
                 <?php if ($user->hasPermission("RestaurantOwner") !== null) { ?>
                     <p><a href="perfil_info.php?type=res"><span class="bold">Restaurant owner Page &#9749;</span></a></p>
@@ -458,7 +457,7 @@ function drawUserInfoPage(UserComposite $user)
                     <p><a href="edit_restaurant.php?id=0"><span class="bold">Add your Restaurant &#9749;</span></a></p>
                 <?php } ?>
             </div>
-            <a href="edit_profile.php?<?= $user->permissions[0]->id ?>" id="edit_account">Edit account details</a>
+            <a href="edit_profile.php?<?= urlencode($user->permissions[0]->id) ?>" id="edit_account">Edit account details</a>
             <a href="../../actions/action_logout.php" id="logout">Logout &times;</a>
         </section>
     </div>
@@ -483,7 +482,7 @@ function drawUserInfoPage(UserComposite $user)
 
 
                 <label>Score </label>
-                <input type="hidden" id="id" name="id" value="<?= $_GET["id"] ?>">
+                <input type="hidden" id="id" name="id" value="<?= htmlentities($_GET["id"]) ?>">
                 <div class="feedback">
                     <div id="star_rating">
                         <input type="radio" name="rating" id="rating-5" value="5">
@@ -501,7 +500,7 @@ function drawUserInfoPage(UserComposite $user)
 
                 <div id="review_options">
                     <input type="submit" class="link_button" value="Publish"></button>
-                    <a href="restaurant.php?id=<?= $_GET["id"] ?>">Go back</a>
+                    <a href="restaurant.php?id=<?= urlencode($_GET["id"]) ?>">Go back</a>
                 </div>
             </form>
         </div>
@@ -541,8 +540,8 @@ function drawUserInfoPage(UserComposite $user)
 
             <div class="container">
 
-                <h2> <?= $order->id ?> </h2>
-                <h3><?= $order->getRestaurantName($db) ?></h3>
+                <h2> <?= htmlentities($order->id) ?> </h2>
+                <h3><?= htmlentities($order->getRestaurantName($db)) ?></h3>
 
                 <div>
                     <?php $dishC = -1;
@@ -557,16 +556,16 @@ function drawUserInfoPage(UserComposite $user)
                     <?php } ?>
                 </div>
 
-                <h3><?= OrderStatus::status[$order->order_state] ?></h3>
+                <h3><?= htmlentities(OrderStatus::status[$order->order_state]) ?></h3>
 
                 <?php if ($order->order_state < 6) { ?>
-                    <a href="../actions/action_cancel_order.php?oid=<?= $order->id ?>">
+                    <a href="../actions/action_cancel_order.php?oid=<?= urlencode($order->id) ?>">
                         <p class="container_delete">&#128465;</p>
                     </a>
                 <?php } ?>
 
                 <?php if ($order->order_state === 5) { ?>
-                    <div id=<?=$order->id ?> class="map"></div>
+                    <div id=<?= $order->id ?> class="map"></div>
                     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzgJqREIIsXex1RCkEXXiJyA2odtCX394&callback=initMap">
                     </script>
                 <?php } ?>

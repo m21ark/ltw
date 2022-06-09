@@ -1,5 +1,5 @@
 .form_button {
-    box-shadow: 1.5px 1.5px 5px black;
+    box-shadow: 0.5px 0.5px 10px #333;
     font-size: 0.7em;
     margin-top: 3em;
     padding: 1em 4em;
@@ -17,6 +17,7 @@
 
 .form_button:hover {
     filter: brightness(120%);
+    cursor: pointer;
 }
 
 .form_alternative>a {
@@ -37,6 +38,13 @@ div.sign_form {
 section#login div.sign_form {
     width: 90%;
     max-width: 20em;
+}
+
+.null_input {
+    visibility: hidden;
+    margin: 0;
+    padding: 0;
+    height: 0;
 }
 
 textarea {
