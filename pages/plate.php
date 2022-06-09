@@ -22,10 +22,11 @@ $ingredients = $dish->getIngredients($db);
 
 $isOwner = false;
 $owner = $session->isLoggedIn() ? $user->hasPermission("RestaurantOwner") : NULL;
+$customer = $session->isLoggedIn() ? $user->hasPermission("Customer") : NULL;
 if ($owner !== NULL)
     $isOwner = $owner->isTheOwner($db, $restaurantID);
 
 
 output_header();
-drawPlateInfo($dish, $ingredients, $restaurantID, $isOwner);
+drawPlateInfo($dish, $customer, $ingredients, $restaurantID, $isOwner);
 output_footer();

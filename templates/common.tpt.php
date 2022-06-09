@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__ . '/../database/Users/concrete_user_factory.class.php');
 require_once(__DIR__ . '/../utils/session.php');
+require_once(__DIR__ . '/../database/connection.php');
 
 $session = new Session();
 if ($session->isLoggedIn())
@@ -36,6 +37,7 @@ function output_header()
         <script src="../events/Notification/notification_handler.js" defer></script>
         <script src="../events/respond_to_client.event.js" defer></script>
         <script src="../events/remove_notifications.event.js" defer></script>
+        <script src="../events/remove_dish_from_cart.js" defer></script>
         <script src="../events/searchbox.event.js" defer></script>
         <script src="../events/become_customer.js" defer></script>
         <script src="../events/carousel.js" defer></script>
@@ -257,7 +259,7 @@ function output_header()
                     <span class="input-number-increment" data-id="<?= htmlentities($dishID) ?>">+</span>
                 </div>
 
-                <button type="text" formaction="../actions/action_remove_from_cart.php" formmethod="POST" name="id" value=<?= htmlentities($dishID) ?>>
+                <button type="text" formaction="" formmethod="POST" name="id" value=<?= htmlentities($dishID) ?>>
                     <p class="container_delete">&#128465;</p>
                 </button>
 
@@ -291,8 +293,9 @@ function output_header()
 
 
 
-<?php function drawPlateInfo(Dish $dish, array $ingredients, int $restaurantID, bool $isOwner)
-{ ?>
+<?php function drawPlateInfo(Dish $dish, $customer, array $ingredients, int $restaurantID, bool $isOwner)
+{
+    $db = getDatabaseConnection(); ?>
 
     <article id="plate_page" class="container">
         <h2>Plate page</h2>
@@ -324,6 +327,11 @@ function output_header()
             <input type="hidden" id="id" name="id" value="<?= htmlentities($_GET["id"]) ?>">
             <input type="submit" class="link_button" value="Buy  &#x1f6d2;">
         </form>
+        <?php if ($customer != null && in_array(array('DishID' => $dish->id), $customer->getFavoriteDishes($db))) { ?>
+            <a class="link_button add_dish_to_favorites">Added ✔</a>
+        <?php } else if ($customer != null) { ?>
+            <a class="link_button add_dish_to_favorites">Add to favorites &star;</a>
+        <?php } ?>
 
         <a href="restaurant.php?id=<?= htmlentities($restaurantID) ?>" id="plate_restaurant">
             <h2>See Restaurant</h2>

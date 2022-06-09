@@ -54,6 +54,11 @@
     margin: auto;
 }
 
+#plate_page form+a {
+    grid-area: fav;
+    margin: auto;
+}
+
 #plate_restaurant {
     grid-area: link;
     grid-column: 1/span 3;
@@ -129,4 +134,9 @@
     color: var(--text_color);
     background-color: var(--light_color);
     box-shadow: 1.5px 1.5px 5px grey;
+}
+
+.link_button.add_dish_to_favorites {
+    width: 9em;
+    text-align: center;
 }
