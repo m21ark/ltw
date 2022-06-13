@@ -18,7 +18,7 @@ $db = getDatabaseConnection();
 
 $restID = $_POST['rID'];
 
-// ___________________________________________________________________________
+// _____________________________________________________________________________________________
 
 $stmt = $db->prepare("DELETE FROM Restaurant WHERE RestaurantID=?");
 $stmt->execute(array($restID));
@@ -30,7 +30,7 @@ $stmt = $db->prepare("INSERT INTO Restaurant
 $stmt->execute(array($restID, $_POST['name'], $_POST['phone'], $_POST['address'], $_POST['category'], $_POST['description']));
 
 
-// _________________________________Add Image_________________________________
+// _____________________________________________________________________________________________
 
 $noNewImage = !is_uploaded_file($_FILES['image']['tmp_name']);
 

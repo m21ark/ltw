@@ -8,9 +8,9 @@ require_once(__DIR__ . "/../database/connection.php");
 // Restricts access to logged in users
 require_once(__DIR__ . '/../utils/session.php');
 $session = new Session();
-if (!$session->isLoggedIn()){
+if (!$session->isLoggedIn()) {
 	$session->addMessage('erro', 'Login required. Redirected to main page');
-    die(header('Location: /'));
+	die(header('Location: /'));
 }
 
 
@@ -23,7 +23,7 @@ $plateID = $_POST['plateID'];
 
 $noNewImage = !is_uploaded_file($_FILES['image']['tmp_name']);
 
-// _________________________________add to dishes_________________________________
+// _____________________________________________________________________________________________
 
 $stmt = $db->prepare("DELETE FROM DISH WHERE DishID=?");
 $stmt->execute(array($plateID));
@@ -35,7 +35,7 @@ $stmt = $db->prepare("INSERT INTO Dish
 ");
 $stmt->execute(array($plateID, $_POST['p_name'], $_POST['price'], $_POST['category'], $_POST['description']));
 
-// _________________________________add to Restaurant Menu_________________________________
+// _____________________________________________________________________________________________
 
 $stmt = $db->prepare("DELETE FROM Menu WHERE DishID=?");
 $stmt->execute(array($plateID));
@@ -46,7 +46,7 @@ $stmt = $db->prepare("INSERT INTO Menu
 ");
 $stmt->execute(array($_POST['restID'], $plateID));
 
-// _________________________________Add Ingredients_________________________________
+// _____________________________________________________________________________________________
 
 $stmt = $db->prepare("DELETE FROM DishIngredients WHERE DishID=?");
 $stmt->execute(array($plateID));
@@ -67,8 +67,7 @@ foreach ($ings as $ing) {
 	$stmt->execute(array($plateID, $ingID));
 }
 
-// _________________________________Add Image_________________________________
-
+// _____________________________________________________________________________________________
 
 $originalFileName = "../docs/food/$plateID.jpg";
 

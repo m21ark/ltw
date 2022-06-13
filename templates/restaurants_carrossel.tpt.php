@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 require_once(__DIR__ . "/../database/connection.php");
 
-// We shouldnt be passsing the db
 function drawRestaurantsCarrossel(PDO $db, array $restaurants, bool $showNav = true)
 {
 ?>
-
     <article class="carrosel container restaurants">
         <h2>Restaurants</h2>
 

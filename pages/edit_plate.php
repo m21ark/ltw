@@ -19,11 +19,8 @@ $db = getDatabaseConnection();
 $dish = Dish::getDish($db, $_GET['pid']);
 $restaurantID = $_GET['restId'] !== null ? $_GET['restId'] : $dish->getRestaurantID($db);
 
-// -----------------------------------------------------------
 
 require_once(__DIR__ . "/../database/verify_if_owner.php");
-
-// -----------------------------------------------------------
 
 
 if ($_GET['pid'] == 0) {

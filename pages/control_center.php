@@ -33,11 +33,8 @@ if ($courier !== null) {
 }
 
 
-// -----------------------------------------------------------
-
 require_once(__DIR__ . "/../database/verify_if_owner.php");
 
-// -----------------------------------------------------------
 
 output_header();
 drawKanbanBoardOwner($db, $restaurantID);

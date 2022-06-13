@@ -20,7 +20,7 @@ class Review
         $this->reviewer = $reviewer;
     }
 
-    public function getReviewerName(PDO $db) : string
+    public function getReviewerName(PDO $db): string
     {
         $stmt = $db->prepare('
             SELECT DISTINCT username
@@ -33,7 +33,7 @@ class Review
         return $stmt->fetch()['username'];
     }
 
-    public function getResponse(PDO $db) : ?string
+    public function getResponse(PDO $db): ?string
     {
         $stmt = $db->prepare('
             SELECT ResponseComment
@@ -47,8 +47,7 @@ class Review
 
         if ($res === false)
             return null;
-        
+
         return $res['ResponseComment'];
     }
 }
-

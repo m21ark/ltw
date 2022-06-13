@@ -19,10 +19,9 @@ function incrementPlateOrders() {
 
     for (const button of incrementsButton) {
         button.addEventListener('click', function () {
-            if (parseInt(button.previousElementSibling.value, 10) >= 20) {
-                // TODO send Error Mensage saying that one cannot make so much orders
+            if (parseInt(button.previousElementSibling.value, 10) >= 20)
                 return;
-            }
+
             button.previousElementSibling.value = parseInt(button.previousElementSibling.value, 10) + 1;
             updateCart(button.dataset.id, parseInt(button.previousElementSibling.value, 10));
             totalCart();
@@ -35,10 +34,9 @@ function decrementPlateOrders() {
 
     for (const button of decrementButton) {
         button.addEventListener('click', function () {
-            if (parseInt(button.nextElementSibling.value, 10) <= 1) {
-                // TODO send Error Mensage saying that one cannot make so much orders
+            if (parseInt(button.nextElementSibling.value, 10) <= 1)
                 return;
-            }
+
             button.nextElementSibling.value = parseInt(button.nextElementSibling.value, 10) - 1;
             updateCart(button.dataset.id, parseInt(button.nextElementSibling.value, 10));
             totalCart();

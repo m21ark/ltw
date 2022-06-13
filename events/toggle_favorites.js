@@ -19,7 +19,7 @@ function toggleFavorite() {
             request.setRequestHeader('Content-Type',
                 'application/x-www-form-urlencoded')
             const resID = document.querySelector('#description>img').getAttribute('src').match('([0-9])+')
-            request.send(encodeForAjax({ resID: resID[0]}));
+            request.send(encodeForAjax({ resID: resID[0] }));
         }
         else {
             favorite.textContent = 'Add to favorites ☆';
@@ -30,7 +30,7 @@ function toggleFavorite() {
             request.setRequestHeader('Content-Type',
                 'application/x-www-form-urlencoded')
             const resID = document.querySelector('#description>img').getAttribute('src').match('([0-9])+')
-            request.send(encodeForAjax({ resID: resID[0]}));
+            request.send(encodeForAjax({ resID: resID[0] }));
         }
     });
 }
@@ -52,7 +52,7 @@ function toggleDishFavorite() {
             request.setRequestHeader('Content-Type',
                 'application/x-www-form-urlencoded')
             const dishID = document.querySelector("#id").value
-            request.send(encodeForAjax({ dishID: dishID}));
+            request.send(encodeForAjax({ dishID: dishID }));
         }
         else {
             favorite.textContent = 'Add to favorites ☆';
@@ -63,7 +63,7 @@ function toggleDishFavorite() {
             request.setRequestHeader('Content-Type',
                 'application/x-www-form-urlencoded')
             const dishID = document.querySelector("#id").value
-            request.send(encodeForAjax({ dishID: dishID}));
+            request.send(encodeForAjax({ dishID: dishID }));
         }
     });
 }

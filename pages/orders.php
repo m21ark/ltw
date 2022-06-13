@@ -17,16 +17,13 @@ if (!$session->isLoggedIn()) {
 
 $user = unserialize($session->getUserSerialized());
 
-// maybe later we can set cokkies that determine the above res/dishes
-
 $customer = $user->hasPermission('Customer');
-if ($customer == null){
+if ($customer == null) {
     $session->addMessage('erro', 'You dont have customer permissions');
     die(header('Location: /'));
 }
 
 $db = getDatabaseConnection();
-
 
 $orders = $customer->getCustomerOrders($db);
 

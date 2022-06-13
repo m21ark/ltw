@@ -6,7 +6,7 @@ require_once(__DIR__ . "/../database/connection.php");
 
 
 function drawPlatesCarrossel(array $plates, bool $showNav = true)
-{  // TODO ::: this is a repetition of the restaurant, maybe consider making a carrossel draw if possible
+{
 ?>
     <article class="carrosel container plates">
         <h2>Plates</h2>

@@ -45,8 +45,6 @@ class Session
         return $this->messages;
     }
 
-    // Maybe add this fields and others like permissions
-
     public function setId(int $id)
     {
         $_SESSION['id'] = $id;

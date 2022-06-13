@@ -153,9 +153,6 @@ class Customer extends User
         }
 
         array_push($this->cart, [$dishId, 1]);
-
-        /*         if (!in_array($dishId, $this->cart))
-            array_push($this->cart, $dishId); */
     }
 
     public function deleteFromCart(int $dishId)

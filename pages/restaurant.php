@@ -31,8 +31,7 @@ $dishes = Dish::getDishesBySearch(
     $_GET['id'] !== null ? htmlentities($_GET['id']) : null
 );
 
-// TODO : We need to take the information about the length on the carrossel
-// maybe later we can set cokkies that determine the above res/dishes
+
 $reviews = $restaurant->getRestaurantReviews($db);
 
 $isOwner = false;
@@ -44,7 +43,7 @@ if ($owner !== NULL)
 
 output_header();
 drawRestaurantDescriptionName($db, $restaurant);
-drawRestaurantDescription($restaurant, $isOwner, $customer );
+drawRestaurantDescription($restaurant, $isOwner, $customer);
 drawPlatesCarrossel($dishes);
 
 if ($isOwner)
