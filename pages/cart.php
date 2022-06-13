@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-include_once(__DIR__ . "/../templates/common.tpt.php");
+require_once(__DIR__ . "/../templates/common.tpt.php");
+require_once(__DIR__ . "/../templates/forms.tpt.php");
 require_once(__DIR__ . "/../database/connection.php");
 require_once(__DIR__ . "/../database/Users/user_composite.class.php");
 

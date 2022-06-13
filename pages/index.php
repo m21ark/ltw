@@ -15,8 +15,7 @@ $dishes = Dish::getRandomDishes($db, 4);
 output_header();
 drawSearchBox();
 
-if (isset($_GET['q']))
-    drawSearchResults();
+
 
 drawRestaurantsCarrossel($db, $restaurants);
 drawPlatesCarrossel($dishes);

@@ -1,4 +1,3 @@
-
 function searchBoxInput() {
     const searchContent = document.querySelector('#search_box_input')
 

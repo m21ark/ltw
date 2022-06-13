@@ -1,5 +1,6 @@
 <?php
 include_once(__DIR__ . "/../templates/common.tpt.php");
+require_once(__DIR__ . "/../templates/plate.tpt.php");
 require_once(__DIR__ . "/../database/connection.php");
 
 // Restricts access to logged in users

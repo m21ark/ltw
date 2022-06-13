@@ -7,6 +7,46 @@ $session = new Session();
 
 ?>
 
+<?php function drawRestEdit(?Restaurant $restaurant, int $userID, bool $edit)
+{ ?>
+    <article id="plate_page" class="container" style="display: block;">
+        <h2><?= $edit ? "Edit" : "Create" ?> Restaurant</h2>
+        <form class="edit_form" action="../actions/<?= $edit ? 'action_edit_rest.php' : 'action_add_rest.php' ?>" method="post" enctype="multipart/form-data">
+
+            <label for="name">Restaurant Name</label>
+            <input class="custom_input" type="text" name="name" required value="<?= htmlentities($edit ? $restaurant->name : null) ?>">
+
+            <label for="category">Category</label>
+            <input class="custom_input" type="text" name="category" required value="<?= htmlentities($edit ? $restaurant->category : null) ?>">
+
+            <label for="address">Address</label>
+            <input class="custom_input" type="text" name="address" required value="<?= htmlentities($edit ? $restaurant->address : null) ?>">
+
+            <label for="phone">Phone</label>
+            <input class="custom_input" type="phone" name="phone" required value="<?= htmlentities($edit ? $restaurant->phone : null) ?>">
+
+            <label for="image">Restaurant Photo</label>
+            <input class="custom_input" type="file" name="image" accept="image/png,image/jpeg" <?= htmlentities($edit ? null : 'required') ?>>
+
+            <?php if ($edit) { ?>
+                <img src="../docs/restaurant/<?= urlencode($restaurant->id) ?>.jpg" alt="Restaurant Picture">
+            <?php } ?>
+
+            <label for="description">Description</label>
+            <textarea name="description" required><?= htmlentities($edit ? $restaurant->description : null) ?></textarea>
+
+            <input type="hidden" name="uID" value=<?= htmlentities($userID) ?>>
+
+            <input class="link_button" type="submit" value="Publish">
+
+            <?php if ($edit) { ?>
+                <input type="hidden" name="rID" value=<?= htmlentities($restaurant->id) ?>>
+                <a class="link_button" id="del_dish" href="../actions/action_delete_rest.php?rID=<?= urlencode($restaurant->id) ?>">Delete</a>
+            <?php } ?>
+
+        </form>
+    </article>
+<?php } ?>
 
 <?php function drawRestaurantDescriptionName(PDO $db, Restaurant $restaurant)
 { ?>
@@ -37,9 +77,10 @@ $session = new Session();
 <?php } ?>
 
 
-<?php function drawRestaurantDescription(Restaurant $restaurant, bool $isOwner, $customer )
-{ $db = getDatabaseConnection();?>
-    
+<?php function drawRestaurantDescription(Restaurant $restaurant, bool $isOwner, $customer)
+{
+    $db = getDatabaseConnection(); ?>
+
     <section id="description" class="container">
         <div>
             <h2>Description</h2>
@@ -50,12 +91,13 @@ $session = new Session();
         <img src="../docs/restaurant/<?= urlencode($restaurant->id) ?>.jpg" alt="">
         <div id="rest_links">
             <?php if ($isOwner) { ?><a class="link_button" href="edit_restaurant.php?id=<?= urlencode($restaurant->id) ?>">Edit Restaurant</a><?php } ?>
-            <?php if(!$isOwner && $customer !== null) { 
-                if(in_array(array('RestaurantID' => $restaurant->id) ,$customer->getFavoriteRestaurants($db))) {?>
-                    <a class="link_button add_to_favorites" >Added ✔</a>
-                <?php } else {?>
+            <?php if (!$isOwner && $customer !== null) {
+                if (in_array(array('RestaurantID' => $restaurant->id), $customer->getFavoriteRestaurants($db))) { ?>
+                    <a class="link_button add_to_favorites">Added ✔</a>
+                <?php } else { ?>
                     <a class="link_button add_to_favorites">Add to favorites &star;</a>
-            <?php }} ?>
+            <?php }
+            } ?>
             <?php if ($isOwner) { ?><a class="link_button" href="edit_plate.php?pid=0&restId=<?= urlencode($restaurant->id) ?>">Add Plate</a><?php } ?>
         </div>
     </section>
