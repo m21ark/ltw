@@ -1,5 +1,5 @@
 <?php
-include_once(__DIR__ . "/../templates/common.tpt.php");
+require_once(__DIR__ . "/../templates/common.tpt.php");
 require_once(__DIR__ . "/../templates/kanban_board.tpt.php");
 require_once(__DIR__ . "/../database/connection.php");
 

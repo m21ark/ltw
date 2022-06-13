@@ -5,6 +5,7 @@ declare(strict_types=1);
 require_once(__DIR__ . "/../database/Users/user_composite.class.php");
 require_once(__DIR__ . "/../database/Users/customer.class.php");
 require_once(__DIR__ . "/../templates/common.tpt.php");
+require_once(__DIR__ . "/../templates/forms.tpt.php");
 require_once(__DIR__ . "/../templates/plates_carrossel.tpt.php");
 require_once(__DIR__ . "/../templates/restaurants_carrossel.tpt.php");
 require_once(__DIR__ . "/../database/connection.php");
