@@ -8,7 +8,7 @@ function totalCart() {
 
     let total = 0;
     for (let i = 0; i < orders.length; i++) {
-        total += (parseFloat(orders[i].textContent, 10) * parseInt(quantity[i].value, 10)).toFixed(2);
+        total += Number((parseFloat(orders[i].textContent, 10) * parseInt(quantity[i].value, 10)).toFixed(2));
     }
 
     buyButton.value = "Buy for " + total + " $";
