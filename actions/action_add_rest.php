@@ -38,6 +38,12 @@ $stmt->execute(array($session->getId(), $restID));
 // _________________________________Add Image_________________________________
 
 // TODO Atualizar a session para ter os previlegios de owner
+$user = $session->getUser()->permissions[0];
+$costPriUser = $session->getUser();
+array_push($costPriUser->permissions, new RestaurantOwner($user->id, $user->username, $user->address, $user->phone, $user->email));
+
+
+$session->setUser($costPriUser);
 
 $originalFileName = "../docs/restaurant/$restID.jpg";
 
