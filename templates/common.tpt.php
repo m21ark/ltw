@@ -72,12 +72,12 @@ function output_header()
             <label class="hamburger" for="hamburger"></label>
 
             <ul>
-                <li><a href="index.php?q=italian">Italian</a></li>
-                <li><a href="index.php?q=japanese">Japanese</a></li>
-                <li><a href="index.php?q=indian">Indian</a></li>
-                <li><a href="index.php?q=portuguese">Portuguese</a></li>
-                <li><a href="index.php?q=vietnamese">Vietnamese</a></li>
-                <li><a href="index.php?q=vegan">Vegan</a></li>
+                <li><a href="index.php?#italian">Italian</a></li>
+                <li><a href="index.php?#japanese">Japanese</a></li>
+                <li><a href="index.php?#indian">Indian</a></li>
+                <li><a href="index.php?#portuguese">Portuguese</a></li>
+                <li><a href="index.php?#vietnamese">Vietnamese</a></li>
+                <li><a href="index.php?#vegan">Vegan</a></li>
             </ul>
         </nav>
 

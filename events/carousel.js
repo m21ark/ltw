@@ -16,6 +16,17 @@ function carousel_res() {
             offset += (element.parentNode.firstElementChild == element) ? -1 : 1;
             let url = `../apis/api_restaurants.php?q=${(q !== null) ? q.split(' ').join('%20') : ''}&off=${offset}`
 
+            const hash = window.location.hash
+            if (hash) {
+                const category = hash
+                if (category !== null) {
+                    const cat = /([a-z])+/.exec(category)
+
+                    if (cat != null) {
+                        url += `&cat=${cat[0]}`
+                    }
+                }
+            }
             fetch(url, {
                 method: "GET",
                 headers: new Headers({ 'Content-Type': 'text/html' }
