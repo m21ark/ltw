@@ -15,7 +15,6 @@ if (!$session->isLoggedIn()) {
 
 $db = getDatabaseConnection();
 
-
 // ___________________________________________________________________________
 
 $stmt = $db->prepare("INSERT INTO Restaurant
@@ -34,14 +33,14 @@ $stmt = $db->prepare("INSERT INTO Owner
 
 $stmt->execute(array($session->getId(), $restID));
 
+// ___________________________________________________________________________
 
-// _________________________________Add Image_________________________________
-
-// TODO Atualizar a session para ter os previlegios de owner
+// Atualizar permissoes para ser owner
 $user = $session->getUser()->permissions[0];
 $costPriUser = $session->getUser();
 array_push($costPriUser->permissions, new RestaurantOwner($user->id, $user->username, $user->address, $user->phone, $user->email));
 
+// ___________________________________________________________________________
 
 $session->setUser($costPriUser);
 

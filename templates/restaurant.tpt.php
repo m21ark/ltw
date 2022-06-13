@@ -65,10 +65,6 @@ $session = new Session();
 
         <div>
             <p><?= htmlentities($restaurant->getMediumScore($db)) ?>/5 &star;</p>
-            <?php // TODO ::: THE CATEGORY database should not be has it is as it's a bad design 
-            // the design makes us hard to Have 2 categories, we could use explode but that we need to check
-            // if we loose points for that
-            ?>
             <a class="link_button" href="#"><?= htmlentities($restaurant->category) ?></a>
         </div>
 

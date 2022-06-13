@@ -29,11 +29,10 @@ if (isset($_POST['resID'])) {
 
     $customer->getFavoriteRestaurants($db);
     $customer->addToFavoriteRestaurants($db, $dish);
-}else if (isset($_POST['dishID'])) {
+} else if (isset($_POST['dishID'])) {
     $db = getDatabaseConnection();
     $dish = Dish::getDish($db, intval(htmlentities($_POST['dishID'])));
 
     $customer->getFavoriteDishes($db);
     $customer->addToFavoriteDishes($db, $dish);
 }
-

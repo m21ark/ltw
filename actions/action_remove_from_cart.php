@@ -12,12 +12,6 @@ if (!$session->isLoggedIn()) {
     die(header('Location: /'));
 }
 
-/*
-
-    TODO :: I am repeting a lot of code just to check if user has permission, maybe we can create a class that controlls the permissions
-
-*/
-
 $user = unserialize($session->getUserSerialized());
 
 $customer = $user->hasPermission('Customer');
@@ -31,5 +25,3 @@ $customer->deleteFromCart((int)$_POST['id']);
 $session->setUser($user);
 
 $session->addMessage('info', 'Item was removed from cart');
-
-

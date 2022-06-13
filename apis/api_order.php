@@ -12,7 +12,7 @@ $session = new Session();
 
 if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     $db = getDatabaseConnection();
-    $id = (string)ORDER::getOrderRestaurantID($db,(int)htmlentities($_GET['id']));
+    $id = (string)ORDER::getOrderRestaurantID($db, (int)htmlentities($_GET['id']));
     header('Access-Control-Allow-Methods: PUT');
     header('Access-Control-Allow-Headers: Content-Type');
     header('Access-Control-Max-Age: 86400');
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $db = getDatabaseConnection();
-    
+
     header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Methods: GET');
     header('Access-Control-Allow-Headers: Content-Type');
@@ -45,4 +45,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     die();
 }
-

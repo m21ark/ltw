@@ -91,7 +91,8 @@ class Order
         } else return 0;
     }
 
-    public static function getOrderLocation(PDO $db, int $Order) :array{
+    public static function getOrderLocation(PDO $db, int $Order): array
+    {
         $stmt = $db->prepare('
         SELECT *
         FROM OrderLocation

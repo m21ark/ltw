@@ -312,7 +312,7 @@ class Restaurant
 
         foreach ($arr as $restaurant) {
             array_push($restaurants, new Restaurant(
-                (int)$restaurant['RestaurantID'], // does the array returned from the querie is always a string ?
+                (int)$restaurant['RestaurantID'],
                 $restaurant['Name'],
                 $restaurant['Address'],
                 $restaurant['phone'],
@@ -364,7 +364,7 @@ class Restaurant
 
         foreach ($arr as $order) {
             array_push($orders, new Order(
-                (int)$order['OrderID'], // does the array returned from the querie is always a string ?
+                (int)$order['OrderID'],
                 (int)$order['CustomerID'],
                 (int)$order['OrderStateID'],
                 (int)$order['RestaurantID'],

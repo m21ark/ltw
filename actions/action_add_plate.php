@@ -20,8 +20,7 @@ $db = getDatabaseConnection();
 $ings = $_POST['ingredients'];
 $ings = explode(',', $ings);
 
-// _________________________________add to dishes_________________________________
-
+// __________________________________________________________________
 
 $stmt = $db->prepare("INSERT INTO Dish
     VALUES (NULL, ?,  ?, ?, ?)
@@ -31,7 +30,7 @@ $stmt->execute(array($_POST['p_name'], $_POST['price'], $_POST['category'], $_PO
 
 $plateID = $db->lastInsertId();
 
-// _________________________________add to Restaurant Menu_________________________________
+// __________________________________________________________________
 
 $stmt = $db->prepare("INSERT INTO Menu 
     VALUES (?, ?)
@@ -39,7 +38,7 @@ $stmt = $db->prepare("INSERT INTO Menu
 
 $stmt->execute(array($_POST['restID'], $plateID));
 
-// _________________________________Add Ingredients_________________________________
+// __________________________________________________________________
 
 foreach ($ings as $ing) {
 
@@ -58,7 +57,7 @@ foreach ($ings as $ing) {
 	$stmt->execute(array($plateID, $ingID));
 }
 
-// _________________________________Add Image_________________________________
+// __________________________________________________________________
 
 $originalFileName = "../docs/food/$plateID.jpg";
 

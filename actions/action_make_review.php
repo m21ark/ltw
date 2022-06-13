@@ -13,7 +13,6 @@ if (!$session->isLoggedIn()) {
     die(header('Location: /'));
 }
 
-
 $user = unserialize($_SESSION['user']);
 
 $db = getDatabaseConnection();
@@ -26,7 +25,7 @@ $stmt->execute(array($_POST['rating'], $_POST['review'],  date('Y/m/d', time()),
 
 $reviewID = $db->lastInsertId();
 
-// ____________________________ADD PHOTO______________________________
+// _____________________________________________________________________________________________
 
 $originalFileName = "../docs/reviews/" . $reviewID . ".jpg";
 
@@ -34,7 +33,7 @@ unlink($originalFileName);
 
 move_uploaded_file($_FILES['image']['tmp_name'], $originalFileName);
 
-// ___________________________________________________________________
+// _____________________________________________________________________________________________
 
 $session->addMessage('sucesso', 'Your review was published');
 

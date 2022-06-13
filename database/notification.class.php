@@ -1,12 +1,14 @@
-<?php 
-declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 require_once(__DIR__ . "/../database/connection.php");
 require_once(__DIR__ . "/order.class.php");
 
 class Notification
-{   
-    static function userHasNotification(int $id) : ?string{
+{
+    static function userHasNotification(int $id): ?string
+    {
 
         $db = getDatabaseConnection();
         $stmt = $db->prepare('
@@ -16,7 +18,7 @@ class Notification
         ');
 
         $stmt->execute(array($id));
-        
+
         $notf = $stmt->fetch();
 
         if ($notf === false)
@@ -30,8 +32,7 @@ class Notification
 
         $stmt->execute(array((int)$notf['id']));
 
-        
+
         return OrderStatus::status[$notf['OrderStateID']];
     }
 }
-

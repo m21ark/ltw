@@ -13,7 +13,6 @@ class UserComposite extends User
 
     public function __construct()
     {
-        // TODO::: TO PRESERVE SOLID PRINCIPLES WE SHOULD INJECT THE USER FACTORY
     }
 
     public function addPermission(?User $user): void

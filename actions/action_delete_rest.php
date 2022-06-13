@@ -16,20 +16,13 @@ if (!$session->isLoggedIn()) {
 $user = unserialize($session->getUserSerialized());
 $restaurantID = $_GET['rID'];
 
-
-
-
 $db = getDatabaseConnection();
 
-// -----------------------------------------------------------
 
 require_once(__DIR__ . "/../database/verify_if_owner.php");
 
-// -----------------------------------------------------------
 
-
-// TODO Should Restaurant Menu, Orders be also deleted?
-
+// TODO Should Restaurant Menu, Orders be also deleted? --> Maybe to much work and can cause inconsistencies at this late game
 
 
 // ___________________________________________________________________________
@@ -40,8 +33,7 @@ $stmt->execute(array($restaurantID));
 $stmt = $db->prepare("DELETE FROM Owner WHERE RestaurantID=?");
 $stmt->execute(array($restaurantID));
 
-// _________________________________Remove Image_________________________________
-
+// ___________________________________________________________________________
 
 $originalFileName = "../docs/restaurant/$restaurantID.jpg";
 
