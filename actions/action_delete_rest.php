@@ -28,8 +28,6 @@ require_once(__DIR__ . "/../database/verify_if_owner.php");
 // -----------------------------------------------------------
 
 
-$restID = $_GET['rID'];
-
 // TODO Should Restaurant Menu, Orders be also deleted?
 
 
@@ -37,15 +35,15 @@ $restID = $_GET['rID'];
 // ___________________________________________________________________________
 
 $stmt = $db->prepare("DELETE FROM Restaurant WHERE RestaurantID=?");
-$stmt->execute(array($restID));
+$stmt->execute(array($restaurantID));
 
 $stmt = $db->prepare("DELETE FROM Owner WHERE RestaurantID=?");
-$stmt->execute(array($restID));
+$stmt->execute(array($restaurantID));
 
-// _________________________________Add Image_________________________________
+// _________________________________Remove Image_________________________________
 
 
-$originalFileName = "../docs/restaurant/$restID.jpg";
+$originalFileName = "../docs/restaurant/$restaurantID.jpg";
 
 unlink($originalFileName);
 

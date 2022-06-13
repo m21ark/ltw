@@ -182,9 +182,8 @@ function drawUserInfoPage(UserComposite $user)
                 <?php } ?>
                 <?php if ($user->hasPermission("RestaurantOwner") !== null) { ?>
                     <p><a href="perfil_info.php?type=res"><span class="bold">Restaurant owner Page &#9749;</span></a></p>
-                <?php } else { ?>
-                    <p><a href="edit_restaurant.php?id=0"><span class="bold">Add your Restaurant &#9749;</span></a></p>
                 <?php } ?>
+                <p><a href="edit_restaurant.php?id=0"><span class="bold">Add your Restaurant &#9749;</span></a></p>
             </div>
             <a href="edit_profile.php?<?= urlencode($user->permissions[0]->id) ?>" id="edit_account">Edit account details</a>
             <a href="../../actions/action_logout.php" id="logout">Logout &times;</a>

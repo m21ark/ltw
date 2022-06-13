@@ -15,8 +15,6 @@ if (!$session->isLoggedIn()) {
 
 $db = getDatabaseConnection();
 
-$uid = 20; //TODO :: Here It should be a verified owner id recieved by $_POST["uid"]
-
 
 // ___________________________________________________________________________
 
@@ -34,7 +32,7 @@ $stmt = $db->prepare("INSERT INTO Owner
     VALUES (?, ?)
 ");
 
-$stmt->execute(array($_POST['uid'], $restID));
+$stmt->execute(array($session->getId(), $restID));
 
 
 // _________________________________Add Image_________________________________
