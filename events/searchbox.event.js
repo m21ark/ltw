@@ -92,13 +92,4 @@ function searchCategory() {
 searchBoxInput();
 searchCategory();
 
-function parse_fragment() {
-    const hash = window.location.hash
-
-    if (hash) {
-        const category = hash
-    }
-}
-
 window.location = '#';
-window.addEventListener('hashchange', parse_fragment)
