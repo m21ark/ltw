@@ -1,9 +1,9 @@
 <?php
 
-include_once(__DIR__ . "/../templates/common.tpt.php");
-include_once(__DIR__ . "/../templates/plates_carrossel.tpt.php");
-include_once(__DIR__ . "/../templates/restaurants_carrossel.tpt.php");
-include_once(__DIR__ . "/../templates/search.tpt.php");
+require_once(__DIR__ . "/../templates/common.tpt.php");
+require_once(__DIR__ . "/../templates/plates_carrossel.tpt.php");
+require_once(__DIR__ . "/../templates/restaurants_carrossel.tpt.php");
+require_once(__DIR__ . "/../templates/search.tpt.php");
 require_once(__DIR__ . "/../database/connection.php");
 require_once(__DIR__ . "/../database/restaurant.class.php");
 
