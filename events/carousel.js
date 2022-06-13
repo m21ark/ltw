@@ -20,7 +20,7 @@ function carousel_res() {
             if (hash) {
                 const category = hash
                 if (category !== null) {
-                    const cat = /([a-z])+/.exec(category)
+                    const cat = /([a-zA-Z])+/.exec(category)
 
                     if (cat != null) {
                         url += `&cat=${cat[0]}`
@@ -62,7 +62,21 @@ function carousel_plates() {
             let url = `../apis/api_plates.php?q=${(q !== null) ? q.split(' ').join('%20') : ''}&off=${offset}`;
             const urlParams = new URLSearchParams(window.location.search);
 
+            const hash = window.location.hash
+
+            if (hash) {
+                const category = hash
+                if (category !== null) {
+                    const cat = /([a-zA-Z])+/.exec(category)
+                    console.log(cat)
+                    if (cat != null) {
+                        url += `&cat=${cat[0]}`
+                    }
+                }
+            }
+
             const id = urlParams.get('id');
+
             if (id !== null) {
                 url += "&rid=" + id;
             }

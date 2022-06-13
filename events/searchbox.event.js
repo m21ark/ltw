@@ -1,5 +1,3 @@
-let category_selected;
-
 function searchBoxInput() {
     const searchContent = document.querySelector('#search_box_input')
 
@@ -41,13 +39,13 @@ function searchBoxInput() {
 
 function searchCategory() {
     const navCat = document.querySelectorAll("#navbar>ul>li>a");
-    console.log(navCat)
 
     navCat.forEach(element => {
         const searchContent = document.querySelector('#search_box_input')
 
         element.addEventListener('click', function (evt) {
-
+            evt.preventDefault()
+            window.location.hash = element.textContent;
 
             let url = `../apis/api_plates.php?q=${(searchContent !== null && searchContent.value !== null) ? searchContent.value.split(' ').join('%20') : ''}&cat=${element.textContent}`;
             const urlParams = new URLSearchParams(window.location.search);
@@ -63,7 +61,7 @@ function searchCategory() {
                 })
                     .then(function (res) {
                         return res.text();
-                        
+
                     }).then(function (res) {
 
                         const div = document.querySelector('.restaurants');
@@ -96,14 +94,11 @@ searchCategory();
 
 function parse_fragment() {
     const hash = window.location.hash
-  
+
     if (hash) {
-      const category = hash
-      if (category) 
-        category_selected = category
-    } 
+        const category = hash
+    }
+}
 
-  }
-  
-
+window.location = '#';
 window.addEventListener('hashchange', parse_fragment)
