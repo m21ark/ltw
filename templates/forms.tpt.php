@@ -179,6 +179,8 @@ function drawUserInfoPage(UserComposite $user)
                 <?php } ?>
                 <?php if ($user->hasPermission("Courier") !== null) { ?>
                     <p><a href="control_center.php?cid=<?= htmlentities($user->permissions[0]->id) ?>"><span class="bold">My deliveries </span></a></p>
+                <?php } else { ?>
+                    <p><a href=""><span class="bold becomeCourier" data-id=<?= htmlentities($user->permissions[0]->id) ?>>Become a Courier</span></a></p>
                 <?php } ?>
                 <?php if ($user->hasPermission("RestaurantOwner") !== null) { ?>
                     <p><a href="perfil_info.php?type=res"><span class="bold">Restaurant owner Page &#9749;</span></a></p>

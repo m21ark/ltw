@@ -39,7 +39,7 @@ function output_header()
         <script src="../events/remove_notifications.event.js" defer></script>
         <script src="../events/remove_dish_from_cart.js" defer></script>
         <script src="../events/searchbox.event.js" defer></script>
-        <script src="../events/become_customer.js" defer></script>
+        <script src="../events/become_user.js" defer></script>
         <script src="../events/carousel.js" defer></script>
 
         <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=5.0, minimum-scale=0.5">

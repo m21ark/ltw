@@ -58,4 +58,14 @@ class Courier extends User
     {
         return [];
     }
+
+    public static function addCourierById(PDO $db, int $id)
+    {
+
+        $stmt2 = $db->prepare('
+            INSERT INTO COURIER VALUES (?)
+      ');
+
+        $stmt2->execute(array($id));
+    }
 }
