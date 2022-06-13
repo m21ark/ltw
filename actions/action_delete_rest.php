@@ -16,6 +16,11 @@ if (!$session->isLoggedIn()) {
 $user = unserialize($session->getUserSerialized());
 $restaurantID = $_GET['rID'];
 
+
+
+
+$db = getDatabaseConnection();
+
 // -----------------------------------------------------------
 
 require_once(__DIR__ . "/../database/verify_if_owner.php");
@@ -23,12 +28,11 @@ require_once(__DIR__ . "/../database/verify_if_owner.php");
 // -----------------------------------------------------------
 
 
-
-$db = getDatabaseConnection();
-
 $restID = $_GET['rID'];
 
 // TODO Should Restaurant Menu, Orders be also deleted?
+
+
 
 // ___________________________________________________________________________
 
