@@ -79,6 +79,8 @@ Most additional suggested requirements were also implemented.
 - [x] Image Carousel for Restaurants & Plates
 - [x] Search plate category inside Restaurant Page
 
+Deployment of the website can be found in [TastyEats](http://tastyeats.xyz)
+
 ## Credentials
 
 We have 3 kinds of users: Customer, Owner, Courier.
