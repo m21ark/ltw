@@ -286,7 +286,7 @@ function drawUserInfoPage(UserComposite $user)
                 <h3><?= htmlentities(OrderStatus::status[$order->order_state]) ?></h3>
 
                 <?php if ($order->order_state < 6) { ?>
-                    <a href="../actions/action_cancel_order.php?oid=<?= urlencode($order->id) ?>">
+                    <a href="../actions/action_cancel_delivery.php?oid=<?= urlencode($order->id)?>&deliv=user">
                         <p class="container_delete">&#128465;</p>
                     </a>
                 <?php } ?>
