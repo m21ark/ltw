@@ -133,22 +133,6 @@
     }
 }
 
-
-/*  Search Section  */
-
-@media (max-width:50em) {
-    .search_box {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .search_box input:last-child {
-        margin: auto;
-        margin-top: 1em;
-        width: 60%;
-    }
-}
-
 /*  Rest Review Section  */
 
 @media (max-width:43em) {
@@ -237,5 +221,14 @@
 
     div.card_item:hover {
         transform: none;
+    }
+}
+
+
+/*  Order Kanban  */
+
+@media (max-width:44em) {
+    div.kanban {
+        flex-direction: column;
     }
 }

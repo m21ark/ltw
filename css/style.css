@@ -168,7 +168,7 @@ header a#header_search {
     font-weight: bolder;
 }
 
-#session_messages p{
+#session_messages p {
     padding: 0.5em;
 }
 
@@ -209,24 +209,16 @@ section#session_messages .info p {
     margin: auto;
     padding: 2em;
     width: 70%;
-    max-width: 35em;
+    max-width: 32em;
 }
 
-.search_box input[type="search"] {
+.search_box input {
     grid-column: 1;
     padding: 1.2em 1em;
     border-radius: 7px;
     border-width: 0;
     margin-top: 0.8em;
     box-shadow: 1px 1px 5px grey;
-}
-
-
-.search_box input[type="submit"] {
-    margin-top: 0.8em;
-    grid-column: 2;
-    margin-left: 2em;
-    max-width: 15em;
 }
 
 
@@ -242,8 +234,6 @@ footer>p {
     font-family: var(--logo_font);
     color: var(--title_color)
 }
-
-
 
 
 
@@ -279,4 +269,3 @@ footer>p {
     height: 15em;
     width: inherit;
 }
-  
