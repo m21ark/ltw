@@ -1,6 +1,8 @@
 "use strict";
 function totalCart() {
     const buyButton = document.querySelector('#cart_list>.form_button');
+    if (buyButton == null)
+        return;
 
     const cartList = buyButton.parentElement;
     const orders = cartList.querySelectorAll('.container>.container_price');
