@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 require_once(__DIR__ . "/../database/connection.php");
 require_once(__DIR__ . "/../database/restaurant.class.php");
-require_once(__DIR__ . '/../utils/session.php');
 require_once(__DIR__ . "/../templates/plates_carrossel.tpt.php");
-
-$session = new Session();
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     header('Access-Control-Allow-Origin: *');
@@ -43,3 +40,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     die();
 }
+
+header("HTTP/1.1 400 Bad Request");
