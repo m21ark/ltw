@@ -6,16 +6,17 @@ function encodeForAjax(data) {
 
 function removeDishFromCart() {
   const deleteButton = document.querySelectorAll(".container_delete");
-  console.log(deleteButton)
+
   for (const button of deleteButton) {
-    button.addEventListener('click', function () {
+    button.addEventListener('click', function (evt) {
+      evt.preventDefault();
       const request = new XMLHttpRequest();
       request.withCredentials = true;
       request.open("POST", "../actions/action_remove_from_cart.php", true);
       request.setRequestHeader('Content-Type',
         'application/x-www-form-urlencoded')
-      request.send(encodeForAjax({ id: button.parentElement.getAttribute('value') }));
-      button.parentNode.parentNode.parentNode.removeChild(button.parentNode.parentNode);
+      request.send(encodeForAjax({ id: button.getAttribute('value') }));
+      button.parentNode.parentNode.removeChild(button.parentNode);
       totalCart();
     });
   }

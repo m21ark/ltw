@@ -23,5 +23,3 @@ if ($customer == null) {
 $customer->deleteFromCart((int)$_POST['id']);
 
 $session->setUser($user);
-
-$session->addMessage('info', 'Item was removed from cart');

@@ -134,7 +134,7 @@
         ?>
 
             <div class="container">
-                <a href="plate.php?id=<?= urlencode($dishID) ?>" class="container_name"><?= urlencode($dish->name) ?></a>
+                <a href="plate.php?id=<?= urlencode($dishID) ?>" class="container_name"><?= htmlentities($dish->name) ?></a>
                 <img src=<?= "../docs/food/" . urlencode($dishID) . ".jpg" ?> alt=<?= $dish->name ?>>
                 <p class="container_price"><?= htmlentities($dish->price) ?>$</p>
 
@@ -144,9 +144,9 @@
                     <span class="input-number-increment" data-id="<?= htmlentities($dishID) ?>">+</span>
                 </div>
 
-                <button type="text" formaction="" formmethod="POST" name="id" value=<?= htmlentities($dishID) ?>>
-                    <p class="container_delete">&#128465;</p>
-                </button>
+
+                <a class="container_delete" value=<?= htmlentities($dishID) ?>>&#128465;</a>
+
 
             </div>
 
@@ -286,7 +286,7 @@ function drawUserInfoPage(UserComposite $user)
                 <h3><?= htmlentities(OrderStatus::status[$order->order_state]) ?></h3>
 
                 <?php if ($order->order_state < 6) { ?>
-                    <a href="../actions/action_cancel_delivery.php?oid=<?= urlencode($order->id)?>&deliv=user">
+                    <a href="../actions/action_cancel_delivery.php?oid=<?= urlencode($order->id) ?>&deliv=user">
                         <p class="container_delete">&#128465;</p>
                     </a>
                 <?php } ?>

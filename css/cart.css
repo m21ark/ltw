@@ -24,6 +24,7 @@
 #cart_list .container img {
     width: 15em;
     border-radius: 7px;
+    max-height: 12em;
 }
 
 #cart_list .container_name {
