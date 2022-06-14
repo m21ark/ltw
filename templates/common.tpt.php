@@ -49,7 +49,7 @@ function output_header()
 
         <header>
             <a href="index.php"><img src="../docs/logo.png" width="50" height="50" alt="logo"></a>
-            <h1 id="logo_name"><a href="index.php?#">Tasty Eats</a></h1>
+            <h1 id="logo_name"><a href="index.php">Tasty Eats</a></h1>
             <span><a id="header_search" href="index.php">&#128270;</a></span>
 
             <?php if (!isset($_SESSION['user'])) { ?>
