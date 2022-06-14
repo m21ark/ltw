@@ -8,8 +8,8 @@ function removeDishFromCart() {
   const deleteButton = document.querySelectorAll(".container_delete");
 
   for (const button of deleteButton) {
-    button.addEventListener('click', function (evt) {
-      evt.preventDefault();
+    button.addEventListener('click', function () {
+
       const request = new XMLHttpRequest();
       request.withCredentials = true;
       request.open("POST", "../actions/action_remove_from_cart.php", true);

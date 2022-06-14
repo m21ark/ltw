@@ -145,7 +145,7 @@
                 </div>
 
 
-                <a class="container_delete" value=<?= htmlentities($dishID) ?>>&#128465;</a>
+                <a href="#" class="container_delete" value=<?= htmlentities($dishID) ?>>&#128465;</a>
 
 
             </div>
