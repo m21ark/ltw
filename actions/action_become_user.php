@@ -22,15 +22,20 @@ $db = getDatabaseConnection();
 $costPriUser = unserialize($session->getUserSerialized());
 $user = $costPriUser->permissions[0];
 
+if (!isset($_POST['id']))
+    die(header('Location: /'));
+
+if (!preg_match("/^[0-9]+$/", $_POST['id'], $match_id))
+    die(header('Location: /'));
+
 if ($_POST['type'] == "Customer") {
     array_push($costPriUser->permissions, new Customer($user->id, $user->username, $user->address, $user->phone, $user->email));
 
-    Customer::addCostumerById($db, (int)$_POST['id']); // nem era preciso passar por post... uma vez que tem seção aberta
-}else if($_POST['type'] == "Courier") {
+    Customer::addCostumerById($db, (int)$match_id);
+} else if ($_POST['type'] == "Courier") {
     array_push($costPriUser->permissions, new Courier($user->id, $user->username, $user->address, $user->phone, $user->email));
 
-    Courier::addCourierById($db, (int)$_POST['id']);
+    Courier::addCourierById($db, (int)$match_id);
 }
-
 
 $session->setUser($costPriUser);

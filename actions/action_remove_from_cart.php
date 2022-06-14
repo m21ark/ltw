@@ -20,6 +20,12 @@ if ($customer == null) {
     die(header('Location: /'));
 }
 
-$customer->deleteFromCart((int)$_POST['id']);
+if (!isset($_POST['id']))
+    die(header('Location: /'));
+
+if (!preg_match("/^[0-9]+$/", $_POST['id'], $match_id))
+    die(header('Location: /'));
+
+$customer->deleteFromCart((int)$match_id);
 
 $session->setUser($user);

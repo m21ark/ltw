@@ -20,7 +20,13 @@ if ($customer == null) {
     die(header('Location: /'));
 }
 
-$customer->addToCart((int)$_POST['id']);
+if (!isset($_POST['id']))
+    die(header('Location: /'));
+
+if (!preg_match("/^[0-9]+$/", $_POST['id'], $match_id))
+    die(header('Location: /'));
+
+$customer->addToCart((int)$match_id[0]);
 
 $_SESSION['user'] = serialize($user);
 

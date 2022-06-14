@@ -13,6 +13,9 @@ if (!$session->isLoggedIn()) {
     die(header('Location: /'));
 }
 
+if (!isset($_POST['id']) || !isset($_POST['comment']))
+    die(header('Location: /'));
+
 $db = getDatabaseConnection();
 
 $stmt = $db->prepare("INSERT INTO Response  VALUES (?,  ?) ");

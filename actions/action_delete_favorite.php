@@ -24,14 +24,23 @@ if ($customer == null) {
 
 
 if (isset($_POST['resID'])) {
+
+    if (!preg_match("/^[0-9]+$/", $_POST['resID'], $match_id))
+        die(header('Location: /'));
+
     $db = getDatabaseConnection();
-    $dish = Restaurant::getRestaurant($db, intval(htmlentities($_POST['resID'])));
+    $dish = Restaurant::getRestaurant($db, intval(htmlentities($match_id[0])));
 
     $customer->getFavoriteRestaurants($db);
     $customer->removeFromFavoriteRestaurants($db, $dish);
+    
 } else if (isset($_POST['dishID'])) {
+
+    if (!preg_match("/^[0-9]+$/", $_POST['dishID'], $match_id))
+        die(header('Location: /'));
+
     $db = getDatabaseConnection();
-    $dish = Dish::getDish($db, intval(htmlentities($_POST['dishID'])));
+    $dish = Dish::getDish($db, intval(htmlentities($match_id[0])));
 
     $customer->getFavoriteDishes($db);
     $customer->removeFromFavoriteDishes($db, $dish);

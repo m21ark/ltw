@@ -16,8 +16,11 @@ if (!$session->isLoggedIn()) {
 
 $db = getDatabaseConnection();
 
-$plateID = $_GET['pid'];
+if (!isset($_GET['pid']))
+    die(header('Location: /'));
 
+if (!preg_match("/^[0-9]+$/", $_POST['pid'], $plateID))
+    die(header('Location: /'));
 
 // __________________________________________________________________
 
