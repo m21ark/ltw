@@ -61,7 +61,16 @@ function output_header()
                 $user = unserialize($_SESSION['user']);
             ?>
                 <span><a id="header_cart" href="cart.php">&#x1f6d2;</a></span>
-                <a id="header_avatar" href="user.php"><img src="../docs/users/<?= urlencode($user->permissions[0]->id) ?>.jpg" alt="logo"></a>
+                <?php
+
+                $user_pic_id = urlencode($user->permissions[0]->id);
+                $user_pic = "../docs/users/$user_pic_id.jpg";
+
+                if (!file_exists($user_pic))
+                    $user_pic = "../docs/user.png";
+
+                ?>
+                <a id="header_avatar" href="user.php"><img src="<?= $user_pic ?>" alt="logo"></a>
                 <span class="user_id" data-id=<?= htmlentities($user->permissions[0]->id) ?> hidden></span>
             <?php } ?>
         </header>

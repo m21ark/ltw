@@ -165,7 +165,16 @@ function drawUserInfoPage(UserComposite $user)
         <section class="container">
             <h2>User</h2>
             <div id="info_display">
-                <img id="user_photo" src="../docs/users/<?= urlencode($user->permissions[0]->id) ?>.jpg" width="200" height="200" alt="logo">
+                <?php
+
+                $user_pic_id = urlencode($user->permissions[0]->id);
+                $user_pic = "../docs/users/$user_pic_id.jpg";
+
+                if (!file_exists($user_pic))
+                    $user_pic = "../docs/user.png";
+
+                ?>
+                <img id="user_photo" src="<?= $user_pic ?>" width="200" height="200" alt="logo">
                 <h3><?= htmlentities($user->permissions[0]->username) ?></h3>
                 <p><span class="bold">Username:</span> <?= htmlentities($user->permissions[0]->username) ?></p>
                 <p><span class="bold">Adress:</span> <?= htmlentities($user->permissions[0]->address) ?></p>
