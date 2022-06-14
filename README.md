@@ -92,6 +92,6 @@ You can use the following demo user credentials:
 
 ## Workgroup
 
-- Marco André (up202004901@fe.up.pt)
+- Marco André (up202004891@fe.up.pt)
 - Ricardo de Matos (up202007962@fe.up.pt)
 - Francisco Bernardo (200904191@fe.up.pt)
