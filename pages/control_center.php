@@ -25,7 +25,7 @@ $db = getDatabaseConnection();
 
 
 $courier = isset($_SESSION['user']) ? $user->hasPermission("Courier") : null;
-if ($courier !== null) {
+if ($courier !== null && $_GET['cid'] !== null) {
     output_header();
     drawKanbanBoardCourier($db,  $_GET['cid']);
     output_footer();

@@ -15,30 +15,30 @@ if (!$session->isLoggedIn()) {
     die(header('Location: /'));
 }
 
-$user = unserialize($session->getUserSerialized());
+$user = $session->getUser();
 
-/* Problem checking permissions here.... 
-
-$acess1 = $user->hasPermission("Courier");
-
-if (($acess2 !== 1)) {
-    $session->addMessage('erro', 'You dont have owner permissions');
-    die(header('Location: /'));
-}
-
- */
 
 $db = getDatabaseConnection();
 
 
-// ___________________________________________________________________________
+if ($_GET['deliv'] == "true") {
+    $stmt = $db->prepare('UPDATE "Order" SET OrderStateID = ? WHERE OrderID = ? AND CourierID = ?');
+    $stmt->execute(array(3, $_GET['oid'], $user->permissions[0]->id));
+    $session->addMessage('info', 'Delivery canceled');
+} else if ($_GET['deliv'] == "false") {
+    $stmt = $db->prepare('SELECT RestaurantID FROM "Order" WHERE OrderID = ?');
+    $stmt->execute(array($_GET['oid']));
+    $id = $stmt->fetch();
+    $res = RestaurantOwner::getOwnerRestaurants($db, $user->permissions[0]->id);
 
+    if (!(in_array($id["RestaurantID"], $res))) {
+        $session->addMessage('erro', 'You dont have owner permissions');
+        die(header('Location: /'));
+    }
+    $stmt = $db->prepare('UPDATE "Order" SET OrderStateID = ? WHERE OrderID = ?');
+    $stmt->execute(array(7, $_GET['oid']));
+    $session->addMessage('info', 'Order canceled');
+}
 
-$stmt = $db->prepare('UPDATE "Order" SET OrderStateID = ? WHERE OrderID = ?');
-$stmt->execute(array(3, $_GET['oid']));
-
-// ___________________________________________________________________________
-
-$session->addMessage('info', 'Delivery canceled');
 
 die(header('Location: ' . $_SERVER['HTTP_REFERER']));
