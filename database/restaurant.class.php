@@ -383,7 +383,7 @@ class Restaurant
         if ($cat !== null) {
             $stmt = $db->prepare('
             SELECT *
-            FROM Restaurant
+            FROM Restaurant_Avg_Score
             where Name LIKE "%" || ? || "%"
             AND Category LIKE ?
             LIMIT ?, 4
@@ -392,7 +392,7 @@ class Restaurant
         } else {
             $stmt = $db->prepare('
             SELECT *
-            FROM Restaurant
+            FROM Restaurant_Avg_Score
             where Name LIKE "%" || ? || "%"
             LIMIT ?, 4
         ');

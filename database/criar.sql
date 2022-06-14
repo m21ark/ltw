@@ -182,3 +182,10 @@ CREATE TRIGGER update_location
 BEGIN
 	insert or replace into OrderLocation(OrderID, lat, lon) Values (new.OrderID, NULL, NULL);
 END;
+
+CREATE VIEW Restaurant_Avg_Score AS 
+SELECT *, AVG(Score) as avg_score
+FROM Restaurant LEFT JOIN Review on (Restaurant.RestaurantID = Review.RestaurantID)
+Group by Restaurant.RestaurantID
+Order by avg_score DESC;
+
