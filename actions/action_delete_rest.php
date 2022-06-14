@@ -22,7 +22,7 @@ $db = getDatabaseConnection();
 require_once(__DIR__ . "/../database/verify_if_owner.php");
 
 
-// TODO Should Restaurant Menu, Orders be also deleted? --> Maybe to much work and can cause inconsistencies at this late game
+// Restaurant Menu, Orders should also be also deleted
 
 
 // ___________________________________________________________________________

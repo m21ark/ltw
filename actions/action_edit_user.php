@@ -26,9 +26,11 @@ $stmt = $db->prepare("DELETE FROM User WHERE UserId=?");
 $stmt->execute(array($user->id));
 
 
+$password = password_hash($_POST['new_password'], PASSWORD_DEFAULT, ['cost' => 12]);
+
 
 $stmt = $db->prepare("INSERT INTO User VALUES (?, ?,  ?, ?, ?, ?, null)");
-$stmt->execute(array($user->id, strtolower($_POST['email']), $_POST['username'], sha1($_POST['new_password']), $_POST['address'], $_POST['phone']));
+$stmt->execute(array($user->id, strtolower($_POST['email']), $_POST['username'], $password, $_POST['address'], $_POST['phone']));
 
 
 // _____________________________________________________________________________________________

@@ -19,8 +19,10 @@ $db = getDatabaseConnection();
 if (!isset($_GET['pid']))
     die(header('Location: /'));
 
-if (!preg_match("/^[0-9]+$/", $_POST['pid'], $plateID))
+if (!preg_match("/^[0-9]+$/", $_GET['pid'], $plateID))
     die(header('Location: /'));
+
+$plateID =  $plateID[0];
 
 // __________________________________________________________________
 

@@ -26,6 +26,6 @@ if (!isset($_POST['id']))
 if (!preg_match("/^[0-9]+$/", $_POST['id'], $match_id))
     die(header('Location: /'));
 
-$customer->deleteFromCart((int)$match_id);
+$customer->deleteFromCart((int)$match_id[0]);
 
 $session->setUser($user);

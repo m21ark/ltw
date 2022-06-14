@@ -18,6 +18,7 @@ DROP TABLE IF EXISTS Response;
 DROP TABLE IF EXISTS TakenDelivery;
 DROP TABLE IF EXISTS "Notification";
 DROP TABLE IF EXISTS OrderLocation;
+DROP VIEW IF EXISTS Restaurant_Avg_Score;
 
 CREATE TABLE Restaurant (
 	RestaurantID INTEGER PRIMARY KEY,
