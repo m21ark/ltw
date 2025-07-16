@@ -9,6 +9,8 @@ Create a website where restaurants can list and offer their menus for take-away.
 - Use PHP to generate those web pages after retrieving/changing data from the database.
 - Use Javascript to enhance the user experience (for example, using Ajax).
 
+<img width="1304" height="1950" alt="homepage" src="https://github.com/user-attachments/assets/3f6544b7-337f-4201-9f06-46aa292d6abb" />
+
 ## Implemented Base Features
 
 All base requirements were implemented.
